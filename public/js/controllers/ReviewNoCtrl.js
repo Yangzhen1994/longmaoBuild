@@ -1,0 +1,126 @@
+/**
+ * Created by 73951 on 2017/3/17.
+ */
+
+define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
+    return  app.controller('ReviewNoCtrl',['$scope','serverService',function ($scope,serverService) {
+        var okArr = [];
+        var noArr = []
+        var reviewok = storageUtils.session.getItem('_reviewOk_');
+        if(reviewok!=null){
+            okArr=reviewok;
+
+        }
+        var reviewno= storageUtils.session.getItem('_reviewNo_');
+        if(reviewno!=null){
+            reviewno.forEach(function (item,index) {
+                item.checkState = false
+            })
+            noArr=reviewno;
+            $scope.reviewNoItems =noArr;
+            if($scope.reviewNoItems.length>0){
+                $scope.reviewNo = $scope.reviewNoItems[0].data;
+
+            }else{
+                $scope.reviewNo = {}
+            }
+
+            //console.log($scope.reviewNoItems)
+        }
+
+
+        $scope.changeColor = 0;
+        $scope.currentIndex = 0;
+        //复选框的初值
+        $scope.flag = false;
+
+        $scope.masterItem = false;
+        $scope.all= function (master) {
+
+            $scope.masterItem = master;
+
+            for(var i=0;i<$scope.reviewNoItems.length;i++){
+                $scope.reviewNoItems[i].checkState=master;
+            }
+            $scope.currentIndex = $scope.reviewNoItems.length
+        };
+        $scope.cancelOne = function (ev,x,index) {
+            ev  = event || window.event;
+            if(ev && ev.stopPropagation){
+                ev.stopPropagation()
+            }
+            $scope.reviewNoItems[index].checkState = x;
+            for(var i=0;i<$scope.reviewNoItems.length;i++){
+
+                if($scope.reviewNoItems[i].checkState == false){
+                    $scope.masterheader = false;
+                    $scope.flag = false;
+                    return false
+                }else{
+                    $scope.flag = true;
+                }
+            }
+        };
+        $scope.changeRight = function (item,index) {
+            if(item && item.data){
+                $scope.reviewNo = item.data
+            }else{
+                $scope.reviewOk = {}
+            }
+            $scope.changeColor = index;
+            $scope.currentIndex = index;
+        }
+        $scope.next = function () {
+            $scope.currentIndex ++;
+            if($scope.currentIndex >= $scope.reviewNoItems.length ){
+                $scope.currentIndex = $scope.reviewNoItems.length - 1
+            }
+            $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+        }
+        $scope.prev = function () {
+            $scope.currentIndex --;
+            if($scope.currentIndex < 0 ){
+                $scope.currentIndex = 0
+            }
+            $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+        };
+        $scope.rnRightAllow = function () {
+            /*全选通过*/
+            if($scope.master&&$scope.master == true){
+                for(var i=0;i<$scope.reviewNoItems.length;i++){
+                    $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
+                    okArr.push($scope.reviewNoItems[i]);
+                    $scope.master = false;
+                    $scope.changeRight(null);
+                }
+                storageUtils.session.setItem('_reviewOk_',okArr);
+                $scope.reviewNoItems = [];/*删除待审核的*/
+            }else{
+                /*没全选状态下点击next/通过*/
+                var result = []
+                for(var i=0;i<$scope.reviewNoItems.length;i++){
+                    if($scope.reviewNoItems[i].checkState == true) {
+                        console.log($scope.reviewNoItems[i].nickName+'通过');
+                        $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
+                        okArr.push($scope.reviewNoItems[i]);
+                        $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                        i--;
+                    }
+                }
+                result = $scope.reviewNoItems;
+                $scope.reviewNoItems = result;
+
+                if($scope.reviewNoItems.length>0){
+                    $scope.changeRight($scope.reviewNoItems[0],0);
+
+                }else{
+                    $scope.reviewNo = {}
+                }
+
+                storageUtils.session.setItem('_reviewOk_',okArr);
+                storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
+            }
+
+        };
+    }])
+})

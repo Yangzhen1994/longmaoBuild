@@ -1,0 +1,27 @@
+<!--添加步骤模板页-->
+<div class="stepTemp clearfix">
+    <p class="stepIndex"><span>步骤{{stepItem.index}}</span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
+    <div class="stepTemp_content ">
+        <div class="addbuttons">
+            <a href="javascript:;" ng-click="textProof()">+文本凭证</a>
+            <a href="javascript:;" ng-click="imgProof()">+图片凭证</a>
+            <a href="javascript:;" ng-click="posProof()">+位置凭证</a>
+            <a href="javascript:;" ng-click="audioProof()">+录音凭证</a>
+            <a href="javascript:;" ng-click="showText()">+显示文本</a>
+            <a href="javascript:;" ng-click="showImg()">+显示图片</a>
+        </div>
+        <div class="middleView ">
+            <ul  ng-model = "middleItems" ui-sortable="sortableOptions" class="temp_md_ul" style="overflow-y:true;">
+                <div style="height: 80px;width: 100%"></div>
+                        <li ng-repeat="middleItem in middleItems" id="{{'middleItem'+$index}}">
+                            <div>
+                                <textproof-module ng-show="{{middleItem.value == 1}}"></textproof-module>
+                                <posproof-module ng-show="{{middleItem.value == 3}}"></posproof-module>
+                                <showtext-module ng-show="{{middleItem.value == 5}}"></showtext-module>
+                                <showimg-module ng-show="{{middleItem.value == 6}}"></showimg-module>
+                            </div>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>

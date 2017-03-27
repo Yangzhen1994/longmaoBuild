@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="./css/review.css">
+<div style="background: #ececec;" class="review"><!--ng-controller="firstPage"-->
+
+    <div class="bread" >
+        <a ui-sref="reviewList" id="bread-taskList">审核列表<span>/</span></a>
+        <!-- <a ui-sref="parent.newTask">新建任务</a>-->
+    </div>
+    <div class="review_searchArea">
+        <button class="search-Btn-review" ng-click="reveiewSearch()">搜索</button>
+        <input type="text" class="search-Input" id="search_Input" ng-model="searchReviewContent">
+    </div>
+    <div class="review_radio">
+            <span ng-click="setChoose(1)">
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 1}"></i><span class="text">任务ID</span>
+		    </span>
+        <span ng-click="setChoose(2)">
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 2}"></i><span class="text">任务名称</span>
+		    </span>
+        <span  ng-click="setChoose(3)">
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 3}"></i><span class="text">POI_ID</span>
+		</span>
+    </div>
+    <div class="reviewDetail" style="overflow-y: auto">
+        <!-- <h2>审核列表界面</h2>
+         <input ng-model="newtask"></input>
+         <div>{{newtask}}</div>-->
+        <ul id="review_ul">
+            <li ng-repeat="item in items">
+                <div class="review-header">
+                    <div class="id">编号({{item.id}})</div>
+                    <div class="title">{{item.title}}</div>
+                    <div class="export" ng-click="export(item,index)">导出</div>
+                    <div class="import"><label for="{{'impotInput'+$index}}">导入</label></div>
+                    <input type="file" id="{{'impotInput'+$index}}" style="display:none"
+                    onchange="angular.element(this).scope().file_upload(this.files,this)"
+                    >
+                </div>
+                <div class="review-detail">
+                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px">{{item.state}}</span></span><span>完成程度:<span style="color: greenyellow;margin-right: 0;margin-left: 8px">{{item.currentCount}}</span>/{{item.totalCount}}</span><span>待审核数量:<span style="margin-right: 0;margin-left: 8px">{{item.reviewCount}}</span></span><span>下线时间:<span style="margin-right: 0;margin-left: 8px">{{item.downLine}}</span></span>
+                </div>
+                <div class="review-button">
+                    <a class="firstButton" ng-click="turnToReviewDetail($index)">审核</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+
+</div>

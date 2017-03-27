@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="./css/toReview.css">
+<div class="reviewNo">
+    <div class="reviewNo_left" style="overflow-y: auto">
+        <div class="checkHeader">
+            <input type="checkbox"  ng-model="masterheader" ng-click="all(masterheader)" ng-checked="flag" class="tr_hideCheckBox" id="ro_checkAll"><span class="checkAllText">全选</span>
+            <label for="ro_checkAll" class="checkAll_label"></label>
+            <button id="rn_allow" ng-click="rnRightAllow()" >通过</button>
+        </div>
+        <ul class="checkItems" >
+            <li ng-repeat="item in reviewNoItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
+                <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'rn_checkItem'+$index}}" class="tr_hideCheckBox"></input>
+                <label for="{{'rn_checkItem'+$index}}" class="tr_labelItem" ></label>
+                <p class="nickName nickName_no">{{item.nickName}}</p>
+                <p class="nickName_time nickName_time_no">{{item.time}}</p>
+            </li>
+        </ul>
+    </div>
+    <div class="reviewNo_Right">
+        <p>提交的凭证:</p>
+        <div class="toReview_Right_tel">
+            手机号&nbsp&nbsp{{reviewNo.tel}}
+        </div>
+        <div class="toReview_Right_footer">
+            <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>
+            <a href="javascript:;" class="tr_Right_fallow" ng-click="rnRightAllow()">通过</a>
+            <a href="javascript:;" class="tr_Right_nextOne ro_Right_nextOne rn_Right_nextOne" ng-click="next()">下一个<i class="next_icon"></i></a>
+        </div>
+    </div>
+</div>

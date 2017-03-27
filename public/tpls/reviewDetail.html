@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="./css/reviewDetail.css">
+<div><!--ng-controller="firstPage"-->
+
+    <div class="bread" >
+        <a ui-sref="reviewList" id="bread-taskList" style="color: rgba(0,0,0,0.54);">审核列表<span>/</span></a>
+        <a id="reviewId">编号{{reviewId}}</a>
+    </div>
+
+    <div class="reviewDetail_searchArea">
+        <button class="search-Btn-reviewDetail">搜索</button>
+        <input type="text" class="search-Input" id="search_Input">
+    </div>
+    <div class="reviewDetail_radio">
+        <span ng-click="setChoose(1)">
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 1}"></i><span class="text">用户ID</span>
+        </span>
+        <span ng-click="setChoose(2)">
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 2}"></i><span class="text">用户名称</span>
+        </span>
+    </div>
+    <div  id="submitTime">
+        <select class="selSubTime" ng-model="subTime" ng-options="item.subTime for item in items">
+            <option value="">提交时间</option>
+        </select>
+    </div>
+
+    <div class="reviewDetail_detail">
+        <!-- <h2>审核列表界面</h2>
+         <input ng-model="newtask"></input>
+         <div>{{newtask}}</div>-->
+        <div class="tabs_header">
+            <a ui-sref="reviewDetail.tab1" class="tabs_header_1" ng-click="changeTabBorder(0)" ng-class="{tabs_header_selected:tabSelected==0}">待审核</a>
+            <a ui-sref="reviewDetail.tab2" class="tabs_header_2" ng-click="changeTabBorder(1)" ng-class="{tabs_header_selected:tabSelected==1}">审核通过</a>
+            <a ui-sref="reviewDetail.tab3" class="tabs_header_3" ng-click="changeTabBorder(2)" ng-class="{tabs_header_selected:tabSelected==2}">审核不通过</a>
+        </div>
+        <div ui-view></div>
+    </div>
+</div>

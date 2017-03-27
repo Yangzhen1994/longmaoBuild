@@ -1,0 +1,23 @@
+<div class="showText" style="position: relative;font-size: 13px;color: #B1B1B1;
+    width: 320px;
+    transform: scale(0.8);
+    margin-left: -15px;
+    visibility: visible;
+    margin-bottom: 10px;
+    ">{{showText}}
+    <input type="text" ng-model="showText" style="position: absolute;
+    top:0px;
+    left: 365px;
+    border: none;
+    font-size: 13px;
+    WIDTH: 300px;
+    height: 30px;
+    line-height: 30px;
+    visibility:hidden;
+">
+    <img src="./img/icon/deleteCircle.png" alt="" style="
+    position: absolute;
+    top:-8px;
+    right:-16px" ng-click="deleteOne($event,middleItem)"
+    >
+</div>

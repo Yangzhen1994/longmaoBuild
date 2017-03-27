@@ -1,0 +1,139 @@
+/*审核界面*/
+.search-Input{
+    top:-5px;
+    right: 110px;
+    font-size: 16px;
+}
+.review_searchArea{
+    position: absolute;
+    top:22px;
+    right:14px;
+    width: 380px;
+    height: 50px;
+}
+
+.search-Btn-review{
+    border-radius:2px;
+    position: absolute;
+    border: none;
+    outline: none;
+    width: 93px;
+    height: 36px;
+    background: #009688;
+    color:#FFFFFF;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: PingFangSC-Regular;
+    letter-spacing:0.5px;
+    right: 5px;
+}
+.review_radio{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #212121;
+    padding-left: 197px;
+}
+.review_radio span{
+    opacity: 1;
+}
+.review_radio span i{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #010101;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-right: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #212121;
+    margin-bottom: 3px;
+}
+.review_radio span .chooseBg{
+    background: url(../img/green_circle.png) no-repeat;
+    background-size: 100%;
+    border:none;
+}
+
+.reviewDetail{
+    width: 816px;
+    height: 658px;/*______*/
+    margin: 0 auto;
+    margin-top: 30px;
+    background: white;
+}
+
+#review_ul li{
+    width: 100%;
+    height: 90px;
+    border-bottom: 1px solid #ececec;
+    position: relative;
+}
+#review_ul li .review-header{
+    width: 294px;
+    height: 21px;
+    font-family: PingFangSC-Regular;
+    font-size: 15px;
+}
+#review_ul li .id {
+    float: left;
+    margin-left: 16px;
+    margin-top: 26px;
+}
+#review_ul li .title {
+
+    float: left;
+    margin-top: 26px;
+    margin-left: 10px;
+}
+#review_ul li .review-detail{
+    color:#303030;
+    font-size: 13px;
+    width: auto;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    line-height: 18px;
+}
+.review-detail span{
+    margin-right: 40px;
+}
+.review-button a{
+    display: block;
+    text-decoration: none;
+    width: 80px;
+    height: 40px;
+    color: #303030;
+    position: absolute;
+    border: 1px solid #c6c6c6;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 40px;
+    top:30px;
+    right:25px;
+}
+.review-button .firstButton{
+    font-size: 13px;
+    background: #2DB7F5;
+    color:#FFFFFF;
+}
+.review-button a:hover{
+    cursor: pointer;
+}
+.import , .export{
+    color:#2DB7F5;
+    font-size: 13px;
+    font-family: PingFangSC-Regular;
+    float: left;
+    margin-top: 28px;
+    margin-left: 12px;
+}
+.export{
+    margin-left: 8px;
+}
+.import label:hover{
+     cursor: pointer;
+}
+.export:hover{
+    cursor: pointer;
+}

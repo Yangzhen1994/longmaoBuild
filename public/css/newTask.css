@@ -1,0 +1,294 @@
+#bread_newTask{
+    display: block;
+    margin-left: 16px;
+    margin-top: 11px;
+    width:80px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.20);
+    text-decoration: none;
+    font-family: PingFangSC-Regular;
+}
+#bread_newTask span{
+    margin-left: 7px;
+    color: #cccccc;
+}
+#bread_newTaskMessage{
+    display: block;
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: #000000;
+    line-height: 18px;
+    height: 18px;
+    position: absolute;
+    top: 11px;
+    left: 90px;
+    text-decoration: none;
+}
+.nt_leftView{
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 28px;
+    width: 305px;
+    height: 540px;
+    list-style: none;
+    margin-left: 45px;
+    float: left;
+    background: url("../img/newTaskbg.jpg");
+    background-size: 100% 100%;
+}
+
+ul{
+    list-style: none;
+}
+.nt_lv_ph{
+    position: relative;
+}
+.nt_lvph_title{
+    position: absolute;
+    height: 13px;
+    top: 80px;
+    line-height: 13px;
+    font-size: 13px;
+    left: 15px;
+}
+.nt_lvph_detail{
+    position: absolute;
+    height: 8px;
+    top: 100px;
+    line-height: 8px;
+    font-size: 8px;
+    left: 4px;
+    color: #D1D1D1;
+    transform: scale(0.9);
+}
+.nt_lvph_rightPrice{
+    position: absolute;
+    color: orangered;
+    font-size: 22px;
+    top: 80px;
+    right: 10px;
+}
+.nt_lvph_taskSummary{
+    width: 230px;
+    height: 95px;
+    position: absolute;
+    top:180px;
+    left:35px;
+    font-size: 8px;
+    color:#D2B9A0;
+    overflow: hidden;
+}
+.summaryDetail{
+    width: 230px;
+    height: 95px;
+    position: absolute;
+    top:180px;
+    left:26px;
+    font-size: 8px;
+    color:#CAB097;
+    line-height: 16px;
+}
+.sharePrice,.getTaskPrice{
+    display: inline-block;
+    position: absolute;
+    height: 13px;
+    line-height: 13px;
+    font-size: 13px;
+    top:507px;
+    left:39px;
+    text-align: center;
+    color: black;
+    font-family: PingFangSC-Regular;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+.getTaskPrice{
+    color: white;
+    left:180px;
+    top:506px
+}
+/*rightview*/
+.nt_rightView{
+    position: relative;
+    padding-left: 10px;
+}
+.nt_rightView{
+    width: 416px;
+    height: 587px;
+    background: white;
+    float: right;
+    position: relative;
+    right: 8px;
+    margin-top: 30px;
+}
+.nt_rightView label{
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: rgba(0,0,0,0.54);
+}
+.nt_rightView input{
+    border:1px solid #737373;
+    border-radius: 5px;
+    width: 280px;
+    height:32px;
+    font-size: 16px;
+    line-height: 48px;
+    margin-left: 12px;
+}
+.nt_rv_title{
+    margin-top: 8px;
+}
+.nt_rv_title input{
+    width:323px;
+    height:32px;
+}
+.nt_rv_taskCount{
+    margin-top: 8px;
+}
+.nt_rv_taskCount input{
+    width:66px;
+    height:32px;
+}
+.nt_rv_timePicker {
+    margin-top: 8px;
+}
+.nt_rv_timePicker input{
+    font-size: 13px;
+    width: 138px;
+    height: 32px;
+}
+.nt_rightView #start,.nt_rightView #end{
+    background: url("../img/icon/temepicker.png") no-repeat;
+    background-position: right center;
+}
+.nt_rv_price {
+    margin-top: 8px;
+}
+.nt_rv_price input{
+    width: 66px;
+    height: 32px;
+}
+.nt_rv_sharePrice {
+    margin-top: 8px;
+}
+.nt_rv_sharePrice input{
+    width: 66px;
+    height: 32px;
+}
+.nt_rv_reviewTime{
+    margin-top: 8px ;
+}
+.nt_rv_reviewTime input{
+    width: 66px;
+    height: 32px;
+}
+.nt_rv_summary{
+    margin-top: 8px;
+}
+.nt_rv_summary label{
+   position: relative;
+   top:-80px;
+}
+.nt_rv_summary textarea{
+
+    width: 323px;
+    height: 94px;
+    border-radius: 4px;
+    resize: none;
+    margin-left: 12px;
+}
+.nt_rv_userGetTime {
+    margin-top: 8px;
+}
+.nt_rv_userGetTime input{
+    width: 66px;
+    height: 32px;
+}
+.nt_rv_maxSubCount{
+    margin-top: 8px;
+}
+.nt_rv_maxSubCount input{
+    width: 66px;
+    height: 32px;
+}
+.nt_rv_showArea{
+    margin-top: 8px;
+}
+.nt_rv_showArea select{
+    margin-left: 12px;
+    background: white;
+    width: 120px;
+    height: 32px;
+    border: 1px solid #737373;
+    border-radius: 4px;
+}
+.nt_rv_lineVersion {
+    margin-top: 8px;
+}
+.nt_rv_lineVersion select{
+    margin-left: 12px;
+    background: white;
+    width: 120px;
+    height: 32px;
+    border: 1px solid #737373;
+    border-radius: 4px;
+}
+.nt_rv_showOther{
+    margin-top: 8px;
+}
+.nt_rv_showOther input{
+    width: 85px;
+    height: 32px;
+    border-radius: 4px;
+}
+.content{
+
+}
+.clearfix{
+    clear: both;
+
+}
+.clearfix:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+/*底部*/
+.nt_footer{
+    margin-top: 28px;
+
+    width: 100%;
+    height: 63px;
+    border-top: 1px solid #cccccc;
+    overflow: hidden;
+    background: white;
+}
+.nt_footer .btn_area{
+    width: 260px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 12px;
+}
+.nt_footer .btn_area a{
+    display: inline-block;
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: rgba(0,0,0,0.54);
+    width: 80px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 2px;
+    border: 1px solid #cccccc;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+}
+.nt_footer .btn_area .nextPage{
+    background: #2DB7F5;
+    color: white;
+}
+

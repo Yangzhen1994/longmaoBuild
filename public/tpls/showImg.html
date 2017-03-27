@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="./css/showImg.css">
+<div class="showImg" ng-controller="showImgCtrl" style="margin-left: 10px;margin-bottom: 10px">
+   <div class="moniImg" >
+       <div ng-repeat="item in thumb" style="width:50%;float: left;">
+           <!-- 采用angular循环的方式，对存入thumb的图片进行展示 -->
+           <label>
+               <img ng-src="{{item.imgSrc}}" style="width:100%;height:100%"/>
+           </label><div ng-if="item.imgSrc" ng-click="img_del($index)" style="display: inline-block;
+    margin-top: -20px;height: 20px;width: 16px;height: 16px;background: url('./img/icon/del.png')"></div>
+       </div>
+   </div>
+    <!--上传图片-->
+    <!--<div class="upImg">
+        &lt;!&ndash;<img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" alt="" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+             multiple accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+        <div style="height: 20px;margin-top: -30px;">File:{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+            <div class="progress" ng-show="f.progress >= 0">
+                <div style="width:{{f.progress}}%"
+                     ng-bind="f.progress + '%'">
+                </div>
+            </div>
+        </div>&ndash;&gt;
+        <label for="upFile" id="upFileLabel"><img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" alt=""></label>
+        <input type="file" name="upFile" multiple="multiple" id="upFile">
+    </div>-->
+    <section >
+        <img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" style="width: 24px;height: 24px"/>
+                    <div ng-repeat="item in thumb_default" >
+                        <!-- 这里之所以写个循环，是为了后期万一需要多个‘加号'框 -->
+                            <input type="file" multiple class="one-input" accept="image/*" file-model="images" onchange="angular.element(this).scope().img_upload(this.files,this)"/>
+                    </div>
+             <!--   <input type="submit" name="" value="提 交" ng-click="submit_form()"/>-->
+    </section>
+    <img src="./img/icon/deleteCircle.png" alt="" style="
+    position: absolute;
+    top:-8px;
+    right:-16px" ng-click="deleteImg($event,middleItem)"
+    >
+</div>
+

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="./css/posProof.css">
+<div class="posProof" ng-controller="posProofCtrl" style="margin-left: 10px;margin-bottom: 10px">
+    <img src="./img/moduleImg/posGroup.png" alt="">
+    <div class="posEdit">
+        <div class="editArea">
+            <label for="posEdit_inputn" id="posEdit_label" >位置:</label>
+            <input type="text" id="posEdit_inputn" ng-model="pos.n.one" class="posN" style="width:32px;transform: scale(0.9)"><span>°</span><input type="text" id=""  ng-model="pos.n.two" class="posN"  style="width:32px;transform: scale(0.9)"><span>'</span><input type="text" id=""  ng-model="pos.n.three" class="posN"  style="transform: scale(0.9)">"N
+            <input type="text" id="posEdit_inpute" ng-model="pos.e.one" class="posE" style="width:32px;transform: scale(0.9)"><span>°</span><input type="text" id=""  ng-model="pos.e.two" class="posE"  style="width:32px;transform: scale(0.9)"><span>'</span><input type="text" id=""  ng-model="pos.e.three" class="posE"  style="transform: scale(0.9)">"E
+        </div>
+        <div class="posSub">
+            <img src="./img/posSubmit.png" alt="">
+        </div>
+        <div class="posBottom">
+            <img src="./img/posBottom.png" alt="">
+        </div>
+    </div>
+    <p class="showPos" style=" top: 10px;
+    left: 25px;
+    position: absolute;
+    z-index: 999;"><span>位置:{{pos.n.one}}°{{pos.n.two}}'{{pos.n.three}}"N</span><span>{{pos.e.one}}°{{pos.e.two}}'{{pos.e.three}}"E</span></p>
+    <div class="cover" style="width: 250px;
+        height: 20px;
+        background: white;
+        position: absolute;
+        left: 12px;
+        top: 15px;"
+    </div>
+    <img src="./img/icon/deleteCircle.png" alt="" style="
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top:-28px;
+        right:-28px" ng-click="deleteOne($event,middleItem)"
+    >
+</div>
+  

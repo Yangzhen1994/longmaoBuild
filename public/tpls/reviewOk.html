@@ -9,15 +9,30 @@
             <li ng-repeat="item in reviewOkItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
                 <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'ro_checkItem'+$index}}" class="tr_hideCheckBox"></input>
                 <label for="{{'ro_checkItem'+$index}}" class="tr_labelItem" ></label>
-                <p class="nickName">{{item.nickName}}</p>
-                <p class="nickName_time">{{item.time}}</p>
+                <p class="nickName">{{item.uid}}</p>
+                <p class="nickName_time">{{item.submit_time}}</p>
             </li>
         </ul>
     </div>
     <div class="reviewOk_Right">
-        <p>提交的凭证:</p>
-        <div class="toReview_Right_tel">
-            手机号&nbsp&nbsp{{reviewOk.tel}}
+        <div style="overflow-y: auto;height: 538px">
+            <div ng-repeat="item in reviewOk">
+                <p>{{item.tips_text}}:</p>
+                <div class="toReview_Right_tel">
+                    <p><span ng-hide="{{item.type == 2 || item.type == 6}}">{{item.value}}</span><a target="_blank" ng-href="{{item.value}}" ng-show="{{item.type == 6}}">下载</a>
+
+                        <img ng-src="{{item.value}}" alt="" ng-show="{{item.type == 2 || item.type == 4 || item.type == 3}}" width="200px">
+
+                    </p>
+
+
+                </div>
+                <div>
+
+                    {{item.x}}  {{item.y}}
+
+                </div>
+            </div>
         </div>
         <div class="toReview_Right_footer">
             <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>

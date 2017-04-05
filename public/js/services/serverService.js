@@ -1,186 +1,281 @@
 define(['app'], function (app) {
 
     app.factory('serverService', ['$http','$q', function($http,$q) {
-
-        /*
-        发送验证码
-         */
-        function sendCode(phone) {
-            var def = $q.defer();
-            $http.get('/sendcode?phone='+phone)
-                .success(function (result) {
-                    def.resolve(result);
-                });
-            return def.promise;
-        }
-
-        /*
-        登陆
-         */
-        function login(user) {
-            var def = $q.defer();
-            $http({
-                method : 'POST',
-                url : '/login',
-                data : user
+        function getAllTask(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/list.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:data,
+                success: function (data) {
+                        defer.resolve(data.result.rows)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
             })
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function (result) {
-                    def.reject(result);
-                });
-            return def.promise;
+            return defer.promise
         }
-
-        /*
-        提交意见反馈
-         */
-        function feedback(feedback) {
-            var def = $q.defer();
-            $http({
-                method: 'GET',
-                url : '/feedback',
-                params : {data:feedback}
+        function getDatajson(id) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/data.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:{id:id},
+                success: function (data) {
+                    defer.resolve(data.result)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
             })
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function () {
-                    def.reject();
-                });
-            return def.promise;
+            return defer.promise
         }
-
-        /*
-        获取当前用户的所有的地址列表
-         */
-        function getAddrsByUserId(userId) {
-            var def = $q.defer();
-            $http.get('/getAddrsByUserId?userId='+userId)
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function () {
-                    alert('获取地址列表失败!');
-                });
-            return def.promise;
-        }
-
-        /*
-        删除指定地址
-         */
-        function deleteAddr(id) {
-            var def = $q.defer();
-            $http.get('/deleteAddr?_id='+id)
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function () {
-                    alert('删除地址失败!');
-                });
-            return def.promise;
-        }
-
-        /*
-        添加地址
-         */
-        function insertAddr(address) {
-            var def = $q.defer();
-            $http({
-                method : 'GET',
-                url : '/insertAddr',
-                params : {address:address}
+        function submitSavePage(obj) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/save.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:obj,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
             })
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function (result) {
-                    alert('保存地址失败');
-                });
-
-            return def.promise;
+            return defer.promise
         }
-
-        /*
-         更新地址
-         */
-        function updateAddr(address) {
-            var def = $q.defer();
-            $http({
-                method : 'GET',
-                url : '/updateAddr',
-                params : {address:address}
+        function getStepById(id) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/steps/list.json?task_id=';
+            $.ajax({
+                type: "POST",
+                url: url+id,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
             })
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function (result) {
-                    alert('更新地址失败');
-                });
-            return def.promise;
+            return defer.promise
         }
-
+        function getUpdownLine(id) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/status.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:{id:id},
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        function getReviewList(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/check/list.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:data,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /*导出*/
+        function exportReview(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html';
+            $.ajax({
+                type: "GET",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                params:data,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /*导入excel*/
+        function importReview(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/import/check/data.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                headers: {
+                    "Content-Type":'multipart/form-data',
+                },
+                //contentType:'multipart/form-data',
+                //enctype: 'multipart/form-data',
+                //全部data
+                data:data,
+                //ContentType: 'application/vnd.ms-excel',
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /*审核通过*/
+        function check(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/check/check.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:data,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /*save step*/
+        function saveStep(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/steps/save.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:data,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /***凭证***/
         /*
-        得到首页轮播图数据
-         */
-        function getBanners() {
-            var def = $q.defer();
-            $http.get('/index/banners')
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function () {
-                    alert('获取轮播图失败');
-                });
-            return def.promise;
+        * id:
+         type:1 文本 2图片 5 定位 6 音频
+         tips_text:1
+         tips_image:
+         compress:1
+         regex:
+         options:
+         options_other:0
+         order:1
+         step_id:3987
+         status:1
+         task_id:1232
+        *
+        *
+        *
+        *
+        *
+        *
+        *
+        *
+        * */
+
+        function submitComponent(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/component/save.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                data:data,
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        /**获取凭证*/
+        function getComponent(taskId){
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/component/list.json?task_id=';
+            $.ajax({
+                type: "POST",
+                url: url+taskId,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
         }
 
-        /*
-        得到菜品列表,店铺和地址数据
-         */
-        function getHomeData() {
-            var def = $q.defer();
-            $http.get('/index/data')
-                .success(function (result) {
-                    def.resolve(result);
-                })
-                .error(function () {
-                    alert('获取轮播图失败');
-                });
-            return def.promise;
-        }
-
-        /*
-        得到默认地址
-         */
-        function getDefaultAddr(userId) {
-            var def = $q.defer();
-            $http.get('/order/getNewestAddress?userId='+userId)
-                .success(function (result) {
-                    def.resolve(result);
-                });
-            return def.promise;
-        }
-
-        /*
-        下单
-         */
-        function createOrder(order) {
-            var def = $q.defer();
-            $http({
-                method : 'POST',
-                url : '/order/createOrder',
-                data : {"order" : order}
-            }).success(function (result) {
-                def.resolve(result);
-            }).error(function () {
-                alert('下单失败');
-            });
-            return def.promise;
-        }
-
-        return {sendCode:sendCode, login:login, feedback:feedback, getAddrsByUserId:getAddrsByUserId, deleteAddr:deleteAddr, insertAddr:insertAddr, updateAddr:updateAddr,
-            getBanners:getBanners, getHomeData:getHomeData, getDefaultAddr:getDefaultAddr, createOrder:createOrder};
+        return {getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
+            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent};
     }])
 })

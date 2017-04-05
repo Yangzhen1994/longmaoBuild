@@ -7,21 +7,27 @@
     </div>
 
     <div class="reviewDetail_searchArea">
-        <button class="search-Btn-reviewDetail">搜索</button>
-        <input type="text" class="search-Input" id="search_Input">
+        <button class="search-Btn-reviewDetail" ng-click="searchCheckBydate()">搜索</button>
+        <input type="text" class="search-Input" id="search_Input" ng-model="reviewuserID">
     </div>
     <div class="reviewDetail_radio">
         <span ng-click="setChoose(1)">
             <i  class="circlechoose" ng-class="{chooseBg:chooseType == 1}"></i><span class="text">用户ID</span>
         </span>
         <span ng-click="setChoose(2)">
-            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 2}"></i><span class="text">用户名称</span>
+            <i  class="circlechoose" ng-class="{chooseBg:chooseType == 2}"></i><span class="text">任务编号</span>
         </span>
     </div>
     <div  id="submitTime">
-        <select class="selSubTime" ng-model="subTime" ng-options="item.subTime for item in items">
-            <option value="">提交时间</option>
-        </select>
+        <input style="  border: none;
+                        width: 150px;
+                        height: 20px;
+                        border-radius: 5px;
+                        margin-left: -50px;
+                        margin-top: 10px;"
+        type="text"  ngc-lay-date class="selSubTime" ng-model="subTime" id="selSubTime" placeholder="提交时间">
+
+        </input>
     </div>
 
     <div class="reviewDetail_detail">

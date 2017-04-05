@@ -89,4 +89,8 @@ html{_background-image:url(about:blank); _background-attachment:fixed;}
 }
 .laydate_bottom{
     height: 48px !important;
+    margin-top: 20px;
+}
+.laydate_show{
+    margin-bottom: 25px !important;
 }

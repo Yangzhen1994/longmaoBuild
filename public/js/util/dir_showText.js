@@ -1,8 +1,8 @@
 /**
  * Created by 73951 on 2017/3/23.
  */
-define(['app'], function (app) {
-    app.directive('showtextModule',[function () {
+define(['app','storageUtils'], function (app,storageUtils) {
+    app.directive('showtextModule',['serverService',function (serverService) {
         return {
             restrict: "EA",
             templateUrl: 'tpls/showText.html',
@@ -11,18 +11,65 @@ define(['app'], function (app) {
                     el.find('input').eq(0).css('visibility','visible');
                 });
                 el.find('input').blur(function () {
+                    //scope.isText = false;
                     this.style.visibility = 'hidden'
-                });
+                    if($(this).parents('li')[0].id.length == 16){
+                        var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
+                    }else
+                    if($(this).parents('li')[0].id.length == 15){
+                        var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
+
+                    }else{
+                        //alert($(this).parents('li')[0].id)
+                        var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
+                    }
+                    var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
+                    console.log(stepIndex)
+                    serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                    //serverService.submitComponent(scope.componentItems[comIndex])
+                });
+                el.find('img').click(function (e) {
+                    e.stopPropagation()
+                    console.log($(this).parents('li'))
+                    if($(this).parents('li')[0].id.length == 15){
+                        var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
+
+                    }else{
+                        //alert($(this).parents('li')[0].id)
+                        var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
+                    }
+                    var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
+                    //scope.componentItems[comIndex].tips_text = ' ';
+                    //scope.componentItems[comIndex].isText = ' ';
+                    scope.stepItems[stepIndex].component[comIndex].tips_text = ' ';
+                    scope.stepItems[stepIndex].component[comIndex].isText = ' ';
+                    serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                            .then(function (data) {
+                                if(data.code == 200){
+
+                                }
+                            })
+                    $(this).css('display','none')
+                })
 
             },
             controller:function ($scope) {
-                $scope.showText = '点我编辑你的文本';
-                $scope.deleteOne = function (e,data) {
-                    e=event||window.event;
-                    e.stopPropagation();
-                    $scope.$emit('deleteOneShowText',data);
-                }
+
+               /* $scope.deleteOne = function (e,index) {
+                    e.stopPropagation()
+                    console.log($scope.componentItems)
+                    $scope.componentItems[index].tips_text = ' '
+                    $scope.componentItems[index].isText = false
+                    serverService.submitComponent($scope.componentItems[index])
+                            .then(function (data) {
+                                /!*if(data.code == 200){
+                                    storageUtils.session.setItem('_component_',$scope.componentItems)
+                                }*!/
+                            })
+                    //storageUtils.session.setItem('_DRAG_',true)
+                    //window.location = '#/reviewList';
+                }*/
             }
         }
 

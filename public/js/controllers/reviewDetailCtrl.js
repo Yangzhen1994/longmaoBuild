@@ -8,6 +8,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.reviewId = reviwid;
         $scope.chooseType = '';
         $scope.tabSelected = 0;
+        $scope.subTime = '';
         $scope.setChoose = function (type) {
             $scope.chooseType = type
         }
@@ -20,11 +21,53 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         atab1.off('click');
         $scope.changeTabBorder = function (index) {
             $scope.tabSelected = index
+        };
+
+
+        $scope.searchCheckBydate = function () {
+
+            var data = {
+                id:'',
+                uid:'',
+                date:$scope.subTime,
+                status:'',
+                page:1,
+                rows:100,
+            };
+            if($scope.chooseType == 1){
+                data.uid = $scope.reviewuserID
+            }
+            if($scope.chooseType == 2){
+                data.id = $scope.reviewuserID
+            }
+            if($scope.tabSelected == 0){
+                data.status = 2;//待审核
+            }
+            if($scope.tabSelected == 1){
+                data.status = 3;//审核成功
+            }
+            if($scope.tabSelected == 2){
+                data.status = 4;//审核失败
+            }
+            console.log(data)
+            serverService.getReviewList(data).then(function (data) {
+                console.log(data)
+                if(data.result.rows && data.result.rows.length>0){
+                   storageUtils.session.setItem('searchCheckBydate',data.result.rows);
+                   //$scope.$broadcast('searchCheckBydate',data)
+                    if(data.result.rows[0].status == 3){
+                        $scope.subTime = ''
+                        window.location = '#/reviewDetail/reviewDetail/tab1'
+                        return
+                    }
+
+                   window.location = '#/reviewDetail/reviewDetail/tab2'
+                }else{
+                    alert('无')
+                    $scope.subTime = ''
+                }
+                $scope.subTime = ''
+            })
         }
-        $scope.items = [{
-            subTime:'12:00'
-        },{
-            subTime:'13:00'
-        }]
     }]);
 })

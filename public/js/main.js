@@ -19,8 +19,10 @@
 
             'ui-sortable':'libs/sortable',
             'ng-file-upload':'libs/ng-file-upload.min',
+            'angular-cookie':'libs/angular-cookie.min',
             //服务
             "serverService" : "services/serverService",
+            "mapService" : "services/mapService",
 
             //控制器
             "app" : "controllers/app",
@@ -35,6 +37,7 @@
             "toReviewDetailCtrl":"controllers/toReviewDetailCtrl",
             "addStepCtrl":"controllers/addStepCtrl",
             "textProofCtrl":"controllers/textProofCtrl",
+            "imgProofCtrl":"controllers/imgProofCtrl",
             "posProofCtrl":"controllers/posProofCtrl",
             "showImgCtrl":"controllers/showImgCtrl",
             //路由
@@ -47,6 +50,7 @@
             'dir_imgProof' : 'util/dir_imgProof',
             'dir_laydate' : 'util/dir_laydate',
             'dir_addStep' : 'util/dir_addStep',
+            'dir_audioProof' : 'util/dir_audioProof',
             'dir_posProof' : 'util/dir_posProof',
             'dir_showImg' : 'util/dir_showImg',
             'dir_showText' : 'util/dir_showText',
@@ -81,14 +85,18 @@
             'ng-file-upload':{
                 deps: ["angular"],
                 exports: 'ng-file-upload'
+            },
+            'angular-cookie':{
+                deps: ["angular"],
+                exports: 'angular-cookie'
             }
         }
     });
 
     require(['angular','angular-route','angular-ui-route','ui-sortable','ng-file-upload','app','route','storageUtils',
-            'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_showImg','dir_showText','dir_keyEvents','headerCtrl','newTaskCtrl','taskListCtrl',
+            'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_showImg','dir_showText','dir_keyEvents','headerCtrl','newTaskCtrl','taskListCtrl',
             'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "ReviewOkCtrl", "ReviewNoCtrl",
-                "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService'],
+                "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],
         function (angular){
             angular.bootstrap(document,["dcApp"]);
         }

@@ -4,7 +4,7 @@
 
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
     return  app.controller('ReviewNoCtrl',['$scope','serverService',function ($scope,serverService) {
-        var okArr = [];
+        /*var okArr = [];
         var noArr = []
         var reviewok = storageUtils.session.getItem('_reviewOk_');
         if(reviewok!=null){
@@ -26,101 +26,226 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             }
 
             //console.log($scope.reviewNoItems)
-        }
+        }*/
+        var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
+        if(searchCheckBydate && searchCheckBydate[0].status == 4){
+            $scope.reviewNoItems = searchCheckBydate;
+            $scope.reviewNo = $scope.reviewNoItems[0].data;
+            $scope.changeColor = 0;
+            $scope.currentIndex = 0;
+            //复选框的初值
+            $scope.flag = false;
 
+            $scope.masterItem = false;
+            $scope.all= function (master) {
 
-        $scope.changeColor = 0;
-        $scope.currentIndex = 0;
-        //复选框的初值
-        $scope.flag = false;
+                $scope.masterItem = master;
 
-        $scope.masterItem = false;
-        $scope.all= function (master) {
-
-            $scope.masterItem = master;
-
-            for(var i=0;i<$scope.reviewNoItems.length;i++){
-                $scope.reviewNoItems[i].checkState=master;
-            }
-            $scope.currentIndex = $scope.reviewNoItems.length
-        };
-        $scope.cancelOne = function (ev,x,index) {
-            ev  = event || window.event;
-            if(ev && ev.stopPropagation){
-                ev.stopPropagation()
-            }
-            $scope.reviewNoItems[index].checkState = x;
-            for(var i=0;i<$scope.reviewNoItems.length;i++){
-
-                if($scope.reviewNoItems[i].checkState == false){
-                    $scope.masterheader = false;
-                    $scope.flag = false;
-                    return false
-                }else{
-                    $scope.flag = true;
-                }
-            }
-        };
-        $scope.changeRight = function (item,index) {
-            if(item && item.data){
-                $scope.reviewNo = item.data
-            }else{
-                $scope.reviewOk = {}
-            }
-            $scope.changeColor = index;
-            $scope.currentIndex = index;
-        }
-        $scope.next = function () {
-            $scope.currentIndex ++;
-            if($scope.currentIndex >= $scope.reviewNoItems.length ){
-                $scope.currentIndex = $scope.reviewNoItems.length - 1
-            }
-            $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
-        }
-        $scope.prev = function () {
-            $scope.currentIndex --;
-            if($scope.currentIndex < 0 ){
-                $scope.currentIndex = 0
-            }
-            $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
-        };
-        $scope.rnRightAllow = function () {
-            /*全选通过*/
-            if($scope.master&&$scope.master == true){
                 for(var i=0;i<$scope.reviewNoItems.length;i++){
-                    $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
-                    okArr.push($scope.reviewNoItems[i]);
-                    $scope.master = false;
-                    $scope.changeRight(null);
+                    $scope.reviewNoItems[i].checkState=master;
                 }
-                storageUtils.session.setItem('_reviewOk_',okArr);
-                $scope.reviewNoItems = [];/*删除待审核的*/
-            }else{
-                /*没全选状态下点击next/通过*/
-                var result = []
+                $scope.currentIndex = $scope.reviewNoItems.length
+            };
+            $scope.cancelOne = function (ev,x,index) {
+                ev  = event || window.event;
+                if(ev && ev.stopPropagation){
+                    ev.stopPropagation()
+                }
+                $scope.reviewNoItems[index].checkState = x;
                 for(var i=0;i<$scope.reviewNoItems.length;i++){
-                    if($scope.reviewNoItems[i].checkState == true) {
-                        console.log($scope.reviewNoItems[i].nickName+'通过');
-                        $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
-                        okArr.push($scope.reviewNoItems[i]);
-                        $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
-                        i--;
+
+                    if(!$scope.toReviewItems[i].checkState){
+                        $scope.masterheader = false;
+                        $scope.flag = false;
+                        return false
+                    }else{
+                        $scope.flag = true;
                     }
                 }
-                result = $scope.reviewNoItems;
-                $scope.reviewNoItems = result;
-
-                if($scope.reviewNoItems.length>0){
-                    $scope.changeRight($scope.reviewNoItems[0],0);
-
+            };
+            $scope.changeRight = function (item,index) {
+                console.log(item.data)
+                if(item && item.data){
+                    $scope.reviewNo = item.data
                 }else{
                     $scope.reviewNo = {}
                 }
-
-                storageUtils.session.setItem('_reviewOk_',okArr);
-                storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
+                $scope.changeColor = index;
+                $scope.currentIndex = index;
             }
+            $scope.next = function () {
+                $scope.currentIndex ++;
+                if($scope.currentIndex >= $scope.reviewNoItems.length ){
+                    $scope.currentIndex = $scope.reviewNoItems.length - 1
+                }
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+            }
+            $scope.prev = function () {
+                $scope.currentIndex --;
+                if($scope.currentIndex < 0 ){
+                    $scope.currentIndex = 0
+                }
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+            };
+            $scope.rnRightAllow = function () {
+                /*全选通过*/
+                if($scope.master&&$scope.master == true){
+                    for(var i=0;i<$scope.reviewNoItems.length;i++){
+                        $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
+                        okArr.push($scope.reviewNoItems[i]);
+                        $scope.master = false;
+                        $scope.changeRight(null);
+                    }
+                    storageUtils.session.setItem('_reviewOk_',okArr);
+                    $scope.reviewNoItems = [];/*删除待审核的*/
+                }else{
+                    /*没全选状态下点击next/通过*/
+                    var result = []
+                    for(var i=0;i<$scope.reviewNoItems.length;i++){
+                        if($scope.reviewNoItems[i].checkState == true) {
+                            console.log($scope.reviewNoItems[i].nickName+'通过');
+                            $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
+                            okArr.push($scope.reviewNoItems[i]);
+                            $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                            i--;
+                        }
+                    }
+                    result = $scope.reviewNoItems;
+                    $scope.reviewNoItems = result;
 
-        };
+                    if($scope.reviewNoItems.length>0){
+                        $scope.changeRight($scope.reviewNoItems[0],0);
+
+                    }else{
+                        $scope.reviewNo = {}
+                    }
+
+                    storageUtils.session.setItem('_reviewOk_',okArr);
+                    storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
+                }
+
+            };
+            storageUtils.session.removeItem('searchCheckBydate');
+            return
+        }
+
+
+
+        serverService.getReviewList({
+            id:'',
+            date:'',
+            status:4,
+            page:1,
+            rows:100,
+        }).then(function (data) {
+            console.log(data);
+            $scope.reviewNoItems = data.result.rows;
+            $scope.reviewNo = $scope.reviewNoItems[0].data;
+            $scope.changeColor = 0;
+            $scope.currentIndex = 0;
+            //复选框的初值
+            $scope.flag = false;
+
+            $scope.masterItem = false;
+            $scope.all= function (master) {
+
+                $scope.masterItem = master;
+
+                for(var i=0;i<$scope.reviewNoItems.length;i++){
+                    $scope.reviewNoItems[i].checkState=master;
+                }
+                $scope.currentIndex = $scope.reviewNoItems.length
+            };
+            $scope.cancelOne = function (ev,x,index) {
+                ev  = event || window.event;
+                if(ev && ev.stopPropagation){
+                    ev.stopPropagation()
+                }
+                $scope.reviewNoItems[index].checkState = x;
+                for(var i=0;i<$scope.reviewNoItems.length;i++){
+
+                    if(!$scope.reviewNoItems[i].checkState){
+                        $scope.masterheader = false;
+                        $scope.flag = false;
+                        return false
+                    }else{
+                        $scope.flag = true;
+                    }
+                }
+            };
+            $scope.changeRight = function (item,index) {
+                console.log(item.data)
+                if(item && item.data){
+                    $scope.reviewNo = item.data
+                }else{
+                    $scope.reviewNo = {}
+                }
+                $scope.changeColor = index;
+                $scope.currentIndex = index;
+            }
+            $scope.next = function () {
+                $scope.currentIndex ++;
+                if($scope.currentIndex >= $scope.reviewNoItems.length ){
+                    $scope.currentIndex = $scope.reviewNoItems.length - 1
+                }
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+            }
+            $scope.prev = function () {
+                $scope.currentIndex --;
+                if($scope.currentIndex < 0 ){
+                    $scope.currentIndex = 0
+                }
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+            };
+            $scope.rnRightAllow = function () {
+                /*全选通过*/
+                if($scope.master&&$scope.master == true){
+                    for(var i=0;i<$scope.reviewNoItems.length;i++){
+                        serverService.check({ids:$scope.reviewNoItems[i].cid,
+                            status:1
+                        })
+                        //okArr.push($scope.reviewNoItems[i]);
+                        $scope.masterheader = false;
+                        $scope.masterItem = false;
+                        $scope.changeRight(null);
+                    }
+                    //storageUtils.session.setItem('_reviewOk_',okArr);
+                    $scope.reviewNoItems = [];/*删除待审核的*/
+                    $scope.masterheader = false;
+                    storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
+
+                }else{
+                    /*没全选状态下点击next/通过*/
+                    var result = []
+                    for(var i=0;i<$scope.reviewNoItems.length;i++){
+                        if($scope.reviewNoItems[i].checkState == true) {
+                            serverService.check({ids:$scope.reviewNoItems[i].cid,
+                                status:1
+                            }).then(function (data) {
+                                if(data.success == 1){
+                                    alert('操作成功')
+                                }
+                            })
+
+                            //okArr.push($scope.reviewNoItems[i]);
+                            $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                            i--;
+                        }
+                    }
+                    result = $scope.reviewNoItems;
+                    $scope.reviewNoItems = result;
+                    if($scope.reviewNoItems.length>0){
+                        $scope.changeRight($scope.reviewNoItems[0],0);
+
+                    }else{
+                        $scope.toReview = {}
+                    }
+                    //storageUtils.session.setItem('_reviewOk_',okArr);
+
+                }
+
+            };
+        })
+
     }])
 })

@@ -1,11 +1,12 @@
 <div class="showText" style="position: relative;font-size: 13px;color: #B1B1B1;
     width: 320px;
+    height: 20px;
     transform: scale(0.8);
     margin-left: -15px;
     visibility: visible;
     margin-bottom: 10px;
-    ">{{showText}}
-    <input type="text" ng-model="showText" style="position: absolute;
+    "><span ng-hide="componentItem.tips_text">提示文本</span><pre>{{componentItem.tips_text}}</pre>
+    <input type="text" ng-model="componentItem.tips_text" style="position: absolute;
     top:0px;
     left: 365px;
     border: none;
@@ -18,6 +19,7 @@
     <img src="./img/icon/deleteCircle.png" alt="" style="
     position: absolute;
     top:-8px;
-    right:-16px" ng-click="deleteOne($event,middleItem)"
+    right:-16px" ng-click="deleteOne($event,$index)"
+    id="{{'delete'+$index}}" ng-show="componentItem.tips_text" class="delCircle"
     >
 </div>

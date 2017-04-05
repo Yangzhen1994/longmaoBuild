@@ -1,7 +1,14 @@
 <link rel="stylesheet" href="./css/posProof.css">
 <div class="posProof" ng-controller="posProofCtrl" style="margin-left: 10px;margin-bottom: 10px">
-    <img src="./img/moduleImg/posGroup.png" alt="">
-    <div class="posEdit">
+    <img src="./img/moduleImg/posGroup.png" alt="" style="margin-left:-8px">
+    <img src="./img/icon/deleteCircle.png" alt="" style="
+    position: absolute;
+    top:-8px;
+    right: 5px;
+    width:32px"
+         id="{{'delete'+$index}}"
+    >
+    <!--<div class="posEdit">
         <div class="editArea">
             <label for="posEdit_inputn" id="posEdit_label" >位置:</label>
             <input type="text" id="posEdit_inputn" ng-model="pos.n.one" class="posN" style="width:32px;transform: scale(0.9)"><span>°</span><input type="text" id=""  ng-model="pos.n.two" class="posN"  style="width:32px;transform: scale(0.9)"><span>'</span><input type="text" id=""  ng-model="pos.n.three" class="posN"  style="transform: scale(0.9)">"N
@@ -31,6 +38,6 @@
         height: 32px;
         top:-28px;
         right:-28px" ng-click="deleteOne($event,middleItem)"
-    >
+    >-->
 </div>
   

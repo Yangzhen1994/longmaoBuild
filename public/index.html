@@ -1,6 +1,6 @@
 <html><!DOCTYPE html>
 <head>
-    <title>ui-router</title>
+    <title>龙猫特工后台管理</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -12,9 +12,18 @@
     <link rel="stylesheet" href="./css/laydate.css">
 
     <!-- 导入JS -->
+
+
     <script type="text/javascript" src="./js/framework/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="./js/framework/jquery-ui.js"></script>
     <script type="text/javascript" src="./js/framework/laydate.js"></script>
+    <script type="text/javascript" src="js/framework/jquery.cookie.js"></script>
+
+    <script type="text/javascript" src="js/framework/qiniu.js"></script>
+    <script type="text/javascript" src="js/framework/plupload.full.min.js"></script>
+
+
+
 
 
 
@@ -31,11 +40,11 @@
                 <img src="img/header-Icon.png" alt="">
                 <span class="header-title">龙猫特工后台管理</span>
             </div>
-            <div class="header-right">
+            <!--<div class="header-right">
                 <span ng-bind="userName+'('+userId+')'"></span>
                 <span >余额{{balance|number:2}}元</span>
                 <a href="" id="exit">退出</a>
-            </div>
+            </div>-->
         </header>
         <div>
             <div class="left" id="leftHeight" ng-controller="headerCtrl">
@@ -56,8 +65,12 @@
 
 <script type="text/javascript" src="require.js" data-main="js/main"></script>
 <script>
+
     /*var leftHeight = document.getElementById('leftHeight');
     leftHeight.style.height =  window.screen.height - 72 + 'px'*/
+    /*var ck = $.cookie('JSESSIONID');
+    console.log(ck);*/
+
 
 </script>
 

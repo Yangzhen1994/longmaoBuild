@@ -52,7 +52,7 @@ ul{
     height: 13px;
     top: 80px;
     line-height: 13px;
-    font-size: 13px;
+    font-size: 8px;
     left: 15px;
 }
 .nt_lvph_detail{
@@ -69,7 +69,7 @@ ul{
     position: absolute;
     color: orangered;
     font-size: 22px;
-    top: 80px;
+    top: 88px;
     right: 10px;
 }
 .nt_lvph_taskSummary{

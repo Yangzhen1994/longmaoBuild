@@ -8,7 +8,7 @@
 
 .toReview_left,.reviewOk_left,.reviewNo_left{
     float: left;
-    width: 183px;
+    width: 200px;
     height: 100%;
     border-right: 1px solid #ECECEC;
 }
@@ -104,7 +104,7 @@
 }
 .toReview_Right,.reviewOk_Right,.reviewNo_Right{
     float: left;
-    width: 632px;
+    width: 615px;
     height: 600px;
     position: relative;
 }
@@ -119,10 +119,10 @@
     font-size: 15px;
     color: rgba(0,0,0,1);
     width: 518px;
-    height: 21px;
+    height: auto;
     line-height: 21px;
     margin: 0 auto;
-    margin-top: 35px;
+    margin-top: 5px;
 }
 .toReview_Right_footer,.reviewOk_Right_footer,.reviewNo_Right_footer{
     position: absolute;
@@ -190,9 +190,11 @@
     margin-left: 25px;
 }
 .reason_cover{
-    position: relative;
-    margin-left: 351px;
-    margin-top: 297px;
+    position: absolute;
+    left: 350px;
+    bottom: 50px;
+    padding: 0;
+    margin: 0;
 }
 .reason_cover li{
     list-style: none;
@@ -227,4 +229,7 @@
 }
 .cbg{
     background: #ececec;
+}
+.beTall{
+    height: 150px;
 }

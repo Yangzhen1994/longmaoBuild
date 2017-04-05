@@ -31,12 +31,20 @@
                     <div class="title">{{item.title}}</div>
                     <div class="export" ng-click="export(item,index)">导出</div>
                     <div class="import"><label for="{{'impotInput'+$index}}">导入</label></div>
-                    <input type="file" id="{{'impotInput'+$index}}" style="display:none"
+
+                    <form id="{{'totoro-task-check-file-form'+$index}}">
+                        <input style="display: none;" id="{{'impotInput'+$index}}" type="file" name="data"
+                               onchange="angular.element(this).scope().file_upload(this)"
+                        >
+                    </form>
+
+                    <!--<input type="file" id="{{'impotInput'+$index}}" style="display:none"
                     onchange="angular.element(this).scope().file_upload(this.files,this)"
-                    >
+                    >-->
+
                 </div>
                 <div class="review-detail">
-                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px">{{item.state}}</span></span><span>完成程度:<span style="color: greenyellow;margin-right: 0;margin-left: 8px">{{item.currentCount}}</span>/{{item.totalCount}}</span><span>待审核数量:<span style="margin-right: 0;margin-left: 8px">{{item.reviewCount}}</span></span><span>下线时间:<span style="margin-right: 0;margin-left: 8px">{{item.downLine}}</span></span>
+                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px">{{item.state}}</span></span><span>凭证创建时间:<span style="color: greenyellow;margin-right: 0;margin-left: 8px">{{item.submit_time}}</span><span>待审核数量:<span style="margin-right: 0;margin-left: 8px">{{}}</span></span><span>凭证提交审核时间:<span style="margin-right: 0;margin-left: 8px">{{item.submit_time}}</span></span>
                 </div>
                 <div class="review-button">
                     <a class="firstButton" ng-click="turnToReviewDetail($index)">审核</a>

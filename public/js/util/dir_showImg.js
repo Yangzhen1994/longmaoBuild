@@ -195,7 +195,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
 
-                el.find('img').eq(1).click(function (e) {
+                el.find('img').eq(-1).click(function (e) {
                     /*alert(1);
                     return*/
                     e.stopPropagation()

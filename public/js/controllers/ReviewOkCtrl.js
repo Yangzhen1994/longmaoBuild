@@ -94,6 +94,25 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             console.log(data);
             $scope.reviewOkItems = data.result.rows;
             $scope.reviewOk = $scope.reviewOkItems[0].data;
+
+
+            $scope.reviewOk.forEach(function (item,index) {
+                if(item.type == 5){
+                    window.x = item.x;
+                    window.y = item.y;
+                }
+            })
+
+
+            window.initOk = function () {
+                map = new BMap.Map("cc_map");            // 创建Map实例
+                var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                map.centerAndZoom(point,16);
+                map.enableScrollWheelZoom();// 启用滚轮放大缩小
+
+
+            };
+
             $scope.changeColor = 0;
             $scope.currentIndex = 0;
             //$scope.reviewOk = $scope.reviewOkItems[0].data;
@@ -129,7 +148,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
             $scope.changeRight = function (item,index) {
                 if(item && item.data){
-                    $scope.reviewOk = item.data
+                    $scope.reviewOk = item.data;
+                    $scope.reviewOk.forEach(function (item,index) {
+                        if(item.type == 5){
+                            window.x = item.x;
+                            window.y = item.y;
+                        }
+                    })
                 }else{
                     $scope.reviewOk = {}
                 }

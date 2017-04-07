@@ -75,7 +75,8 @@
                 <select id="lineVersion"
                         ng-change="changelineVersion()"
                         ng-model="lineVersion" ng-options="item.version for item in versionItems">
-                    <option value="" ng-show="task.android_version">android{{task.android_version}}</option>
+                    <!--<option value="" ng-show="task.android_version">{{'android'+task.android_version}}</option>-->
+                    <option value="">{{deviceType}}</option>
                 </select>
             </div>
             <div class="nt_rv_showOther">

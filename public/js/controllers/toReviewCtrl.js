@@ -22,6 +22,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             $scope.otherReason ='请填写其他原因';
 
 
+
             $scope.changeRight = function (item,index) {
                 if(item && item.data){
                     $scope.toReview = item.data
@@ -261,6 +262,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
             return
         }
 
+
+
+        /*function loadMapAPI(containterId, callback) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=VcN7gumC0Wnn475XXWr4FeoyF5YYOVGC&callback=" + callback;
+            document.getElementById(containterId).appendChild(script);
+        }*/
         serverService.getReviewList({toReviewNum:'',id:'',
         uid:'',
         date:'',
@@ -272,10 +281,37 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     $scope.toReviewItems = data.result.rows;
                     $scope.toReview = $scope.toReviewItems[0].data;
-                    console.log($scope.toReview);
-                    $timeout(function () {
+                    /*var map;
 
-                    },2000)
+                    window.init = function () {
+                        map = new BMap.Map("cc_map");            // 创建Map实例
+                        var point = new BMap.Point($scope.toReview.x, $scope.toReview.y); // 创建点坐标
+                        map.centerAndZoom(point,15);
+                        // map.enableScrollWheelZoom();// 启用滚轮放大缩小
+                        /!*****初始化列表**********!/
+
+
+                    }
+
+                    loadMapAPI('mapDiv',init)*/
+                    $scope.toReview.forEach(function (item,index) {
+                        if(item.type == 5){
+                            window.x = item.x;
+                            window.y = item.y;
+                        }
+                    })
+
+
+                    window.init = function () {
+                        map = new BMap.Map("cc_map");            // 创建Map实例
+                        var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                        map.centerAndZoom(point,16);
+                        map.enableScrollWheelZoom();// 启用滚轮放大缩小
+
+
+                    }
+                    console.log($scope.toReview);
+
 
                     $scope.checkedBox = 0;
                     $scope.changeColor = 0;
@@ -290,6 +326,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.changeRight = function (item,index) {
                         if(item && item.data){
                             $scope.toReview = item.data
+                            $scope.toReview.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
                         }else{
                             $scope.toReview = {}
                         }

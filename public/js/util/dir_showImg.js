@@ -13,8 +13,30 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/showImg.html',
             link:function (scope,el,attr) {
-                console.log(el.parents('li')[1].id)
+                scope.src = '../img/moduleImg/ic_add_a_photo_black_24dp.png';
+                //console.log(el.parents('li')[1].id)
+                //console.log(el.find('img').eq(0).parents('li')[0].id)
                 var stepIndex =  el.parents('li')[1].id.substr(-1, 1);
+                if(el.parents('li')[0].id.length == 16){
+                    var comimgIndex = el.parents('li')[0].id.substr(-3, 3);
+
+                }else
+                if(el.parents('li')[0].id.length == 15){
+                    var comimgIndex = el.parents('li')[0].id.substr(-2, 2);
+
+                }else{
+                    //alert($(this).parents('li')[0].id)
+                    var comimgIndex = el.parents('li')[0].id.substr(-1, 1);
+                }
+                console.log(comimgIndex);
+                if(scope.stepItems[stepIndex].component[comimgIndex].tips_image ){
+                    if( scope.stepItems[stepIndex].component[comimgIndex].tips_image.indexOf('http://')>-1){
+                        /*scope.imgSrc = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')*/
+                        scope.src = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')[0]
+                        scope.src1 = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')[1]
+                    }
+                }
+
                 scope.stepIndex = stepIndex
                 el.on('click',function () {
 
@@ -70,7 +92,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
                     }
-
+                    var hashArr = []
                     var uploader = Qiniu.uploader({
                         runtimes: 'html5,html4',
                         browse_button: 'sys-file-dialog-upload-btn'+scope.stepIndex+comIndex,
@@ -82,19 +104,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         multi_selection: true,
                         get_new_uptoken: true,
                         uptoken_func: sys_file_sdk_qiniu_token,
-                        domain: 'http://7xopo6.dl1.z0.glb.clouddn.com',
+                        domain: ' http://task.totoro.cdn.shandianshua.com',
                         unique_names: true,
                         auto_start: true,
                         init: {
                             'FilesAdded': function(up, files) {
-                                plupload.each(files, function(file) {
+
                                     // 文件添加进队列后，处理相关的事情
                                     alert('添加了文件');
-                                    console.log(file);
+                                    console.log(files
+                                    );
                                     for (var i = 0; i < files.length; i++) {
+
+
                                         showPreview (files[i]);
                                     }
-                                });
+                                $('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
+
                             },
                             'BeforeUpload': function(up, file) {
                                 // 每个文件上传前，处理相关的事情
@@ -106,7 +132,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             },
                             'FileUploaded': function(up, file, info) {
                                 console.log(file)
-                                console.log(info)
+                                console.log(info);
+
+                                hashArr.push(jQuery.parseJSON(info));
+                                console.log(hashArr);
                                 /*$.ajax({
                                     url:'http://manager.test.shandianshua.com/sys/file/save.json',
                                     method:'POST',
@@ -133,11 +162,16 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 // 查看简单反馈
                                  var domain = up.getOption('domain');
                                  var res = jQuery.parseJSON(info);
-                                 var sourceLink = domain +"/"+ res.key+'\n'; //获取上传成功后的文件的Url
-                                console.log(sourceLink)
-                                scope.stepItems[stepIndex].component[comIndex].tips_image = sourceLink
+                                 var str = ''
+                                 for(var i=0;i<hashArr.length;i++){
+                                     str += domain+"/"+hashArr[i].key+'\n'
+                                 }
+                                 //var sourceLink = domain +"/"+ res.key+'\n'; //获取上传成功后的文件的Url
+                                //console.log(sourceLink);
+                                scope.stepItems[stepIndex].component[comIndex].tips_image = str
                                 console.log(scope.stepItems[stepIndex].component[comIndex]);
-                                serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+
+
                             },
                             'Error': function(up, err, errTip) {
                                 //上传出错时，处理相关的事情
@@ -145,6 +179,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             },
                             'UploadComplete': function() {
                                 //队列文件处理完毕后，处理相关的事情
+                                serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             },
                             'Key': function(up, file) {
                                 // 若想在前端对每个文件的key进行个性化处理，可以配置该函数

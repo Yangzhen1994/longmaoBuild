@@ -93,7 +93,21 @@ define(['app','storageUtils'], function (app,storageUtils) {
             },
         ]
         /*上线版本*/
+        if($scope.task.device == 0){
+            $scope.deviceType = '全部'
+        }else if($scope.task.device == 1){
+            $scope.deviceType = 'android';
+            if($scope.task.android_version){
+                $scope.deviceType = 'android'+android_version
+            }
+        }else if($scope.task.device == 2){
+            $scope.deviceType = 'ios'
+        }
+
         $scope.versionItems = [
+            {
+                version:'全部'
+            },
             {
                 version:'android'
             },
@@ -111,6 +125,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 //alert(1)
                 $scope.task.device = '2'
             }
+            if($scope.lineVersion.version == '全部'){
+                //alert(1)
+                $scope.task.device = '0'
+            }
         }
         //审核时间转换
         $scope.changeReviewTime = function () {
@@ -125,11 +143,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                      .then(function (data) {
                          if(data.code == 200){
                              alert('保存成功');
-                             storageUtils.session.setItem('_newTaskid_',data.result)
-                             storageUtils.session.removeItem('editData');
+                             if($scope.task.id){
+
+                                 $scope.ntnextPage()
+                             }else{
+                                 storageUtils.session.setItem('_newTaskid_',data.result)
+                             }
+
+
                              window.location ='#/addStep'
                          }else{
-                             alert('有错误')
+                             alert('请检查信息是否填写完整~')
                          }
                      })
 
@@ -162,6 +186,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
         //下一页
         $scope.ntnextPage = function () {
             //
+            var editTask = storageUtils.session.getItem('editData');
+            if(!editTask){
+                alert('要先保存才能下一项哦');
+                return
+            }
             //把当前的id存入session
             storageUtils.session.setItem('_TaskId_',$scope.task.id);
             //获取当前任务的凭证信息

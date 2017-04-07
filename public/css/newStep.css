@@ -105,6 +105,7 @@ stepTemp_content{
     left: 150px;
     background: url("../img/stepTemBg.png") no-repeat;
     background-size: 46% 100%;
+    background-attachment:scroll;
     border-right: none;
     overflow-y: auto;
 }

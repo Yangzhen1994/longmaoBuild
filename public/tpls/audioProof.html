@@ -1,0 +1,37 @@
+<div class="audioProof">
+    <div style="overflow-wrap: break-word;
+    margin-left: 4px;
+    padding-top: 2px;
+    width: 276px;
+    height: 69px;
+    background: url('../img/moduleImg/Rectangle 6.png');
+    position: relative;">
+        <!--<img src="./img/moduleImg/Rectangle 6.png" alt="">-->
+        <div style="width: 280px;
+    height: 25px;
+    margin: 0 auto;
+    margin-top: 3px;
+    text-align: center;
+    color: gray;
+    font-size: 13px;" ><pre><span ng-hide="componentItem.tips_text">录音提示文本</span>{{componentItem.tips_text}}</pre>
+        </div>
+        <textarea name="" id="" cols="30" rows="10" ng-model="componentItem.tips_text"
+                  style="    border: none;
+                            width: 276px;
+                            height: 100px;
+                            position: absolute;
+                            top: 0;
+                            left: 300px;
+                            height: 69px;
+                            visibility: hidden"
+        ></textarea>
+        <img src="./img/icon/deleteCircle.png" alt="" style="
+    position: absolute;
+    top:-8px;
+    right:0px"
+             id="{{'delete'+$index}}"
+        >
+    </div>
+
+</div>
+  

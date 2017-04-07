@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="./css/toReview.css">
-<div class="toReview" key-events id="mapDiv">
-    <div id=cc_map"></div>
+<div class="toReview" key-events >
+
     <div class="toReview_left" style="overflow-y: auto">
         <div class="checkHeader">
             <input type="checkbox"  ng-model="masterheader" ng-click="all(masterheader)" ng-checked="flag" class="tr_hideCheckBox" id="checkAll"><span class="checkAllText">全选</span>
@@ -17,7 +17,7 @@
            </li>
         </ul>
     </div>
-    <div class="toReview_Right">
+    <div class="toReview_Right" >
         <div style="overflow-y: auto;height: 538px">
             <div ng-repeat="item in toReview">
                 <p>{{item.tips_text}}:</p>
@@ -30,9 +30,21 @@
 
 
                 </div>
-                <div>
+                <div ng-if="item.type == 5" id="mapDiv" style="position: relative">
+                    <div id="cc_map" style="margin-left: 20px;width: 500px;height: 200px">
+                        {{item.x}} , {{item.y}}
+                    </div>
+                    <div class="cc_icon" style="width: 1.83rem;   /*2.69rem*/
+                                                height: 3rem;  /*3.625rem*/
+                                                position: absolute;
+                                                top: 24%;
+                                                left: 50%;
+                                                margin-left: -1.23rem;">
+                        <img src="./img/position_icon2.png" style="width: 100%"/>
+                    </div>
+                    <script src="http://api.map.baidu.com/api?v=2.0&ak=VcN7gumC0Wnn475XXWr4FeoyF5YYOVGC&callback=init">
 
-                        {{item.x}}  {{item.y}}
+                    </script>
 
                 </div>
             </div>

@@ -66,7 +66,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                    usingArr.push(testStep);
                 }
             $scope.stepCount ++;//同步步骤编号顺序
-            $('.left').css('height',$('.newStep').innerHeight()+627)
+            $timeout(function () {
+                $('.left').css('height',$('.newStep').innerHeight()+17)
+            },100)
+
 
         };
         /*if(taskId == 'undefined' && !newtaskId){
@@ -145,7 +148,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             }else{
                 $scope.componentItems  = [];
             }
-        },100)
+        },600)
 
 
 
@@ -318,17 +321,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         //window.location.reload()
 
-
-                        /***点击图片凭证***/
-                        $scope.$on('toStepItems',function () {
-                            alert(1)
-                        })
-
-
-                        $scope.$on('isText',function (data) {
-                            alert(data)
-                            $scope.isText = data
-                        })
                     }
 
     }]);

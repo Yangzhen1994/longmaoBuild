@@ -4,15 +4,18 @@
     <div class="stepTemp_content ">
         <div class="addbuttons">
             <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
-            <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}">+图片凭证</a>
+            <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}" ng-mouseover="showOtherType()">+图片凭证</a>
             <a href="javascript:;" ng-click="posProof($index)" id="{{'posproof'+$index}}">+位置凭证</a>
             <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioproof'+$index}}">+录音凭证</a>
             <a href="javascript:;" ng-click="showText($index)" id="{{'showtext'+$index}}">+显示文本</a>
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showimg'+$index}}">+显示图片</a>
+            <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto">图片(相册)</a>
+            <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera">图片(拍照)</a>
         </div>
         <div class="middleView ">
-            <ul  ng-model = "middleItems" ui-sortable="sortableOptions" class="temp_md_ul" style="overflow-y:true;" id="{{'imgUrl'+$index}}">
+            <ul  ng-model = "middleItems" ui-sortable="sortableOptions" class="temp_md_ul"  id="{{'imgUrl'+$index}}">
                 <div style="height: 80px;width: 100%"></div>
+                <!--<div style="overflow-y:auto;">-->
                         <div class="oldStep" style="width: 300px;padding-bottom: 100px;">
                             <input  style="display: block;width: 100px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px" type="text" ng-model="stepItem.oldSteps.title" placeholder="步骤名称">
                             <textarea style="display: block;width: 288px;height:60px;margin-left: 6px;font-size: 13px" ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
@@ -37,13 +40,13 @@
 
                                 </textproof-module>
 
-                                <imgproof-module ng-show="{{componentItem.type==2 && componentItem.status ==1}}"></imgproof-module>
+                                <imgproof-module ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></imgproof-module>
                                 <posproof-module ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></posproof-module>
                                 <audioproof-module ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audioproof-module>
 
                             </div>
                         </li>
-
+                <!--</div>-->
                         <!--<li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="border-top: 1px solid #c3c3c3;width: 288px;height: 200px">
                             <div>
                                 &lt;!&ndash;<p ng-show="{{componentItem.type == 1}}">文本凭证</p>

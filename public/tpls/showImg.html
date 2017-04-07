@@ -4,11 +4,17 @@
     font-size: 13px;
     height: 20px;
     line-height: 20px;">选择提示图片</div>
-    <img src="../img/moduleImg/ic_add_a_photo_black_24dp.png" alt=""
-               id = "{{'sys-file-dialog-upload-btn'+stepIndex+$index}}" style="margin-top: -5px">
+    <img ng-src="{{src}}" alt=""
+               id = "{{'sys-file-dialog-upload-btn'+stepIndex+$index}}" style="width:140px;height:95px;margin-top: -5px">
     </img>
+    <img ng-src="{{src1}}" alt="" ng-show="src1"
+          style="width:140px;height:95px;margin-top: -5px">
+    </img>
+    <!--<div ng-repeat="src in imgSrc" style="width: 280px;height: 120px">
+        <img ng-src="{{src}}" alt="" style="width: 100%;height: 100%">
+    </div>-->
     <div id="{{'preview'+stepIndex+$index}}" style="
-    height: 100px;width: 280px;position: absolute;left: 280px;top:-10px;display: none"
+    height: 100px;width: 280px;position: absolute;left: 290px;top:-8px;display: none"
     ></div>
     <div id="{{'sys-file-dialog-list'+stepIndex+$index}}" style="width: 200px;height: 200px;"></div>
     <img src="./img/icon/deleteCircle.png" alt="" style="

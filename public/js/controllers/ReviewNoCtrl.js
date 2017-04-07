@@ -66,7 +66,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             $scope.changeRight = function (item,index) {
                 console.log(item.data)
                 if(item && item.data){
-                    $scope.reviewNo = item.data
+                    $scope.reviewNo = item.data;
+                    $scope.reviewNo.forEach(function (item,index) {
+                        if(item.type == 5){
+                            window.x = item.x;
+                            window.y = item.y;
+                        }
+                    })
                 }else{
                     $scope.reviewNo = {}
                 }
@@ -141,6 +147,22 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             console.log(data);
             $scope.reviewNoItems = data.result.rows;
             $scope.reviewNo = $scope.reviewNoItems[0].data;
+            $scope.reviewNo.forEach(function (item,index) {
+                if(item.type == 5){
+                    window.x = item.x;
+                    window.y = item.y;
+                }
+            })
+
+
+            window.initNo = function () {
+                map = new BMap.Map("cc_map");            // 创建Map实例
+                var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                map.centerAndZoom(point,16);
+                map.enableScrollWheelZoom();// 启用滚轮放大缩小
+
+
+            }
             $scope.changeColor = 0;
             $scope.currentIndex = 0;
             //复选框的初值

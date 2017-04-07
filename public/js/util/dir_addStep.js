@@ -49,7 +49,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })
                 }
                 /*图片凭证*/
-                $scope.imgProof = function (index) {
+                $scope.showOtherType = function () {
+                    $scope.typePhoto  = true
+                    $scope.typeCamera  = true
+                }
+                $scope.imgProof = function (index,type) {
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     var data = {
                         id: '',
@@ -60,9 +64,17 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 2,
                         task_id: taskId,
+                    };
+                    if(type == 3){
+                        data.type =3
+                    }
+                    if(type == 4){
+                        data.type =4
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
+                    $scope.typePhoto  = false;
+                    $scope.typeCamera  = false;
                     serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {

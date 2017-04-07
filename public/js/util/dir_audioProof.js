@@ -19,6 +19,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     el.find('textarea').eq(0).on('blur',function () {
                         $(this).css('visibility','hidden');
+                        if($(this).parents('li')[0].id.length == 16){
+                            var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
+
+                        }else
                         if($(this).parents('li')[0].id.length == 15){
                             var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
 
@@ -26,7 +30,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             //alert($(this).parents('li')[0].id)
                             var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
                         }
-                        serverService.submitComponent(scope.componentItems[comIndex])
+                        var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
+                        serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
 
                     })
                     el.find('img').eq(0).click(function (e) {

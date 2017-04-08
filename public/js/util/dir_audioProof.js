@@ -31,6 +31,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
                         }
                         var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
+                        var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                        scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                         serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
 
                     })

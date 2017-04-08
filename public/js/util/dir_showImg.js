@@ -216,6 +216,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //scope.componentItems[comIndex].isText = ' ';
                     scope.stepItems[stepIndex].component[comIndex].tips_image = ' ';
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';
+                    var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){

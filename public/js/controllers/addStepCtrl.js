@@ -212,7 +212,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
         };
                     $scope.step_upload = function (obj) {
-                        $scope.step_upload = function (obj,event) {
+                        $scope.step_upload = function (obj) {
                             //获取到 步骤index
                             // event.stopPropagation()
                             var stepIndex= obj.parentNode.parentNode.parentNode.parentNode.id.substr(-1,1)

@@ -12,6 +12,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //scope.isText = true;
                     //console.log(scope.isText)
                 });
+                el.find('input').change(function () {
+                    if($(this).val() == ''){
+                        el.find('input').eq(0).css('visibility','visible');
+                        el.find('input').eq(0).focus();
+                    }
+                })
                 el.find('input').blur(function () {
                     //scope.isText = false;
                     this.style.visibility = 'hidden';

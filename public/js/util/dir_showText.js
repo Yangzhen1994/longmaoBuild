@@ -19,6 +19,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                 })*/
                 el.find('input').blur(function () {
+                    var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     //scope.isText = false;
                     this.style.visibility = 'hidden';
                     if($(this).parents('li')[0].id.length == 16){
@@ -34,6 +35,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                     var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
                     console.log(stepIndex)
+                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function () {
 
@@ -55,6 +57,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //scope.componentItems[comIndex].isText = ' ';
                     scope.stepItems[stepIndex].component[comIndex].tips_text = ' ';
                     scope.stepItems[stepIndex].component[comIndex].isText = ' ';
+                    var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){

@@ -9,12 +9,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 el.click(function () {
                     el.find('input').eq(0).css('visibility','visible');
-                    scope.isText = true;
-                    console.log(scope.isText)
+                    //scope.isText = true;
+                    //console.log(scope.isText)
                 });
                 el.find('input').blur(function () {
                     //scope.isText = false;
-                    //this.style.visibility = 'hidden'
+                    this.style.visibility = 'hidden'
                     if($(this).parents('li')[0].id.length == 16){
                         var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
@@ -30,7 +30,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     console.log(stepIndex)
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function () {
-                                scope.isText = false;
+                                //scope.isText = false;
                             })
                     //serverService.submitComponent(scope.componentItems[comIndex])
                 });

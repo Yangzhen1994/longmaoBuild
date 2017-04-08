@@ -8,12 +8,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
             templateUrl: 'tpls/showText.html',
             link:function (scope,el,attr) {
                 el.click(function () {
-                    el.find('input').eq(0).css('visibility','visible');
+                    //el.find('input').eq(0).css('visibility','visible');
                     scope.isText = true;
                 });
                 el.find('input').blur(function () {
-                    scope.isText = false;
-                    this.style.visibility = 'hidden'
+                    //scope.isText = false;
+                    //this.style.visibility = 'hidden'
                     if($(this).parents('li')[0].id.length == 16){
                         var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
@@ -28,6 +28,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
                     console.log(stepIndex)
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                            .then(function () {
+                                scope.isText = false;
+                            })
                     //serverService.submitComponent(scope.componentItems[comIndex])
                 });
                 el.find('img').click(function (e) {

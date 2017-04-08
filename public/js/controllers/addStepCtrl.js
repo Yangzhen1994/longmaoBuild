@@ -422,7 +422,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
-
+                                            storageUtils.session.setItem('_saved_',true);
                                             window.location.reload()
 
                                         }

@@ -8,8 +8,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
             templateUrl: 'tpls/showText.html',
             link:function (scope,el,attr) {
                 el.click(function () {
-                    //el.find('input').eq(0).css('visibility','visible');
+                    el.find('input').eq(0).css('visibility','visible');
                     scope.isText = true;
+                    console.log(scope.isText)
                 });
                 el.find('input').blur(function () {
                     //scope.isText = false;

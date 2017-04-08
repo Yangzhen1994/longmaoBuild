@@ -140,7 +140,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             for(var i=0;i<$scope.stepItems[index].component.length;i++){
                 if((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1){
                     $scope.stepItems[index].component[i].tips_text = '提示文本';
-                    $scope.stepItems[index].component[i].isText = true
                     $('#delete'+i).css('display','block')
                     serverService.submitComponent($scope.stepItems[index].component[i])
                 }

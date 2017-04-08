@@ -9,6 +9,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 el.click(function () {
                     el.find('input').eq(0).css('visibility','visible');
+                    scope.isText = true;
                 });
                 el.find('input').blur(function () {
                     scope.isText = false;

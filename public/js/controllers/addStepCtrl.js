@@ -211,7 +211,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         }
                     };
-
+                    $scope.step_upload = function (obj) {
+                        alert(obj.parents('ul').eq(0).id.substr(-1,1))
+                    }
                     /*上一项 保存任务*/
                     $scope.asprePage = function () {
                         //操作

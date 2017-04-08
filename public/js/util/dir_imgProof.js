@@ -39,7 +39,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //console.log(scope.stepItems[stepIndex].component)
                     //alert(comIndex)
                     scope.stepItems[stepIndex].component[comIndex].status = 0;
-
+                    if(scope.stepItems[stepIndex].component[comIndex].type ==2){
+                        scope.imgdesc = '图片'
+                    }else if(scope.stepItems[stepIndex].component[comIndex].type ==3){
+                        scope.imgdesc = '图片(相册)'
+                    }else if(scope.stepItems[stepIndex].component[comIndex].type ==4){
+                        scope.imgdesc = '图片(拍照)'
+                    }
                     var toDel = scope.stepItems[stepIndex].component[comIndex];
                     console.log(toDel)
 

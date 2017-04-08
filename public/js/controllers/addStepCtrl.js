@@ -301,7 +301,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             if(!data.url){
                                 data.url = ''
                             }
-                            data.skip = 0;
+                            data.skip = 0;//默认设置成否：可以跳过
                             data.status = 1
                             console.log(data);
                             serverService.saveStep(data)

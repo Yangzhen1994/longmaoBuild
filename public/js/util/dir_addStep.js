@@ -159,6 +159,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             for(var i=0;i<$scope.stepItems[index].component.length;i++){
                 if((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1){
                     $scope.stepItems[index].component[i].tips_text = '提示文本';
+                    $scope.stepItems[index].component[i].task_id = taskId;
                     $('#delete'+i).css('display','block')
                     serverService.submitComponent($scope.stepItems[index].component[i])
                 }
@@ -235,6 +236,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     for (var j = 0; j < tempArr.length; j++) {
                         if ($scope.stepItems[index].component[i].order = tempArr[j].order) {
                             $scope.stepItems[index].component[i].id = tempArr[j].id;
+                            $scope.stepItems[index].component[i].task_id = taskId;
                             serverService.submitComponent($scope.stepItems[index].component[i])
                                     .then(function (data) {
                                         if (data.code == 200) {

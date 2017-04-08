@@ -110,11 +110,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     images_list:['']
                                 }];
                         }else{
+
                             $scope.oldSteps = data.result;
                             //存入seesion
                             storageUtils.session.setItem('_oldStep_',$scope.oldSteps);
                             var oldStep = storageUtils.session.getItem('_oldStep_');
-
+                            storageUtils.session.setItem('_saved_',true);
                             $scope.stepCount = 0;
                             if(oldStep && oldStep.length>0){
                                 for(var i = 0;i<oldStep.length;i++){

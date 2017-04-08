@@ -11,7 +11,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     el.find('input').eq(0).css('visibility','visible');
                 });
                 el.find('input').blur(function () {
-                    //scope.isText = false;
+                    scope.isText = false;
                     this.style.visibility = 'hidden'
                     if($(this).parents('li')[0].id.length == 16){
                         var comIndex = $(this).parents('li')[0].id.substr(-3, 3);

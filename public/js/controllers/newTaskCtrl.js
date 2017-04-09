@@ -27,7 +27,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 max_submit_time:'',
                 order:'',
                 max_submit:'',
-
+                tag_id:''
             }
         }
 
@@ -103,7 +103,20 @@ define(['app','storageUtils'], function (app,storageUtils) {
         }else if($scope.task.device == 2){
             $scope.deviceType = 'ios'
         }
-
+        /*任务分类*
+        /
+         */
+        if($scope.task.tag_id == 0){
+            $scope.tagType = '其他任务'
+        }else if($scope.task.tag_id == 6){
+            $scope.tagType = 'APP体验'
+        }else if($scope.task.tag_id == 5){
+            $scope.tagType = '数据采集'
+        }else if($scope.task.tag_id == 4){
+            $scope.tagType = '数据标注'
+        }else if($scope.task.tag_id == 3){
+            $scope.tagType = '市场调研'
+        }
         $scope.versionItems = [
             {
                 version:'全部'
@@ -115,6 +128,48 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 version:'ios'
             }
         ];
+
+        $scope.tagItems = [
+            {
+                tagItem:'APP体验'
+            },
+            {
+                tagItem:'数据采集'
+            },
+            {
+                tagItem:'数据标注'
+            },
+            {
+                tagItem:'市场调研'
+            },
+            {
+                tagItem:'其他任务'
+            }
+        ];
+        //任务分类
+        $scope.changeTag = function () {
+            if($scope.taskTag.tagItem == 'APP体验'){
+                //alert(1)
+                $scope.task.tag_id = 6
+            }
+            if($scope.taskTag.tagItem == '数据采集'){
+                //alert(1)
+                $scope.task.tag_id = '5'
+            }
+            if($scope.taskTag.tagItem == '数据标注'){
+                //alert(1)
+                $scope.task.tag_id = '4'
+            }
+            if($scope.taskTag.tagItem == '市场调研'){
+                //alert(1)
+                $scope.task.tag_id = '3'
+            }
+            if($scope.taskTag.tagItem == '其他任务'){
+                //alert(1)
+                $scope.task.tag_id = '0'
+            }
+        }
+
         //假设仅仅安卓对应状态 吗 为 0
         $scope.changelineVersion = function () {
             if($scope.lineVersion.version == 'android'){

@@ -235,6 +235,22 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 }
 
                             });
+                            $scope.items.forEach(function (item,index) {
+                                if(item.status == 1){
+                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                    item.endTime = item.end_time;
+                                    //alert(item.endTime)
+                                    item.line = '上线'
+                                }else if(item.status == 2){
+                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                    item.endTime = item.end_time;
+                                    item.line = '下线'
+                                }else if(item.status == 3){
+                                    item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                    item.line = '上线'
+                                }
+
+                            });
                         })
 
                         //console.log($scope.items)

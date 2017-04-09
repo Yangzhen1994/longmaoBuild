@@ -237,12 +237,15 @@ ul{
     border: 1px solid #737373;
     border-radius: 4px;
 }
-.nt_rv_showOther{
+.nt_rv_taskTag {
     margin-top: 8px;
 }
-.nt_rv_showOther input{
-    width: 85px;
+.nt_rv_taskTag select{
+    margin-left: 12px;
+    background: white;
+    width: 120px;
     height: 32px;
+    border: 1px solid #737373;
     border-radius: 4px;
 }
 .content{

@@ -416,6 +416,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.getStepById(taskId2)
                                     .then(function (data) {
                                         console.log(data.result)
+                                        storageUtils.session.setItem('_addStep_',data.result);
+                                        $scope.stepItems.forEach(function (item,index) {
+                                            for(var i = 0;i<data.result.length;i++){
+                                                if(item.oldSteps.title == data.result[i].title){
+                                                    item.oldSteps.id = data.result[i].id
+                                                }
+                                            }
+
+                                        })
                                         for(var i=0;i<$scope.stepItems.length;i++){
                                             data.result.forEach(function (item,index) {
                                                 if(item.id == $scope.stepItems[i].oldSteps.id){
@@ -426,9 +435,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                             serverService.submitComponent(item1)
                                                                     .then(function (data) {
                                                                         console.log(data);
-                                                                        //把凭证信息存入到session
-                                                                        storageUtils.session.setItem('_component_', data.result);
-                                                                        window.location.reload()
+                                                                        if(data.code == 200){
+                                                                            //把凭证信息存入到session
+                                                                            storageUtils.session.setItem('_component_', data.result);
+                                                                            window.save = true
+                                                                        }else{
+                                                                            window.save = false
+                                                                        }
+
+
                                                                     })
                                                         })
                                                     }
@@ -437,6 +452,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         }
                                     })
                         },2000)
+
+                        $timeout(function () {
+                            if(save){
+                                alert('保存成功');
+                                window.location.reload()
+                            }
+                        },2200)
+
 
 
                        // serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))

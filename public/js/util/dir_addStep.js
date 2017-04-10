@@ -47,8 +47,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
-                                    storageUtils.session.setItem('_DRAG_',true)
-                                    window.location = '#/reviewList';
+                                    //storageUtils.session.setItem('_DRAG_',true)
+                                    //window.location = '#/reviewList';
+                                    serverService.getComponent(taskId)
+                                            .then(function (data) {
+                                                console.log(data)
+                                                //把凭证信息存入到session
+                                                storageUtils.session.setItem('_component_',data.result);
+                                            })
                                 }
                             })
                 }
@@ -87,8 +93,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
-                                    storageUtils.session.setItem('_DRAG_',true)
-                                    window.location = '#/reviewList';
+                                    serverService.getComponent(taskId)
+                                            .then(function (data) {
+                                                console.log(data)
+                                                //把凭证信息存入到session
+                                                storageUtils.session.setItem('_component_',data.result);
+                                            })
                                 }
                             })
                     /* $scope.$emit('addImgProof');*/
@@ -117,8 +127,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
-                                    storageUtils.session.setItem('_DRAG_',true)
-                                    window.location = '#/reviewList';
+                                    serverService.getComponent(taskId)
+                                            .then(function (data) {
+                                                console.log(data)
+                                                //把凭证信息存入到session
+                                                storageUtils.session.setItem('_component_',data.result);
+                                            })
                                 }
                             })
                 };
@@ -145,8 +159,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
-                                    storageUtils.session.setItem('_DRAG_',true)
-                                    window.location = '#/reviewList';
+                                    serverService.getComponent(taskId)
+                                            .then(function (data) {
+                                                console.log(data)
+                                                //把凭证信息存入到session
+                                                storageUtils.session.setItem('_component_',data.result);
+                                            })
                                 }
                             })
                 };
@@ -165,8 +183,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }
 
             }
-            storageUtils.session.setItem('_DRAG_',true)
-            window.location = '#/reviewList';
+            //storageUtils.session.setItem('_DRAG_',true)
+            //window.location = '#/reviewList';
 
 
 

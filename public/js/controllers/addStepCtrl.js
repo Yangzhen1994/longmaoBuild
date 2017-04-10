@@ -328,20 +328,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         //操作
                         window.location = '#/addTask'
                     };
-                    $scope.picFileArr = []
-                    $scope.$on('pic',function(event,data) {
-                        $scope.picFileArr.push(data);
-                        //父级能得到值
-                    });
-                    $scope.$on('delPic',function(index) {
-                        $scope.picFileArr.splice(index,1);
-                        //console.log($scope.picFileArr)
-                        //父级能得到值
-                    });
-                    $scope.$on('deleteImgTop',function () {
-                        var picLength = $scope.picFileArr.length;
-
-                    })
 
                     $scope.assaveTask = function () {
 
@@ -401,18 +387,39 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     .then(function (data) {
                                         if(data.code == 200){
                                             console.log('保存成功');
-
-                                           storageUtils.session.removeItem('_oldStep_');
+                                           /* storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            window.location.reload()
-
+                                            window.location.reload()*/
                                         }
                                     });
                             imagesStr = '';
                         }
-
+                        $timeout(function () {
+                            var taskId2 = taskId || newtaskId
+                            serverService.getStepById(taskId2)
+                                    .then(function (data) {
+                                        for(var i=0;i<$scope.stepItems.length;i++){
+                                            data.result.forEach(function (item,index) {
+                                                if(item.id == $scope.stepItems[i].oldSteps.id){
+                                                    if($scope.stepItems[i].component && $scope.stepItems[i].component.length>0){
+                                                        $scope.stepItems[i].component.forEach(function (item1,index1) {
+                                                            item1.step_id = item.id;
+                                                            item1.task_id = item.task_id;
+                                                            serverService.submitComponent(item1)
+                                                                    .then(function (data) {
+                                                                        console.log(data)
+                                                                        //把凭证信息存入到session
+                                                                        storageUtils.session.setItem('_component_', data.result);
+                                                                    })
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    })
+                        },2000)
 
 
                        // serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))

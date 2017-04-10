@@ -402,12 +402,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         if(data.code == 200){
                                             console.log('保存成功');
 
-                                            storageUtils.session.removeItem('_oldStep_');
+                                           /* storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
                                             window.location.reload()
-
+*/
                                         }
                                     });
                             imagesStr = '';

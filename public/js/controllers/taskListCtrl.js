@@ -269,6 +269,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             rows:200
                         }).then(function (result) {
                             $scope.items = result;
+                            $scope.taskState = null
                             console.log($scope.items);
                             $scope.items.forEach(function (item,index) {
                                 if(item.status == 1){

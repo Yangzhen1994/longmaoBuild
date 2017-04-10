@@ -156,7 +156,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
         //$scope.flagIndex = 0
-        $scope.sortableOptions = {
+        /*$scope.sortableOptions = {
                         // 数据有变化
                         start:function (e,ui) {
                             oldPosition = ui.item[0].offsetTop
@@ -207,11 +207,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             //storageUtils.session.setItem('_component_',$scope.componentItems);
                             window.location = '#/reviewList';
 
-                         /*  $('.temp_md_ul').sortable( "refresh" );
-                            $( ".selector" ).sortable( "refreshPositions" );*/
+                         /!*  $('.temp_md_ul').sortable( "refresh" );
+                            $( ".selector" ).sortable( "refreshPositions" );*!/
 
                         }
-        };
+        };*/
                     $scope.step_upload = function (obj) {
                         $scope.step_upload = function (obj) {
                             //获取到 步骤index
@@ -344,32 +344,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     })
 
                     $scope.assaveTask = function () {
-                        var middleViewList = $('.middleView');
-                        //console.log($scope.picFileArr)
 
-
-                        middleViewList = Array.from(middleViewList);
-                        $scope.result = []
-                        middleViewList.forEach(function (item,index) {
-                            var liLists = item.getElementsByTagName('li');
-                            for(var i=0;i<liLists.length;i++){
-                                $scope.result.push(liLists[i].innerText)
-                            }
-                        });
-
-                        $scope.result.forEach(function (item,index) {
-                            if((typeof item =='string')){
-                                $scope.result[index] = item.replace(/[\r\n]/g, "");
-                                $scope.result[index] = item.replace(/(^\s*)|(\s*$)/g, "")
-                            }
-                        });
-                        for(var r=0;r<$scope.result.length;r++){
-                            if($scope.result[r] == ''){
-                                $scope.result.splice(r,1);
-                                r--;
-                            }
-                        }
-                        var newResult = $scope.result.concat($scope.picFileArr);
                         //console.log(newResult);
                         /**id:
                          title:1
@@ -380,7 +355,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                          skip:0
                          status:1
                          task_id:1226*/
-                        var imagesArr = []
+                        //var imagesArr = []
 
                         var imagesStr = ''
                         // $.each(images,function (index,item) {
@@ -401,6 +376,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             });
                             var data = $scope.stepItems[i].oldSteps;
                             data.images = imagesStr;
+                            if(!data.title){
+                                data.title = ' ';
+                            }
+
+
                             if(!data.order){
                                 data.order = $scope.stepItems.length - i -1;
                             }
@@ -418,18 +398,41 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.saveStep(data)
                                     .then(function (data) {
                                         if(data.code == 200){
+                                            serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))
+                                                    .then(function (data) {
+                                                        var stepArr = data.result;
+                                                        for(var i= 0 ;i<$scope.stepItems.length;i++){
+                                                            for(var j=0;j<stepArr.length;j++){
+                                                                if($scope.stepItems[i].oldSteps.id == stepArr[j].id){
+                                                                    $scope.stepItems[i].component.forEach(function (item,index) {
+                                                                        item.step_id = $scope.stepItems[i].oldSteps.id;
+                                                                        item.task_id = stepArr[j].task_id
+                                                                        serverService.submitComponent(item).then(function (data) {
+                                                                            console.log(data)
+                                                                            //把凭证信息存入到session
+                                                                            storageUtils.session.setItem('_component_', data.result);
+                                                                        })
+                                                                    })
+                                                                }
+                                                            }
+                                                        }
+                                                    })
                                             console.log('保存成功');
 
-                                            storageUtils.session.removeItem('_oldStep_');
+                                            /*storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            window.location.reload()
+                                            window.location.reload()*/
 
                                         }
                                     });
                             imagesStr = '';
                         }
+
+
+
+
                         //window.location.reload()
 
                     }

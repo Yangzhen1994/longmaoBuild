@@ -395,16 +395,18 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             data.skip = 0;//默认设置成否：可以跳过
                             data.status = 1
                             console.log(data);
+                            storageUtils.session.setItem('_savedStepIndex_',i);
                             serverService.saveStep(data)
                                     .then(function (data) {
                                         if(data.code == 200){
                                             console.log('保存成功');
-
+                                            var index = storageUtils.session.getItem('_savedStepIndex_');
+                                            console.log($scope.stepItems[index].component)
                                             storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            //window.location.reload()
+                                            window.location.reload()
 
                                         }
                                     });

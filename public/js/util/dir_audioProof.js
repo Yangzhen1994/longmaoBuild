@@ -71,6 +71,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         for(var i = 0;i<comId.length;i++){
                             if(comId[i].order ==  toDel.order){
                                 comId[i].status = 0;
+                                comId[i].task_id = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
                                 serverService.submitComponent(comId[i])
                             }
                         }

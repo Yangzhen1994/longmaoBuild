@@ -252,7 +252,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $scope.stepItems[index].component[i].tips_image = true;
                     $('#delete' + i).css('display', 'block');
                     for (var j = 0; j < tempArr.length; j++) {
-                        if ($scope.stepItems[index].component[i].order = tempArr[j].order) {
+                        if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                             $scope.stepItems[index].component[i].id = tempArr[j].id;
                             $scope.stepItems[index].component[i].task_id = taskId;
                             serverService.submitComponent($scope.stepItems[index].component[i])

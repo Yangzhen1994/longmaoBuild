@@ -29,7 +29,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var comimgIndex = el.parents('li')[0].id.substr(-1, 1);
                 }
                 console.log(comimgIndex);
-                if(scope.stepItems[stepIndex].component[comimgIndex].tips_image ){
+                if(scope.stepItems[stepIndex].component[comimgIndex]){
                     if( scope.stepItems[stepIndex].component[comimgIndex].tips_image.indexOf('http://')>-1){
                         /*scope.imgSrc = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')*/
                         scope.src = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')[0]

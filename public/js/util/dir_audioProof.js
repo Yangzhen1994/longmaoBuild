@@ -33,7 +33,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
                         var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                         scope.stepItems[stepIndex].component[comIndex].task_id = taskId
-                        serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
+                        //serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
 
                     })
                     el.find('img').eq(0).click(function (e) {

@@ -418,7 +418,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.getStepById(taskId2)
                                     .then(function (data) {
                                         for(var i= 0 ;i<$scope.stepItems.length;i++){
-                                            if($scope.stepItems[i].component&&$scope.stepItems[i].component.length>1){
+                                            if($scope.stepItems[i].component&&$scope.stepItems[i].component.length>0){
                                                 for(var j=0;j<data.result.length;j++){
                                                     if($scope.stepItems[i].oldSteps.id == data.result[j].id){
                                                         $scope.stepItems[i].component.forEach(function (item,index) {
@@ -443,10 +443,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                         })
                                                     }
                                                 }
-                                            }else{
-                                                window.location.reload()
                                             }
-
                                         }
                                     })
 

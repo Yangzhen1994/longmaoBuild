@@ -211,7 +211,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     }
 
                                 }
-                            }
+                            })
 
 
                     /*for(var i=0;i<$scope.stepItems[index].component.length;i++){
@@ -315,7 +315,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     }
 
                                 }
-                            }
+                            })
                     //storageUtils.session.setItem('_DRAG_',true)
                     //window.location = '#/reviewList';
                 };

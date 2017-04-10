@@ -418,30 +418,35 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.getStepById(taskId2)
                                     .then(function (data) {
                                         for(var i= 0 ;i<$scope.stepItems.length;i++){
-                                            for(var j=0;j<data.result.length;j++){
-                                                if($scope.stepItems[i].oldSteps.id == data.result[j].id){
-                                                    $scope.stepItems[i].component.forEach(function (item,index) {
-                                                        item.step_id = data.result[j].id
-                                                        item.task_id = data.result[j].task_id
-                                                        serverService.submitComponent(item)
-                                                                .then(function (data) {
-                                                                    if (data.code == 200) {
-                                                                        serverService.getComponent(taskId2)
-                                                                                .then(function (data) {
-                                                                                    console.log(data)
-                                                                                    //把凭证信息存入到session
-                                                                                    storageUtils.session.setItem('_component_', data.result);
-                                                                                    storageUtils.session.removeItem('_oldStep_');
-                                                                                    storageUtils.session.removeItem('_TaskId_');
-                                                                                    storageUtils.session.removeItem('_newTaskid_');
-                                                                                    storageUtils.session.setItem('_saved_',true);
-                                                                                    window.location.reload()
-                                                                                })
-                                                                    }
-                                                                })
-                                                    })
+                                            if($scope.stepItems[i].component&&$scope.stepItems[i].component.length>1){
+                                                for(var j=0;j<data.result.length;j++){
+                                                    if($scope.stepItems[i].oldSteps.id == data.result[j].id){
+                                                        $scope.stepItems[i].component.forEach(function (item,index) {
+                                                            item.step_id = data.result[j].id
+                                                            item.task_id = data.result[j].task_id
+                                                            serverService.submitComponent(item)
+                                                                    .then(function (data) {
+                                                                        if (data.code == 200) {
+                                                                            serverService.getComponent(taskId2)
+                                                                                    .then(function (data) {
+                                                                                        console.log(data)
+                                                                                        //把凭证信息存入到session
+                                                                                        storageUtils.session.setItem('_component_', data.result);
+                                                                                        storageUtils.session.removeItem('_oldStep_');
+                                                                                        storageUtils.session.removeItem('_TaskId_');
+                                                                                        storageUtils.session.removeItem('_newTaskid_');
+                                                                                        storageUtils.session.setItem('_saved_',true);
+                                                                                        window.location.reload()
+                                                                                    })
+                                                                        }
+                                                                    })
+                                                        })
+                                                    }
                                                 }
+                                            }else{
+                                                window.location.reload()
                                             }
+
                                         }
                                     })
 

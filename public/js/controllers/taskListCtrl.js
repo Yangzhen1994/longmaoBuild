@@ -257,6 +257,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     };
                     $scope.turntoSelf = function () {
                        //window.location.reload();
+                        $scope.taskState = null;
+                        $scope.deviceType = null;
+                        $scope.belongUser = null;
                         serverService.getAllTask({
                             id:'',
                             title:'',
@@ -269,7 +272,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             rows:200
                         }).then(function (result) {
                             $scope.items = result;
-                            $scope.taskState = null
+
                             console.log($scope.items);
                             $scope.items.forEach(function (item,index) {
                                 if(item.status == 1){

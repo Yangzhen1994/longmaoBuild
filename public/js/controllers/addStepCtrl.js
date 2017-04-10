@@ -403,10 +403,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             console.log('保存成功');
 
                                             storageUtils.session.removeItem('_oldStep_');
-                                            //storageUtils.session.removeItem('_TaskId_');
-                                            //storageUtils.session.removeItem('_newTaskid_');
+                                            storageUtils.session.removeItem('_TaskId_');
+                                            storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            //window.location.reload()
+                                            window.location.reload()
 
                                         }
                                     });
@@ -431,6 +431,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                                     console.log(data)
                                                                                     //把凭证信息存入到session
                                                                                     storageUtils.session.setItem('_component_', data.result);
+                                                                                    storageUtils.session.removeItem('_oldStep_');
+                                                                                    storageUtils.session.removeItem('_TaskId_');
+                                                                                    storageUtils.session.removeItem('_newTaskid_');
+                                                                                    storageUtils.session.setItem('_saved_',true);
+                                                                                    window.location.reload()
                                                                                 })
                                                                     }
                                                                 })

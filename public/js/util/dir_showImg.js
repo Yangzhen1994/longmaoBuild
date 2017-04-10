@@ -223,9 +223,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){
-                                   storageUtils.session.setItem('_DRAG_',true);
-                                    window.location = '#/reviewList';
-
+                                   //storageUtils.session.setItem('_DRAG_',true);
+                                    //window.location = '#/reviewList';
+                                    $('#imgWrap'+stepIndex+comIndex).css('display','none')
                                 }
                             })
                     $(this).css('display','none')

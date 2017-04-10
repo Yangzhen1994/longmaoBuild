@@ -402,52 +402,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         if(data.code == 200){
                                             console.log('保存成功');
 
-                                           /* storageUtils.session.removeItem('_oldStep_');
+                                           storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
                                             window.location.reload()
-*/
+
                                         }
                                     });
                             imagesStr = '';
                         }
 
-                        $timeout(function () {
-                            var taskId2 = taskId || newtaskId;
-                            serverService.getStepById(taskId2)
-                                    .then(function (data) {
-                                        for(var i= 0 ;i<$scope.stepItems.length;i++){
-                                            if($scope.stepItems[i].component&&$scope.stepItems[i].component.length>0){
-                                                for(var j=0;j<data.result.length;j++){
-                                                    if($scope.stepItems[i].oldSteps.id == data.result[j].id){
-                                                        $scope.stepItems[i].component.forEach(function (item,index) {
-                                                            item.step_id = data.result[j].id
-                                                            item.task_id = data.result[j].task_id
-                                                            serverService.submitComponent(item)
-                                                                    .then(function (data) {
-                                                                        if (data.code == 200) {
-                                                                            serverService.getComponent(taskId2)
-                                                                                    .then(function (data) {
-                                                                                        console.log(data)
-                                                                                        //把凭证信息存入到session
-                                                                                        storageUtils.session.setItem('_component_', data.result);
-                                                                                        storageUtils.session.removeItem('_oldStep_');
-                                                                                        storageUtils.session.removeItem('_TaskId_');
-                                                                                        storageUtils.session.removeItem('_newTaskid_');
-                                                                                        storageUtils.session.setItem('_saved_',true);
-                                                                                        window.location.reload()
-                                                                                    })
-                                                                        }
-                                                                    })
-                                                        })
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    })
-
-                        },500)
 
 
                        // serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))

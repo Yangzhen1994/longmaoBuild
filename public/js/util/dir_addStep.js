@@ -46,7 +46,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
 
-                    /*serverService.submitComponent(data)
+                    serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
                                     //storageUtils.session.setItem('_DRAG_',true)
@@ -58,7 +58,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_component_', data.result);
                                             })
                                 }
-                            })*/
+                            })
                 }
                 /*图片凭证*/
                 $scope.showOtherType = function () {
@@ -94,7 +94,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $scope.componentItems.push(data);
                     $scope.typePhoto = false;
                     $scope.typeCamera = false;
-                    /*serverService.submitComponent(data)
+                    serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
                                     serverService.getComponent(taskId)
@@ -104,7 +104,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_component_', data.result);
                                             })
                                 }
-                            })*/
+                            })
                     /* $scope.$emit('addImgProof');*/
                 };
                 /*位置凭证*/
@@ -130,7 +130,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    /*serverService.submitComponent(data)
+                    serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
                                     serverService.getComponent(taskId)
@@ -140,7 +140,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_component_', data.result);
                                             })
                                 }
-                            })*/
+                            })
                 };
                 /*录音凭证*/
                 $scope.audioProof = function (index) {
@@ -159,12 +159,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 6,
                         task_id: taskId,
-                        tips_text:'',
-                        tips_image:''
+
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    /*serverService.submitComponent(data)
+                    serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
                                     serverService.getComponent(taskId)
@@ -174,7 +173,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_component_', data.result);
                                             })
                                 }
-                            })*/
+                            })
                 };
                 /*显示文本*/
                 $scope.showText = function (index) {
@@ -203,14 +202,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                                                 $scope.stepItems[index].component[i].id = tempArr[j].id;
                                                 $scope.stepItems[index].component[i].task_id = taskId;
-                                                /*serverService.submitComponent($scope.stepItems[index].component[i])
+                                                serverService.submitComponent($scope.stepItems[index].component[i])
                                                         .then(function (data) {
                                                             if (data.code == 200) {
 
                                                                 // storageUtils.session.setItem('_DRAG_',true);
                                                                 // window.location = '#/reviewList';
                                                             }
-                                                        })*/
+                                                        })
                                                 continue
                                             }
 
@@ -307,14 +306,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                                                 $scope.stepItems[index].component[i].id = tempArr[j].id;
                                                 $scope.stepItems[index].component[i].task_id = taskId;
-                                                /*serverService.submitComponent($scope.stepItems[index].component[i])
+                                                serverService.submitComponent($scope.stepItems[index].component[i])
                                                         .then(function (data) {
                                                             if (data.code == 200) {
 
                                                                 // storageUtils.session.setItem('_DRAG_',true);
                                                                 // window.location = '#/reviewList';
                                                             }
-                                                        })*/
+                                                        })
                                                 continue
                                             }
 

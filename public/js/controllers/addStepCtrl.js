@@ -369,6 +369,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         for(var i= 0 ;i<$scope.stepItems.length;i++){
                             console.log($scope.stepItems[i].oldSteps);
+                            var componentChild = $scope.stepItems[i].component
                             var images = document.getElementById('imgUrl'+i);
                             var imagesItem = images.querySelectorAll('.imgUrl');
                             $.each(imagesItem,function (index,item) {
@@ -395,18 +396,33 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             data.skip = 0;//默认设置成否：可以跳过
                             data.status = 1
                             console.log(data);
-                            storageUtils.session.setItem('_savedStepIndex_',i);
+
                             serverService.saveStep(data)
                                     .then(function (data) {
                                         if(data.code == 200){
                                             console.log('保存成功');
-                                            var index = storageUtils.session.getItem('_savedStepIndex_');
-                                            console.log($scope.stepItems[index].component)
-                                            storageUtils.session.removeItem('_oldStep_');
+                                            if(componentChild&&componentChild.length>1){
+                                                componentChild.forEach(function (item,index) {
+                                                    serverService.submitComponent(item)
+                                                            .then(function (data) {
+                                                                if (data.code == 200) {
+                                                                    serverService.getComponent(taskId)
+                                                                            .then(function (data) {
+                                                                                console.log(data)
+                                                                                //把凭证信息存入到session
+                                                                                storageUtils.session.setItem('_component_', data.result);
+                                                                            })
+                                                                }
+                                                            })
+                                                })
+                                            }
+
+
+                                            /*storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            window.location.reload()
+                                            window.location.reload()*/
 
                                         }
                                     });

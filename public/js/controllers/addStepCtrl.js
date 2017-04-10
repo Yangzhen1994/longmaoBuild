@@ -390,7 +390,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         if(data.code == 200){
                                             console.log('保存成功');
                                                 //storageUtils.session.setItem('_addStep_',data.result);
-                                                var taskId1 = taskId || newtaskId;
+                                                /*var taskId1 = taskId || newtaskId;
                                                 serverService.getStepById(taskId1)
                                                         .then(function (data) {
                                                             $scope.stepItems.forEach(function (item,index) {
@@ -398,7 +398,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                     item.oldSteps.id = data.result.id
                                                                 }
                                                             })
-                                                        })
+                                                        })*/
 
                                            /* storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
@@ -415,6 +415,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             var taskId2 = taskId || newtaskId
                             serverService.getStepById(taskId2)
                                     .then(function (data) {
+                                        console.log(data.result)
                                         for(var i=0;i<$scope.stepItems.length;i++){
                                             data.result.forEach(function (item,index) {
                                                 if(item.id == $scope.stepItems[i].oldSteps.id){
@@ -424,9 +425,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                             item1.task_id = item.task_id;
                                                             serverService.submitComponent(item1)
                                                                     .then(function (data) {
-                                                                        console.log(data)
+                                                                        console.log(data);
                                                                         //把凭证信息存入到session
                                                                         storageUtils.session.setItem('_component_', data.result);
+                                                                        window.location.reload()
                                                                     })
                                                         })
                                                     }

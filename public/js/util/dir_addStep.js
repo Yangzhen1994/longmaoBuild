@@ -40,6 +40,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 1,
                         task_id: taskId,
+                        tips_text:'',
+                        tips_image:''
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
@@ -79,6 +81,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 2,
                         task_id: taskId,
+                        tips_text:'',
+                        tips_image:''
                     };
                     if (type == 3) {
                         data.type = 3
@@ -121,6 +125,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 5,
                         task_id: taskId,
+                        tips_text:'',
+                        tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
@@ -153,6 +159,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 6,
                         task_id: taskId,
+                        tips_text:'',
+                        tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
@@ -189,7 +197,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     if ((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1) {
                                         //$scope.$emit('isText',true)
                                         //$scope.stepItems[index].component[i].isText = true
-                                        $scope.stepItems[index].component[i].tips_text = '请输入提示文本若请选中输入空格';
+                                        $scope.stepItems[index].component[i].tips_text = '请输入提示文本若请无需请删除';
                                         $('#delete' + i).css('display', 'block');
                                         for (var j = 0; j < tempArr.length; j++) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {

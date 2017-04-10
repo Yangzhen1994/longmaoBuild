@@ -45,6 +45,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 el.find('img').click(function (e) {
                     e.stopPropagation()
                     console.log($(this).parents('li'))
+                    if($(this).parents('li')[0].id.length == 16){
+                        var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
+
+                    }else
                     if($(this).parents('li')[0].id.length == 15){
                         var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
 
@@ -59,6 +63,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     scope.stepItems[stepIndex].component[comIndex].isText = ' ';
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+
                     serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){

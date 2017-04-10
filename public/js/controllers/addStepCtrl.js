@@ -398,32 +398,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.saveStep(data)
                                     .then(function (data) {
                                         if(data.code == 200){
-                                            serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))
-                                                    .then(function (data) {
-                                                        var stepArr = data.result;
-                                                        for(var i= 0 ;i<$scope.stepItems.length;i++){
-                                                            for(var j=0;j<stepArr.length;j++){
-                                                                if($scope.stepItems[i].oldSteps.id == stepArr[j].id){
-                                                                    $scope.stepItems[i].component.forEach(function (item,index) {
-                                                                        item.step_id = $scope.stepItems[i].oldSteps.id;
-                                                                        item.task_id = stepArr[j].task_id
-                                                                        serverService.submitComponent(item).then(function (data) {
-                                                                            console.log(data)
-                                                                            //把凭证信息存入到session
-                                                                            storageUtils.session.setItem('_component_', data.result);
-                                                                        })
-                                                                    })
-                                                                }
-                                                            }
-                                                        }
-                                                    })
                                             console.log('保存成功');
 
-                                            /*storageUtils.session.removeItem('_oldStep_');
+                                            storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
                                             storageUtils.session.setItem('_saved_',true);
-                                            window.location.reload()*/
+                                            //window.location.reload()
 
                                         }
                                     });
@@ -432,7 +413,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
 
-
+                       // serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))
                         //window.location.reload()
 
                     }

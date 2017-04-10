@@ -55,8 +55,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 if (!$scope.stepItems[$scope.stepItems.length-1].oldSteps) {
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps = {}
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list = ['']
+                    $scope.stepItems[$scope.stepItems.length-1].oldSteps.order = 100 - $scope.stepItems.length;
                 } else if ($scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list == null || $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list.length == 0) {
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list = ['']
+                    $scope.stepItems[$scope.stepItems.length-1].oldSteps.order = 100 - $scope.stepItems.length;
                 }
 
 
@@ -369,7 +371,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
                             if(!data.order){
-                                data.order = $scope.stepItems.length - i -1;
+                                data.order = 100 - i;
                             }
 
                             data.task_id = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
@@ -387,6 +389,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     .then(function (data) {
                                         if(data.code == 200){
                                             console.log('保存成功');
+                                                //storageUtils.session.setItem('_addStep_',data.result);
+                                                var taskId1 = taskId || newtaskId;
+                                                serverService.getStepById(taskId1)
+                                                        .then(function (data) {
+                                                            $scope.stepItems.forEach(function (item,index) {
+                                                                if(item.oldSteps.title == data.result.title){
+                                                                    item.oldSteps.id = data.result.id
+                                                                }
+                                                            })
+                                                        })
+
                                            /* storageUtils.session.removeItem('_oldStep_');
                                             storageUtils.session.removeItem('_TaskId_');
                                             storageUtils.session.removeItem('_newTaskid_');
@@ -395,6 +408,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         }
                                     });
                             imagesStr = '';
+
+
                         }
                         $timeout(function () {
                             var taskId2 = taskId || newtaskId

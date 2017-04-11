@@ -9,7 +9,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $('.left').css('height',738);
         serverService.getSelectData()
                 .then(function (data) {
-                    console.log(data)
+                    $scope.areaItems = data.result
                 })
         var editTask = storageUtils.session.getItem('editData');
 
@@ -70,32 +70,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
         /*日历*/
         /*地区*/
-        $scope.areaItems = [
-            {
-                area:'全国'
-            },
-            {
-                area:'北京市'
-            },
-            {
-                area:'上海市'
-            },
-            {
-                area:'广东省广州市'
-            },
-            {
-                area:'广东省东莞市'
-            },
-            {
-                area:'广东省深圳市'
-            },
-            {
-                area:'江苏省'
-            },
-            {
-                area:'湖北市'
-            },
-        ]
+
         /*上线版本*/
         if($scope.task.device == 0){
             $scope.deviceType = '全部'
@@ -196,6 +171,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.changeReviewTime();
         //保存本页
         $scope.ntsavePage = function () {
+            $scope.areaItems.forEach(function (item,index) {
+                if(item.value ==  $scope.showArea.value){
+                    $scope.task.region_filter = item.code;
+                }
+            })
              editTask = storageUtils.session.setItem('editData',$scope.task);
              console.log($scope.task);
              serverService.submitSavePage($scope.task)

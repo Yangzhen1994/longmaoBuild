@@ -3,6 +3,7 @@ define(['app'], function (app) {
     app.factory('serverService', ['$http','$q', function($http,$q) {
         function getAllTask(data) {
             var defer = $q.defer();
+            data.show_nocheck = 1;
             var url = 'http://manager.test.shandianshua.com/totoro/task/task/list.json';
             $.ajax({
                 type: "POST",

@@ -38,7 +38,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
             device:0,
             user:0,
             page:1,
-            rows:200
+            rows:200,
+            show_nocheck:1
         };
         var dataArr = [];
         /*上来显示任务*/

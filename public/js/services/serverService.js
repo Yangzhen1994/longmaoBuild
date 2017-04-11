@@ -275,8 +275,28 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
+        /**获取下拉菜单*/
 
-        return {getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
+        function getSelectData() {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/sys/dict/options.json?key=DICT.COMMON.REGEXP.IPREGEXP';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
+        return {getSelectData,getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
             getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent};
     }])
 })

@@ -7,6 +7,10 @@
 define(['app','storageUtils'], function (app,storageUtils) {
     return app.controller('newTaskCtrl',['$scope','$timeout','serverService', function ($scope, $timeout,serverService) {
         $('.left').css('height',738);
+        serverService.getSelectData()
+                .then(function (data) {
+                    console.log(data)
+                })
         var editTask = storageUtils.session.getItem('editData');
 
 

@@ -110,7 +110,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.export = function (item,index) {
                         var data = {
                             id:item.id,
-                            uid:'',
+                            uid:item.uid,
                             date:'',
                             status:2,
                             page:1,
@@ -214,9 +214,18 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 $scope.items = result;
                                 console.log($scope.items);
                                 $scope.items.forEach(function (item,index) {
-                                    if(item.status == 2){
-
-                                        item.state = '下线'
+                                    if(item.status == 1){
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        //alert(item.endTime)
+                                        item.line = '上线'
+                                    }else if(item.status == 2){
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        item.line = '下线'
+                                    }else if(item.status == 3){
+                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                        item.line = '上线'
                                     }
 
                                 });

@@ -36,7 +36,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.areaItems = data.result;
                     $scope.areaItems.forEach(function (item,index) {
                         if(item.code ==  $scope.task.region_filter){
-                            $scope.showArea = {value:showArea};
+                            $scope.currentArea =item.value;
                         }
                     })
                 })

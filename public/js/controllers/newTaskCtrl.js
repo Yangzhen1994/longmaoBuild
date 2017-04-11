@@ -70,7 +70,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
         /*日历*/
         /*地区*/
-
+        $scope.areaItems.forEach(function (item,index) {
+            if(item.code ==  $scope.task.region_filter){
+                $scope.showArea = {value:showArea};
+            }
+        })
         /*上线版本*/
         if($scope.task.device == 0){
             $scope.deviceType = '全部'

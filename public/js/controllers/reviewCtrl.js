@@ -110,7 +110,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.export = function (item,index) {
                         var data = {
                             id:item.id,
-                            uid:item.uid,
+                            uid:'',
                             date:'',
                             status:2,
                             page:1,
@@ -120,7 +120,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 .then(function (data) {
                                     data.result.rows.forEach(function (item1,index) {
                                         if(item1.id == item.id){
-                                            item.submit_time = submit_time;
+                                            item.submit_time = item1.submit_time;
                                             var data = {
                                                 uid:item.uid,
                                                 tid:item.id,

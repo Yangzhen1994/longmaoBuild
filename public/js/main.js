@@ -6,7 +6,8 @@
     'use strict';
 
     require.config({
-
+        enforceDefine: true,
+        waitSeconds: 0,
         //基本路径
         baseUrl: "js/",
 

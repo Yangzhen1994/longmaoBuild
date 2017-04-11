@@ -35,6 +35,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
         serverService.getSelectData()
                 .then(function (data) {
                     $scope.areaItems = data.result;
+                    $scope.areaItems.push({
+                        value:'全国',
+                        code:''
+                    })
                     $scope.areaItems.forEach(function (item,index) {
                         if(item.code ==  $scope.task.region_filter){
                             $scope.currentArea =item.value;
@@ -183,9 +187,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
             $scope.areaItems.forEach(function (item,index) {
                 if(item.value ==  $scope.showArea.value){
                     $scope.task.region_filter = item.code;
-                }
-                if($scope.showArea==null || $scope.currentArea == '全国'){
-                    $scope.task.region_filter = ''
                 }
             })
              editTask = storageUtils.session.setItem('editData',$scope.task);

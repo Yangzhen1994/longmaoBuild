@@ -28,10 +28,27 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
         }
         /*显示审核*/
-        serverService.getReviewList({toReviewNum:'',page:1,rows:100})
+        serverService.getAllTask({
+            id:'',
+            title:'',
+            pid:'',
+            poi_id:'',
+            status:'',
+            device:0,
+            user:0,
+            page:1,
+            rows:200,
+            show_nocheck:1
+        })
                 .then(function (data) {
                     console.log(data.result.rows);
-                    $scope.items = data.result.rows;
+                    var checkArr = []
+                    data.result.rows.forEach(function (item,index) {
+                        if(item.nocheck_nums>0){
+                            checkArr.push(item)
+                        }
+                    })
+                    $scope.items = checkArr;
                     $scope.setChoose = function (type) {
                         $scope.chooseType = type;
                         /**绑定id name 或者 poiid**/
@@ -59,10 +76,26 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             }
                         }
                     }
-                    $scope.items.forEach(function (item,index) {
+                    /*$scope.items.forEach(function (item,index) {
                         if(item.status == 2){
                             item.state = '未审核'
                         }
+                    });*/
+                    $scope.items.forEach(function (item,index) {
+                        if(item.status == 1){
+                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                            item.endTime = item.end_time;
+                            //alert(item.endTime)
+                            item.line = '上线'
+                        }else if(item.status == 2){
+                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                            item.endTime = item.end_time;
+                            item.line = '下线'
+                        }else if(item.status == 3){
+                            item.endTime = item.end_time.split('>')[1].substr(0,19)
+                            item.line = '上线'
+                        }
+
                     });
                     var reviewArr = [];
                     $scope.turnToReviewDetail = function(index){

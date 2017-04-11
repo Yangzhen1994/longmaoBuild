@@ -109,14 +109,14 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     /**导出**/
                     $scope.export = function (item,index) {
                         var data = {
-                            id:'',
+                            id:item.id,
                             uid:'',
                             date:'',
                             status:2,
                             page:1,
                             rows:100
                         }
-                        serverService.check(data)
+                        serverService.getReviewList(data)
                                 .then(function (data) {
                                     data.result.rows.forEach(function (item1,index) {
                                         if(item1.id == item.id){

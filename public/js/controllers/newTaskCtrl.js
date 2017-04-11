@@ -7,10 +7,7 @@
 define(['app','storageUtils'], function (app,storageUtils) {
     return app.controller('newTaskCtrl',['$scope','$timeout','serverService', function ($scope, $timeout,serverService) {
         $('.left').css('height',738);
-        serverService.getSelectData()
-                .then(function (data) {
-                    $scope.areaItems = data.result
-                })
+
         var editTask = storageUtils.session.getItem('editData');
 
 
@@ -34,7 +31,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 tag_id:''
             }
         }
-
+        serverService.getSelectData()
+                .then(function (data) {
+                    $scope.areaItems = data.result;
+                    $scope.areaItems.forEach(function (item,index) {
+                        if(item.code ==  $scope.task.region_filter){
+                            $scope.showArea = {value:showArea};
+                        }
+                    })
+                })
         $scope.newtaskTitle = '请输入标题';
         $scope.newTaskCount = '任务个数';
         $scope.isshow = false;
@@ -70,11 +75,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
         /*日历*/
         /*地区*/
-        $scope.areaItems.forEach(function (item,index) {
-            if(item.code ==  $scope.task.region_filter){
-                $scope.showArea = {value:showArea};
-            }
-        })
+
         /*上线版本*/
         if($scope.task.device == 0){
             $scope.deviceType = '全部'

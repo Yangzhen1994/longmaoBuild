@@ -122,7 +122,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                         if(item1.id == item.id){
                                             item.submit_time = item1.submit_time;
                                             var data = {
-                                                uid:item.uid,
+                                                uid:item1.uid,
                                                 tid:item.id,
                                                 date:item.submit_time.substr(0,10),
                                                 status:2,

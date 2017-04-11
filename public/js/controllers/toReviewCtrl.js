@@ -3,6 +3,7 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('toReviewCtrl',['$rootScope','$scope','$timeout','$window','serverService','mapService',function ($rootScope,$scope,$timeout,$window,serverService,mapService) {
+        var reviwid = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         console.log(searchCheckBydate)
         if(searchCheckBydate && searchCheckBydate[0].status == 3){
@@ -270,7 +271,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             script.src = "http://api.map.baidu.com/api?v=2.0&ak=VcN7gumC0Wnn475XXWr4FeoyF5YYOVGC&callback=" + callback;
             document.getElementById(containterId).appendChild(script);
         }*/
-        serverService.getReviewList({toReviewNum:'',id:'',
+        serverService.getReviewList({id:reviwid,
         uid:'',
         date:'',
         status:2,

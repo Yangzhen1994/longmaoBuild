@@ -10,6 +10,7 @@
 define(['app','storageUtils',], function (app,storageUtils,serverService) {
     return  app.controller('reviewCtrl',['$rootScope','$scope','$timeout','serverService',function ($rootScope,$scope, $timeout,serverService) {
         $('.left').css('height',738);
+        storageUtils.session.removeItem('_reviewList_');
         var drag = storageUtils.session.getItem('_DRAG_');
         if(drag){
             //storageUtils.session.removeItem('_component_');
@@ -107,16 +108,33 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                     /**导出**/
                     $scope.export = function (item,index) {
-                        console.log(item)
                         var data = {
-                            uid:item.uid,
-                            tid:item.id,
-                            date:item.submit_time.substr(0,10),
+                            id:'',
+                            uid:'',
+                            date:'',
                             status:2,
-                            tip:1
-                        };
-                        var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
-                        window.open(url)
+                            page:1,
+                            rows:100
+                        }
+                        serverService.check(data)
+                                .then(function (data) {
+                                    data.result.rows.forEach(function (item1,index) {
+                                        if(item1.id == item.id){
+                                            item.submit_time = submit_time;
+                                            var data = {
+                                                uid:item.uid,
+                                                tid:item.id,
+                                                date:item.submit_time.substr(0,10),
+                                                status:2,
+                                                tip:1
+                                            };
+                                            var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
+                                            window.open(url)
+                                        }
+                                    })
+                                })
+                        //console.log(item)
+
                         /*serverService.exportReview(data)
                                 .then(function (data) {
                                     console.log(data)
@@ -126,7 +144,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     }
                     /*导入*/
                     $scope.file_upload = function (obj) {
-                        var index = obj.id.substr(-1,1)
+                        var index = obj.id.substr(-1,1) || obj.id.substr(-2,2)
                         console.log(index)
                         var str = '#totoro-task-check-file-form'+index
                         console.log(str);

@@ -136,9 +136,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         }
 
 
-
+        var reviwid = storageUtils.session.getItem('_reviewList_');
         serverService.getReviewList({
-            id:'',
+            id:reviwid,
             date:'',
             status:4,
             page:1,

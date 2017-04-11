@@ -28,7 +28,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 max_submit_time:'',
                 order:'',
                 max_submit:'',
-                tag_id:''
+                tag_id:'',
+                region_filter:''
             }
         }
         serverService.getSelectData()
@@ -39,6 +40,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             $scope.currentArea =item.value;
                         }
                     })
+                    if(!$scope.task.region_filter || $scope.task.region_filter ==''){
+                        $scope.currentArea ='全国';
+                    }
                 })
         $scope.newtaskTitle = '请输入标题';
         $scope.newTaskCount = '任务个数';
@@ -179,6 +183,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
             $scope.areaItems.forEach(function (item,index) {
                 if(item.value ==  $scope.showArea.value){
                     $scope.task.region_filter = item.code;
+                }
+                if($scope.showArea==null || $scope.currentArea == '全国'){
+                    $scope.task.region_filter = ''
                 }
             })
              editTask = storageUtils.session.setItem('editData',$scope.task);

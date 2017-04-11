@@ -38,7 +38,7 @@
 
                         </div>
 
-                        <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto">
+                        <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;padding-bottom: 35px">
                             <div>
                                 <showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>
                                 <showimg-module ng-show="componentItem.tips_image && componentItem.status ==1"></showimg-module>

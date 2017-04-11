@@ -41,9 +41,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             show_nocheck:1
         })
                 .then(function (data) {
-                    console.log(data.result.rows);
+                    console.log(data);
                     var checkArr = []
-                    data.result.rows.forEach(function (item,index) {
+                    data.forEach(function (item,index) {
                         if(item.nocheck_nums>0){
                             checkArr.push(item)
                         }

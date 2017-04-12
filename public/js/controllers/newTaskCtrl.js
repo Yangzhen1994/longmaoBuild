@@ -212,8 +212,20 @@ define(['app','storageUtils'], function (app,storageUtils) {
                          if(data.code == 200){
                              alert('保存成功');
                              if($scope.task.id){
+                                 //把当前的id存入session
+                                 storageUtils.session.setItem('_TaskId_',$scope.task.id);
+                                 //获取当前任务的凭证信息
+                                 var oldtaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
+                                 if(oldtaskId && oldtaskId != null){
+                                     serverService.getComponent(oldtaskId)
+                                             .then(function (data) {
+                                                 console.log(data)
+                                                 //把凭证信息存入到session
+                                                 storageUtils.session.setItem('_component_',data.result);
+                                             })
+                                 }
 
-                                 $scope.ntnextPage()
+
                              }else{
                                  storageUtils.session.setItem('_newTaskid_',data.result)
                              }
@@ -262,7 +274,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
             if(!$scope.task.id){
 
-                $scope.ntnextPage()
+                $scope.submitSavePage()
             }
             //$scope.ntsavePage()
             //把当前的id存入session

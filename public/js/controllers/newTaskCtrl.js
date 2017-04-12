@@ -135,6 +135,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 tagItem:'市场调研'
             },
             {
+                tagItem:'线下任务'
+            },
+            {
                 tagItem:'其他任务'
             }
         ];
@@ -155,6 +158,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
             if($scope.taskTag.tagItem == '市场调研'){
                 //alert(1)
                 $scope.task.tag_id = '3'
+            }
+            if($scope.taskTag.tagItem == '线下任务'){
+                //alert(1)
+                $scope.task.tag_id = '7'
             }
             if($scope.taskTag.tagItem == '其他任务'){
                 //alert(1)

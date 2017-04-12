@@ -70,7 +70,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                 }
 
-            $scope.stepItems[$scope.stepItems.length-1].oldSteps.status = 1
+            
                 //对status为0 的 进行 过滤
                 var testStep = $scope.stepItems[old] || $scope.stepItems[$scope.stepItems.length-1]
                 if(testStep.oldSteps.status == 1 || testStep.oldSteps.status == 1 ){

@@ -79,9 +79,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
 
             $scope.stepCount ++;//同步步骤编号顺序
-            if(testStep.oldSteps.status == 0){
+            /*if(testStep.oldSteps.status == 0){
                 $scope.stepCount --;
-            }
+            }*/
             $timeout(function () {
                 $('.left').css('height',$('.newStep').innerHeight()+17)
             },100)

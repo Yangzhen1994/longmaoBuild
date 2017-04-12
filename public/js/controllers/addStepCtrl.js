@@ -31,6 +31,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $('.left').css('height',846);
             }
            // console.log($scope.stepItems[index].oldSteps);
+            if(data.id){
+                serverService.saveStep(data).then(function(data){
+                    if(data.code == 200){
+
+                    }
+                })
+            }
             /*serverService.saveStep(data).then(function(data){
                 if(data.code == 200){
 

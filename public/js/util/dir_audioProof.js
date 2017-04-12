@@ -65,7 +65,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         console.log(toDel)
 
                         var comId = storageUtils.session.getItem('_component_');
-                         toDel.id = comId[comIndex].id
+                        if(comId.length>0){
+                            toDel.id = comId[comIndex].id;
+                        }
                          toDel.task_id = storageUtils.session.getItem('_TaskId_');
                         scope.stepItems[stepIndex].component.splice(comIndex,1)
                         for(var i = 0;i<comId.length;i++){

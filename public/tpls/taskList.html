@@ -52,7 +52,7 @@
                     <div class="title">{{item.title}}</div>
                 </div>
                 <div class="taskList-detail">
-                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px">{{item.statustext.substr(-10,3)}}</span></span><span>完成程度:<span style="color: greenyellow;margin-right: 0;margin-left: 8px">{{item.num.split('>')[1].split('<')[0]}}</span>/{{item.num.split(';')[3]}}</span><span>下线时间:<span style="margin-right: 0;margin-left: 8px">{{item.endTime}}</span></span><span>归属:<span style="margin-right: 0;margin-left: 3px">{{item.uid}}</span></span>
+                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px">{{item.statustext.substr(-10,3)}}</span></span><span>完成程度:<span style="color:#4CAF50;margin-right: 0;margin-left: 8px">{{item.num.split('>')[1].split('<')[0]}}</span>/{{item.num.split(';')[3]}}</span><span>下线时间:<span style="margin-right: 0;margin-left: 8px">{{item.endTime}}</span></span><span>归属:<span style="margin-right: 0;margin-left: 3px">{{item.uid}}</span></span>
                 </div>
                 <div class="taskList-button">
                     <a class="firstButton" ng-click="downLine($index)">{{item.line}}</a>

@@ -31,11 +31,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $('.left').css('height',846);
             }
            // console.log($scope.stepItems[index].oldSteps);
-            serverService.saveStep(data).then(function(data){
+            /*serverService.saveStep(data).then(function(data){
                 if(data.code == 200){
 
                 }
-            })
+            })*/
 
 
 

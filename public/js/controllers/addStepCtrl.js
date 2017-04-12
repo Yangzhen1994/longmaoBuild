@@ -62,15 +62,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 if (!$scope.stepItems[$scope.stepItems.length-1].oldSteps) {
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps = {}
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list = ['']
-                    $scope.stepItems[$scope.stepItems.length-1].oldSteps.status = 1
+
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.order = 100 - $scope.stepItems.length;
                 } else if ($scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list == null || $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list.length == 0) {
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.images_list = ['']
                     $scope.stepItems[$scope.stepItems.length-1].oldSteps.order = 100 - $scope.stepItems.length;
-                    $scope.stepItems[$scope.stepItems.length-1].oldSteps.status = 1
+
                 }
 
-
+            $scope.stepItems[$scope.stepItems.length-1].oldSteps.status = 1
                 //对status为0 的 进行 过滤
                 var testStep = $scope.stepItems[old] || $scope.stepItems[$scope.stepItems.length-1]
                 if(testStep.oldSteps.status == 1 || testStep.oldSteps.status == 1 ){

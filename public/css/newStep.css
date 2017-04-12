@@ -110,8 +110,8 @@ stepTemp_content{
     overflow-y: auto;
     padding-bottom: 35px;
 }
-.btn_addStep{
-
+.btn_addStep a:hover{
+    cursor:pointer;
 }
 
 .btn_addStep a{

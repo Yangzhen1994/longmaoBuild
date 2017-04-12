@@ -316,7 +316,14 @@ ul{
 .taskList-button .firstButton{
     right:120px;
 }
+.taskList-button .firstButton:hover{
+    cursor: pointer;
+}
 .taskList-button .secondButton{
 
     right: 20px;
+}
+.taskList-button .secondButton:hover{
+
+    cursor: pointer;
 }

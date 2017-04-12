@@ -260,8 +260,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 return
             }*/
 
+            if(!$scope.task.id){
 
-            $scope.ntsavePage()
+                $scope.ntnextPage()
+            }
+            //$scope.ntsavePage()
             //把当前的id存入session
             storageUtils.session.setItem('_TaskId_',$scope.task.id);
             //获取当前任务的凭证信息

@@ -36,7 +36,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         //serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
 
                     })
-                    el.find('img').eq(0).click(function (e) {
+                    el.find('img').eq(-1).click(function (e) {
                         //alert(1)
                         var img = el.find('img')
                         e.stopPropagation();

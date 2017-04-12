@@ -108,6 +108,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
             $scope.tagType = '数据标注'
         }else if($scope.task.tag_id == 3){
             $scope.tagType = '市场调研'
+        }else if($scope.task.tag_id == 7){
+            $scope.tagType = '线下任务'
         }
         $scope.versionItems = [
             {
@@ -252,11 +254,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
         //下一页
         $scope.ntnextPage = function () {
             //
-            var editTask = storageUtils.session.getItem('editData');
+            /*var editTask = storageUtils.session.getItem('editData');
             if(!editTask){
                 alert('要先保存才能下一项哦');
                 return
-            }
+            }*/
+
+
+            $scope.ntsavePage()
             //把当前的id存入session
             storageUtils.session.setItem('_TaskId_',$scope.task.id);
             //获取当前任务的凭证信息

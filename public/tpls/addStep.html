@@ -7,7 +7,7 @@
     </div>
     <div class="stepModule">
         <ul class="stepModule_ul">
-            <li ng-repeat="stepItem in stepItems track by $index" id="{{'stepItem'+$index}}" style="position: relative">
+            <li ng-repeat="stepItem in stepItems" id="{{'stepItem'+$index}}" style="position: relative">
                 <div ng-show="{{stepItem.showValue==1}}">
                     <step-module></step-module>
                 </div>

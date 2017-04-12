@@ -47,6 +47,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 .then(function (result) {
                     $rootScope.taskLists = result
                    $scope.items = result;
+                    $scope.items.forEach(function (item,index) {
+                        item.title = item.title.replace(/&nbsp;/g,'')
+                    })
                    console.log($scope.items)
                     $scope.setChoose = function (type) {
                         $scope.chooseType = type;

@@ -70,15 +70,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                 }
 
-            
+
                 //对status为0 的 进行 过滤
                 var testStep = $scope.stepItems[old] || $scope.stepItems[$scope.stepItems.length-1]
                 if(testStep.oldSteps.status == 1 || testStep.oldSteps.status == 1 ){
-
+                    $scope.stepCount ++;//同步步骤编号顺序
                    usingArr.push(testStep);
                 }
 
-            $scope.stepCount ++;//同步步骤编号顺序
+
             $timeout(function () {
                 $('.left').css('height',$('.newStep').innerHeight()+17)
             },100)

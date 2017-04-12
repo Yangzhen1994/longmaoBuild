@@ -123,12 +123,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }else{
 
                             $scope.oldSteps = data.result;
-                            for(var p=0;p<$scope.oldSteps.length;p++){
+                            /*for(var p=0;p<$scope.oldSteps.length;p++){
                                 if($scope.oldSteps[p].status==0){
                                     $scope.oldSteps.splice(p,1)
                                     if(p!=0){p--}
                                 }
-                            }
+                            }*/
 
                             //存入seesion
                             storageUtils.session.setItem('_oldStep_',$scope.oldSteps);
@@ -140,6 +140,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $scope.addStepModule(i);
                                 }
                                 $scope.stepItems = usingArr
+                                i=1000
                             }
                         }
                         console.log(data.result);

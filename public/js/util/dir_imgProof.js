@@ -113,7 +113,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         return jQuery.parseJSON(token).result;
                     }
 
+                    function showPreview (file) {
 
+                        var image = new Image();
+                        image.style.width = '140px';
+                        image.style.height = '120px';
+
+                        var preloader = new mOxie.Image();
+                        preloader.onload = function() {
+                            preloader.downsize( 300, 300 );
+                            image.setAttribute( "src", preloader.getAsDataURL() );
+                            $('#upimgProof-preview'+stepIndex+comIndex).append(image);
+                            $('#upimgProof-preview'+stepIndex+comIndex).css('display','block')
+                        };
+                        preloader.load( file.getSource() );
+
+
+                    }
                     var hashArr = []
                     var uploader = Qiniu.uploader({
                         runtimes: 'html5,html4',

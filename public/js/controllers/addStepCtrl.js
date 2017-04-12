@@ -140,7 +140,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $scope.addStepModule(i);
                                 }
                                 $scope.stepItems = usingArr
-                                i=1000
+
                             }
                         }
                         console.log(data.result);

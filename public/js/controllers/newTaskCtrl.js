@@ -185,9 +185,16 @@ define(['app','storageUtils'], function (app,storageUtils) {
         //保存本页
         $scope.ntsavePage = function () {
             $scope.areaItems.forEach(function (item,index) {
-                if(item.value ==  $scope.showArea.value){
-                    $scope.task.region_filter = item.code;
+                if(!$scope.showArea){
+                    if(item.value ==  $scope.currentArea  ){
+                        $scope.task.region_filter = item.code;}
+                } else{
+                    if(item.value ==  $scope.showArea.area  ){
+                        $scope.task.region_filter = item.code;
+                    }
                 }
+
+
             })
              editTask = storageUtils.session.setItem('editData',$scope.task);
              console.log($scope.task);

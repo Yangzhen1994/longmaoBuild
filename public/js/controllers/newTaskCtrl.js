@@ -274,7 +274,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
             if(!$scope.task.id){
 
-                $scope.submitSavePage()
+                $scope.ntsavePage()
             }
             //$scope.ntsavePage()
             //把当前的id存入session

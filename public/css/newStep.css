@@ -86,10 +86,10 @@ stepTemp_content{
 .addbuttons a:nth-child(1){
     margin-top: 65px;
 }
-.addbuttons a:nth-child(5){
+.addbuttons a:nth-child(7){
     background: #03A9F4;
 }
-.addbuttons a:nth-child(6){
+.addbuttons a:nth-child(8){
     background: #03A9F4;
 }
 .temp_md_ul{

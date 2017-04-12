@@ -50,6 +50,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         }
                     })
                     $scope.items = checkArr;
+                    $scope.items.forEach(function (item,index) {
+                        item.title = item.title.replace(/&nbsp;/g,'')
+                    })
                     $scope.setChoose = function (type) {
                         $scope.chooseType = type;
                         /**绑定id name 或者 poiid**/

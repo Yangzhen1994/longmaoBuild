@@ -75,7 +75,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.stepCount ++;//同步步骤编号顺序
                    usingArr.push(testStep);
                 }
-                
+
 
             $timeout(function () {
                 $('.left').css('height',$('.newStep').innerHeight()+17)
@@ -123,6 +123,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }else{
 
                             $scope.oldSteps = data.result;
+                            $scope.oldSteps.forEach(function (item,index) {
+                                if(item.status==0){
+                                    $scope.oldSteps.splice(index,1)
+                                }
+                            })
                             //存入seesion
                             storageUtils.session.setItem('_oldStep_',$scope.oldSteps);
                             var oldStep = storageUtils.session.getItem('_oldStep_');

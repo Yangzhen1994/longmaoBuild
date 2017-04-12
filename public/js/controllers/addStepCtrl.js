@@ -123,11 +123,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }else{
 
                             $scope.oldSteps = data.result;
-                            $scope.oldSteps.forEach(function (item,index) {
-                                if(item.status==0){
-                                    $scope.oldSteps.splice(index,1)
+                            for(var p=0;p<$scope.oldSteps.length;p++){
+                                if($scope.oldSteps[p].status==0){
+                                    $scope.oldSteps.splice(p,1)
+                                    if(p!=0){p--}
                                 }
-                            })
+                            }
+
                             //存入seesion
                             storageUtils.session.setItem('_oldStep_',$scope.oldSteps);
                             var oldStep = storageUtils.session.getItem('_oldStep_');

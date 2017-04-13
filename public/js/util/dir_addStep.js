@@ -22,6 +22,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                 $scope.middleItems = [];
                 $scope.showText = function (index) {
+                    $('.showText').css('display','block');
                     var tempArr = []
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     serverService.getComponent(taskId)

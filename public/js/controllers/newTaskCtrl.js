@@ -170,7 +170,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $scope.task.tag_id = '0'
             }
         }
-        $scope.changeTag()
+
         //假设仅仅安卓对应状态 吗 为 0
         $scope.changelineVersion = function () {
             if($scope.lineVersion.version == 'android'){
@@ -185,8 +185,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 //alert(1)
                 $scope.task.device = '0'
             }
-        };
-        $scope.changelineVersion()
+        }
         //审核时间转换
         $scope.changeReviewTime = function () {
             $scope.reviewTimeDay = Math.ceil($scope.task.max_check_time*1/24)

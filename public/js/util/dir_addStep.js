@@ -347,6 +347,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  $scope.$on('addImgProof', function () {
                  console.log($scope.stepItems)
                  })*/
+                /***步骤的模板编辑*/
+                $scope.showtitle = function (index) {
+                    $('#imgUrl'+index+'title:first-child').css('display','block')
+                    $('#imgUrl'+index+'title:first-child').blur(function () {
+                        $(this).css('display','block')
+                    })
+                }
             }
         }
 

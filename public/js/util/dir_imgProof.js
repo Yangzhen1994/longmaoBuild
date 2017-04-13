@@ -201,10 +201,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 // 查看简单反馈
                                 var domain = up.getOption('domain');
                                 var res = jQuery.parseJSON(info);
-                                var str = ''
-                                for(var i=0;i<hashArr.length;i++){
+                                var str = '';
+                                str+=domain+"/"+res.key
+                                /*for(var i=0;i<hashArr.length;i++){
                                     str += domain+"/"+hashArr[i].key+'\n'
-                                }
+                                }*/
                                 //var sourceLink = domain +"/"+ res.key+'\n'; //获取上传成功后的文件的Url
                                 //console.log(sourceLink);
                                 scope.stepItems[stepIndex].component[comIndex].tips_image = str

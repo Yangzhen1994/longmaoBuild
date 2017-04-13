@@ -227,7 +227,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 /*显示文本*/
 
                 /*显示图片*/
-                $scope.showImg = function (index) {
+                /*$scope.showImg = function (index) {
                     $('#stempItem' + index).find('.delCircle').css('display', 'block');
                     var tempArr = []
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
@@ -254,14 +254,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                                                 $scope.stepItems[index].component[i].id = tempArr[j].id;
                                                 $scope.stepItems[index].component[i].task_id = taskId;
-                                                /*serverService.submitComponent($scope.stepItems[index].component[i])
+                                                /!*serverService.submitComponent($scope.stepItems[index].component[i])
                                                         .then(function (data) {
                                                             if (data.code == 200) {
 
                                                                 // storageUtils.session.setItem('_DRAG_',true);
                                                                 // window.location = '#/reviewList';
                                                             }
-                                                        })*/
+                                                        })*!/
                                                 continue
                                             }
 
@@ -273,7 +273,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })
                     //storageUtils.session.setItem('_DRAG_',true)
                     //window.location = '#/reviewList';
-                };
+                };*/
 
                 /*
                  $scope.$on('deleteOneShowText', function (data) {
@@ -326,6 +326,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         $(this).css('display','block')
                     })
                 }*/
+                /*显示步骤的图片*/
+                $scope.showImg = function (index) {
+                    var model = '<'+'showimg-module></showimg-module>';
+                    $('#step'+index+'stepWrap').html(model)
+                }
             }
         }
 

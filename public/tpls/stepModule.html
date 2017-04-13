@@ -41,23 +41,28 @@
                             </div>-->
                            <!-- <showsteptext-module ></showsteptext-module>-->
 
-                            <div style="width: 288px;height:auto;margin-left: 6px">
+                            <!--<div style="width: 288px;height:auto;margin-left: 6px">
 
 
-                                <p ng-repeat="img in stepItem.oldSteps.images_list track by $index" ng-show="img"> <!--ng-show="stepItem.oldSteps.images_list"-->
-                                    <!--<textarea type="text" ng-model="img" style="width: 100%;border: none;" class="imgUrl" placeholder="图片地址"></textarea>-->
-                                    <!--<a target="_blank"  ng-href="{{img}}">--><img  ng-src="{{img}}" alt="" style="display: block;width: 100%;height: 100%" ><!--</a>-->
+                                <p ng-repeat="img in stepItem.oldSteps.images_list track by $index" ng-show="img"> &lt;!&ndash;ng-show="stepItem.oldSteps.images_list"&ndash;&gt;
+                                    &lt;!&ndash;<textarea type="text" ng-model="img" style="width: 100%;border: none;" class="imgUrl" placeholder="图片地址"></textarea>&ndash;&gt;
+                                    &lt;!&ndash;<a target="_blank"  ng-href="{{img}}">&ndash;&gt;<img  ng-src="{{img}}" alt="" style="display: block;width: 100%;height: 100%" >&lt;!&ndash;</a>&ndash;&gt;
                                 </p>
+
+                            </div>-->
+                            <div id={{'step'+$index+'imgWrap'}}>
 
                             </div>
 
 
                         </div>
 
+
+
                         <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;">
                             <div>
                                 <showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>
-                                <showimg-module ng-show="componentItem.tips_image && componentItem.status ==1"></showimg-module>
+
                                 <textproof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 
                                 </textproof-module>

@@ -271,7 +271,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                 /*显示步骤文本*/
                 $scope.showText = function (index) {
-
+                    $scope.stepItems[index].addItems.push({
+                        showimg:'',
+                        showtext:1,
+                        desc:''
+                    })
                 };
                 /*
                  $scope.$on('deleteOneShowText', function (data) {

@@ -57,6 +57,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     index:$scope.stepCount+1,
                     oldSteps:$scope.oldSteps[old],
                     component:[],
+                    addItems:[]
                 });
 
                 if (!$scope.stepItems[$scope.stepItems.length-1].oldSteps) {

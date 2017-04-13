@@ -57,6 +57,7 @@
             'dir_showText' : 'util/dir_showText',
             'dir_keyEvents' : 'util/dir_keyEvents',
             'dir_showsteptext' : 'util/dir_showsteptext',
+            'dir_showstepimg' : 'util/dir_showstepimg',
         },
 
         /*
@@ -96,7 +97,7 @@
     });
 
     require(['angular','angular-route','angular-ui-route','ui-sortable','ng-file-upload','app','route','storageUtils',
-            'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_showImg','dir_showText','dir_keyEvents','dir_showsteptext','headerCtrl','newTaskCtrl','taskListCtrl',
+            'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_showImg','dir_showText','dir_keyEvents','dir_showsteptext','dir_showstepimg','headerCtrl','newTaskCtrl','taskListCtrl',
             'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "ReviewOkCtrl", "ReviewNoCtrl",
                 "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],
         function (angular){

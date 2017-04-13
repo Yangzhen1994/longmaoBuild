@@ -116,7 +116,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     function showPreview (file) {
 
                         var image = new Image();
-                        image.style.width = '140px';
+                        image.style.width = '75px';
                         image.style.height = '120px';
 
                         var preloader = new mOxie.Image();
@@ -157,7 +157,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                     showPreview (files[i]);
                                 }
-                                $('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
+                                //$('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
 
                             },
                             'BeforeUpload': function(up, file) {
@@ -219,7 +219,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //队列文件处理完毕后，处理相关的事情
                                 var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                                 scope.stepItems[stepIndex].component[comIndex].task_id = taskId
-                                serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                                //serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             },
                             'Key': function(up, file) {
                                 // 若想在前端对每个文件的key进行个性化处理，可以配置该函数

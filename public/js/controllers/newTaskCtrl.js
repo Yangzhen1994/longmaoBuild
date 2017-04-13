@@ -280,7 +280,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             //}
             //$scope.ntsavePage()
             //把当前的id存入session
-            storageUtils.session.setItem('_TaskId_',$scope.task.id);
+            //storageUtils.session.setItem('_TaskId_',$scope.task.id);
             //获取当前任务的凭证信息
             var oldtaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
             if(oldtaskId && oldtaskId != null){

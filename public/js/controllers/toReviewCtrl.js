@@ -321,7 +321,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.flag = false;
 
                     $scope.masterItem = false;
-                    $scope.otherReason ='请填写其他原因';
+                    $scope.otherReason ='';
 
 
                     $scope.changeRight = function (item,index) {

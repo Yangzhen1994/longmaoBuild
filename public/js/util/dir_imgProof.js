@@ -97,7 +97,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         //alert($(this).parents('li')[0].id)
                         var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
                     }
-
+                    var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
                     function sys_file_sdk_qiniu_token(file) {
                         var token = $.ajax({
                             url: 'http://manager.test.shandianshua.com/sdk/qiniu/token.json',

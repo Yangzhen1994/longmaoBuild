@@ -272,10 +272,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 return
             }*/
 
-            if(!$scope.task.id){
+            /*if(!$scope.task.id){*/
 
                 $scope.ntsavePage()
-            }
+            //}
             //$scope.ntsavePage()
             //把当前的id存入session
             storageUtils.session.setItem('_TaskId_',$scope.task.id);

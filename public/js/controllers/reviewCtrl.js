@@ -45,9 +45,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     console.log(data);
                     var checkArr = []
                     data.forEach(function (item,index) {
-                        if(item.nocheck_nums>0){
+                        /*if(item.nocheck_nums>0){*/
                             checkArr.push(item)
-                        }
+                       /* }*/
                     })
                     $scope.items = checkArr;
                     $scope.items.forEach(function (item,index) {

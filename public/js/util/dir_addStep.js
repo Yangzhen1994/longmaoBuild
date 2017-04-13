@@ -360,8 +360,20 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                 })
                 $scope.showtitle = function (index) {
-                    $('#imgUrl'+index+'title').children().eq('-1').css('display','block')
-                    $('#imgUrl'+index+'title').children().eq('-1').blur(function () {
+                    $('#imgUrl'+index+'title').children('input').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'title').children('input').eq('-1').blur(function () {
+                        $(this).css('display','block')
+                    })
+                }
+                $scope.showtitle = function (index) {
+                    $('#imgUrl'+index+'title').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'title').children('textarea').eq('-1').blur(function () {
+                        $(this).css('display','block')
+                    })
+                }
+                $scope.showtitle = function (index) {
+                    $('#imgUrl'+index+'title').children('input').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'title').children('input').eq('-1').blur(function () {
                         $(this).css('display','block')
                     })
                 }

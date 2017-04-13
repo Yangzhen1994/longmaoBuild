@@ -17,6 +17,7 @@ define(['app'], function (app) {
                         console.log(kc);
                         if(kc == 187 || kc == 107){
                             $('.tr_Right_fallow').trigger('click')
+                            $('#rn_allow').trigger('click')
                         }else if(kc == 97 || kc == 49){//小键盘1 或者 大键盘1
                             $('#reson_detail0').trigger('click')
                         }else if(kc == 98 || kc == 50){//小键盘2 或者 大键盘2

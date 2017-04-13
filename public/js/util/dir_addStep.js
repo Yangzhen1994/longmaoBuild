@@ -328,8 +328,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }*/
                 /*显示步骤的图片*/
                 $scope.showImg = function (index) {
-                    var model = '<'+'showimg-module></showimg-module>';
-                    $('#step'+index+'stepWrap').html(model)
+                    stepItems[index].oldSteps.images_list.push('123')
                 }
             }
         }

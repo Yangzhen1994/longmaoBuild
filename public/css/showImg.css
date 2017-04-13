@@ -69,3 +69,13 @@ section{
     padding-top:40px;
     visibility: hidden;
 }
+
+
+/*添加步骤样式*
+/
+ */
+
+.stepImg{
+    width: 288px;
+    height: 200px;
+}

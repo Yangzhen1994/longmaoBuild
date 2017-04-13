@@ -50,8 +50,8 @@
                                 </p>
 
                             </div>-->
-                            <div id={{'step'+$index+'imgWrap'}}>
-
+                            <div ng-repeat="images in stemItem.oldSteps.images_list track by $index">
+                                <showimg-module ng-show="images"></showimg-module>
                             </div>
 
 

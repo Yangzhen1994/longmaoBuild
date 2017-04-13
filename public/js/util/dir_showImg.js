@@ -13,53 +13,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/showImg.html',
             link:function (scope,el,attr) {
-                scope.src = '../img/moduleImg/ic_add_a_photo_black_24dp.png';
-                //console.log(el.parents('li')[1].id)
-                //console.log(el.find('img').eq(0).parents('li')[0].id)
-                var stepIndex =  el.parents('li')[1].id.substr(-1, 1);
-                if(el.parents('li')[0].id.length == 16){
-                    var comimgIndex = el.parents('li')[0].id.substr(-3, 3);
-
-                }else
-                if(el.parents('li')[0].id.length == 15){
-                    var comimgIndex = el.parents('li')[0].id.substr(-2, 2);
-
-                }else{
-                    //alert($(this).parents('li')[0].id)
-                    var comimgIndex = el.parents('li')[0].id.substr(-1, 1);
-                }
-                console.log(comimgIndex);
-                if(scope.stepItems[stepIndex].component[comimgIndex]){
-                    if( scope.stepItems[stepIndex].component[comimgIndex].tips_image.indexOf('http://')>-1){
-                        /*scope.imgSrc = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')*/
-                        scope.src = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')[0]
-                        scope.src1 = scope.stepItems[stepIndex].component[comimgIndex].tips_image.split('\n')[1]
-                    }
+                scope.stepIndex = el.parents('ul')[0].id.substr(-1,1)
+                if(el.find('img').eq(0).src.indexOf('http://')==-1){
+                    el.find('img').eq(0).src = '../img/moduleImg/ic_add_a_photo_black_24dp.png'
                 }
 
-                scope.stepIndex = stepIndex
-                el.on('click',function () {
 
-
-
-                    //console.log(el.find('input').eq(0).text())
-
-                });
                 el.find('img').eq(0).on('mouseenter',function (e) {
                     e.stopPropagation();
-                    console.log($(this).parents('li'))
-                    if($(this).parents('li')[0].id.length == 16){
-                        var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
-
-                    }else
-                    if($(this).parents('li')[0].id.length == 15){
-                        var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
-
-                    }else{
-                        //alert($(this).parents('li')[0].id)
-                        var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
-                    }
-
+                    var imgIndex = $(this).id.substr(-1,1)
                     function sys_file_sdk_qiniu_token(file) {
                         var token = $.ajax({
                             url: 'http://manager.test.shandianshua.com/sdk/qiniu/token.json',
@@ -85,8 +47,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             preloader.onload = function() {
                                 preloader.downsize( 300, 300 );
                                 image.setAttribute( "src", preloader.getAsDataURL() );
-                                $('#preview'+stepIndex+comIndex).append(image);
-                                $('#preview'+stepIndex+comIndex).css('display','block')
+                                $('#preview'+stepIndex+imgIndex).append(image);
+                                $('#preview'+stepIndex+imgIndex).css('display','block')
                             };
                             preloader.load( file.getSource() );
 
@@ -95,8 +57,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var hashArr = []
                     var uploader = Qiniu.uploader({
                         runtimes: 'html5,html4',
-                        browse_button: 'sys-file-dialog-upload-btn'+scope.stepIndex+comIndex,
-                        container: 'sys-file-dialog-list'+scope.stepIndex+comIndex,
+                        browse_button: 'step'+stepIndex+'img'+imgIndex,
+                        container: 'stepContainer'+stepIndex+'img'+imgIndex,
                         //drop_element: 'sys-file-dialog-list'+comIndex,
                         max_file_size: '100mb',
                         //dragdrop: true,

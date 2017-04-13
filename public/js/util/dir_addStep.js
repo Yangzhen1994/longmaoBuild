@@ -348,9 +348,20 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  console.log($scope.stepItems)
                  })*/
                 /***步骤的模板编辑*/
+                $scope.stepItems.forEach(function (item,index) {
+                    if(!item.oldSteps.title){
+                        item.oldSteps.title=''
+                    }
+                    if(!item.oldSteps.desc){
+                        item.oldSteps.title=''
+                    }
+                    if(!item.oldSteps.url){
+                        item.oldSteps.url=''
+                    }
+                })
                 $scope.showtitle = function (index) {
-                    $('#imgUrl'+index+'title:first-child').css('display','block')
-                    $('#imgUrl'+index+'title:first-child').blur(function () {
+                    $('#imgUrl'+index+'title').children().eq('-1').css('display','block')
+                    $('#imgUrl'+index+'title').children().eq('-1').blur(function () {
                         $(this).css('display','block')
                     })
                 }

@@ -24,15 +24,18 @@
                 <div style="height: 80px;width: 100%"></div>
                 <!--<div style="overflow-y:auto;">-->
                         <div class="oldStep" style="width: 300px;padding-bottom: 300px;border-bottom:2px solid green">
-                            <div ng-click="showtitle($index)" id={{'imgUrl'+$index+'steptitle'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px"  ng-bind="stepItem.oldSteps.title" >
+                            <div ng-click="showtitle($index)" id={{'imgUrl'+$index+'steptitle'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
+                                <p ng-hide="!stepItem.oldSteps.title">{{stepItem.oldSteps.title}}</p>
                                 <p ng-hide="stepItem.oldSteps.title">任务标题</p>
                                 <input style="position:absolute;left:288px;display:none ;width: 100px;height: 30px;line-height: 30px;font-size: 16px" ng-model="stepItem.oldSteps.title">
                             </div>
-                            <div ng-click="showdesc($index)" id={{'imgUrl'+$index+'stepdesc'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px"  ng-bind="stepItem.oldSteps.desc">
+                            <div ng-click="showdesc($index)" id={{'imgUrl'+$index+'stepdesc'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
+                                <p ng-hide="!stepItem.oldSteps.desc">{{stepItem.oldSteps.desc}}</p>
                                 <p ng-hide="stepItem.oldSteps.desc">任务描述</p>
                                 <textarea style="position:absolute;left:288px;display:none ;width: 288px;height:60px;margin-left: 6px;font-size: 13px" ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
                             </div>
-                            <div ng-click="showurl($index)" id={{'imgUrl'+$index+'url'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px" type="text" ng-bind="stepItem.oldSteps.url">
+                            <div ng-click="showurl($index)" id={{'imgUrl'+$index+'url'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px" type="text">
+                                <p ng-hide="!stepItem.oldSteps.url">{{stepItem.oldSteps.url}}</p>
                                 <p ng-hide="stepItem.oldSteps.url">url</p>
                                 <input placeholder="Url" style="position:absolute;left:288px;display: none;width: 282px;height: 30px;line-height: 30px;border:none;margin-left: 0px;font-size: 16px;margin-top: 10px;margin-bottom: 10px" type="text" ng-model="stepItem.oldSteps.url">
                             </div>

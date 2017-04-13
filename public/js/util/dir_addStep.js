@@ -353,7 +353,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         item.oldSteps.title=''
                     }
                     if(!item.oldSteps.desc){
-                        item.oldSteps.title=''
+                        item.oldSteps.desc=''
                     }
                     if(!item.oldSteps.url){
                         item.oldSteps.url=''

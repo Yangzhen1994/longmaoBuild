@@ -14,14 +14,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
             templateUrl: 'tpls/showImg.html',
             link:function (scope,el,attr) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1)
-                if(el.find('img').eq(0).src.indexOf('http://')==-1){
+                if(scope.images.indexOf('http://')==-1){
                     el.find('img').eq(0).src = '../img/moduleImg/ic_add_a_photo_black_24dp.png'
                 }
 
 
                 el.find('img').eq(0).on('mouseenter',function (e) {
                     e.stopPropagation();
-                    var imgIndex = $(this).id.substr(-1,1)
+                    var imgIndex = $(this).attr('id');
+                    imgIndex = imgIndex.substr(-1,1)
                     function sys_file_sdk_qiniu_token(file) {
                         var token = $.ajax({
                             url: 'http://manager.test.shandianshua.com/sdk/qiniu/token.json',

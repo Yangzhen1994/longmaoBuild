@@ -176,7 +176,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })*/
                 };
                 /*显示文本*/
-                $scope.showText = function (index) {
+                /*$scope.showText = function (index) {
                     var tempArr = []
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     serverService.getComponent(taskId)
@@ -202,14 +202,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                                                 $scope.stepItems[index].component[i].id = tempArr[j].id;
                                                 $scope.stepItems[index].component[i].task_id = taskId;
-                                                /*serverService.submitComponent($scope.stepItems[index].component[i])
+                                                /!*serverService.submitComponent($scope.stepItems[index].component[i])
                                                         .then(function (data) {
                                                             if (data.code == 200) {
 
                                                                 // storageUtils.session.setItem('_DRAG_',true);
                                                                 // window.location = '#/reviewList';
                                                             }
-                                                        })*/
+                                                        })*!/
                                                 continue
                                             }
 
@@ -219,65 +219,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                 }
                             })
-
-
-                    /*for(var i=0;i<$scope.stepItems[index].component.length;i++){
-                     if((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1){
-                     $scope.stepItems[index].component[i].tips_text = '提示文本';
-                     $scope.stepItems[index].component[i].task_id = taskId;
-                     $('#delete'+i).css('display','block')
-                     serverService.submitComponent($scope.stepItems[index].component[i])
-                     }
-
-                     }*/
-                    //storageUtils.session.setItem('_DRAG_',true)
-                    //window.location = '#/reviewList';
-
-
-                    /*$('#stempItem' + index).find('.delCircle').css('display', 'block')
-                     var tempArr = []
-                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
-                     var componentList = storageUtils.session.getItem('_component_');
-                     if (componentList && componentList != null) {
-                     componentList.forEach(function (item, index) {
-                     if (item.status == 1 && !item.tips_text) {
-                     tempArr.push({id: item.id, order: item.order})
-                     }
-                     })
-                     }
-                     console.log(tempArr)
-                     for(var i=0;i<$scope.stepItems[index].component.length;i++){
-                     if((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1){
-                     $scope.stepItems[index].component[i].tips_text = '提示文本';
-                     $scope.stepItems[index].component[i].isText = true;
-                     for (var j = 0; j < tempArr.length; j++) {
-                     if ($scope.stepItems[index].component[i].order = tempArr[j].order) {
-                     $scope.stepItems[index].component[i].id = tempArr[j].id;
-                     var flag = i
-                     serverService.submitComponent($scope.stepItems[index].component[flag])
-                     .then(function (data) {
-                     if (data.code == 200) {
-
-                     // storageUtils.session.setItem('_DRAG_',true);
-                     // window.location = '#/reviewList';
-                     }
-                     })
-
-                     }
-
-                     }
-                     $('#delete'+i).css('display','block')
-
-                     }
-
-                     }*/
-                    //storageUtils.session.setItem('_DRAG_',true)
-                    // window.location = '#/reviewList';
-
-
-                    //storageUtils.session.setItem('_DRAG_',true)
-                    //window.location = '#/reviewList';
-                };
+                };*/
                 /*显示图片*/
                 $scope.showImg = function (index) {
                     $('#stempItem' + index).find('.delCircle').css('display', 'block');
@@ -325,6 +267,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })
                     //storageUtils.session.setItem('_DRAG_',true)
                     //window.location = '#/reviewList';
+                };
+
+                /*显示步骤文本*/
+                $scope.showText = function (index) {
+
                 };
                 /*
                  $scope.$on('deleteOneShowText', function (data) {

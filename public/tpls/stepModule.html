@@ -39,7 +39,7 @@
                                 <p ng-hide="stepItem.oldSteps.url">url</p>
                                 <input placeholder="Url" style="position:absolute;left:288px;display: none;width: 282px;height: 30px;line-height: 30px;border:none;margin-left: 0px;font-size: 16px;margin-top: 10px;margin-bottom: 10px" type="text" ng-model="stepItem.oldSteps.url">
                             </div>-->
-
+                            <showsteptext-module ng-show=""></showsteptext-module>
                             <div style="width: 288px;height:auto;margin-left: 6px">
 
 
@@ -55,7 +55,7 @@
 
                         <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;">
                             <div>
-                                <showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>
+                                <!--<showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>-->
                                 <showimg-module ng-show="componentItem.tips_image && componentItem.status ==1"></showimg-module>
                                 <textproof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 

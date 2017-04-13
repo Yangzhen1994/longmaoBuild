@@ -194,17 +194,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
         //保存本页
         $scope.ntsavePage = function () {
             $scope.areaItems.forEach(function (item,index) {
-                if(!$scope.showArea){
-                    if(item.value ==  $scope.currentArea  ){
-                        $scope.task.region_filter = item.code;}
-                } else{
-                    if(item.value ==  $scope.showArea.area  ){
+                if (!$scope.showArea || $socpe.showArea == null) {
+                    if (item.value == $scope.currentArea) {
+                        $scope.task.region_filter = item.code;
+                    }
+                } else if($scope.showArea){
+                    if (item.value == $scope.showArea.value) {
                         $scope.task.region_filter = item.code;
                     }
                 }
 
 
-            })
+            });
+            $scope.task.order = 100;
              editTask = storageUtils.session.setItem('editData',$scope.task);
              console.log($scope.task);
              serverService.submitSavePage($scope.task)
@@ -229,9 +231,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                              }else{
                                  storageUtils.session.setItem('_newTaskid_',data.result)
                              }
-
-
                              window.location ='#/addStep'
+
+
                          }else{
                              alert('请检查信息是否填写完整~')
                          }

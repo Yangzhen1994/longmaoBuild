@@ -117,7 +117,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         var image = new Image();
                         image.style.width = '75px';
-                        image.style.height = '120px';
+                        image.style.height = '110px';
 
                         var preloader = new mOxie.Image();
                         preloader.onload = function() {
@@ -152,6 +152,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 alert('添加了文件');
                                 console.log(files
                                 );
+                                $('#upimgProof-preview'+stepIndex+comIndex).children('img').remove()
                                 for (var i = 0; i < files.length; i++) {
 
 

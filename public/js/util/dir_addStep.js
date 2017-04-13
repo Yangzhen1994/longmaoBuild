@@ -362,13 +362,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.showtitle = function (index) {
                     $('#imgUrl'+index+'steptitle').children('input').eq('-1').css('display','block')
                     $('#imgUrl'+index+'steptitle').children('input').eq('-1').blur(function () {
-                        $(this).css('display','block')
+                        $(this).css('display','none')
                     })
                 }
                 $scope.showdesc = function (index) {
                     $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').css('display','block')
                     $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').blur(function () {
-                        $(this).css('display','block')
+                        $(this).css('display','none')
                     })
                 }
                 /*$scope.showtitle = function (index) {

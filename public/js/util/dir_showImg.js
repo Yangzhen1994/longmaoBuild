@@ -181,7 +181,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //队列文件处理完毕后，处理相关的事情
                                 var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                                 scope.stepItems[stepIndex].component[comIndex].task_id = taskId
-                                serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                                //serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             },
                             'Key': function(up, file) {
                                 // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
@@ -220,14 +220,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     scope.stepItems[stepIndex].component[comIndex].task_id = taskId
-                    serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                    /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){
                                    //storageUtils.session.setItem('_DRAG_',true);
                                     //window.location = '#/reviewList';
                                     $('#imgWrap'+stepIndex+comIndex).css('display','none')
                                 }
-                            })
+                            })*/
                     $(this).css('display','none')
                 })
                 //inutfile

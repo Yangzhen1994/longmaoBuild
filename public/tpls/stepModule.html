@@ -56,7 +56,7 @@
 
                         <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;">
                             <div>
-                                <!--<showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>-->
+                                <showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>
                                 <showimg-module ng-show="componentItem.tips_image && componentItem.status ==1"></showimg-module>
                                 <textproof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 

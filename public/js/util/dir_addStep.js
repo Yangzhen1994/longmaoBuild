@@ -90,7 +90,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
-                    $scope.showText()
+                    $scope.showText(index)
                     /*serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
@@ -137,7 +137,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
-                    $scope.showText()
+                    $scope.showText(index)
                     $scope.typePhoto = false;
                     $scope.typeCamera = false;
                     /*serverService.submitComponent(data)
@@ -176,7 +176,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    $scope.showText()
+                    $scope.showText(index)
                     // serverService.submitComponent(data)
                     //         .then(function (data) {
                     //             if (data.code == 200) {
@@ -210,7 +210,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    $scope.showText()
+                    $scope.showText(index)
                     /*serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {

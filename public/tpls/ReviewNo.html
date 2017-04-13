@@ -23,7 +23,7 @@
                 <div class="toReview_Right_tel">
                     <p><span ng-hide="{{item.type == 2 || item.type == 6}}">{{item.value}}</span><a ng-href="{{item.value}}" ng-show="{{item.type == 6}}" target="_blank">下载</a>
 
-                        <img ng-src="{{item.value}}" alt="" ng-show="{{item.type == 2 || item.type == 4 || item.type == 3}}" width="200px">
+                        <a ng-href="{{item.value}}" ng-show="item.type == 2 || item.type == 4 || item.type == 3" target="_blank"><img ng-src="{{item.value}}" alt="" ng-show="{{item.type == 2 || item.type == 4 || item.type == 3}}" width="200px"></a>
 
                     </p>
 

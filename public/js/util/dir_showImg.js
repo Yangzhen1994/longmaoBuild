@@ -58,8 +58,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var hashArr = []
                     var uploader = Qiniu.uploader({
                         runtimes: 'html5,html4',
-                        browse_button: 'step'+stepIndex+'img'+imgIndex,
-                        container: 'stepContainer'+stepIndex+'img'+imgIndex,
+                        browse_button: 'step'+scope.stepIndex+'img'+imgIndex,
+                        container: 'stepContainer'+scope.stepIndex+'img'+imgIndex,
                         //drop_element: 'sys-file-dialog-list'+comIndex,
                         max_file_size: '100mb',
                         //dragdrop: true,

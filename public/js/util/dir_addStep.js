@@ -360,23 +360,23 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                 })
                 $scope.showtitle = function (index) {
+                    $('#imgUrl'+index+'steptitle').children('input').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'steptitle').children('input').eq('-1').blur(function () {
+                        $(this).css('display','block')
+                    })
+                }
+                $scope.showdesc = function (index) {
+                    $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').blur(function () {
+                        $(this).css('display','block')
+                    })
+                }
+                /*$scope.showtitle = function (index) {
                     $('#imgUrl'+index+'title').children('input').eq('-1').css('display','block')
                     $('#imgUrl'+index+'title').children('input').eq('-1').blur(function () {
                         $(this).css('display','block')
                     })
-                }
-                $scope.showtitle = function (index) {
-                    $('#imgUrl'+index+'title').children('textarea').eq('-1').css('display','block')
-                    $('#imgUrl'+index+'title').children('textarea').eq('-1').blur(function () {
-                        $(this).css('display','block')
-                    })
-                }
-                $scope.showtitle = function (index) {
-                    $('#imgUrl'+index+'title').children('input').eq('-1').css('display','block')
-                    $('#imgUrl'+index+'title').children('input').eq('-1').blur(function () {
-                        $(this).css('display','block')
-                    })
-                }
+                }*/
             }
         }
 

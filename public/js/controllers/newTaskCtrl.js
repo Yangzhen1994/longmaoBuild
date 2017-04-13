@@ -292,7 +292,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         })
             }
 
-            window.location = '#/addStep'
+            /*window.location = '#/addStep'*/
 
         };
         //上一页

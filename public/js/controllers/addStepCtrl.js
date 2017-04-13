@@ -412,6 +412,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     .then(function (data) {
                                         if(data.code == 200){
                                             console.log('保存成功');
+                                            window.save = true;
                                                 //storageUtils.session.setItem('_addStep_',data.result);
                                                 /*var taskId1 = taskId || newtaskId;
                                                 serverService.getStepById(taskId1)

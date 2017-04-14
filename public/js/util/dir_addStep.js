@@ -328,7 +328,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }*/
                 /*显示步骤的图片*/
                 $scope.showImg = function (index) {
-                    $scope.stepItems[index].oldSteps.images_list.push('123')
+                    $scope.stepItems[index].oldSteps.images_list.push('../img/moduleImg/ic_add_a_photo_black_24dp.png')
                 }
             }
         }

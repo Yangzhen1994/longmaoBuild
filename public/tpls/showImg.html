@@ -7,6 +7,12 @@
     <img ng-src="{{images}}" alt="" class="stepImg" ng-show="images" id={{'step'+stepIndex+'img'+$index}}>
     <div id={{'stepContainer'+stepIndex+'img'+$index}}></div>
     <div id={{'preview'+stepIndex+$index}}></div>
+    <img src="./img/icon/deleteCircle.png" alt="" style="
+    position: absolute;
+    top:-8px;
+    right:30px"
+         id="{{'delete'+stepIndex+$index}}"
+    >
 </div>
    <!--<div class="moniImg" >
        <div ng-repeat="item in thumb" style="width:50%;float: left;" >

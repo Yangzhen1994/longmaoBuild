@@ -82,7 +82,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                         showPreview (files[i]);
                                     }
-                                $('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
+                                //$('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
 
                             },
                             'BeforeUpload': function(up, file) {
@@ -123,18 +123,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //    "key": "gogopher.jpg"
                                 //  }
                                 // 查看简单反馈
-                                 var domain = up.getOption('domain');
-                                 var res = jQuery.parseJSON(info);
-                                 var str = ''
-                                 for(var i=0;i<hashArr.length;i++){
-                                     str += domain+"/"+hashArr[i].key+'\n'
-                                 }
+                                var domain = up.getOption('domain');
+                                var res = jQuery.parseJSON(info);
+                                var str = '';
+                                str+=domain+"/"+res.key;
                                  //var sourceLink = domain +"/"+ res.key+'\n'; //获取上传成功后的文件的Url
                                 //console.log(sourceLink);
-                                scope.stepItems[stepIndex].component[comIndex].tips_image = str
-                                console.log(scope.stepItems[stepIndex].component[comIndex]);
-
-
+                                //scope.stepItems[stepIndex].component[comIndex].tips_image = str
+                                //console.log(scope.stepItems[stepIndex].component[comIndex]);
+                                //scope.stepItems[stepIndex].oldSteps.tips_image = str
+                                
+                                scope.stepItems[scope.stepIndex].oldSteps.images+=str
                             },
                             'Error': function(up, err, errTip) {
                                 //上传出错时，处理相关的事情
@@ -143,7 +142,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             'UploadComplete': function() {
                                 //队列文件处理完毕后，处理相关的事情
                                 var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
-                                scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+                                //scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                                 //serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             },
                             'Key': function(up, file) {
@@ -164,25 +163,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     /*alert(1);
                     return*/
                     e.stopPropagation()
-                    console.log($(this).parents('li'))
-                    if($(this).parents('li')[0].id.length == 16){
-                        var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
-
-                    }else
-                    if($(this).parents('li')[0].id.length == 15){
-                        var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
-
-                    }else{
-                        //alert($(this).parents('li')[0].id)
-                        var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
-                    }
-                    var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
+                    var delimgIndex = $(this).attr('id');
+                    delimgIndex = imgIndex.substr(-1,1)
                     //scope.componentItems[comIndex].tips_text = ' ';
                     //scope.componentItems[comIndex].isText = ' ';
-                    scope.stepItems[stepIndex].component[comIndex].tips_image = ' ';
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
-                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+                    scope.stepItems[scope.stepIndex].oldSteps.images_list.splice(delimgIndex,1)
                     /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
                                 if(data.code == 200){

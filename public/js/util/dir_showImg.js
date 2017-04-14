@@ -177,6 +177,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //scope.componentItems[comIndex].tips_text = ' ';
                     //scope.componentItems[comIndex].isText = ' ';
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';
+                    var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
+                    arr.splice(delimgIndex,1)
+                    scope.stepItems[scope.stepIndex].oldSteps.images = arr.join('\n')
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     scope.stepItems[scope.stepIndex].oldSteps.images_list.splice(delimgIndex,1)
                     /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])

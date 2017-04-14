@@ -134,7 +134,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //scope.stepItems[stepIndex].oldSteps.tips_image = str
                                 /*$('step'+scope.stepIndex+'img'+imgIndex).attr('src',str)*/
                                 scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex] = str
-                                scope.stepItems[scope.stepIndex].oldSteps.images += str+'\n'
+                                scope.stepItems[scope.stepIndex].oldSteps.images += str+'\r'
                             },
                             'Error': function(up, err, errTip) {
                                 //上传出错时，处理相关的事情
@@ -155,7 +155,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                     })
-                    console.log(uploader)
+                    //console.log(uploader)
                 })
 
 

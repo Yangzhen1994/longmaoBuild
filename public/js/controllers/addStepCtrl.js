@@ -381,13 +381,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         for(var i= 0 ;i<$scope.stepItems.length;i++){
                             console.log($scope.stepItems[i].oldSteps);
 
-                            var images = document.getElementById('imgUrl'+i);
+                            /*var images = document.getElementById('imgUrl'+i);
                             var imagesItem = images.querySelectorAll('.imgUrl');
                             $.each(imagesItem,function (index,item) {
                                 imagesStr += (item.value+'\n')
-                            });
+                            });*/
                             var data = $scope.stepItems[i].oldSteps;
-                            data.images = imagesStr;
+                           /* data.images = imagesStr;*/
                             if(!data.title){
                                 data.title = ' ';
                             }

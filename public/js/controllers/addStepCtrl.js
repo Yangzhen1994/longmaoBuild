@@ -102,10 +102,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $scope.stepCount = 0;
 
                         $scope.oldSteps = [{
-                            images_list:['']
+                            images_list:[]
                         },
                             {
-                                images_list:['']
+                                images_list:[]
                             }];
                         return
                     })
@@ -121,10 +121,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             $scope.stepCount = 0;
 
                             $scope.oldSteps = [{
-                                images_list:['']
+                                images_list:[]
                             },
                                 {
-                                    images_list:['']
+                                    images_list:[]
                                 }];
                         }else{
 

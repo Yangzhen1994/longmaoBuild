@@ -221,6 +221,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //队列文件处理完毕后，处理相关的事情
                                 var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                                 scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+                                scope.$apply();
                                 //serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             },
                             'Key': function(up, file) {

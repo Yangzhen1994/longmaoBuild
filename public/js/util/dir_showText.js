@@ -7,7 +7,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/showText.html',
             link:function (scope,el,attr) {
-                scope.stepIndex = $(this).parents('li')[1].id.substr(-1,1);
+                var step =el.parents('li')[0].id;
+                scope.stepIndex = step.substr(-1,1);
                 el.click(function () {
                     el.find('input').eq(0).css('visibility','visible');
                     //scope.isText = true;

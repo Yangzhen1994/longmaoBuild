@@ -7,8 +7,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/showText.html',
             link:function (scope,el,attr) {
-                var step =el.parents('li')[0].id;
-                scope.textIndex = step.substr(-1,1);
+
                 el.click(function () {
                     el.find('input').eq(0).css('visibility','visible');
                     //scope.isText = true;
@@ -45,6 +44,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //serverService.submitComponent(scope.componentItems[comIndex])
                 });
                 el.find('img').click(function (e) {
+                    var step =el.parents('li')[0].id;
+                    scope.textIndex = step.substr(-1,1);
                     e.stopPropagation()
                     console.log($(this).parents('li'))
                     if($(this).parents('li')[0].id.length == 16){

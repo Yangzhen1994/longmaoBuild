@@ -180,7 +180,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     if(scope.stepItems[scope.stepIndex].oldSteps.images_list.length == 1){
                         scope.stepItems[scope.stepIndex].oldSteps.images_list = [];
                         scope.stepItems[scope.stepIndex].oldSteps.images = ' ';
-                        $(this).css('display','none')
+                        $(this).css('display','none');
+                        scope.$apply();
                         return
                     }
                     var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
@@ -196,7 +197,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $('#imgWrap'+stepIndex+comIndex).css('display','none')
                                 }
                             })*/
-                    $(this).css('display','none')
+                    $(this).css('display','none');
+                    scope.$apply();
                 })
                 //inutfile
                 /*el.find('#upFile').eq(0).change(function (e) {

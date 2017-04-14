@@ -9,6 +9,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             templateUrl: 'tpls/imgProof.html',
             link:function (scope,el,attr) {
                 var slideInput = document.getElementById('slideInput');
+                scope.stepIndex = el.parents('ul')[0].id.substr(-1,1)
                 /*el.on('click',function () {
                  //scope.isshow = true;
                  el.find('input').eq(0).css('visibility','visible')

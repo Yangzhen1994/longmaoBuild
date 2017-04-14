@@ -183,7 +183,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $(this).css('display','none')
                         $('#step'+scope.stepIndex+'img'+delimgIndex).css('display','none');
                         storageUtils.session.setItem('_stepimg_','#step'+scope.stepIndex+'img'+delimgIndex)
-                        $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
+                        $('#preview'+scope.stepIndex+delimgIndex).children('img').remove()
                         return
                     }
                     var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
@@ -202,7 +202,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $(this).css('display','none')
                     $('#step'+scope.stepIndex+'img'+delimgIndex).css('display','none')
                     storageUtils.session.setItem('_stepimg_','#step'+scope.stepIndex+'img'+delimgIndex)
-                    $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
+                    $('#preview'+scope.stepIndex+delimgIndex).children('img').remove()
                 })
                 //inutfile
                 /*el.find('#upFile').eq(0).change(function (e) {

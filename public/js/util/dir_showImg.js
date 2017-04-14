@@ -77,10 +77,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     alert('添加了文件');
                                     console.log(files
                                     );
-                                    if(scope.stepItems[scope.stepIndex].oldSteps.images){
-                                       var arr = scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
-                                        arr[imgIndex] = ''
-                                    }
+                                   
                                    /* for (var i = 0; i < files.length; i++) {
 
 

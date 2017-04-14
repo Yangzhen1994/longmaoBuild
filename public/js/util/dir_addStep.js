@@ -328,11 +328,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }*/
                 /*显示步骤的图片*/
                 $scope.showImg = function (index) {
-                    var fadeImg = storageUtils.session.getItem('_stepimg_')
-                    if(fadeImg){
-                        $(fadeImg).css('display','block');
-                        $(fadeImg).parents('div').eq(0).find('img').eq(-1).css('display','block');
-                    }
                     $scope.stepItems[index].oldSteps.images_list.push('../img/moduleImg/ic_add_a_photo_black_24dp.png')
                 }
             }

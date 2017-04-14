@@ -77,11 +77,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     alert('添加了文件');
                                     console.log(files
                                     );
-                                    for (var i = 0; i < files.length; i++) {
+                                   /* for (var i = 0; i < files.length; i++) {
 
 
                                         showPreview (files[i]);
-                                    }
+                                    }*/
                                 //$('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
 
                             },
@@ -134,6 +134,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //scope.stepItems[stepIndex].oldSteps.tips_image = str
                                 /*$('step'+scope.stepIndex+'img'+imgIndex).attr('src',str)*/
                                 scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex] = str
+                                scope.stepItems[scope.stepIndex].oldSteps.images += str+'\n'
                             },
                             'Error': function(up, err, errTip) {
                                 //上传出错时，处理相关的事情
@@ -164,7 +165,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     return*/
                     e.stopPropagation()
                     var delimgIndex = $(this).attr('id');
-                    delimgIndex = imgIndex.substr(-1,1)
+                    delimgIndex = delimgIndex.substr(-1,1)
                     //scope.componentItems[comIndex].tips_text = ' ';
                     //scope.componentItems[comIndex].isText = ' ';
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';

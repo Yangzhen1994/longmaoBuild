@@ -177,6 +177,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //scope.componentItems[comIndex].tips_text = ' ';
                     //scope.componentItems[comIndex].isText = ' ';
                    // scope.stepItems[stepIndex].component[comIndex].isText = ' ';
+                    if(scope.stepItems[scope.stepIndex].oldSteps.images_list.length == 1){
+                        scope.stepItems[scope.stepIndex].oldSteps.images_list = [];
+                        return
+                    }
                     var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
                     arr.splice(delimgIndex,1)
                     scope.stepItems[scope.stepIndex].oldSteps.images = arr.join('\n')

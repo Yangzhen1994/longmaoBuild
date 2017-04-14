@@ -6,12 +6,13 @@
     line-height: 20px;">选择提示图片</div>-->
     <img ng-src="{{images}}" alt="" class="stepImg" ng-show="images" id={{'step'+stepIndex+'img'+$index}}>
     <div id={{'stepContainer'+stepIndex+'img'+$index}}></div>
-    <!--<div id={{'preview'+stepIndex+$index}} style="    display: block;
+    <div id={{'preview'+stepIndex+$index}} style="    display: block;
     position: absolute;
     top: 0;
     width: 288px;
     height: 200px;
-    z-index: 1;"></div>-->
+    z-index: 1;
+    pointer-events: none"></div>
     <img src="./img/icon/deleteCircle.png" alt="" style="
         position: absolute;
     top: -15px;

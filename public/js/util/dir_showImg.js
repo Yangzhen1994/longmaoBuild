@@ -38,7 +38,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         return jQuery.parseJSON(token).result;
                     }
 
-                    /*function showPreview (file) {
+                    function showPreview (file) {
 
                             var image = new Image();
                             image.style.width = '100%';
@@ -48,13 +48,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             preloader.onload = function() {
                                 preloader.downsize( 300, 300 );
                                 image.setAttribute( "src", preloader.getAsDataURL() );
-                                $('#preview'+stepIndex+imgIndex).append(image);
-                                $('#preview'+stepIndex+imgIndex).css('display','block')
+                                $('#preview'+scope.stepIndex+imgIndex).append(image);
+                                $('#preview'+scope.stepIndex+imgIndex).css('display','block')
                             };
                             preloader.load( file.getSource() );
 
 
-                    }*/
+                    }
                     var hashArr = []
                     var uploader = Qiniu.uploader({
                         runtimes: 'html5,html4',
@@ -78,11 +78,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     console.log(files
                                     );
 
-                                   /* for (var i = 0; i < files.length; i++) {
+                                    for (var i = 0; i < files.length; i++) {
 
 
                                         showPreview (files[i]);
-                                    }*/
+                                    }
                                 //$('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
 
                             },

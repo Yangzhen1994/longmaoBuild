@@ -77,7 +77,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     alert('添加了文件');
                                     console.log(files
                                     );
-                                   
+
                                    /* for (var i = 0; i < files.length; i++) {
 
 
@@ -134,8 +134,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 //console.log(scope.stepItems[stepIndex].component[comIndex]);
                                 //scope.stepItems[stepIndex].oldSteps.tips_image = str
                                 /*$('step'+scope.stepIndex+'img'+imgIndex).attr('src',str)*/
-                                scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex] = str
-                                scope.stepItems[scope.stepIndex].oldSteps.images += '\n'+str+'\n'
+                                if(scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex]){
+                                    scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex] = str
+                                    var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
+                                    arr[imgIndex] = str
+                                    scope.stepItems[scope.stepIndex].oldSteps.images = arr.join('\n')
+                                }else{
+                                    scope.stepItems[scope.stepIndex].oldSteps.images_list[imgIndex] = str
+                                    scope.stepItems[scope.stepIndex].oldSteps.images += '\n'+str+'\n'
+                                }
                             },
                             'Error': function(up, err, errTip) {
                                 //上传出错时，处理相关的事情

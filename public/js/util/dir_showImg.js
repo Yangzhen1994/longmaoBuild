@@ -77,7 +77,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     alert('添加了文件');
                                     console.log(files
                                     );
-
+                                $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
                                     for (var i = 0; i < files.length; i++) {
 
 

@@ -79,7 +79,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     );
                                     if(scope.stepItems[scope.stepIndex].oldSteps.images){
                                        var arr = scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
-                                        arr[imgIndex+1] = ''
+                                        arr[imgIndex] = ''
                                     }
                                    /* for (var i = 0; i < files.length; i++) {
 

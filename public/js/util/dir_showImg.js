@@ -180,6 +180,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     if(scope.stepItems[scope.stepIndex].oldSteps.images_list.length == 1){
                         scope.stepItems[scope.stepIndex].oldSteps.images_list = [];
                         scope.stepItems[scope.stepIndex].oldSteps.images = ' ';
+                        $(this).css('display','none')
+                        $('#step'+scope.stepIndex+'img'+delimgIndex).css('display','none');
+                        storageUtils.session.setItem('_stepimg_','#step'+scope.stepIndex+'img'+delimgIndex)
                         return
                     }
                     var arr =scope.stepItems[scope.stepIndex].oldSteps.images.split('\n')
@@ -196,6 +199,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 }
                             })*/
                     $(this).css('display','none')
+                    $('#step'+scope.stepIndex+'img'+delimgIndex).css('display','none')
+                    storageUtils.session.setItem('_stepimg_','#step'+scope.stepIndex+'img'+delimgIndex)
                 })
                 //inutfile
                 /*el.find('#upFile').eq(0).change(function (e) {

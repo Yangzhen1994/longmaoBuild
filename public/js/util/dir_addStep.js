@@ -22,7 +22,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                 $scope.middleItems = [];
                 $scope.showText = function (index) {
-                    $('.showText').css('display','block');
+
                     var tempArr = []
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     serverService.getComponent(taskId)
@@ -42,7 +42,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     if ((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1) {
                                         //$scope.$emit('isText',true)
                                         //$scope.stepItems[index].component[i].isText = true
-                                        $scope.stepItems[index].component[i].tips_text = '请输入提示文本若请无需请删除';
+                                        $scope.stepItems[index].component[i].tips_text = '请点击在右侧全选编辑你的提示文本不需要请删除';
                                         $('#delete' + i).css('display', 'block');
                                         for (var j = 0; j < tempArr.length; j++) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
@@ -86,12 +86,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 1,
                         task_id: taskId,
-                        tips_text:'',
+                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
                         tips_image:''
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
-                    $scope.showText(index)
+                    /*$scope.showText(index)*/
                     /*serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {
@@ -127,7 +127,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 2,
                         task_id: taskId,
-                        tips_text:'',
+                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
                         tips_image:''
                     };
                     if (type == 3) {
@@ -138,7 +138,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
-                    $scope.showText(index)
+                    /*$scope.showText(index)*/
                     $scope.typePhoto = false;
                     $scope.typeCamera = false;
                     /*serverService.submitComponent(data)
@@ -172,12 +172,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 5,
                         task_id: taskId,
-                        tips_text:'',
+                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
                         tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    $scope.showText(index)
+                    /*$scope.showText(index)*/
                     // serverService.submitComponent(data)
                     //         .then(function (data) {
                     //             if (data.code == 200) {
@@ -207,11 +207,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 6,
                         task_id: taskId,
-
+                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
+                        tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    $scope.showText(index)
+                    /*$scope.showText(index)*/
                     /*serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {

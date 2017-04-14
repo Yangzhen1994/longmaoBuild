@@ -63,7 +63,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     scope.stepItems[stepIndex].component[comIndex].isText = ' ';
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     scope.stepItems[stepIndex].component[comIndex].task_id = taskId
-                    $(this).parents('.showText').eq(0).css('display','none')
+                    //$(this).parents('.showText').eq(0).css('display','none')
                     scope.$apply();
                     /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function (data) {
@@ -71,7 +71,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                 }
                             })*/
-                    $(this).css('display','none')
+                    //$(this).css('display','none')
                 })
 
             },

@@ -12,7 +12,7 @@
                 <label for="{{'rn_checkItem'+$index}}" class="tr_labelItem" ></label>
                 <p class="nickName nickName_no">{{item.uid}}</p>
                 <p class="nickName_time nickName_time_no">{{item.submit_time}}</p>
-                <p style="position: absolute;left: 22px;top: 40px;">{{item.reason}}</p>
+                <p style="position: absolute;left: 22px;top: 40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 160px;" title="item.reason">{{item.reason}}</p>
             </li>
         </ul>
     </div>

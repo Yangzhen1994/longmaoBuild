@@ -12,7 +12,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('taskListCtrl',['$rootScope','$scope','$timeout','serverService',
         function ($rootScope,$scope, $timeout,serverService) {
 
-        $('.left').css('height',738);
+        //$('.left').css('height',738);
 
         storageUtils.session.removeItem('editData');
         storageUtils.session.removeItem('_TaskId_');

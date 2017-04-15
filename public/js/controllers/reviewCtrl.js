@@ -120,7 +120,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.export = function (item,index) {
                         $scope.exportItem = {}
                         item.exportshow = true
-                        var data = {
+                        var data0 = {
                             id:item.id,
                             uid:'',
                             date:'',
@@ -131,19 +131,19 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         $scope.chooseState = function () {
                             if($scope.exportItem.exportState == '待审核'){
                                 //alert(1)
-                                data.status = 2
+                                data0.status = 2
                             }
                             if($scope.exportItem.exportState == '未提交'){
                                 //alert(1)
-                                data.status = 1
+                                data0.status = 1
                             }
                             if($scope.exportItem.exportState == '审核成功'){
                                 //alert(1)
-                                data.status = 3
+                                data0.status = 3
                             }
                             if($scope.exportItem.exportState == '审核失败'){
                                 //alert(1)
-                                data.status = 4
+                                data0.status = 4
                             }
                             serverService.getReviewList(data)
                                     .then(function (data) {
@@ -155,7 +155,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                     uid:item1.uid,
                                                     tid:item.id,
                                                     date:item.submit_time.substr(0,10),
-                                                    status:2,
+                                                    status:data0.status,
                                                     tip:1
                                                 };
                                                 var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'

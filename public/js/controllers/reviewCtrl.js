@@ -118,7 +118,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     ]
 
                     $scope.export = function (item,index) {
-
+                        var num = 1
                         item.exportshow = true
                         var data0 = {
                             id:item.id,
@@ -151,7 +151,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                     .then(function (data) {
                                         item.exportshow = false
                                         data.result.rows.forEach(function (item1,index) {
-                                            if(item1.id == item.id){
+                                            if(item1.id == item.id && num == 1){
                                                 item.submit_time = item1.submit_time;
                                                 var data = {
                                                     uid:item1.uid,
@@ -160,6 +160,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                     status:data0.status,
                                                     tip:1
                                                 };
+                                                num = 2;
                                                 var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status='+data.status+'&tip=1'
                                                 window.open(url)
                                             }

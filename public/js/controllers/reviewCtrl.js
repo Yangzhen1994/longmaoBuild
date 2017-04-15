@@ -118,6 +118,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     ]
 
                     $scope.export = function (item,index) {
+                        $scope.exportItem = {}
                         item.exportshow = true
                         var data = {
                             id:item.id,

@@ -8,7 +8,7 @@ html,body{
     background: #ececec;
 }
 .wrap{
-    width: 1024px;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
 
@@ -68,9 +68,9 @@ html,body{
 .left{
     float: left;
     width: 176px;
-    height: 738px;/*______*/
+    /*height: 738px;!*______*!*/
     background:#333333;
-    height:738px\9\0;
+    /*height:738px\9\0;*/
 }
 .left-task,.left-review{
     position: relative;

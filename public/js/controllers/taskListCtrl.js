@@ -13,7 +13,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         function ($rootScope,$scope, $timeout,serverService) {
 
         //$('.left').css('height',738);
-
+        $('.taskListRouter').css('height',$(window).height()-72);
         storageUtils.session.removeItem('editData');
         storageUtils.session.removeItem('_TaskId_');
         storageUtils.session.removeItem('_newTaskid_');

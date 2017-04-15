@@ -116,7 +116,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         {exportState:'审核成功'},//3
                         {exportState:'审核失败'},//4
                     ]
-                    $scope.exportItem = {}
+
                     $scope.export = function (item,index) {
 
                         item.exportshow = true
@@ -129,6 +129,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             rows:100
                         }
                         $scope.chooseState = function () {
+                            console.log($scope.exportItem)
                             if($scope.exportItem.exportState == '待审核'){
                                 //alert(1)
                                 data0.status = 2

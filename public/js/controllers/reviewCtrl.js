@@ -156,11 +156,11 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                 var data = {
                                                     uid:item1.uid,
                                                     tid:item.id,
-                                                    date:item.submit_time.substr(0,10),
+                                                    date:item1.submit_time.substr(0,10),
                                                     status:data0.status,
                                                     tip:1
                                                 };
-                                                var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
+                                                var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status='+data.status+'&tip=1'
                                                 window.open(url)
                                             }
                                         })

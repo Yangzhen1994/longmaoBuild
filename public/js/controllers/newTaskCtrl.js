@@ -6,7 +6,7 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return app.controller('newTaskCtrl',['$scope','$timeout','serverService', function ($scope, $timeout,serverService) {
-        
+
 
         var editTask = storageUtils.session.getItem('editData');
 

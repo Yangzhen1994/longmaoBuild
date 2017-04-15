@@ -35,7 +35,7 @@
     width: 305px;
     height: 540px;
     list-style: none;
-    margin-left: 45px;
+    margin-left: 225px;
     float: left;
     background: url("../img/newTaskbg.jpg");
     background-size: 100% 100%;
@@ -122,7 +122,7 @@ ul{
     background: white;
     float: right;
     position: relative;
-    right: 8px;
+    right: 180px;
     margin-top: 30px;
 }
 .nt_rightView label{
@@ -262,8 +262,8 @@ ul{
 }
 /*底部*/
 .nt_footer{
-    margin-top: 28px;
-
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 63px;
     border-top: 1px solid #cccccc;

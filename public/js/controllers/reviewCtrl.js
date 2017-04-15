@@ -120,7 +120,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.export = function (item,index) {
 
                         item.exportshow = true
-                        $scope.data0 = {
+                        var data0 = {
                             id:item.id,
                             uid:'',
                             date:'',
@@ -133,19 +133,19 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                             if(item.exportItem.exportState == '待审核'){
                                 //alert(1)
-                                $scope.data0.status = 2
+                                data0.status = 2
                             }
                             if(item.exportItem.exportState == '未提交'){
                                 //alert(1)
-                                $scope.data0.status = 1
+                                data0.status = 1
                             }
                             if(item.exportItem.exportState == '审核成功'){
                                 //alert(1)
-                                $scope.data0.status = 3
+                                data0.status = 3
                             }
                             if(item.exportItem.exportState == '审核失败'){
                                 //alert(1)
-                                $scope.data0.status = 4
+                                data0.status = 4
                             }
                             serverService.getReviewList(data0)
                                     .then(function (data) {

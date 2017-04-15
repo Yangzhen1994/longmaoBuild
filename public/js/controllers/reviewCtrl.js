@@ -116,27 +116,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         {exportState:'审核成功'},//3
                         {exportState:'审核失败'},//4
                     ]
-                    $scope.chooseState = function () {
-                        console.log($scope.exportItem);
 
-                        if($scope.exportItem.exportState == '待审核'){
-                            //alert(1)
-                            $scope.data0.status = 2
-                        }
-                        if($scope.exportItem.exportState == '未提交'){
-                            //alert(1)
-                            $scope.data0.status = 1
-                        }
-                        if($scope.exportItem.exportState == '审核成功'){
-                            //alert(1)
-                            $scope.data0.status = 3
-                        }
-                        if($scope.exportItem.exportState == '审核失败'){
-                            //alert(1)
-                            $scope.data0.status = 4
-                        }
-
-                    }
                     $scope.export = function (item,index) {
 
                         item.exportshow = true
@@ -148,26 +128,46 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             page:1,
                             rows:100
                         }
-                        $scope.chooseState()
+                        $scope.chooseState = function (item) {
+                            console.log($scope.exportItem);
 
-                        serverService.getReviewList(data0)
-                                .then(function (data) {
-                                    item.exportshow = false
-                                    data.result.rows.forEach(function (item1,index) {
-                                        if(item1.id == item.id){
-                                            item.submit_time = item1.submit_time;
-                                            var data = {
-                                                uid:item1.uid,
-                                                tid:item.id,
-                                                date:item.submit_time.substr(0,10),
-                                                status:data0.status,
-                                                tip:1
-                                            };
-                                            var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
-                                            window.open(url)
-                                        }
+                            if(item.exportItem.exportState == '待审核'){
+                                //alert(1)
+                                $scope.data0.status = 2
+                            }
+                            if(item.exportItem.exportState == '未提交'){
+                                //alert(1)
+                                $scope.data0.status = 1
+                            }
+                            if(item.exportItem.exportState == '审核成功'){
+                                //alert(1)
+                                $scope.data0.status = 3
+                            }
+                            if(item.exportItem.exportState == '审核失败'){
+                                //alert(1)
+                                $scope.data0.status = 4
+                            }
+                            serverService.getReviewList(data0)
+                                    .then(function (data) {
+                                        item.exportshow = false
+                                        data.result.rows.forEach(function (item1,index) {
+                                            if(item1.id == item.id){
+                                                item.submit_time = item1.submit_time;
+                                                var data = {
+                                                    uid:item1.uid,
+                                                    tid:item.id,
+                                                    date:item.submit_time.substr(0,10),
+                                                    status:data0.status,
+                                                    tip:1
+                                                };
+                                                var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
+                                                window.open(url)
+                                            }
+                                        })
                                     })
-                                })
+                        }
+
+
                     }
                     /*导入*/
                     $scope.file_upload = function (obj) {

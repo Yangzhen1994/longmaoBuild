@@ -3,7 +3,7 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('addStepCtrl',['$scope','Upload','$timeout','serverService',function ($scope,Upload,$timeout,serverService) {
-       $('.left').css('height',846);
+       //$('.left').css('height',846);
         //获取当前任务id
         var taskId = storageUtils.session.getItem('_TaskId_');
         var newtaskId = storageUtils.session.getItem('_newTaskid_');

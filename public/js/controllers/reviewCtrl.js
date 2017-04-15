@@ -128,19 +128,19 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             rows:100
                         }
                         $scope.chooseState = function () {
-                            if($scope.exportState.exportState == '待审核'){
+                            if($scope.exportItem.exportState == '待审核'){
                                 //alert(1)
                                 data.status = 2
                             }
-                            if($scope.exportState.exportState == '未提交'){
+                            if($scope.exportItem.exportState == '未提交'){
                                 //alert(1)
                                 data.status = 1
                             }
-                            if($scope.exportState.exportState == '审核成功'){
+                            if($scope.exportItem.exportState == '审核成功'){
                                 //alert(1)
                                 data.status = 3
                             }
-                            if($scope.exportState.exportState == '审核失败'){
+                            if($scope.exportItem.exportState == '审核失败'){
                                 //alert(1)
                                 data.status = 4
                             }

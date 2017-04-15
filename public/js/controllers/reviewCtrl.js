@@ -144,26 +144,27 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 //alert(1)
                                 data.status = 4
                             }
+                            serverService.getReviewList(data)
+                                    .then(function (data) {
+                                        item.exportshow = false
+                                        data.result.rows.forEach(function (item1,index) {
+                                            if(item1.id == item.id){
+                                                item.submit_time = item1.submit_time;
+                                                var data = {
+                                                    uid:item1.uid,
+                                                    tid:item.id,
+                                                    date:item.submit_time.substr(0,10),
+                                                    status:2,
+                                                    tip:1
+                                                };
+                                                var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
+                                                window.open(url)
+                                            }
+                                        })
+                                    })
                         }
 
-                        serverService.getReviewList(data)
-                                .then(function (data) {
-                                    item.exportshow = false
-                                    data.result.rows.forEach(function (item1,index) {
-                                        if(item1.id == item.id){
-                                            item.submit_time = item1.submit_time;
-                                            var data = {
-                                                uid:item1.uid,
-                                                tid:item.id,
-                                                date:item.submit_time.substr(0,10),
-                                                status:2,
-                                                tip:1
-                                            };
-                                            var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status=2&tip=1'
-                                            window.open(url)
-                                        }
-                                    })
-                                })
+
                         //console.log(item)
 
                         /*serverService.exportReview(data)

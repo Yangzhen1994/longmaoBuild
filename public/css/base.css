@@ -110,8 +110,8 @@ html,body{
 /*右侧主题*/
 .right{
     float: left;
-    width: 848px;
-    height: 738px;
+    width: calc(100% - 176px);
+    /*//height: 738px;*/
     position: relative;
 }
 .bread{

@@ -110,7 +110,15 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
 
                     /**导出**/
+                    $scope.exportStates = [
+                        {exportState:'待审核'},//2
+                        {exportState:'未提交'},//1
+                        {exportState:'审核成功'},//3
+                        {exportState:'审核失败'},//4
+                    ]
+
                     $scope.export = function (item,index) {
+                        item.exportshow = true
                         var data = {
                             id:item.id,
                             uid:'',
@@ -119,8 +127,28 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             page:1,
                             rows:100
                         }
+                        $scope.chooseState = function () {
+                            if($scope.exportState.exportState == '待审核'){
+                                //alert(1)
+                                data.status = 2
+                            }
+                            if($scope.exportState.exportState == '未提交'){
+                                //alert(1)
+                                data.status = 1
+                            }
+                            if($scope.exportState.exportState == '审核成功'){
+                                //alert(1)
+                                data.status = 3
+                            }
+                            if($scope.exportState.exportState == '审核失败'){
+                                //alert(1)
+                                data.status = 4
+                            }
+                        }
+
                         serverService.getReviewList(data)
                                 .then(function (data) {
+                                    item.exportshow = false
                                     data.result.rows.forEach(function (item1,index) {
                                         if(item1.id == item.id){
                                             item.submit_time = item1.submit_time;

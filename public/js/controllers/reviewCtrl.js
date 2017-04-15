@@ -145,7 +145,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 //alert(1)
                                 data0.status = 4
                             }
-                            serverService.getReviewList(data)
+                            serverService.getReviewList(data0)
                                     .then(function (data) {
                                         item.exportshow = false
                                         data.result.rows.forEach(function (item1,index) {

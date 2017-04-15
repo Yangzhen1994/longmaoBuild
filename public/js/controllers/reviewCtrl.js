@@ -116,9 +116,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         {exportState:'审核成功'},//3
                         {exportState:'审核失败'},//4
                     ]
-
+                    $scope.exportItem = {}
                     $scope.export = function (item,index) {
-                        $scope.exportItem = {}
+
                         item.exportshow = true
                         var data0 = {
                             id:item.id,

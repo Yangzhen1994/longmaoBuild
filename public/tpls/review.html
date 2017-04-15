@@ -28,8 +28,11 @@
             <li ng-repeat="item in items" ng-show="!item.show">
                 <div id="{{'review'+$index}}" ng-show="item.exportshow">
                     <select ng-change="chooseState(item)"
-                            ng-model="item.exportItem" ng-options="itemselect.exportState for itemselect in exportStates">
+                            ng-model="item.exportItem" ng-options="itemselect.exportState for itemselect in exportStates"
+                            style="font-size: 13px;position: absolute;left: 210px"
 
+                    >
+                        <option value="">请选择</option>
                     </select>
                 </div>
                 <div class="review-header">

@@ -1,6 +1,6 @@
 .toReview,.reviewOk,.reviewNo{
-    width: 100%;
-    height:600px;
+    width: calc(100% - 201px);
+    height:100%;
     position: relative;
     border: 1px solid #ececec;
 }
@@ -126,7 +126,7 @@
 }
 .toReview_Right_footer,.reviewOk_Right_footer,.reviewNo_Right_footer{
     position: absolute;
-    width:632px;
+    width: 100%;
     height: 55px;
     bottom: 0;
     border-top:  1px solid #ECECEC; ;

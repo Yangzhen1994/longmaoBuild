@@ -1,4 +1,4 @@
-#reviewId{
+.reviewDetail_detail#reviewId{
     display: block;
     font-family: PingFangSC-Regular;
     font-size: 13px;
@@ -80,8 +80,8 @@
 }
 /*detail*/
 .reviewDetail_detail{
-    width: 816px;
-    height: 658px;/*____*/
+    width: 100%;
+    height: 100%;/*____*/
     margin: 0 auto;
     margin-top: 50px;
     background: white;

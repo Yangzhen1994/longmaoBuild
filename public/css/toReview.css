@@ -162,10 +162,10 @@
     position: relative;
 }
 .ro_Right_nextOne{
-    right: -416px;
+    /*right: -416px;*/
 }
 .rn_Right_nextOne{
-    right: -188px;
+   /* right: -188px;*/
 }
 .tr_Right_prevOne .pre_icon{
     margin-right: 5px;

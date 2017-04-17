@@ -1,7 +1,7 @@
 <!--添加步骤模板页-->
 <div class="stepTemp clearfix" >
     <p class="stepIndex"><span>步骤{{stepItem.index}}{{stepItem.oldSteps.status == 0? '禁用' : '启用'}}<!--{{stepItem.title}}--></span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
-    <div class="stepTemp_content ">
+    <div class="stepTemp_content clearfix">
         <div class="addbuttons">
             <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
             <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}" ng-mouseover="showOtherType()">+图片凭证</a>
@@ -16,7 +16,7 @@
         <div class="middleView ">
             <img src="../img/stepHeader.png" alt="" style="
                                                     position: absolute;
-                                                    left: 182px;
+                                                    left: 583px;
                                                     top: 49px;
                                                     z-index: 99;
             ">
@@ -95,7 +95,7 @@
             </ul>
             <img src="../img/stepfooter.png" alt="" style="
                                                     position: absolute;
-                                                    left: 182px;
+                                                    left: 583px;
                                                     bottom: -10px;
                                                     z-index: 99;
             ">

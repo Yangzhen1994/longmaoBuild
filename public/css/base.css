@@ -115,7 +115,7 @@ html,body{
     position: relative;
 }
 .bread{
-    width: 100px;
+    width: 300px;
 }
 #bread-taskList{
     display: inline-block;

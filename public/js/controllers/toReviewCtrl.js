@@ -281,7 +281,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 .then(function (data) {
 
                     $scope.toReviewItems = data.result.rows;
-                    $scope.toReview = $scope.toReviewItems[0].data;
+                    if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                        $scope.toReview = $scope.toReviewItems[0].data;
+                    }else{return}
+
                     /*var map;
 
                     window.init = function () {

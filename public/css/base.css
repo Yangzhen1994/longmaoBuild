@@ -118,7 +118,7 @@ html,body{
     width: 100px;
 }
 #bread-taskList{
-    display: block;
+    display: inline-block;
     margin-left: 16px;
     margin-top: 11px;
     width:80px;

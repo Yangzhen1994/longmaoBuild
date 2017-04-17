@@ -130,6 +130,7 @@
     height: 55px;
     bottom: 0;
     border-top:  1px solid #ECECEC; ;
+    text-align: center;
 }
 .toReview_Right_footer a,.reviewOk_Right_footer a,.reviewNo_Right_footer a{
     text-decoration: none;
@@ -153,11 +154,11 @@
     line-height: 18px;
     font-size: 13px;
     margin-top: 19px;
-    margin-left: 32px;
+   /* margin-left: 32px;*/
 }
 .tr_Right_nextOne{
     top: 0px;
-    right: -75px;
+    /*right: -75px;*/
     position: relative;
 }
 .ro_Right_nextOne{
@@ -181,7 +182,7 @@
     background: #2DB7F5;
 
     color: white;
-    margin-left:500px;
+    /*margin-left:500px;*/
 }
 
 .toReview_Right_footer .tr_Right_reject{

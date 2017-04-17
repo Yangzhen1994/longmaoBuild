@@ -46,7 +46,7 @@
     margin-top: 30px;
 }
 .stepIndex{
-    margin-left: 465px;
+    margin-left: 565px;
     margin-top: 15px;
 }
 .stepTemp .stepIndex span{
@@ -66,6 +66,7 @@ stepTemp_content{
     float: left;
 }
 .addbuttons{
+    margin-left: 500px;
     width: 100px;
     float: left;
 }
@@ -102,13 +103,16 @@ stepTemp_content{
     list-style: none;
     width: 650px;
     position: absolute;
-    left: 550px;
+    left: 650px;
     background: url("../img/stepTemBg.png") no-repeat 1px;
     background-size: 46% 100%;
     background-attachment:scroll;
     border-right: none;
     overflow-y: auto;
     padding-bottom: 35px;
+}
+.btn_addStep{
+    text-align: center;
 }
 .btn_addStep a:hover{
     cursor:pointer;
@@ -128,7 +132,7 @@ stepTemp_content{
     color: white;
     line-height: 50px;
     font-size: 28px;
-    margin-left: 350px;
+    margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 80px;
 }
@@ -136,7 +140,6 @@ stepTemp_content{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: #009688;
-    margin-left: 322px;
     margin-top: -70px;
 }
 
@@ -156,6 +159,7 @@ stepTemp_content{
     line-height: 40px;
     text-decoration: none;
     margin-top: 12px;
+    margin-left: 45px;
 }
 .as_saveTask{
     background: #2DB7F5;

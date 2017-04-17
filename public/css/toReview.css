@@ -1,5 +1,5 @@
 .toReview,.reviewOk,.reviewNo{
-    width:100%;
+    width:calc(100% - 2px);
     height:93%;
     position: relative;
     border: 1px solid #ececec;
@@ -105,7 +105,7 @@
 .toReview_Right,.reviewOk_Right,.reviewNo_Right{
     float: left;
     width: calc(100% - 201px);
-    height: 90%;
+    height:100%;
     position: relative;
 }
 .toReview_Right p,.reviewOk_Right p,.reviewNo p{

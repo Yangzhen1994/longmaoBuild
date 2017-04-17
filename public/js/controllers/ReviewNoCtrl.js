@@ -54,7 +54,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $scope.reviewNoItems[index].checkState = x;
                 for(var i=0;i<$scope.reviewNoItems.length;i++){
 
-                    if(!$scope.toReviewItems[i].checkState){
+                    if(!$scope.reviewNoItems[i].checkState){
                         $scope.masterheader = false;
                         $scope.flag = false;
                         return false
@@ -146,7 +146,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         }).then(function (data) {
             console.log(data);
             $scope.reviewNoItems = data.result.rows;
-            $scope.reviewNo = $scope.reviewNoItems[0].data;
+            if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
+                $scope.reviewNo = $scope.reviewNoItems[0].data;
+            }else{return}
+
             $scope.reviewNo.forEach(function (item,index) {
                 if(item.type == 5){
                     window.x = item.x;

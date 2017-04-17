@@ -94,7 +94,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         }).then(function (data) {
             console.log(data);
             $scope.reviewOkItems = data.result.rows;
-            $scope.reviewOk = $scope.reviewOkItems[0].data;
+            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                $scope.reviewOk = $scope.reviewOkItems[0].data;
+            }else{return}
+
 
 
             $scope.reviewOk.forEach(function (item,index) {

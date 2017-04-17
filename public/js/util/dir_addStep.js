@@ -91,6 +91,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
                     /*$scope.showText(index)*/
                     /*serverService.submitComponent(data)
                             .then(function (data) {
@@ -138,6 +139,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
                     /*$scope.showText(index)*/
                     $scope.typePhoto = false;
                     $scope.typeCamera = false;
@@ -177,6 +179,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
                     /*$scope.showText(index)*/
                     // serverService.submitComponent(data)
                     //         .then(function (data) {
@@ -212,6 +215,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
                     /*$scope.showText(index)*/
                     /*serverService.submitComponent(data)
                             .then(function (data) {

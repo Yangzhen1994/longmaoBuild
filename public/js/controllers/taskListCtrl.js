@@ -302,7 +302,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }else{
                                     $scope.stateItems.forEach(function (item,index) {
                                         if(item.state == $scope.loadingState){
-                                            item.setAttribute('selected','selected')
+                                            $scope.taskState = item;
+                                            $scope.statusLate = false;
                                         }
                                     })
                                 }
@@ -331,6 +332,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         $scope.loadingState = '未上线'
                                         if (index < 1) {
                                             index = 1
@@ -440,6 +442,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         $scope.loadingState = '已上线'
                                         if (index < 1) {
                                             index = 1
@@ -669,6 +672,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
                                         }
@@ -778,6 +782,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
                                             $rootScope.first = false;
+                                            $scope.statusLate = true;
                                             if (index < 1) {
                                                 index = 1
                                             }
@@ -886,6 +891,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
                                             $rootScope.first = false;
+                                            $scope.statusLate = true;
                                             if (index < 1) {
                                                 index = 1
                                             }
@@ -1110,6 +1116,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
                                     $rootScope.first = false;
+                                    $scope.statusLate = true;
                                     if (index < 1) {
                                         index = 1
                                     }
@@ -1336,6 +1343,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
                                         }
@@ -1446,6 +1454,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
                                         }
@@ -1557,6 +1566,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
                                         $rootScope.first = false;
+                                        $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
                                         }

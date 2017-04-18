@@ -43,6 +43,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
         };
         var dataArr = [];
         /*上来显示任务*/
+        $rootScope.firtst = true;
+        if($rootScope.firtstfirst){
+
+        }
         serverService.getAllTask($scope.data)
                 .then(function (data) {
                     $rootScope.taskLists = data.result.rows
@@ -308,6 +312,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+
                                 $rootScope.toPage = function (index) {
                                     if(index<1){
                                         index = 1
@@ -522,7 +527,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
-                                $rootScope.toPage = function (index) {
+
+                                $rootScope.toPage = function (index,ev) {
+                                    ev.stopPropagation()
                                     if(index<1){
                                         index = 1
                                     }
@@ -1288,7 +1295,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 user:0,
                                 page:1,
                                 rows:200
-                            }).then(function (result) {
+                            }).then(function (data) {
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item,index) {
@@ -1397,7 +1404,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 user:0,
                                 page:1,
                                 rows:20
-                            }).then(function (result) {
+                            }).then(function (data) {
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item,index) {
@@ -1507,7 +1514,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 user:0,
                                 page:1,
                                 rows:200
-                            }).then(function (result) {
+                            }).then(function (data) {
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item,index) {

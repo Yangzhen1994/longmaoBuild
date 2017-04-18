@@ -271,7 +271,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         /*任务Id*/
                         if ($scope.reviewsearchByTaskId == true) {
                             serverService.getAllTask({
-                                id: $scope.searhContent * 1,
+                                id: $scope.searchReviewContent * 1,
                                 title: '',
                                 pid: '',
                                 poi_id: '',
@@ -281,7 +281,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 page: 1,
                                 rows: 200
                             }).then(function (data) {
-                                $scope.searhContent = ''
+                                $scope.searchReviewContent = ''
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -290,7 +290,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
-                                    if(!$scope.searhContent){
+                                    if(!$scope.searchReviewContent){
                                         return
                                     }
                                     $scope.statusLate = true;
@@ -303,7 +303,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                     }
                                     $rootScope.pageIndex = index;
                                     var data = {
-                                        id: $scope.searhContent * 1,
+                                        id: $scope.searchReviewContent * 1,
                                         title: '',
                                         pid: '',
                                         poi_id: '',
@@ -335,7 +335,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                     }
 
                                                 });
-                                                $scope.searhContent = ''
+                                                $scope.searchReviewContent = ''
                                             })
                                 };
                                 $scope.items.forEach(function (item, index) {
@@ -372,7 +372,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                         if ($scope.reviewsearchByTaskName == true) {
                             serverService.getAllTask({
                                 id: '',
-                                title: $scope.searhContent,
+                                title: $scope.searchReviewContent,
                                 pid: '',
                                 poi_id: '',
                                 status: '',
@@ -381,7 +381,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
-                                $scope.searhContent = ''
+                                $scope.searchReviewContent = ''
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -390,7 +390,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
-                                    /*if(!$scope.searhContent){
+                                    /*if(!$scope.searchReviewContent){
                                      return
                                      }*/
                                     $scope.statusLate = true;
@@ -404,7 +404,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                     $rootScope.pageIndex = index;
                                     var data = {
                                         id: '',
-                                        title: $scope.searhContent,
+                                        title: $scope.searchReviewContent,
                                         pid: '',
                                         poi_id: '',
                                         status: '',
@@ -447,7 +447,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                 $scope.belongToUserItems = [
                                                     {belongTo: '归属用户'},
                                                 ];
-                                                $scope.searhContent = ''
+                                                $scope.searchReviewContent = ''
                                             })
                                 };
                                 $scope.items.forEach(function (item, index) {
@@ -475,14 +475,14 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 id: '',
                                 title: '',
                                 pid: '',
-                                poi_id: $scope.searhContent,
+                                poi_id: $scope.searchReviewContent,
                                 status: '',
                                 device: 0,
                                 user: 0,
                                 page: 1,
                                 rows: 200
                             }).then(function (data) {
-                                $scope.searhContent = '';
+                                $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -491,7 +491,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
-                                    if(!$scope.searhContent){
+                                    if(!$scope.searchReviewContent){
                                         return
                                     }
                                     $scope.statusLate = true;
@@ -505,7 +505,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                     $rootScope.pageIndex = index;
                                     var data = {
                                         id: '',
-                                        title: $scope.searhContent,
+                                        title: $scope.searchReviewContent,
                                         pid: '',
                                         poi_id: '',
                                         status: '',
@@ -548,7 +548,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                                 $scope.belongToUserItems = [
                                                     {belongTo: '归属用户'},
                                                 ];
-                                                $scope.searhContent = ''
+                                                $scope.searchReviewContent = ''
                                             })
                                 };
                                 $scope.items.forEach(function (item, index) {

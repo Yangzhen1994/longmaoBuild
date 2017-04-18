@@ -533,6 +533,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
 
                                     $rootScope.toPage = function (index, ev) {
+                                        $scope.taskState.state = '已过期'
                                         $rootScope.first = false;
                                         if (index < 1) {
                                             index = 1

@@ -27,7 +27,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.searchCheckBydate = function () {
 
             var data = {
-                id:'',
+                id:storageUtils.session.getItem('_reviewList_'),
                 uid:'',
                 date:$scope.subTime,
                 status:'',

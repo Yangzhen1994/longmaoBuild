@@ -26,7 +26,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
             $scope.changeRight = function (item,index) {
                 if(item && item.data){
-                    $scope.toReview = item.data
+                    serverService.getInfoData({uid:item.uid,tid:item.id})
+                            .then(function (data) {
+                                $scope.toReview = item.data;
+                                $scope.toReview[0].amount = data.result.amount
+                                $scope.toReview[0].check_fail = data.result.check_fail
+                                $scope.toReview[0].invited = data.result.invited
+                                $scope.toReview[0].regist_time = data.result.regist_time
+                                $scope.toReview[0].task_check_fail =data.result.task_check_fail
+
+                                $scope.toReview.forEach(function (item,index) {
+                                    if(item.type == 5){
+                                        window.x = item.x;
+                                        window.y = item.y;
+                                    }
+                                })
+
+                            })
                 }else{
                     $scope.toReview = {}
                 }
@@ -284,6 +300,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                         $scope.toReview = $scope.toReviewItems[0].data;
+                        serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
+                                .then(function (data) {
+                                    $scope.toReview[0].amount = data.result.amount
+                                    $scope.toReview[0].check_fail = data.result.check_fail
+                                    $scope.toReview[0].invited = data.result.invited
+                                    $scope.toReview[0].regist_time = data.result.regist_time
+                                    $scope.toReview[0].task_check_fail =data.result.task_check_fail
+                                })
                     }else{return}
 
                     /*var map;
@@ -330,13 +354,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     $scope.changeRight = function (item,index) {
                         if(item && item.data){
-                            $scope.toReview = item.data
-                            $scope.toReview.forEach(function (item,index) {
-                                if(item.type == 5){
-                                    window.x = item.x;
-                                    window.y = item.y;
-                                }
-                            })
+                            serverService.getInfoData({uid:item.uid,tid:item.id})
+                                    .then(function (data) {
+                                        $scope.toReview = item.data;
+                                        $scope.toReview[0].amount = data.result.amount
+                                        $scope.toReview[0].check_fail = data.result.check_fail
+                                        $scope.toReview[0].invited = data.result.invited
+                                        $scope.toReview[0].regist_time = data.result.regist_time
+                                        $scope.toReview[0].task_check_fail =data.result.task_check_fail
+
+                                        $scope.toReview.forEach(function (item,index) {
+                                            if(item.type == 5){
+                                                window.x = item.x;
+                                                window.y = item.y;
+                                            }
+                                        })
+
+                                    })
                         }else{
                             $scope.toReview = {}
                         }

@@ -793,7 +793,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.toPage = function (index) {
 
                                             $scope.loadingdevice = 'Android';
-                                            $scope.statusLate = true;
+                                           // $scope.statusLate = true;
                                             $scope.deviceLate = true;
                                             if (index < 1) {
                                                 index = 1
@@ -903,7 +903,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
 
-                                            $scope.statusLate = true;
+                                            //$scope.statusLate = true;
                                             $scope.deviceLate = true;
                                             $scope.loadingdevice = 'IOS';
                                             if (index < 1) {
@@ -1141,8 +1141,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $rootScope.toPage = function (index) {
 
                                     $scope.loadingUser = '归属用户';
-                                    $scope.statusLate = true;
-                                    $scope.deviceLate = true;
+                                    //$scope.statusLate = true;
+                                   // $scope.deviceLate = true;
                                     $scope.userLate = true;
                                     if (index < 1) {
                                         index = 1

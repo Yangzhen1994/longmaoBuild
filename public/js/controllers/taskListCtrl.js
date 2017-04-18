@@ -300,7 +300,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         });
                                     });
                                 }else{
-
+                                    $scope.stateItems.forEach(function (item,index) {
+                                        if(item.state == $scope.loadingState){
+                                            item.setAttribute('selected','selected')
+                                        }
+                                    })
                                 }
 
                                 return
@@ -548,6 +552,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.toPage = function (index, ev) {
                                         $scope.statusLate = true;
                                         //$scope.taskState.state = '已过期'
+                                        $scope.loadingState = '已过期';
                                         $rootScope.first = false;
                                         if (index < 1) {
                                             index = 1

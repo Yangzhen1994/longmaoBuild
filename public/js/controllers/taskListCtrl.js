@@ -29,6 +29,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             $scope.chooseType = '';
             $scope.state = '';
             $scope.selected = '';
+            $scope.loadingState = '全部';
+            $scope.loadingdevice = '全部';
+            $scope.loadingUser = '全部';
             $scope.data = {
                 id: '',
                 title: '',
@@ -185,6 +188,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             //console.log($scope.taskState.state)//正在进行
                             if ($scope.taskState == null) {
                                 //window.location.reload();
+                                //没有点击下一页之后走这里
                                 if(!$scope.statusLate){
                                     serverService.getAllTask({
                                         id: '',
@@ -293,6 +297,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                         });
                                     });
+                                }else{
+
                                 }
 
                                 return
@@ -536,7 +542,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
 
                                     $rootScope.toPage = function (index, ev) {
-                                        $scope.statusLate = true
+                                        $scope.statusLate = true;
+                                        $scope.loadingState = '已过期'
                                         //$scope.taskState.state = '已过期'
                                         $rootScope.first = false;
                                         if (index < 1) {

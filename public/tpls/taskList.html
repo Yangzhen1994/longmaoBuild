@@ -24,7 +24,7 @@
         <div>
             <select class="taskState" ng-model="taskState" ng-options="item.state for item in stateItems"
             ng-change="upStateshow()">
-                <option value="">{{taskState.state}}</option>
+                <option value="">{{loadingState}}</option>
             </select>
         </div>
         <div>

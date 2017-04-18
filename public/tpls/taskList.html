@@ -36,7 +36,7 @@
         <div>
             <select class="belongUser" ng-model="belongUser" ng-options="item.belongTo for item in belongToUserItems"
                     ng-change="upUsershow()">
-                <option value="">全部</option>
+                <option value="">{{taskState.state}}</option>
             </select>
         </div>
     </div>

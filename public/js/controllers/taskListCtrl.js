@@ -407,6 +407,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 page:1,
                                 rows:20
                             }).then(function (data) {
+                                $rootScope.taskLists = data.result.rows;
+                                $scope.items = data.result.rows;
+                                $scope.items.forEach(function (item,index) {
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
@@ -509,6 +514,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 page:1,
                                 rows:20
                             }).then(function (data) {
+                                $rootScope.taskLists = data.result.rows;
+                                $scope.items = data.result.rows;
+                                $scope.items.forEach(function (item,index) {
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
@@ -616,34 +626,97 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 device:0,
                                 user:0,
                                 page:1,
-                                rows:200
+                                rows:20
                             }).then(function (data) {
+                                $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
-                                console.log($scope.items);
                                 $scope.items.forEach(function (item,index) {
-                                    if(item.status == 1){
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
+                                $rootScope.totalCount = data.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                $rootScope.toPage = function (index) {
+                                    if(index<1){
+                                        index = 1
+                                    }
+                                    if(index>$rootScope.pageTotal){
+                                        index--;
+                                        $rootScope.pageIndex = index  ;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var data = {
+                                        id:'',
+                                        title:'',
+                                        pid:'',
+                                        poi_id:'',
+                                        status:'',
+                                        device:0,
+                                        user:0,
+                                        page:1,
+                                        rows:20
+                                    };
+                                    serverService.getAllTask(data)
+                                            .then(function (data) {
+                                                $rootScope.taskLists = data.result.rows
+                                                $scope.items = data.result.rows;
+                                                $scope.items.forEach(function (item,index) {
+                                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                                })
+                                                $scope.items.forEach(function (item,index) {
+                                                    if(item.status == 1){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        //alert(item.endTime)
+                                                        item.line = '上线'
+                                                    }else if(item.status == 2){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        item.line = '下线'
+                                                    }else if(item.status == 3){
+                                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                        item.line = '上线'
+                                                    }
+
+                                                });
+                                                $scope.stateItems = [
+                                                    {state:'未上线'},
+                                                    {state:'已上线'},
+                                                    {state:'已过期'}
+                                                ];
+                                                $scope.deviceItems = [
+                                                    {deviceType:'Android'},
+                                                    {deviceType:'IOS'},
+                                                ];
+                                                $scope.belongToUserItems = [
+                                                    {belongTo:'归属用户'},
+                                                ];
+                                            })
+                                };
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
                                         item.line = '上线'
-                                    }else if(item.status == 2){
+                                    } else if (item.status == 2) {
 
                                         item.line = '下线'
-                                    }else if(item.status == 3){
+                                    } else if (item.status == 3) {
 
                                         item.line = '上线'
                                     }
 
                                 });
-                                $scope.items.forEach(function (item,index) {
-                                    if(item.status == 1){
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
                                         //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                         item.endTime = item.end_time;
                                         //alert(item.endTime)
                                         item.line = '上线'
-                                    }else if(item.status == 2){
+                                    } else if (item.status == 2) {
                                         //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                         item.endTime = item.end_time;
                                         item.line = '下线'
-                                    }else if(item.status == 3){
-                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                    } else if (item.status == 3) {
+                                        item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                         item.line = '上线'
                                     }
 
@@ -663,32 +736,95 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     page:1,
                                     rows:200
                                 }).then(function (data) {
+                                    $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
-                                    console.log($scope.items);
                                     $scope.items.forEach(function (item,index) {
-                                        if(item.status == 1){
+                                        item.title = item.title.replace(/&nbsp;/g,'')
+                                    })
+                                    $rootScope.totalCount = data.result.total;
+                                    $rootScope.pageIndex = 1;
+                                    $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                    $rootScope.toPage = function (index) {
+                                        if(index<1){
+                                            index = 1
+                                        }
+                                        if(index>$rootScope.pageTotal){
+                                            index--;
+                                            $rootScope.pageIndex = index  ;
+                                        }
+                                        $rootScope.pageIndex = index;
+                                        var data = {
+                                            id:'',
+                                            title:'',
+                                            pid:'',
+                                            poi_id:'',
+                                            status:'',
+                                            device:1,
+                                            user:0,
+                                            page:1,
+                                            rows:20
+                                        };
+                                        serverService.getAllTask(data)
+                                                .then(function (data) {
+                                                    $rootScope.taskLists = data.result.rows
+                                                    $scope.items = data.result.rows;
+                                                    $scope.items.forEach(function (item,index) {
+                                                        item.title = item.title.replace(/&nbsp;/g,'')
+                                                    })
+                                                    $scope.items.forEach(function (item,index) {
+                                                        if(item.status == 1){
+                                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                            item.endTime = item.end_time;
+                                                            //alert(item.endTime)
+                                                            item.line = '上线'
+                                                        }else if(item.status == 2){
+                                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                            item.endTime = item.end_time;
+                                                            item.line = '下线'
+                                                        }else if(item.status == 3){
+                                                            item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                            item.line = '上线'
+                                                        }
+
+                                                    });
+                                                    $scope.stateItems = [
+                                                        {state:'未上线'},
+                                                        {state:'已上线'},
+                                                        {state:'已过期'}
+                                                    ];
+                                                    $scope.deviceItems = [
+                                                        {deviceType:'Android'},
+                                                        {deviceType:'IOS'},
+                                                    ];
+                                                    $scope.belongToUserItems = [
+                                                        {belongTo:'归属用户'},
+                                                    ];
+                                                })
+                                    };
+                                    $scope.items.forEach(function (item, index) {
+                                        if (item.status == 1) {
                                             item.line = '上线'
-                                        }else if(item.status == 2){
+                                        } else if (item.status == 2) {
 
                                             item.line = '下线'
-                                        }else if(item.status == 3){
+                                        } else if (item.status == 3) {
 
                                             item.line = '上线'
                                         }
 
                                     });
-                                    $scope.items.forEach(function (item,index) {
-                                        if(item.status == 1){
+                                    $scope.items.forEach(function (item, index) {
+                                        if (item.status == 1) {
                                             //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                             item.endTime = item.end_time;
                                             //alert(item.endTime)
                                             item.line = '上线'
-                                        }else if(item.status == 2){
+                                        } else if (item.status == 2) {
                                             //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                             item.endTime = item.end_time;
                                             item.line = '下线'
-                                        }else if(item.status == 3){
-                                            item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                        } else if (item.status == 3) {
+                                            item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                             item.line = '上线'
                                         }
 
@@ -707,32 +843,95 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     page:1,
                                     rows:200
                                 }).then(function (data) {
+                                    $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
-                                    console.log($scope.items);
                                     $scope.items.forEach(function (item,index) {
-                                        if(item.status == 1){
+                                        item.title = item.title.replace(/&nbsp;/g,'')
+                                    })
+                                    $rootScope.totalCount = data.result.total;
+                                    $rootScope.pageIndex = 1;
+                                    $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                    $rootScope.toPage = function (index) {
+                                        if(index<1){
+                                            index = 1
+                                        }
+                                        if(index>$rootScope.pageTotal){
+                                            index--;
+                                            $rootScope.pageIndex = index  ;
+                                        }
+                                        $rootScope.pageIndex = index;
+                                        var data = {
+                                            id:'',
+                                            title:'',
+                                            pid:'',
+                                            poi_id:'',
+                                            status:'',
+                                            device:2,
+                                            user:0,
+                                            page:1,
+                                            rows:20
+                                        };
+                                        serverService.getAllTask(data)
+                                                .then(function (data) {
+                                                    $rootScope.taskLists = data.result.rows
+                                                    $scope.items = data.result.rows;
+                                                    $scope.items.forEach(function (item,index) {
+                                                        item.title = item.title.replace(/&nbsp;/g,'')
+                                                    })
+                                                    $scope.items.forEach(function (item,index) {
+                                                        if(item.status == 1){
+                                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                            item.endTime = item.end_time;
+                                                            //alert(item.endTime)
+                                                            item.line = '上线'
+                                                        }else if(item.status == 2){
+                                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                            item.endTime = item.end_time;
+                                                            item.line = '下线'
+                                                        }else if(item.status == 3){
+                                                            item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                            item.line = '上线'
+                                                        }
+
+                                                    });
+                                                    $scope.stateItems = [
+                                                        {state:'未上线'},
+                                                        {state:'已上线'},
+                                                        {state:'已过期'}
+                                                    ];
+                                                    $scope.deviceItems = [
+                                                        {deviceType:'Android'},
+                                                        {deviceType:'IOS'},
+                                                    ];
+                                                    $scope.belongToUserItems = [
+                                                        {belongTo:'归属用户'},
+                                                    ];
+                                                })
+                                    };
+                                    $scope.items.forEach(function (item, index) {
+                                        if (item.status == 1) {
                                             item.line = '上线'
-                                        }else if(item.status == 2){
+                                        } else if (item.status == 2) {
 
                                             item.line = '下线'
-                                        }else if(item.status == 3){
+                                        } else if (item.status == 3) {
 
                                             item.line = '上线'
                                         }
 
                                     });
-                                    $scope.items.forEach(function (item,index) {
-                                        if(item.status == 1){
+                                    $scope.items.forEach(function (item, index) {
+                                        if (item.status == 1) {
                                             //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                             item.endTime = item.end_time;
                                             //alert(item.endTime)
                                             item.line = '上线'
-                                        }else if(item.status == 2){
+                                        } else if (item.status == 2) {
                                             //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                             item.endTime = item.end_time;
                                             item.line = '下线'
-                                        }else if(item.status == 3){
-                                            item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                        } else if (item.status == 3) {
+                                            item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                             item.line = '上线'
                                         }
 
@@ -756,34 +955,97 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 device:0,
                                 user:0,
                                 page:1,
-                                rows:200
+                                rows:20
                             }).then(function (data) {
+                                $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
-                                console.log($scope.items);
                                 $scope.items.forEach(function (item,index) {
-                                    if(item.status == 1){
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
+                                $rootScope.totalCount = data.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                $rootScope.toPage = function (index) {
+                                    if(index<1){
+                                        index = 1
+                                    }
+                                    if(index>$rootScope.pageTotal){
+                                        index--;
+                                        $rootScope.pageIndex = index  ;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var data = {
+                                        id:'',
+                                        title:'',
+                                        pid:'',
+                                        poi_id:'',
+                                        status:'',
+                                        device:0,
+                                        user:0,
+                                        page:1,
+                                        rows:20
+                                    };
+                                    serverService.getAllTask(data)
+                                            .then(function (data) {
+                                                $rootScope.taskLists = data.result.rows
+                                                $scope.items = data.result.rows;
+                                                $scope.items.forEach(function (item,index) {
+                                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                                })
+                                                $scope.items.forEach(function (item,index) {
+                                                    if(item.status == 1){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        //alert(item.endTime)
+                                                        item.line = '上线'
+                                                    }else if(item.status == 2){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        item.line = '下线'
+                                                    }else if(item.status == 3){
+                                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                        item.line = '上线'
+                                                    }
+
+                                                });
+                                                $scope.stateItems = [
+                                                    {state:'未上线'},
+                                                    {state:'已上线'},
+                                                    {state:'已过期'}
+                                                ];
+                                                $scope.deviceItems = [
+                                                    {deviceType:'Android'},
+                                                    {deviceType:'IOS'},
+                                                ];
+                                                $scope.belongToUserItems = [
+                                                    {belongTo:'归属用户'},
+                                                ];
+                                            })
+                                };
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
                                         item.line = '上线'
-                                    }else if(item.status == 2){
+                                    } else if (item.status == 2) {
 
                                         item.line = '下线'
-                                    }else if(item.status == 3){
+                                    } else if (item.status == 3) {
 
                                         item.line = '上线'
                                     }
 
                                 });
-                                $scope.items.forEach(function (item,index) {
-                                    if(item.status == 1){
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
                                         //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                         item.endTime = item.end_time;
                                         //alert(item.endTime)
                                         item.line = '上线'
-                                    }else if(item.status == 2){
+                                    } else if (item.status == 2) {
                                         //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                         item.endTime = item.end_time;
                                         item.line = '下线'
-                                    }else if(item.status == 3){
-                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                    } else if (item.status == 3) {
+                                        item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                         item.line = '上线'
                                     }
 
@@ -800,35 +1062,98 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             device:0,
                             user:1,
                             page:1,
-                            rows:200,
+                            rows:20,
                             show_nocheck:1
                         }).then(function (data) {
+                            $rootScope.taskLists = data.result.rows;
                             $scope.items = data.result.rows;
-                            console.log($scope.items);
                             $scope.items.forEach(function (item,index) {
-                                if(item.status == 1){
+                                item.title = item.title.replace(/&nbsp;/g,'')
+                            })
+                            $rootScope.totalCount = data.result.total;
+                            $rootScope.pageIndex = 1;
+                            $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                            $rootScope.toPage = function (index) {
+                                if(index<1){
+                                    index = 1
+                                }
+                                if(index>$rootScope.pageTotal){
+                                    index--;
+                                    $rootScope.pageIndex = index  ;
+                                }
+                                $rootScope.pageIndex = index;
+                                var data = {
+                                    id:'',
+                                    title:'',
+                                    pid:'',
+                                    poi_id:'',
+                                    status:'',
+                                    device:0,
+                                    user:1,
+                                    page:1,
+                                    rows:20
+                                };
+                                serverService.getAllTask(data)
+                                        .then(function (data) {
+                                            $rootScope.taskLists = data.result.rows
+                                            $scope.items = data.result.rows;
+                                            $scope.items.forEach(function (item,index) {
+                                                item.title = item.title.replace(/&nbsp;/g,'')
+                                            })
+                                            $scope.items.forEach(function (item,index) {
+                                                if(item.status == 1){
+                                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                    item.endTime = item.end_time;
+                                                    //alert(item.endTime)
+                                                    item.line = '上线'
+                                                }else if(item.status == 2){
+                                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                    item.endTime = item.end_time;
+                                                    item.line = '下线'
+                                                }else if(item.status == 3){
+                                                    item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                    item.line = '上线'
+                                                }
+
+                                            });
+                                            $scope.stateItems = [
+                                                {state:'未上线'},
+                                                {state:'已上线'},
+                                                {state:'已过期'}
+                                            ];
+                                            $scope.deviceItems = [
+                                                {deviceType:'Android'},
+                                                {deviceType:'IOS'},
+                                            ];
+                                            $scope.belongToUserItems = [
+                                                {belongTo:'归属用户'},
+                                            ];
+                                        })
+                            };
+                            $scope.items.forEach(function (item, index) {
+                                if (item.status == 1) {
                                     item.line = '上线'
-                                }else if(item.status == 2){
+                                } else if (item.status == 2) {
 
                                     item.line = '下线'
-                                }else if(item.status == 3){
+                                } else if (item.status == 3) {
 
                                     item.line = '上线'
                                 }
 
                             });
-                            $scope.items.forEach(function (item,index) {
-                                if(item.status == 1){
+                            $scope.items.forEach(function (item, index) {
+                                if (item.status == 1) {
                                     //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                     item.endTime = item.end_time;
                                     //alert(item.endTime)
                                     item.line = '上线'
-                                }else if(item.status == 2){
+                                } else if (item.status == 2) {
                                     //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                     item.endTime = item.end_time;
                                     item.line = '下线'
-                                }else if(item.status == 3){
-                                    item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                } else if (item.status == 3) {
+                                    item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                     item.line = '上线'
                                 }
 
@@ -853,40 +1178,99 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             page:1,
                             rows:20
                         }).then(function (data) {
+                            $rootScope.taskLists = data.result.rows;
                             $scope.items = data.result.rows;
-
-                            console.log($scope.items);
                             $scope.items.forEach(function (item,index) {
-                                if(item.status == 1){
+                                item.title = item.title.replace(/&nbsp;/g,'')
+                            })
+                            $rootScope.totalCount = data.result.total;
+                            $rootScope.pageIndex = 1;
+                            $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                            $rootScope.toPage = function (index) {
+                                if(index<1){
+                                    index = 1
+                                }
+                                if(index>$rootScope.pageTotal){
+                                    index--;
+                                    $rootScope.pageIndex = index  ;
+                                }
+                                $rootScope.pageIndex = index;
+                                var data = {
+                                    id:'',
+                                    title:'',
+                                    pid:'',
+                                    poi_id:'',
+                                    status:'',
+                                    device:0,
+                                    user:0,
+                                    page:1,
+                                    rows:20
+                                };
+                                serverService.getAllTask(data)
+                                        .then(function (data) {
+                                            $rootScope.taskLists = data.result.rows
+                                            $scope.items = data.result.rows;
+                                            $scope.items.forEach(function (item,index) {
+                                                item.title = item.title.replace(/&nbsp;/g,'')
+                                            })
+                                            $scope.items.forEach(function (item,index) {
+                                                if(item.status == 1){
+                                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                    item.endTime = item.end_time;
+                                                    //alert(item.endTime)
+                                                    item.line = '上线'
+                                                }else if(item.status == 2){
+                                                    //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                    item.endTime = item.end_time;
+                                                    item.line = '下线'
+                                                }else if(item.status == 3){
+                                                    item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                    item.line = '上线'
+                                                }
+
+                                            });
+                                            $scope.stateItems = [
+                                                {state:'未上线'},
+                                                {state:'已上线'},
+                                                {state:'已过期'}
+                                            ];
+                                            $scope.deviceItems = [
+                                                {deviceType:'Android'},
+                                                {deviceType:'IOS'},
+                                            ];
+                                            $scope.belongToUserItems = [
+                                                {belongTo:'归属用户'},
+                                            ];
+                                        })
+                            };
+                            $scope.items.forEach(function (item, index) {
+                                if (item.status == 1) {
                                     item.line = '上线'
-                                }else if(item.status == 2){
+                                } else if (item.status == 2) {
 
                                     item.line = '下线'
-                                }else if(item.status == 3){
+                                } else if (item.status == 3) {
 
                                     item.line = '上线'
                                 }
 
                             });
-                            $scope.items.forEach(function (item,index) {
-                                if(item.status == 1){
+                            $scope.items.forEach(function (item, index) {
+                                if (item.status == 1) {
                                     //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                     item.endTime = item.end_time;
                                     //alert(item.endTime)
                                     item.line = '上线'
-                                }else if(item.status == 2){
+                                } else if (item.status == 2) {
                                     //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
                                     item.endTime = item.end_time;
                                     item.line = '下线'
-                                }else if(item.status == 3){
-                                    item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                } else if (item.status == 3) {
+                                    item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                     item.line = '上线'
                                 }
 
                             });
-                        })
-                        $scope.items.forEach(function (item) {
-                            item.show =''
                         })
                         $scope.searhContent = ''
                     }
@@ -894,20 +1278,221 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.taskSearch = function () {
                         /*任务Id*/
                         if($scope.searchByTaskId == true){
-                            $scope.items.forEach(function (item) {
-                                //console.log(item.id)
-                                if(item.id != $scope.searhContent*1){
-                                    item.show = true;
-                                }
+                            serverService.getAllTask({
+                                id:$scope.searhContent*1,
+                                title:'',
+                                pid:'',
+                                poi_id:'',
+                                status:'',
+                                device:0,
+                                user:0,
+                                page:1,
+                                rows:200
+                            }).then(function (result) {
+                                $rootScope.taskLists = data.result.rows;
+                                $scope.items = data.result.rows;
+                                $scope.items.forEach(function (item,index) {
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
+                                $rootScope.totalCount = data.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                $rootScope.toPage = function (index) {
+                                    if(index<1){
+                                        index = 1
+                                    }
+                                    if(index>$rootScope.pageTotal){
+                                        index--;
+                                        $rootScope.pageIndex = index  ;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var data = {
+                                        id:$scope.searhContent*1,
+                                        title:'',
+                                        pid:'',
+                                        poi_id:'',
+                                        status:'',
+                                        device:0,
+                                        user:0,
+                                        page:1,
+                                        rows:20
+                                    };
+                                    serverService.getAllTask(data)
+                                            .then(function (data) {
+                                                $rootScope.taskLists = data.result.rows
+                                                $scope.items = data.result.rows;
+                                                $scope.items.forEach(function (item,index) {
+                                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                                })
+                                                $scope.items.forEach(function (item,index) {
+                                                    if(item.status == 1){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        //alert(item.endTime)
+                                                        item.line = '上线'
+                                                    }else if(item.status == 2){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        item.line = '下线'
+                                                    }else if(item.status == 3){
+                                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                        item.line = '上线'
+                                                    }
+
+                                                });
+                                                $scope.stateItems = [
+                                                    {state:'未上线'},
+                                                    {state:'已上线'},
+                                                    {state:'已过期'}
+                                                ];
+                                                $scope.deviceItems = [
+                                                    {deviceType:'Android'},
+                                                    {deviceType:'IOS'},
+                                                ];
+                                                $scope.belongToUserItems = [
+                                                    {belongTo:'归属用户'},
+                                                ];
+                                                $scope.searhContent = ''
+                                            })
+                                };
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
+                                        item.line = '上线'
+                                    } else if (item.status == 2) {
+
+                                        item.line = '下线'
+                                    } else if (item.status == 3) {
+
+                                        item.line = '上线'
+                                    }
+
+                                });
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        //alert(item.endTime)
+                                        item.line = '上线'
+                                    } else if (item.status == 2) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        item.line = '下线'
+                                    } else if (item.status == 3) {
+                                        item.endTime = item.end_time.split('>')[1].substr(0, 19)
+                                        item.line = '上线'
+                                    }
+
+                                });
                             })
                         }
                         /**任务名字**/
                         if( $scope.searchByTaskName == true){
-                            $scope.items.forEach(function (item) {
-                                if(item.title.indexOf($scope.searhContent)==-1){
-                                    //console.log(item.title);
-                                    item.show = true;
-                                }
+                            serverService.getAllTask({
+                                id:'',
+                                title:$scope.searhContent,
+                                pid:'',
+                                poi_id:'',
+                                status:'',
+                                device:0,
+                                user:0,
+                                page:1,
+                                rows:20
+                            }).then(function (result) {
+                                $rootScope.taskLists = data.result.rows;
+                                $scope.items = data.result.rows;
+                                $scope.items.forEach(function (item,index) {
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
+                                $rootScope.totalCount = data.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                $rootScope.toPage = function (index) {
+                                    if(index<1){
+                                        index = 1
+                                    }
+                                    if(index>$rootScope.pageTotal){
+                                        index--;
+                                        $rootScope.pageIndex = index  ;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var data = {
+                                        id:'',
+                                        title:$scope.searhContent,
+                                        pid:'',
+                                        poi_id:'',
+                                        status:'',
+                                        device:0,
+                                        user:0,
+                                        page:1,
+                                        rows:20
+                                    };
+                                    serverService.getAllTask(data)
+                                            .then(function (data) {
+                                                $rootScope.taskLists = data.result.rows
+                                                $scope.items = data.result.rows;
+                                                $scope.items.forEach(function (item,index) {
+                                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                                })
+                                                $scope.items.forEach(function (item,index) {
+                                                    if(item.status == 1){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        //alert(item.endTime)
+                                                        item.line = '上线'
+                                                    }else if(item.status == 2){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        item.line = '下线'
+                                                    }else if(item.status == 3){
+                                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                        item.line = '上线'
+                                                    }
+
+                                                });
+                                                $scope.stateItems = [
+                                                    {state:'未上线'},
+                                                    {state:'已上线'},
+                                                    {state:'已过期'}
+                                                ];
+                                                $scope.deviceItems = [
+                                                    {deviceType:'Android'},
+                                                    {deviceType:'IOS'},
+                                                ];
+                                                $scope.belongToUserItems = [
+                                                    {belongTo:'归属用户'},
+                                                ];
+                                                $scope.searhContent = ''
+                                            })
+                                };
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
+                                        item.line = '上线'
+                                    } else if (item.status == 2) {
+
+                                        item.line = '下线'
+                                    } else if (item.status == 3) {
+
+                                        item.line = '上线'
+                                    }
+
+                                });
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        //alert(item.endTime)
+                                        item.line = '上线'
+                                    } else if (item.status == 2) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        item.line = '下线'
+                                    } else if (item.status == 3) {
+                                        item.endTime = item.end_time.split('>')[1].substr(0, 19)
+                                        item.line = '上线'
+                                    }
+
+                                });
+
                             })
                         }
                         /**poi_id**/
@@ -923,16 +1508,96 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 page:1,
                                 rows:200
                             }).then(function (result) {
-                                $scope.items = result;
-                                console.log($scope.items);
+                                $rootScope.taskLists = data.result.rows;
+                                $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item,index) {
-                                    if(item.status == 1){
+                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                })
+                                $rootScope.totalCount = data.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                                $rootScope.toPage = function (index) {
+                                    if(index<1){
+                                        index = 1
+                                    }
+                                    if(index>$rootScope.pageTotal){
+                                        index--;
+                                        $rootScope.pageIndex = index  ;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var data = {
+                                        id:'',
+                                        title:$scope.searhContent,
+                                        pid:'',
+                                        poi_id:'',
+                                        status:'',
+                                        device:0,
+                                        user:0,
+                                        page:1,
+                                        rows:20
+                                    };
+                                    serverService.getAllTask(data)
+                                            .then(function (data) {
+                                                $rootScope.taskLists = data.result.rows
+                                                $scope.items = data.result.rows;
+                                                $scope.items.forEach(function (item,index) {
+                                                    item.title = item.title.replace(/&nbsp;/g,'')
+                                                })
+                                                $scope.items.forEach(function (item,index) {
+                                                    if(item.status == 1){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        //alert(item.endTime)
+                                                        item.line = '上线'
+                                                    }else if(item.status == 2){
+                                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                                        item.endTime = item.end_time;
+                                                        item.line = '下线'
+                                                    }else if(item.status == 3){
+                                                        item.endTime = item.end_time.split('>')[1].substr(0,19)
+                                                        item.line = '上线'
+                                                    }
+
+                                                });
+                                                $scope.stateItems = [
+                                                    {state:'未上线'},
+                                                    {state:'已上线'},
+                                                    {state:'已过期'}
+                                                ];
+                                                $scope.deviceItems = [
+                                                    {deviceType:'Android'},
+                                                    {deviceType:'IOS'},
+                                                ];
+                                                $scope.belongToUserItems = [
+                                                    {belongTo:'归属用户'},
+                                                ];
+                                                $scope.searhContent = ''
+                                            })
+                                };
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
                                         item.line = '上线'
-                                    }else if(item.status == 2){
+                                    } else if (item.status == 2) {
 
                                         item.line = '下线'
-                                    }else if(item.status == 3){
+                                    } else if (item.status == 3) {
 
+                                        item.line = '上线'
+                                    }
+
+                                });
+                                $scope.items.forEach(function (item, index) {
+                                    if (item.status == 1) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        //alert(item.endTime)
+                                        item.line = '上线'
+                                    } else if (item.status == 2) {
+                                        //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                        item.endTime = item.end_time;
+                                        item.line = '下线'
+                                    } else if (item.status == 3) {
+                                        item.endTime = item.end_time.split('>')[1].substr(0, 19)
                                         item.line = '上线'
                                     }
 

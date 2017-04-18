@@ -22,9 +22,9 @@
     </div>
     <div class="selectArea">
         <div>
-            <select class="taskState" ng-model="taskState.state" ng-options="item.state for item in stateItems"
+            <select class="taskState" ng-model="taskState" ng-options="item.state for item in stateItems"
             ng-change="upStateshow()">
-                <option value="" ng-show="taskState.state">全部</option>
+                <option value="" ng-show="taskState">全部</option>
             </select>
         </div>
         <div>

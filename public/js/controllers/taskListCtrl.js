@@ -1140,7 +1140,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
                                     $rootScope.first = false;
-                                    $scope.loadingUser = '归属用户'
+                                    $scope.loadingUser = '归属用户';
                                     $scope.statusLate = true;
                                     $scope.deviceLate = true;
                                     $scope.userLate = true;
@@ -1160,7 +1160,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         status: '',
                                         device: 0,
                                         user: 1,
-                                        page: 1,
+                                        page: index,
                                         rows: 20
                                     };
                                     serverService.getAllTask(data)

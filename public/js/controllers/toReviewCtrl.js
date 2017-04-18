@@ -282,6 +282,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     $scope.toReviewItems = data.result.rows;
                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
+
                         $scope.toReview = $scope.toReviewItems[0].data;
                     }else{return}
 

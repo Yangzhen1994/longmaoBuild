@@ -296,7 +296,28 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
+
+        //获取历史被拒等
+        function getInfoData() {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/check/user/info.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
         return {getSelectData,getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
-            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent};
+            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent,getInfoData};
     }])
 })

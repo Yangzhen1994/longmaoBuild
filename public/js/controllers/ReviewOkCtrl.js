@@ -59,7 +59,18 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
             $scope.changeRight = function (item,index) {
                 if(item && item.data){
-                    $scope.reviewOk = item.data
+                    serverService.getInfoData({uid:item.uid,tid:item.id})
+                            .then(function (data) {
+                                item.data.push(data.result)
+                                $scope.reviewOk = item.data;
+                                $scope.reviewOk.forEach(function (item,index) {
+                                    if(item.type == 5){
+                                        window.x = item.x;
+                                        window.y = item.y;
+                                    }
+                                })
+
+                            })
                 }else{
                     $scope.reviewOk = {}
                 }
@@ -96,6 +107,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $scope.reviewOkItems = data.result.rows;
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
+                serverService.getInfoData({uid:$scope.reviewOk.uid,tid:$scope.reviewOk.id})
+                        .then(function (data) {
+                            $scope.reviewOk.push(data.result)
+                        })
             }else{return}
 
 
@@ -152,12 +167,17 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
             $scope.changeRight = function (item,index) {
                 if(item && item.data){
-                    $scope.reviewOk = item.data;
-                    $scope.reviewOk.forEach(function (item,index) {
-                        if(item.type == 5){
-                            window.x = item.x;
-                            window.y = item.y;
-                        }
+                    serverService.getInfoData({uid:item.uid,tid:item.id})
+                            .then(function (data) {
+                                item.data.push(data.result)
+                                $scope.reviewOk = item.data;
+                                $scope.reviewOk.forEach(function (item,index) {
+                                    if(item.type == 5){
+                                        window.x = item.x;
+                                        window.y = item.y;
+                                    }
+                            })
+
                     })
                 }else{
                     $scope.reviewOk = {}

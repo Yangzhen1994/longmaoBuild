@@ -1237,6 +1237,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             $scope.taskState = null;
                             $scope.deviceType = null;
                             $scope.belongUser = null;
+                            $scope.statusLate = false;
+                            $scope.deviceLate = false;
+                            $scope.userLate = false;
                             serverService.getAllTask({
                                 id: '',
                                 title: '',
@@ -1703,6 +1706,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             window.location.reload()
                                         } else {
                                             alert('操作失败请查看余额是否充足')
+                                            window.location.reload();
                                         }
                                     })
                         }

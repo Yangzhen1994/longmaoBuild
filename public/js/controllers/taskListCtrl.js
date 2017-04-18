@@ -171,7 +171,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         $scope.testNum = new RegExp("/d");
                         /***changeSelect**/
                         $scope.stateItems = [
-                            {state: '全部'},
                             {state: '未上线'},
                             {state: '已上线'},
                             {state: '已过期'}
@@ -185,6 +184,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         ];
                         /**状态筛选*/
                         $scope.upStateshow = function () {
+                            storageUtils.session.setItem('_state_',$scope.taskState)
                             //console.log($scope.taskState.state)//正在进行
                             if ($scope.taskState == null) {
 

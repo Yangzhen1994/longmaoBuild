@@ -1343,7 +1343,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                 });
                             })
-                            $scope.searhContent = ''
+                            //$scope.searhContent = ''
                         }
                         /**search**/
                         $scope.taskSearch = function () {
@@ -1360,6 +1360,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 200
                                 }).then(function (data) {
+                                    $scope.searhContent = ''
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -1369,7 +1370,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-
+                                        if(!$scope.searhContent){
+                                            return
+                                        }
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
@@ -1471,6 +1474,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 20
                                 }).then(function (data) {
+                                    $scope.searhContent = ''
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -1480,7 +1484,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-
+                                        if(!$scope.searhContent){
+                                            return
+                                        }
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
@@ -1583,6 +1589,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 200
                                 }).then(function (data) {
+                                    $scope.searhContent = '';
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -1592,7 +1599,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-
+                                        if(!$scope.searhContent){
+                                            return
+                                        }
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1

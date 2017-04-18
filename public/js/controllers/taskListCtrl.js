@@ -1487,9 +1487,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-                                        if(!$scope.searhContent){
+                                        /*if(!$scope.searhContent){
                                             return
-                                        }
+                                        }*/
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1

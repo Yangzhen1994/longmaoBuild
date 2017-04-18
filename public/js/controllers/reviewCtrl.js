@@ -38,7 +38,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             device:0,
             user:0,
             page:1,
-            rows:200,
+            rows:20,
             show_nocheck:1
         })
                 .then(function (data) {
@@ -53,6 +53,66 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.items.forEach(function (item,index) {
                         item.title = item.title.replace(/&nbsp;/g,'')
                     })
+                    $rootScope.taskLists = data.result.rows;
+
+                    /*$scope.items = data.result.rows;
+                    $scope.items.forEach(function (item, index) {
+                        item.title = item.title.replace(/&nbsp;/g, '')
+                    })*/
+
+
+                    $rootScope.totalCount = data.result.total;
+                    $rootScope.pageIndex = 1;
+                    $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
+                    $rootScope.toPage = function (index) {
+
+                        if (index < 1) {
+                            index = 1
+                        }
+                        if (index > $rootScope.pageTotal) {
+                            index--;
+                            $rootScope.pageIndex = index;
+                        }
+                        $rootScope.pageIndex = index;
+                        var data = {
+                            id: '',
+                            title: '',
+                            pid: '',
+                            poi_id: '',
+                            status: '',
+                            device: 0,
+                            user: 0,
+                            page: index,
+                            rows: 20,
+                            show_nocheck: 1
+                        };
+                        serverService.getAllTask(data)
+                                .then(function (data) {
+                                    $rootScope.taskLists = data.result.rows
+                                    $scope.items = data.result.rows;
+                                    $scope.items.forEach(function (item, index) {
+                                        item.title = item.title.replace(/&nbsp;/g, '')
+                                    })
+                                    $scope.items.forEach(function (item, index) {
+                                        if (item.status == 1) {
+                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                            item.endTime = item.end_time;
+                                            //alert(item.endTime)
+                                            item.line = '上线'
+                                        } else if (item.status == 2) {
+                                            //item.endTime = item.end_time.split('-')[0].substr(-4,4)}}-{{item.end_time.split('-')[1].substr(0,2)}}-{{item.end_time.split('-')[2].substr(0,2)}} {{item.end_time.split(':')[0].substr(-2,2)}}:{{item.end_time.split(':')[1].substr(0,2)}}:{{item.end_time.split(':')[1].substr(0,2)
+                                            item.endTime = item.end_time;
+                                            item.line = '下线'
+                                        } else if (item.status == 3) {
+                                            item.endTime = item.end_time.split('>')[1].substr(0, 19)
+                                            item.line = '上线'
+                                        }
+
+                                    });
+                                })
+
+
+                    };
                     $scope.setChoose = function (type) {
                         $scope.chooseType = type;
                         /**绑定id name 或者 poiid**/

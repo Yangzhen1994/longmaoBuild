@@ -374,7 +374,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         alert('操作成功')
                                         window.location.reload()
                                     }else{
-                                        alert('操作失败')
+                                        alert('操作失败请查看余额是否充足')
                                     }
                                 })
                     }

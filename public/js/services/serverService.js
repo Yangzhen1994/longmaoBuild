@@ -298,7 +298,7 @@ define(['app'], function (app) {
         }
 
         //获取历史被拒等
-        function getInfoData() {
+        function getInfoData(data) {
             var defer = $q.defer();
             var url = 'http://manager.test.shandianshua.com/totoro/task/check/user/info.json';
             $.ajax({
@@ -307,6 +307,7 @@ define(['app'], function (app) {
                 xhrFields: {
                     withCredentials: true
                 },
+                data:data,
                 //全部data
                 success: function (data) {
                     defer.resolve(data)

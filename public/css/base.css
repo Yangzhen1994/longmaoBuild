@@ -337,3 +337,6 @@ ul{
 
     cursor: pointer;
 }
+.pagination_index ul li{
+    float: left;
+}

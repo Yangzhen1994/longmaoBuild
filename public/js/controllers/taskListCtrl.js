@@ -244,8 +244,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 user:0,
                                 page:1,
                                 rows:200
-                            }).then(function (result) {
-                                $scope.items = result;
+                            }).then(function (data) {
+                                $scope.items = data.result.rows;
                                 console.log($scope.items);
                                 $scope.items.forEach(function (item,index) {
                                     if(item.status == 1){
@@ -338,9 +338,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             device:0,
                             user:0,
                             page:1,
-                            rows:200
-                        }).then(function (result) {
-                            $scope.items = result;
+                            rows:20
+                        }).then(function (data) {
+                            $scope.items = data.result.row;
 
                             console.log($scope.items);
                             $scope.items.forEach(function (item,index) {

@@ -14,7 +14,7 @@ define(['app'], function (app) {
                 //全部data
                 data:data,
                 success: function (data) {
-                        defer.resolve(data.result.rows)
+                        defer.resolve(data)
                 },
                 error: function (data) {
                     console.error(data)

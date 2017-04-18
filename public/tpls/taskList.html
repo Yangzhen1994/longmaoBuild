@@ -40,7 +40,20 @@
             </select>
         </div>
     </div>
-
+    <div class="detail_footer clearfix">
+        <div class="pagination_index">
+            <ul class="clearfix">
+                <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span ng-bind="pageTotal"></span>页</li>
+                <!--<li>
+                    <a class="pagination_page" href=" " ng-repeat="item in pageItem" ng-bind="item" ng-click="toPage(item, $event)"></ a>
+                </li>-->
+                <li class="pagination_prev"><a class="main_color" href="javascript:;" ng-click="toPage(pageIndex-1)">上一页</a></li>
+                <li class="pagination_next"><a class="main_color" href="javascript:;" ng-click="toPage(+pageIndex+1)">下一页</a></li>
+                <li class="pagination_sel_wrap">到第 <input class="pagination_sel" type="text" ng-model="goIndex"/> 页</li>
+                <li>< a href="javascript:;" class="pagination_goPage" ng-click="toPage(goIndex)">前往</ a></li>
+            </ul>
+        </div>
+    </div>
     <div class="taskDetail" style="width:100%;height:89%;overflow-y:auto">
        <!-- <h2>任务列表界面</h2>
         <input ng-model="newtask"></input>

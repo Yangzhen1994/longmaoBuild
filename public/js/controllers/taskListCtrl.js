@@ -38,18 +38,53 @@ define(['app','storageUtils'], function (app,storageUtils) {
             device:0,
             user:0,
             page:1,
-            rows:200,
+            rows:20,
             show_nocheck:1
         };
         var dataArr = [];
         /*上来显示任务*/
         serverService.getAllTask($scope.data)
-                .then(function (result) {
-                    $rootScope.taskLists = result
-                   $scope.items = result;
+                .then(function (data) {
+                    $rootScope.taskLists = data.result.rows
+                    $scope.items = data.result.rows;
                     $scope.items.forEach(function (item,index) {
                         item.title = item.title.replace(/&nbsp;/g,'')
                     })
+
+
+                    $rootScope.totalCount = data.result.total;
+                    $rootScope.pageIndex = 1;
+                    $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
+                    $rootScope.goIndex = $rootScope.pageIndex;
+                    $rootScope.toPage = function (index) {
+                        if(index<1){
+                            index = 1
+                        }
+                        if(index>pageTotal){
+                            $rootScope.pageIndex = index -- ;
+                        }
+                        var data = {
+                            id:'',
+                            title:'',
+                            pid:'',
+                            poi_id:'',
+                            status:'',
+                            device:0,
+                            user:0,
+                            page:index,
+                            rows:20,
+                            show_nocheck:1
+                        };
+                        serverService.getAllTask(data)
+                                .then(function (data) {
+                                    $rootScope.taskLists = data.result.rows
+                                    $scope.items = data.result.rows;
+                                    $scope.items.forEach(function (item,index) {
+                                        item.title = item.title.replace(/&nbsp;/g,'')
+                                    })
+                                })
+                    };
+
                    console.log($scope.items)
                     $scope.setChoose = function (type) {
                         $scope.chooseType = type;

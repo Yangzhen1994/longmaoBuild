@@ -23,7 +23,7 @@
     <div class="selectArea">
         <div>
             <select class="taskState" ng-model="taskState" ng-options="item.state for item in stateItems"
-            ng-change="upStateshow()">
+            ng-change="upStateshow()" ng-click="changeLoading()">
                 <option value="">{{loadingState}}</option>
             </select>
         </div>

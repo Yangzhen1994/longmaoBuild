@@ -61,12 +61,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 if(item && item.data){
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
-                                $scope.reviewOk.amount = data.result.amount
-                                $scope.reviewOk.check_fail = data.result.check_fail
-                                $scope.reviewOk.invited = data.result.invited
-                                $scope.reviewOk.regist_time = data.result.regist_time
-                                $scope.reviewOk.task_check_fail =data.result.task_check_fail
                                 $scope.reviewOk = item.data;
+                                $scope.reviewOk[0].amount = data.result.amount
+                                $scope.reviewOk[0].check_fail = data.result.check_fail
+                                $scope.reviewOk[0].invited = data.result.invited
+                                $scope.reviewOk[0].regist_time = data.result.regist_time
+                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+
                                 $scope.reviewOk.forEach(function (item,index) {
                                     if(item.type == 5){
                                         window.x = item.x;
@@ -177,12 +178,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 if(item && item.data){
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
-                                $scope.reviewOk.amount = data.result.amount
-                                $scope.reviewOk.check_fail = data.result.check_fail
-                                $scope.reviewOk.invited = data.result.invited
-                                $scope.reviewOk.regist_time = data.result.regist_time
-                                $scope.reviewOk.task_check_fail =data.result.task_check_fail
                                 $scope.reviewOk = item.data;
+                                $scope.reviewOk[0].amount = data.result.amount
+                                $scope.reviewOk[0].check_fail = data.result.check_fail
+                                $scope.reviewOk[0].invited = data.result.invited
+                                $scope.reviewOk[0].regist_time = data.result.regist_time
+                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+
                                 $scope.reviewOk.forEach(function (item,index) {
                                     if(item.type == 5){
                                         window.x = item.x;

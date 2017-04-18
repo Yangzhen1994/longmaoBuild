@@ -46,7 +46,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             };
             var dataArr = [];
             /*上来显示任务*/
-            $rootScope.first = true;
+
             serverService.getAllTask($scope.data)
                     .then(function (data) {
                         $rootScope.taskLists = data.result.rows
@@ -60,7 +60,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         $rootScope.pageIndex = 1;
                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                         $rootScope.toPage = function (index) {
-                            if ($rootScope.first) {
+
                                 if (index < 1) {
                                     index = 1
                                 }
@@ -117,7 +117,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 {belongTo: '归属用户'},
                                             ];
                                         })
-                            }
+
 
                         };
 
@@ -212,7 +212,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageIndex = 1;
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
-                                            $rootScope.first = false;
+
                                             if (index < 1) {
                                                 index = 1
                                             }
@@ -331,7 +331,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
 
                                     $rootScope.toPage = function (index) {
-                                        $rootScope.first = false;
+
                                         $scope.statusLate = true;
                                         $scope.loadingState = '未上线'
                                         if (index < 1) {
@@ -441,7 +441,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-                                        $rootScope.first = false;
+
                                         $scope.statusLate = true;
                                         $scope.loadingState = '已上线'
                                         if (index < 1) {
@@ -556,7 +556,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $scope.statusLate = true;
                                         //$scope.taskState.state = '已过期'
                                         $scope.loadingState = '已过期';
-                                        $rootScope.first = false;
+
                                         if (index < 1) {
                                             index = 1
                                         }
@@ -672,7 +672,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageIndex = 1;
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
-                                            $rootScope.first = false;
+
                                             $scope.statusLate = true;
                                             if (index < 1) {
                                                 index = 1
@@ -690,7 +690,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 status: '',
                                                 device: 0,
                                                 user: 0,
-                                                page: 1,
+                                                page: index,
                                                 rows: 20
                                             };
                                             serverService.getAllTask(data)
@@ -791,7 +791,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageIndex = 1;
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
-                                            $rootScope.first = false;
+
                                             $scope.loadingdevice = 'Android';
                                             $scope.statusLate = true;
                                             $scope.deviceLate = true;
@@ -811,7 +811,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 status: '',
                                                 device: 1,
                                                 user: 0,
-                                                page: 1,
+                                                page: index,
                                                 rows: 20
                                             };
                                             serverService.getAllTask(data)
@@ -902,7 +902,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageIndex = 1;
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
-                                            $rootScope.first = false;
+
                                             $scope.statusLate = true;
                                             $scope.deviceLate = true;
                                             $scope.loadingdevice = 'IOS';
@@ -1021,7 +1021,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $rootScope.pageIndex = 1;
                                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                         $rootScope.toPage = function (index) {
-                                            $rootScope.first = false;
+
                                             if (index < 1) {
                                                 index = 1
                                             }
@@ -1038,7 +1038,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 status: '',
                                                 device: 0,
                                                 user: 0,
-                                                page: 1,
+                                                page: index,
                                                 rows: 20
                                             };
                                             serverService.getAllTask(data)
@@ -1139,7 +1139,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
-                                    $rootScope.first = false;
+
                                     $scope.loadingUser = '归属用户';
                                     $scope.statusLate = true;
                                     $scope.deviceLate = true;
@@ -1257,7 +1257,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $rootScope.pageIndex = 1;
                                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                 $rootScope.toPage = function (index) {
-                                    $rootScope.first = false;
+
                                     if (index < 1) {
                                         index = 1
                                     }
@@ -1274,7 +1274,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         status: '',
                                         device: 0,
                                         user: 0,
-                                        page: 1,
+                                        page: index,
                                         rows: 20
                                     };
                                     serverService.getAllTask(data)
@@ -1369,7 +1369,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-                                        $rootScope.first = false;
+
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
@@ -1387,7 +1387,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             status: '',
                                             device: 0,
                                             user: 0,
-                                            page: 1,
+                                            page: index,
                                             rows: 20
                                         };
                                         serverService.getAllTask(data)
@@ -1480,7 +1480,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-                                        $rootScope.first = false;
+
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
@@ -1498,7 +1498,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             status: '',
                                             device: 0,
                                             user: 0,
-                                            page: 1,
+                                            page: index,
                                             rows: 20
                                         };
                                         serverService.getAllTask(data)
@@ -1592,7 +1592,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = 1;
                                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                                     $rootScope.toPage = function (index) {
-                                        $rootScope.first = false;
+
                                         $scope.statusLate = true;
                                         if (index < 1) {
                                             index = 1
@@ -1610,7 +1610,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             status: '',
                                             device: 0,
                                             user: 0,
-                                            page: 1,
+                                            page: index,
                                             rows: 20
                                         };
                                         serverService.getAllTask(data)

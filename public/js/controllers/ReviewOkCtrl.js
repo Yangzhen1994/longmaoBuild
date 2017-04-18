@@ -107,7 +107,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $scope.reviewOkItems = data.result.rows;
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
-                serverService.getInfoData({uid:$scope.reviewOk.uid,tid:$scope.reviewOk.id})
+                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0]})
                         .then(function (data) {
                             $scope.reviewOk.push(data.result)
                         })

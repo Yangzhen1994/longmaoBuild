@@ -183,9 +183,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             {belongTo: '归属用户'},
                         ];
                         /**状态筛选*/
-                        $scope.changeLoading = function () {
-                            alert(1)
-                        }
+
                         $scope.upStateshow = function () {
                             storageUtils.session.setItem('_state_',$scope.taskState)
                             //console.log($scope.taskState.state)//正在进行
@@ -549,7 +547,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                     $rootScope.toPage = function (index, ev) {
                                         $scope.statusLate = true;
-                                        $scope.loadingState = '已过期'
                                         //$scope.taskState.state = '已过期'
                                         $rootScope.first = false;
                                         if (index < 1) {

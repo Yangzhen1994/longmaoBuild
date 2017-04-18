@@ -61,7 +61,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 if(item && item.data){
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
-                                item.data.push(data.result)
+                                item.data[0].push(data.result)
                                 $scope.reviewOk = item.data;
                                 $scope.reviewOk.forEach(function (item,index) {
                                     if(item.type == 5){
@@ -107,9 +107,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $scope.reviewOkItems = data.result.rows;
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
-                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0]})
+                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                         .then(function (data) {
-                            $scope.reviewOk.push(data.result)
+                            $scope.reviewOk[0].push(data.result)
                         })
             }else{return}
 
@@ -169,7 +169,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 if(item && item.data){
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
-                                item.data.push(data.result)
+                                item.data[0].push(data.result)
                                 $scope.reviewOk = item.data;
                                 $scope.reviewOk.forEach(function (item,index) {
                                     if(item.type == 5){

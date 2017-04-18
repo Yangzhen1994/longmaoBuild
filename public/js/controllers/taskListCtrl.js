@@ -344,7 +344,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 device:0,
                                 user:0,
                                 page:1,
-                                rows:200
+                                rows:20
                             }).then(function (result) {
                                 $scope.items = result;
                                 console.log($scope.items);

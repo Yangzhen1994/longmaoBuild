@@ -17,13 +17,11 @@
     <div class="reviewOk_Right">
         <div style="overflow-y: auto;height: 538px">
             <div ng-repeat="item in reviewOk">
-
-                   <p>总赚钱:{{item.amount}}</p>
-                    <p>历史被拒:{{item.check_fail}}</p>
-                    <p>徒弟:{{item.invited}}</p>
-                   <p>注册时间:{{item.regist_time}}</p>
-                   <p>本任务被拒:{{item.task_check_fail}}</p>
-
+               <p style="color:#4CAF50">总赚钱:{{item.amount}}</p>
+               <p style="color:red">历史被拒:{{item.check_fail}}</p>
+               <p style="color:black">徒弟:{{item.invited}}</p>
+               <p style="color:black">注册时间:{{item.regist_time}}</p>
+               <p style="color:red">本任务被拒:{{item.task_check_fail}}</p>
                 <p>{{item.tips_text}}:</p>
                 <div class="toReview_Right_tel">
                     <p><span ng-hide="{{item.type == 2 || item.type == 6}}">{{item.value}}</span><a target="_blank" ng-href="{{item.value}}" ng-show="{{item.type == 6}}">下载</a>

@@ -237,7 +237,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         })
                         console.log(uploader)
-                        flag = false
+                        imgProof = false
                     }
 
                 })

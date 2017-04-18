@@ -88,7 +88,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
-            }
+            };
+            $scope.changeRight($scope.reviewNoItems[0],0)
             $scope.next = function () {
                 $scope.currentIndex ++;
                 if($scope.currentIndex >= $scope.reviewNoItems.length ){

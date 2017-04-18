@@ -13,6 +13,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         if(searchCheckBydate){
             $scope.toReviewItems = searchCheckBydate;
             $scope.toReview = $scope.toReviewItems[0].data;
+
             $scope.checkedBox = 0;
             $scope.changeColor = 0;
             $scope.currentIndex = 0;
@@ -48,7 +49,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
-            }
+            };
+            $scope.changeRight($scope.toReviewItems[0],0)
             $scope.all= function (master) {
 
                 $scope.masterItem = master;

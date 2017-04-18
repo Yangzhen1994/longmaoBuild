@@ -18,7 +18,7 @@
         </ul>
     </div>
     <div class="toReview_Right" >
-        <div style="overflow-y: auto;height: 538px">
+        <div style="overflow-y: auto;height:calc(100% - 56px);">
             <div ng-repeat="item in toReview">
                 <p style="color:#4CAF50" ng-show="$index == 0">总赚钱:{{item.amount}}</p>
                 <p style="color:red" ng-show="$index == 0">历史被拒:{{item.check_fail}}</p>
@@ -60,7 +60,7 @@
                 <a href="javascript:;" class="tr_Right_reject" ng-mouseenter="showrejCover = true">拒绝</a>
                 <a href="javascript:;" class="tr_Right_nextOne" ng-click="next()">下一个<i class="next_icon"></i></a>
         </div>
-        <div class="tr_reject" ng-show="showrejCover">
+        <div class="tr_reject clearfix" ng-show="showrejCover">
             <ul class="reason_cover" >
                 <li class="reason_header">拒绝原因</li>
                 <li id="{{'reson_detail'+$index}}"

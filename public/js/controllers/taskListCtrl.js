@@ -55,14 +55,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
                     $rootScope.pageTotal = Math.ceil($scope.totalCount/20);
-                    $rootScope.goIndex = $rootScope.pageIndex;
                     $rootScope.toPage = function (index) {
                         if(index<1){
                             index = 1
                         }
                         if(index>$rootScope.pageTotal){
                             index--;
-                            $rootScope.pageIndex = index -- ;
+                            $rootScope.pageIndex = index  ;
                         }
                         $rootScope.pageIndex = index;
                         var data = {
@@ -290,8 +289,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             page:1,
                             rows:200,
                             show_nocheck:1
-                        }).then(function (result) {
-                            $scope.items = result;
+                        }).then(function (data) {
+                            $scope.items = data.result.rows;
                             console.log($scope.items);
                             $scope.items.forEach(function (item,index) {
                                 if(item.status == 1){

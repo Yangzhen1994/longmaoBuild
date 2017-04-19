@@ -81,7 +81,7 @@
                                 ng-class="{cbg:bg==$index}"
                                 ng-click="subReason($event,$index)"
                                 ng-keyup="keyControl($event)">
-                                {{reason.reasonText}}
+                                <span style="text-indent: 2em">{{reason.reasonText}}</span>
                             </li>
                             <li class="input_other_reason">
                                 <input type="text" name="orderReason" id="orderReason"

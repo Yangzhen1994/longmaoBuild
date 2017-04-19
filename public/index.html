@@ -50,7 +50,8 @@
     LEFT: 0;
     BOTTOM: 0;
     TOP: 72PX;
-    WIDTH: 100%;">
+    WIDTH: 100%;
+    overflow: hidden;">
             <div class="left" id="leftHeight" ng-controller="headerCtrl">
                 <a ui-sref="taskList" style="display: block;color: gainsboro" class="left-task" ng-class="{selected:isBlue == 1}" ng-click="changeBlue(1)">任务</a>
                 <a ui-sref="reviewList" style="display: block;color: gainsboro" class="left-review" ng-class="{selected:isBlue == 2}" ng-click="changeBlue(2)">审核</a>

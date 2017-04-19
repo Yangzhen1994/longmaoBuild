@@ -201,13 +201,13 @@
     border: 1px solid rgba(0,0,0,0.20);
     font-family: PingFangSC-Regular;
     font-size: 13px;
-    padding-left: 26px;
-    width: 221px;
+    padding-left: 13px;
+    width: 234px;
     height: 29px;
-    padding-top: 11px;
     box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.20);
 }
 .reason_cover .reason_header{
+    text-align: left;
     background: #FFFFFF;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
@@ -221,8 +221,7 @@
     height: 29px;
     font-size: 13px;
     line-height: 29px;
-    margin-top: -5px;
-
+    text-indent: 2em;
 }
 .changeColor{
     background:  rgba(44,183,245,0.30);

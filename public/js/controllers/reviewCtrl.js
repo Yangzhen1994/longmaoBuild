@@ -29,6 +29,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
         }
         /*显示审核*/
+
         serverService.getAllTask({
             id:'',
             title:'',
@@ -210,21 +211,22 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             serverService.getReviewList(data0)
                                     .then(function (data) {
                                         item.exportshow = false
-                                        data.result.rows.forEach(function (item1,index) {
-                                            if(item1.id == item.id && num == 1){
-                                                item.submit_time = item1.submit_time;
+
                                                 var data = {
-                                                    uid:item1.uid,
+                                                    uid:'',
                                                     tid:item.id,
-                                                    date:item1.submit_time.substr(0,10),
+                                                    date:$scope.ecoprtsubmitTime,
                                                     status:data0.status,
                                                     tip:1
                                                 };
-                                                num = 2;
-                                                var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status='+data.status+'&tip=1'
-                                                window.open(url)
-                                            }
-                                        })
+                                                if(!data.date){
+                                                    alert('请选择事件');
+                                                }else{
+                                                    var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id='+data.tid+'&uid='+data.uid+'&date='+data.date+'&status='+data.status+'&tip=1'
+                                                    window.open(url)
+                                                }
+
+
                                     })
                         }
 

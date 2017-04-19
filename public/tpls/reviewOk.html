@@ -29,7 +29,7 @@
         </ul>
     </div>
     <div class="reviewOk_Right">
-        <div style="overflow-y: auto;height: 538px">
+        <div style="overflow-y: auto;height: calc(100% - 56px)">
             <div ng-repeat="item in reviewOk">
                <p style="color:#4CAF50" ng-show="$index == 0">总赚钱:{{item.amount}}</p>
                <p style="color:red" ng-show="$index == 0">历史被拒:{{item.check_fail}}</p>

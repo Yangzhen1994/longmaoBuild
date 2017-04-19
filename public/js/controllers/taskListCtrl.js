@@ -12,7 +12,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
     return app.controller('taskListCtrl', ['$rootScope', '$scope', '$timeout', 'serverService',
         function ($rootScope, $scope, $timeout, serverService) {
             $timeout(function () {
-                $('.left').css('height','100%');
+                $('.left').css('height','calc(100% - 72px)');
             },100)
 
 

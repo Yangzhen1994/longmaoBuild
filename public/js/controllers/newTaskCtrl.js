@@ -313,7 +313,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
              $scope.ntnextPage()
          }*/
         $timeout(function () {
-            $('.left').height($('.newTask').height())
+            $('.left').height($('.newTask').height()+11)
         },100)
     }])
 })

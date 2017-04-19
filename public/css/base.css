@@ -154,6 +154,7 @@ select{
     height: 56px;
     margin-left: 16px;
     margin-top: 13px;
+    float: left;
 }
 .selectArea div{
     float: left;

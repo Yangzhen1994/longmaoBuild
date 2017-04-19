@@ -18,6 +18,7 @@
                     <li><a href="javascript:;" class="pagination_goPage" ng-click="toPage(goIndex)" style="color: #2db7f5;">前往</a></li>
                 </ul>
             </div>
+        </div>
         <ul class="checkItems" >
             <li ng-repeat="item in reviewOkItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
                 <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'ro_checkItem'+$index}}" class="tr_hideCheckBox"></input>

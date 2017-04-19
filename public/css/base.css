@@ -76,6 +76,7 @@ html,body{
     /*height: 738px;!*______*!*/
     background:#333333;
     /*height:738px\9\0;*/
+    height: 100%;
 }
 .left-task,.left-review{
     position: relative;
@@ -118,6 +119,7 @@ html,body{
     width: calc(100% - 176px);
     /*//height: 738px;*/
     position: relative;
+    height: 100%;
 }
 .bread{
     width: 300px;

@@ -46,7 +46,7 @@
                 <a href="" id="exit">退出</a>
             </div>-->
         </header>
-        <div>
+        <div class="clearfix">
             <div class="left" id="leftHeight" ng-controller="headerCtrl">
                 <a ui-sref="taskList" style="display: block;color: gainsboro" class="left-task" ng-class="{selected:isBlue == 1}" ng-click="changeBlue(1)">任务</a>
                 <a ui-sref="reviewList" style="display: block;color: gainsboro" class="left-review" ng-class="{selected:isBlue == 2}" ng-click="changeBlue(2)">审核</a>
@@ -71,7 +71,7 @@
     /*var ck = $.cookie('JSESSIONID');
     console.log(ck);*/
 
-    
+
 </script>
 
 </html>

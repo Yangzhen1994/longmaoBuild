@@ -13,7 +13,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             restrict: "EA",
 
             templateUrl: 'tpls/stepModule.html',
-            controller: function ($scope, serverService) {
+            controller: function ($scope, $timeout, serverService) {
                 console.log($scope.oldSteps);
 
                 /*$scope.stepModules.forEach(function (item) {
@@ -106,6 +106,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             })
                                 }
                             })*/
+                    $timeout(function(){
+                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                    },100)
                 }
                 /*图片凭证*/
                 $scope.showOtherType = function () {
@@ -155,6 +158,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }
                             })*/
                     /* $scope.$emit('addImgProof');*/
+                    $timeout(function(){
+                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                    },100)
                 };
                 /*位置凭证*/
                 $scope.posProof = function (index) {
@@ -192,6 +198,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     //                         })
                     //             }
                     //         })
+                    $timeout(function(){
+                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                    },100)
                 };
                 /*录音凭证*/
                 $scope.audioProof = function (index) {
@@ -228,6 +237,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             })
                                 }
                             })*/
+                    $timeout(function(){
+                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                    },100)
                 };
                 /*显示文本*/
 

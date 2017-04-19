@@ -258,7 +258,6 @@ select{
 /*taskDetail界面*/
 .taskDetail{
     margin: 0 auto;
-    margin-top: 8px;
     background: white;
     height: 100%;
 }

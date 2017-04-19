@@ -72,25 +72,26 @@
         <div class="toReview_Right_footer">
           <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>
                 <a href="javascript:;" class="tr_Right_fallow" ng-click="trRightAllow()">通过</a>
-                <a href="javascript:;" class="tr_Right_reject" ng-mouseenter="showrejCover = true">拒绝</a>
+                <a href="javascript:;" class="tr_Right_reject" ng-mouseenter="showrejCover = true" style="position: relative">拒绝
+                    <div class="tr_reject clearfix" ng-show="showrejCover">
+                        <ul class="reason_cover" >
+                            <li class="reason_header">拒绝原因</li>
+                            <li id="{{'reson_detail'+$index}}"
+                                ng-repeat="reason in reasonLists" ng-mouseover="changeReasonbg($index,e)"
+                                ng-class="{cbg:bg==$index}"
+                                ng-click="subReason($event,$index)"
+                                ng-keyup="keyControl($event)">
+                                {{reason.reasonText}}
+                            </li>
+                            <li class="input_other_reason">
+                                <input type="text" name="orderReason" id="orderReason"
+                                       ng-keyup="subotherReason($event)"   ng-model="otherReason" placeholder="请填写其它原因">
+                            </li>
+                        </ul>
+                    </div></a>
                 <a href="javascript:;" class="tr_Right_nextOne" ng-click="next()">下一个<i class="next_icon"></i></a>
         </div>
-        <div class="tr_reject clearfix" ng-show="showrejCover">
-            <ul class="reason_cover" >
-                <li class="reason_header">拒绝原因</li>
-                <li id="{{'reson_detail'+$index}}"
-                    ng-repeat="reason in reasonLists" ng-mouseover="changeReasonbg($index,e)"
-                    ng-class="{cbg:bg==$index}"
-                    ng-click="subReason($event,$index)"
-                    ng-keyup="keyControl($event)">
-                    {{reason.reasonText}}
-                </li>
-                <li class="input_other_reason">
-                    <input type="text" name="orderReason" id="orderReason"
-                           ng-keyup="subotherReason($event)"   ng-model="otherReason" placeholder="请填写其它原因">
-                </li>
-            </ul>
-        </div>
+
     </div>
 </div>
 

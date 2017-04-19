@@ -103,7 +103,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
                         function sys_file_sdk_qiniu_token(file) {
                             var token = $.ajax({
-                                url: 'http://manager.shandianshua.com/sdk/qiniu/token.json',
+                                url: 'http://manager.test.shandianshua.com/sdk/qiniu/token.json',
                                 method: 'POST',
                                 xhrFields: {
                                     withCredentials: true

@@ -32,7 +32,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 region_filter:''
             }
         }
-        $scope.task.desc = $scope.task.desc.replace(/\n/g,'\r');
         serverService.getSelectData()
                 .then(function (data) {
                     $scope.areaItems = data.result;

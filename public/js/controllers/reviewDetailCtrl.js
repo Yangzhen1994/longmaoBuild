@@ -4,6 +4,9 @@
 
 define(['app','storageUtils',], function (app,storageUtils,serverService) {
     return  app.controller('reviewDetailCtrl',['$scope','$timeout','serverService',function ($scope, $timeout,serverService) {
+        $timeout(function () {
+            $('.left').height($('.right').height())
+        },100)
         var reviwid = storageUtils.session.getItem('_reviewList_');
         $scope.reviewId = reviwid;
         $scope.chooseType = '';

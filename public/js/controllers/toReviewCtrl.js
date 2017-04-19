@@ -299,7 +299,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 .then(function (data) {
 
                     $scope.toReviewItems = data.result.rows;
-                    $rootScope.totalCount = data.result.total;
+                    /*$rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 100);
                     $rootScope.toPage = function (index) {
@@ -345,7 +345,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 })
 
 
-                    };
+                    };*/
                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                         $scope.toReview = $scope.toReviewItems[0].data;

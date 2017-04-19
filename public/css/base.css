@@ -348,4 +348,5 @@ ul{
 }
 .pagination_index ul li{
     float: left;
+    margin-right: 8px;
 }

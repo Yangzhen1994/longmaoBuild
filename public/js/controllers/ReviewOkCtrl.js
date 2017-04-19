@@ -37,7 +37,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 for(var i=0;i<$scope.reviewOkItems.length;i++){
                     $scope.reviewOkItems[i].checkState=master;
                 }
-                $scope.currentIndex = $scope.reviewOkItems.length
+                //$scope.currentIndex = $scope.reviewOkItems.length
             };
             $scope.cancelOne = function (ev,x,index) {
                 ev  = event || window.event;
@@ -155,7 +155,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 for(var i=0;i<$scope.reviewOkItems.length;i++){
                     $scope.reviewOkItems[i].checkState=master;
                 }
-                $scope.currentIndex = $scope.reviewOkItems.length
+                //$scope.currentIndex = $scope.reviewOkItems.length
             };
             $scope.cancelOne = function (ev,x,index) {
                 ev  = event || window.event;

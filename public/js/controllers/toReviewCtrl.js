@@ -58,7 +58,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 for(var i=0;i<$scope.toReviewItems.length;i++){
                     $scope.toReviewItems[i].checkState=master;
                 }
-                $scope.currentIndex = $scope.toReviewItems.length;
+                //$scope.currentIndex = $scope.toReviewItems.length;
 
 
 
@@ -326,6 +326,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                                         $scope.toReview = $scope.toReviewItems[0].data;
+                                        $scope.changeRight($scope.toReviewItems[0].data,0);
                                         serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
                                                 .then(function (data) {
                                                     $scope.toReview[0].amount = data.result.amount
@@ -432,7 +433,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         for(var i=0;i<$scope.toReviewItems.length;i++){
                             $scope.toReviewItems[i].checkState=master;
                         }
-                        $scope.currentIndex = $scope.toReviewItems.length;
+                        //$scope.currentIndex = $scope.toReviewItems.length;
 
 
 

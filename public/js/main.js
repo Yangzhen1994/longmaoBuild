@@ -17,7 +17,7 @@
             "angular" : "libs/angular",
             "angular-route" : "libs/angular-route",
             'angular-ui-route':'libs/angular-ui-router',
-
+            'angular-sanitize':'libs/angular-sanitize.min',
             'ui-sortable':'libs/sortable',
             'ng-file-upload':'libs/ng-file-upload.min',
             'angular-cookie':'libs/angular-cookie.min',
@@ -92,11 +92,15 @@
             'angular-cookie':{
                 deps: ["angular"],
                 exports: 'angular-cookie'
+            },
+            'angular-sanitize':{
+                deps: ["angular"],
+                exports: 'angular-sanitize'
             }
         }
     });
 
-    require(['angular','angular-route','angular-ui-route','ui-sortable','ng-file-upload','app','route','storageUtils',
+    require(['angular','angular-route','angular-ui-route','angular-sanitize','ui-sortable','ng-file-upload','app','route','storageUtils',
             'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_showImg','dir_showText','dir_keyEvents','dir_showsteptext','dir_showstepimg','headerCtrl','newTaskCtrl','taskListCtrl',
             'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "ReviewOkCtrl", "ReviewNoCtrl",
                 "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],

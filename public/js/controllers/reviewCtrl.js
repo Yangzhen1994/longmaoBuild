@@ -9,7 +9,9 @@
  */
 define(['app','storageUtils',], function (app,storageUtils,serverService) {
     return  app.controller('reviewCtrl',['$rootScope','$scope','$timeout','serverService',function ($rootScope,$scope, $timeout,serverService) {
-
+        $timeout(function () {
+            $('.left').height($('.right').height())
+        },100)
         storageUtils.session.removeItem('_reviewList_');
         var drag = storageUtils.session.getItem('_DRAG_');
         if(drag){

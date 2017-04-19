@@ -11,6 +11,7 @@
     width: 200px;
     height: 100%;
     border-right: 1px solid #ECECEC;
+    background: white;
 }
 .checkHeader{
     height: 39px;
@@ -131,6 +132,7 @@
     bottom: 0;
     border-top:  1px solid #ECECEC; ;
     text-align: center;
+    background: white;
 }
 .toReview_Right_footer a,.reviewOk_Right_footer a,.reviewNo_Right_footer a{
     text-decoration: none;

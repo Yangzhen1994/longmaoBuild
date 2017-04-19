@@ -107,7 +107,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }
                             })*/
                     $timeout(function(){
-                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
                     },100)
                 }
                 /*图片凭证*/
@@ -159,7 +161,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })*/
                     /* $scope.$emit('addImgProof');*/
                     $timeout(function(){
-                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
                     },100)
                 };
                 /*位置凭证*/
@@ -199,7 +203,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     //             }
                     //         })
                     $timeout(function(){
-                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
                     },100)
                 };
                 /*录音凭证*/
@@ -238,7 +244,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }
                             })*/
                     $timeout(function(){
-                        $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
                     },100)
                 };
                 /*显示文本*/

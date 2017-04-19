@@ -91,6 +91,8 @@ ul{
     font-size: 8px;
     color:#CAB097;
     line-height: 16px;
+    white-space: inherit;
+    word-break: break-all;
 }
 .sharePrice,.getTaskPrice{
     display: inline-block;

@@ -5,6 +5,19 @@
             <input type="checkbox"  ng-model="masterheader" ng-click="all(masterheader)" ng-checked="flag" class="tr_hideCheckBox" id="ro_checkAll"><span class="checkAllText">全选</span>
             <label for="ro_checkAll" class="checkAll_label"></label>
         </div>
+        <div class="detail_footer clearfix">
+            <div class="pagination_index" style="width: 200px;font-size: 13px">
+                <ul class="clearfix">
+                    <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span ng-bind="pageTotal"></span>页</li>
+                    <!--<li>
+                        <a class="pagination_page" href=" " ng-repeat="item in pageItem" ng-bind="item" ng-click="toPage(item, $event)"></ a>
+                    </li>-->
+                    <li class="pagination_prev"><a class="main_color" href="javascript:;" ng-click="toPage(pageIndex-1,$event)" style="color: #2DB7F5">上一页</a></li>
+                    <li class="pagination_next"><a class="main_color" href="javascript:;" ng-click="toPage(+pageIndex+1,$event)"style="color: #2DB7F5">下一页</a></li>
+                    <li class="pagination_sel_wrap">到第 <input class="pagination_sel" type="text" ng-model="goIndex" style="width: 20px"/> 页</li>
+                    <li><a href="javascript:;" class="pagination_goPage" ng-click="toPage(goIndex)" style="color: #2db7f5;">前往</a></li>
+                </ul>
+            </div>
         <ul class="checkItems" >
             <li ng-repeat="item in reviewOkItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
                 <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'ro_checkItem'+$index}}" class="tr_hideCheckBox"></input>

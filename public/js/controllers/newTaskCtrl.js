@@ -312,5 +312,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
              storageUtils.session.removeItem('_DRAG_')
              $scope.ntnextPage()
          }*/
+        $timeout(function () {
+            $('.left').height($('.newTask').height())
+        },100)
     }])
 })

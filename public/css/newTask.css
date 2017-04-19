@@ -35,10 +35,10 @@
     width: 305px;
     height: 540px;
     list-style: none;
-    margin-left: 225px;
     float: left;
     background: url("../img/newTaskbg.jpg");
     background-size: 100% 100%;
+    margin-right: 10px;
 }
 
 ul{
@@ -112,6 +112,7 @@ ul{
     top:506px
 }
 /*rightview*/
+
 .nt_rightView{
     position: relative;
     padding-left: 10px;
@@ -120,9 +121,9 @@ ul{
     width: 416px;
     height: 587px;
     background: white;
-    float: right;
+    float: left;
     position: relative;
-    right: 180px;
+    margin-left: 10px;
     margin-top: 30px;
 }
 .nt_rightView label{
@@ -249,7 +250,8 @@ ul{
     border-radius: 4px;
 }
 .content{
-
+    width: 900px;
+    margin:0 auto;
 }
 .clearfix{
     clear: both;

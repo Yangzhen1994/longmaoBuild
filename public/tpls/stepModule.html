@@ -23,6 +23,7 @@
             <ul  ng-model = "middleItems" ui-sortable="sortableOptions" class="temp_md_ul"  id="{{'imgUrl'+$index}}">
                 <div style="height: 80px;width: 100%"></div>
                 <!--<div style="overflow-y:auto;">-->
+                <div id="{{'scroll'+$index}}">
                         <div class="oldStep" style="width: 300px;height:auto;">
                             <div ng-click="showtitle($index)" id={{'imgUrl'+$index+'steptitle'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
                                 <p ng-hide="!stepItem.oldSteps.title">{{stepItem.oldSteps.title}}</p>
@@ -73,6 +74,7 @@
 
                             </div>
                         </li>
+                </div>
                 <!--</div>-->
                         <!--<li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="border-top: 1px solid #c3c3c3;width: 288px;height: 200px">
                             <div>

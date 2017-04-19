@@ -322,7 +322,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         };
                         serverService.getReviewList(data)
                                 .then(function (data) {
-                                    $scope.items = data.result.rows;
+                                    $scope.toReviewItems = data.result.rows;
                                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                                         $scope.toReview = $scope.toReviewItems[0].data;

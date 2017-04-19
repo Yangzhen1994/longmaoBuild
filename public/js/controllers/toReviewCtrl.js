@@ -294,7 +294,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         date:'',
         status:2,
         page:1,
-        rows:100,
+        rows:200,
         })
                 .then(function (data) {
 

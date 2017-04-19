@@ -119,8 +119,8 @@ html,body{
     width: calc(100% - 176px);
     /*//height: 738px;*/
     position: relative;
-    height: 100%;
-    overflow: auto;
+    height: auto;
+
 }
 .bread{
     width: 300px;

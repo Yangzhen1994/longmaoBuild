@@ -70,10 +70,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 /*文本凭证*/
                 $scope.textProof = function (index) {
                     var saved = storageUtils.session.getItem('_saved_');
-                    if (!saved) {
-                        alert('请先保存任务步骤');
-                        return
-                    }
                     storageUtils.session.setItem('_comIndex_', index)
                     //console.log($scope.stepItems[index].component)
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
@@ -119,10 +115,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }
                 $scope.imgProof = function (index, type) {
                     var saved = storageUtils.session.getItem('_saved_');
-                    if (!saved) {
-                        alert('请先保存任务步骤');
-                        return
-                    }
+
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     var data = {
                         id: '',
@@ -170,10 +163,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.posProof = function (index) {
                     //alert('位置凭证')
                     var saved = storageUtils.session.getItem('_saved_');
-                    if (!saved) {
-                        alert('请先保存任务步骤');
-                        return
-                    }
+
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     var data = {
                         id: '',
@@ -211,10 +201,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 /*录音凭证*/
                 $scope.audioProof = function (index) {
                     var saved = storageUtils.session.getItem('_saved_');
-                    if (!saved) {
-                        alert('请先保存任务步骤');
-                        return
-                    }
+
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     var data = {
                         id: '',

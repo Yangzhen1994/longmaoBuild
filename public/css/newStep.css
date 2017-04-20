@@ -46,7 +46,7 @@
     margin-top: 30px;
 }
 .stepIndex{
-    margin-left: 565px;
+    margin-left: 365px;
     margin-top: 15px;
 }
 .stepTemp .stepIndex span{
@@ -101,7 +101,7 @@ stepTemp_content{
     /*box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);*/
     height: 505px;
     list-style: none;
-    width: 650px;
+    width: 550px;
     position: absolute;
     left: 500px;
     background: url("../img/stepTemBg.png") no-repeat 1px;

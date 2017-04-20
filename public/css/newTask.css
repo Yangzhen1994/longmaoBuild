@@ -69,7 +69,7 @@ ul{
     position: absolute;
     color: orangered;
     font-size: 22px;
-    top: 88px;
+    top: 83px;
     right: 10px;
 }
 .nt_lvph_taskSummary{
@@ -83,11 +83,11 @@ ul{
     overflow: hidden;
 }
 .summaryDetail{
-    width: 230px;
+    width: 280px;
     height: 95px;
     position: absolute;
     top:180px;
-    left:26px;
+    left:15px;
     font-size: 8px;
     color:#CAB097;
     line-height: 16px;
@@ -110,7 +110,7 @@ ul{
 }
 .getTaskPrice{
     color: white;
-    left:180px;
+    left:170px;
     top:506px
 }
 /*rightview*/

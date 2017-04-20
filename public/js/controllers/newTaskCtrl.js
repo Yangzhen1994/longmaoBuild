@@ -216,6 +216,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
             });
             $scope.task.order = 100;
+            if(!$scope.task.poi_id){
+                $scope.task.poi_id = '';
+            }
+
              editTask = storageUtils.session.setItem('editData',$scope.task);
              console.log($scope.task);
              serverService.submitSavePage($scope.task)
@@ -321,8 +325,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
              storageUtils.session.removeItem('_DRAG_')
              $scope.ntnextPage()
          }*/
-        /*$timeout(function () {
+        $timeout(function () {
             $('.left').height($('.newTask').height()+11)
-        },100)*/
+        },100)
     }])
 })

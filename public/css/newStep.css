@@ -101,11 +101,11 @@ stepTemp_content{
     /*box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);*/
     height: 505px;
     list-style: none;
-    width: 550px;
+    width: 565px;
     position: absolute;
     left: 500px;
     background: url("../img/stepTemBg.png") no-repeat 1px;
-    background-size: 54% 100%;
+    background-size: 53% 100%;
     background-attachment:scroll;
     border-right: none;
     overflow-y: auto;

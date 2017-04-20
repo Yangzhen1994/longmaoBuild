@@ -423,6 +423,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                         $scope.stepItems[i].component.forEach(function (item1,index1) {
                                                             item1.step_id = item.id;
                                                             item1.task_id = item.task_id;
+                                                            item1.order = 10000 - index1
                                                             serverService.submitComponent(item1)
                                                                     .then(function (data) {
                                                                         console.log(data);

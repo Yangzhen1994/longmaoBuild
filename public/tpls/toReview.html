@@ -8,19 +8,19 @@
             <button id="allow" ng-click="trRightAllow()">通过</button>
             <button id="reject" ng-click="showrejCoverFn()">拒绝</button>
         </div>
-        <!--<div class="detail_footer clearfix">
+        <div class="detail_footer clearfix">
             <div class="pagination_index" style="width: 200px;font-size: 13px">
              <ul class="clearfix">
             <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span ng-bind="pageTotal"></span>页</li>
-            &lt;!&ndash;<li>
+            <!--<li>
                 <a class="pagination_page" href=" " ng-repeat="item in pageItem" ng-bind="item" ng-click="toPage(item, $event)"></ a>
-            </li>&ndash;&gt;
+            </li>-->
             <li class="pagination_prev"><a class="main_color" href="javascript:;" ng-click="toPage(pageIndex-1,$event)" style="color: #2DB7F5">上一页</a></li>
             <li class="pagination_next"><a class="main_color" href="javascript:;" ng-click="toPage(+pageIndex+1,$event)"style="color: #2DB7F5">下一页</a></li>
             <li class="pagination_sel_wrap">到第 <input class="pagination_sel" type="text" ng-model="goIndex" style="width: 20px"/> 页</li>
             <li><a href="javascript:;" class="pagination_goPage" ng-click="toPage(goIndex)" style="color: #2db7f5;">前往</a></li>
             </ul>
-        </div>-->
+        </div>
 
         <ul class="checkItems" >
            <li ng-repeat="item in toReviewItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">

@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/17.
  */
 define(['app','storageUtils'], function (app,storageUtils,serverService) {
-    return  app.controller('ReviewOkCtrl',['$scope','serverService',function ($scope,serverService) {
+    return  app.controller('ReviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
         /*var okResult = storageUtils.session.getItem('_reviewOk_');
         if(okResult){
             okResult.forEach(function (item,index) {
@@ -107,12 +107,58 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             date:'',
             status:3,
             page:1,
-            rows:100,
+            rows:10,
         }).then(function (data) {
             console.log(data);
             $scope.reviewOkItems = data.result.rows;
+            $rootScope.totalCount = data.result.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
+            $rootScope.toPage = function (index) {
+
+                if (index < 1) {
+                    index = 1
+                }
+                if (index > $rootScope.pageTotal) {
+                    index--;
+                    $rootScope.pageIndex = index;
+                }
+                $rootScope.pageIndex = index;
+                var data = {
+                    id:reviwid,
+                    date:'',
+                    status:3,
+                    page:index,
+                    rows:10,
+                };
+                serverService.getReviewList(data)
+                        .then(function (data) {
+                            $scope.reviewOkItems = data.result.rows;
+                            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
+                                        .then(function (data) {
+                                            $scope.reviewOk[0].amount = data.result.amount
+                                            $scope.reviewOk[0].check_fail = data.result.check_fail
+                                            $scope.reviewOk[0].invited = data.result.invited
+                                            $scope.reviewOk[0].regist_time = data.result.regist_time
+                                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+                                        })
+                            }else{return}
+                            $scope.reviewOk.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
+
+                        })
+
+
+            };
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
+                $scope.changeRight($scope.reviewOkItems[0].data,0)
                 serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                         .then(function (data) {
                             $scope.reviewOk[0].amount = data.result.amount

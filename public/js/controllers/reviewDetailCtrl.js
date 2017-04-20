@@ -38,21 +38,21 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 rows:10,
             };
             if($scope.chooseType == 1){
-                data.uid = $scope.reviewuserID
+                data0.uid = $scope.reviewuserID
             }
             if($scope.chooseType == 2){
-                data.id = $scope.reviewuserID
+                data0.id = $scope.reviewuserID
             }
             if($scope.tabSelected == 0){
-                data.status = 2;//待审核
+                data0.status = 2;//待审核
             }
             if($scope.tabSelected == 1){
-                data.status = 3;//审核成功
+                data0.status = 3;//审核成功
             }
             if($scope.tabSelected == 2){
-                data.status = 4;//审核失败
+                data0.status = 4;//审核失败
             }
-            console.log(data)
+            console.log(data0)
             serverService.getReviewList(data0).then(function (data) {
                 console.log(data)
 

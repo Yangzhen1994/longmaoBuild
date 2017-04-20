@@ -6,12 +6,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
         var reviwid = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         console.log(searchCheckBydate)
-        if(searchCheckBydate && searchCheckBydate[0].status == 3){
+        if(searchCheckBydate && searchCheckBydate.rows[0].status == 3){
             window.location = '#/reviewDetail/reviewDetail/tab2';
             return
         }
         if(searchCheckBydate){
-            $scope.toReviewItems = searchCheckBydate;
+            $scope.toReviewItems = searchCheckBydate.rows;
             $scope.toReview = $scope.toReviewItems[0].data;
 
             $scope.checkedBox = 0;

@@ -28,8 +28,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             //console.log($scope.reviewNoItems)
         }*/
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
-        if(searchCheckBydate && searchCheckBydate[0].status == 4){
-            $scope.reviewNoItems = searchCheckBydate;
+        if(searchCheckBydate && searchCheckBydate.row[0].status == 4){
+            $scope.reviewNoItems = searchCheckBydate.rows;
             $scope.reviewNo = $scope.reviewNoItems[0].data;
             $scope.changeColor = 0;
             $scope.currentIndex = 0;

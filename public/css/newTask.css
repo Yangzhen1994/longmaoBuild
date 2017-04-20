@@ -93,6 +93,7 @@ ul{
     line-height: 16px;
     white-space: inherit;
     word-break: break-all;
+    overflow-y: auto;
 }
 .sharePrice,.getTaskPrice{
     display: inline-block;

@@ -12,6 +12,7 @@
     height: 100%;
     border-right: 1px solid #ECECEC;
     background: white;
+    overflow-x: hidden;
 }
 .checkHeader{
     height: 39px;

@@ -181,7 +181,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
         //$scope.flagIndex = 0
-        /*$scope.sortableOptions = {
+        $scope.sortableOptions = {
                         // 数据有变化
                         start:function (e,ui) {
                             oldPosition = ui.item[0].offsetTop
@@ -232,11 +232,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             //storageUtils.session.setItem('_component_',$scope.componentItems);
                             window.location = '#/reviewList';
 
-                         /!*  $('.temp_md_ul').sortable( "refresh" );
-                            $( ".selector" ).sortable( "refreshPositions" );*!/
+                        /* /!*  $('.temp_md_ul').sortable( "refresh" );
+                            $( ".selector" ).sortable( "refreshPositions" );*!/*/
 
                         }
-        };*/
+        };
                     $scope.step_upload = function (obj) {
                         $scope.step_upload = function (obj) {
                             //获取到 步骤index

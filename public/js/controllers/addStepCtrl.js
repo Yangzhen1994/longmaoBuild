@@ -184,36 +184,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.sortableOptions = {
                         // 数据有变化
                         start:function (e,ui) {
-                            oldPosition = ui.item[0].offsetTop
-                            console.log(ui)
-                            console.log(ui.item[0].offsetTop)
+
                         },
                         change:function (e,ui) {
-                            newPosition = ui.item[0].offsetTop;
-                            if(newPosition<oldPosition){
-                                var num = Math.ceil((oldPosition - newPosition) / ui.item[0].clientHeight)
-                                console.log(ui.item[0].id.substr(-1,1))//当前拖拽的index
-                                var comIndex = ui.item[0].id.substr(-1,1)
-                                $scope.componentItems[comIndex].order += (num);
-                                serverService.submitComponent($scope.componentItems[comIndex])
-                                        .then(function (data) {
-                                            if(data.code == 200){
 
-                                            }
-                                        })
-                            }
-                            if(newPosition>oldPosition){
-                                var num = Math.ceil((newPosition - oldPosition) / ui.item[0].clientHeight);
-                                var comIndex = ui.item[0].id.substr(-1,1);
-                                $scope.componentItems[comIndex].order -= (num);
-                                serverService.submitComponent($scope.componentItems[comIndex])
-                                        .then(function (data) {
-                                            if(data.code == 200){
 
-                                            }
-                                        })
-                            }
-                            console.log(ui.item[0].offsetTop)
                         },
                         update: function (e, ui) {
                             console.log("update");
@@ -226,14 +201,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         // 完成拖拽动作
                         stop: function (e, ui) {
-                            console.log(ui.item[0].offsetTop)
-                            $scope.flagindex ++
-                            storageUtils.session.setItem('_DRAG_',true);
-                            //storageUtils.session.setItem('_component_',$scope.componentItems);
-                            window.location = '#/reviewList';
-
-                        /* /!*  $('.temp_md_ul').sortable( "refresh" );
-                            $( ".selector" ).sortable( "refreshPositions" );*!/*/
 
                         }
         };

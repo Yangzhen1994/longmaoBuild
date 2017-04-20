@@ -17,6 +17,54 @@ define(['app','storageUtils'], function (app,storageUtils) {
             $scope.checkedBox = 0;
             $scope.changeColor = 0;
             $scope.currentIndex = 0;
+
+            $rootScope.totalCount = searchCheckBydate.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 100);
+            $rootScope.toPage = function (index) {
+
+                if (index < 1) {
+                    index = 1
+                }
+                if (index > $rootScope.pageTotal) {
+                    index--;
+                    $rootScope.pageIndex = index;
+                }
+                $rootScope.pageIndex = index;
+                var data = {
+                    id:reviwid,
+                    uid:$scope.toReviewItems[0].uid,
+                    date:'',
+                    status:2,
+                    page:index,
+                    rows:100,
+                };
+                serverService.getReviewList(data)
+                        .then(function (data) {
+                            $scope.toReviewItems = data.result.rows;
+                            if($scope.toReviewItems && $scope.toReviewItems.length>0){
+
+                                $scope.toReview = $scope.toReviewItems[0].data;
+                                serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
+                                        .then(function (data) {
+                                            $scope.toReview[0].amount = data.result.amount
+                                            $scope.toReview[0].check_fail = data.result.check_fail
+                                            $scope.toReview[0].invited = data.result.invited
+                                            $scope.toReview[0].regist_time = data.result.regist_time
+                                            $scope.toReview[0].task_check_fail =data.result.task_check_fail
+                                        })
+                            }else{return}
+                            $scope.toReview.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
+
+                        })
+
+
+            };
             //复选框的初值
             $scope.flag = false;
 
@@ -294,12 +342,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
         date:'',
         status:2,
         page:1,
-        rows:200,
+        rows:100,
         })
                 .then(function (data) {
 
                     $scope.toReviewItems = data.result.rows;
-                    /*$rootScope.totalCount = data.result.total;
+                    $rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
                     $rootScope.pageTotal = Math.ceil($scope.totalCount / 100);
                     $rootScope.toPage = function (index) {
@@ -314,7 +362,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $rootScope.pageIndex = index;
                         var data = {
                             id:reviwid,
-                            uid:'',
                             date:'',
                             status:2,
                             page:index,
@@ -326,7 +373,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                                         $scope.toReview = $scope.toReviewItems[0].data;
-                                        $scope.changeRight($scope.toReviewItems[0].data,0);
                                         serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
                                                 .then(function (data) {
                                                     $scope.toReview[0].amount = data.result.amount
@@ -336,16 +382,18 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                     $scope.toReview[0].task_check_fail =data.result.task_check_fail
                                                 })
                                     }else{return}
+
                                     $scope.toReview.forEach(function (item,index) {
                                         if(item.type == 5){
                                             window.x = item.x;
                                             window.y = item.y;
                                         }
                                     })
+
                                 })
 
 
-                    };*/
+                    };
                     if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
                         $scope.toReview = $scope.toReviewItems[0].data;

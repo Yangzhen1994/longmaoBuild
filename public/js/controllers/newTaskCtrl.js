@@ -29,7 +29,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 order:'',
                 max_submit:'',
                 tag_id:'',
-                region_filter:''
+                region_filter:'',
+                /*//线下任务的选项
+                poi_id:'',
+                max_distance:'',
+                short_desc:'',*/
             }
         }
         serverService.getSelectData()

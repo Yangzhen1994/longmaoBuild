@@ -88,6 +88,18 @@
                     <option value="">{{tagType}}</option>
                 </select>
             </div>
+            <div class="nt_rv_poiid">
+                <label for="poiid">POI_ID:</label>
+                <input type="text" id="poiid" ng-model="task.poi_id"/>
+            </div>
+            <div class="nt_rv_maxDistance">
+                <label for="shortDesc">有效领取距离(米):</label>
+                <input type="text" id="maxDistance" ng-model="task.max_distance" />
+            </div>
+            <div class="nt_rv_shortDesc">
+                <label for="shortDesc">简短描述:</label>
+                <input type="text" id="shortDesc" ng-model="task.short_desc" />
+            </div>
         </div>
     </div>
     <div class="nt_footer">

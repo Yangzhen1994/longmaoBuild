@@ -167,7 +167,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 'BeforeUpload': function(up, file) {
                                     // 每个文件上传前，处理相关的事情
 
-                                    alert('准备上传')
+                                    alert('准备上传请稍等')
                                 },
                                 'UploadProgress': function(up, file) {
                                     // 每个文件上传时，处理相关的事情
@@ -175,7 +175,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 'FileUploaded': function(up, file, info) {
                                     console.log(file)
                                     console.log(info);
-
+                                    alert('上传成功');
                                     hashArr.push(jQuery.parseJSON(info));
                                     console.log(hashArr);
                                     /*$.ajax({

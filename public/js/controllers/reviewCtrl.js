@@ -474,7 +474,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             })
                         }
                         /**poi_id**/
-                        if ($scope.reviewsearchByTaskName == true) {
+                        if ($scope.reviewsearchByPoiId == true) {
                             serverService.getAllTask({
                                 id: '',
                                 title: '',

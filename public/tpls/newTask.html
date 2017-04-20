@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="./css/newTask.css">
-<div class="newTask" style="height: calc(100% - 11px);">
+<div class="newTask" style="height: auto">
     <div class="bread" >
         <a ui-sref="taskList" id="bread_newTask">任务列表<span>/</span></a>
         <a ui-sref="addTask" id="bread_newTaskMessage">任务基本信息</a>
     </div>
-    <div class="content clearfix" style="height: calc(100% - 83px);">
+    <div class="content clearfix" style="height: auto">
         <div class="nt_leftView">
             <ul  ng-model = "items" ui-sortable="sortableOptions" class="nt_lv_ph">
                 <p class="nt_lvph_title">{{task.title}}</p>

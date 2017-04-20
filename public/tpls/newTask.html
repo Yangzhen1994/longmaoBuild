@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="./css/newTask.css">
-<div class="newTask" style="height:auto">
+<div class="newTask" style="height: calc(100% - 11px);">
     <div class="bread" >
         <a ui-sref="taskList" id="bread_newTask">任务列表<span>/</span></a>
         <a ui-sref="addTask" id="bread_newTaskMessage">任务基本信息</a>
     </div>
-    <div class="content clearfix">
+    <div class="content clearfix" style="height: calc(100% - 83px);">
         <div class="nt_leftView">
             <ul  ng-model = "items" ui-sortable="sortableOptions" class="nt_lv_ph">
                 <p class="nt_lvph_title">{{task.title}}</p>
@@ -88,15 +88,15 @@
                     <option value="">{{tagType}}</option>
                 </select>
             </div>
-            <div class="nt_rv_poiid">
+            <div class="nt_rv_poiid" style="margin-top: 8px">
                 <label for="poiid">POI_ID:</label>
-                <input type="text" id="poiid" ng-model="task.poi_id"/>
+                <input type="text" id="poiid" ng-model="task.poi_id" style="margin-left: 20px"/>
             </div>
-            <div class="nt_rv_maxDistance">
+            <div class="nt_rv_maxDistance" style="margin-top: 8px">
                 <label for="shortDesc">有效领取距离(米):</label>
                 <input type="text" id="maxDistance" ng-model="task.max_distance" />
             </div>
-            <div class="nt_rv_shortDesc">
+            <div class="nt_rv_shortDesc" style="margin-top: 8px">
                 <label for="shortDesc">简短描述:</label>
                 <input type="text" id="shortDesc" ng-model="task.short_desc" />
             </div>

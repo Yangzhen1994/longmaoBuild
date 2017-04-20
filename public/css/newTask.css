@@ -121,7 +121,7 @@ ul{
 }
 .nt_rightView{
     width: 416px;
-    height: 587px;
+    height: auto;
     background: white;
     float: left;
     position: relative;

@@ -10,7 +10,7 @@
                 <p class="nt_lvph_title">{{task.title}}</p>
                 <p class="nt_lvph_detail">任务个数{{task.num}}&nbsp个&nbsp|&nbsp{{task.end_time.substr(11,5)}}&nbsp截止&nbsp|&nbsp最长审核&nbsp{{reviewTimeDay}}&nbsp天</p>
                 <p class="nt_lvph_rightPrice">￥{{task.amount/2}}</p>
-                <pre class="summaryDetail" style="white-space: inherit;" ng-bind-html="task.desc"></pre>
+                <pre class="summaryDetail" style="white-space: inherit;" ng-bind-html="showdesc"></pre>
                 <a href="" class="sharePrice">分享赚{{0.1+0.9+task.amount*0.1+ 1*task.share_award | number:2}}元</a>
                 <a href="" class="getTaskPrice">领取任务赚{{task.amount/2}}元</a>
                 <!--<li ng-repeat="item in items">

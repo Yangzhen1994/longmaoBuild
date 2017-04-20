@@ -52,6 +52,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.newTaskCount = '任务个数';
         $scope.isshow = false;
         $scope.redOne = '点我试一下';
+        $scope.showdesc = $scope.task.desc.replace(/\n/g,'<br>');
         /*格式title*/
         //$scope.title = $scope.task.title.replace(/&nbsp/g,'');
         //$scope.title = $scope.title.replace(/;/g,'');

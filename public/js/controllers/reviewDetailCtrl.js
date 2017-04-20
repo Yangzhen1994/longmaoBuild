@@ -3,7 +3,7 @@
  */
 
 define(['app','storageUtils',], function (app,storageUtils,serverService) {
-    return  app.controller('reviewDetailCtrl',['$scope','$timeout','serverService',function ($scope, $timeout,serverService) {
+    return  app.controller('reviewDetailCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
         $timeout(function () {
             $('.left').height($('.right').height())
         },100)
@@ -29,13 +29,13 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
         $scope.searchCheckBydate = function () {
 
-            var data = {
+            var data0 = {
                 id:storageUtils.session.getItem('_reviewList_'),
                 uid:'',
                 date:$scope.subTime,
                 status:'',
                 page:1,
-                rows:100,
+                rows:10,
             };
             if($scope.chooseType == 1){
                 data.uid = $scope.reviewuserID
@@ -53,13 +53,15 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 data.status = 4;//审核失败
             }
             console.log(data)
-            serverService.getReviewList(data).then(function (data) {
+            serverService.getReviewList(data0).then(function (data) {
                 console.log(data)
+
                 if(data.result.rows && data.result.rows.length>0){
-                   storageUtils.session.setItem('searchCheckBydate',data.result.rows);
+                   storageUtils.session.setItem('searchCheckBydate',data.result);
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
-                        $scope.subTime = ''
+                        $scope.subTime = '';
+                        $scope.reviewuserID = '';
                         window.location = '#/reviewDetail/reviewDetail/tab1'
                         return
                     }
@@ -67,7 +69,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                    window.location = '#/reviewDetail/reviewDetail/tab2'
                 }else{
                     alert('无')
-                    $scope.subTime = ''
+                    $scope.subTime = '';
+                    $scope.reviewuserID = '';
                 }
                 $scope.subTime = ''
             })

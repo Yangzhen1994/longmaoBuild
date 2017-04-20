@@ -3,6 +3,7 @@
  */
 define(['app','storageUtils'], function (app,storageUtils,serverService) {
     return  app.controller('ReviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
+        var reviwid = storageUtils.session.getItem('_reviewList_');
         /*var okResult = storageUtils.session.getItem('_reviewOk_');
         if(okResult){
             okResult.forEach(function (item,index) {
@@ -15,17 +16,63 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             return false;
         }*/
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
-        if(searchCheckBydate&&searchCheckBydate[0].status == 2){
+        if(searchCheckBydate.rows&&searchCheckBydate.rows[0].status == 2){
             window.location = '#/reviewDetail/reviewDetail/tab1';
         }
-        if(searchCheckBydate&&searchCheckBydate[0].status == 4){
+        if(searchCheckBydate.rows&&searchCheckBydate.rows[0].status == 4){
             window.location = '#/reviewDetail/reviewDetail/tab3';
         }
-        if(searchCheckBydate&&searchCheckBydate[0].status == 3){
-            $scope.reviewOkItems = searchCheckBydate;
+        if(searchCheckBydate&&searchCheckBydate.rows[0].status == 3){
+            $scope.reviewOkItems = searchCheckBydate.rows;
             $scope.reviewOk = $scope.reviewOkItems[0].data;
             $scope.changeColor = 0;
             $scope.currentIndex = 0;
+            $rootScope.totalCount = searchCheckBydate.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+            $rootScope.toPage = function (index) {
+
+                if (index < 1) {
+                    index = 1
+                }
+                if (index > $rootScope.pageTotal) {
+                    index--;
+                    $rootScope.pageIndex = index;
+                }
+                $rootScope.pageIndex = index;
+                var data = {
+                    id:reviwid,
+                    uid:$scope.reviewOkItems[0].uid,
+                    date:'',
+                    status:3,
+                    page:index,
+                    rows:10,
+                };
+                serverService.getReviewList(data)
+                        .then(function (data) {
+                            $scope.reviewOkItems = data.result.rows;
+                            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
+                                        .then(function (data) {
+                                            $scope.reviewOk[0].amount = data.result.amount
+                                            $scope.reviewOk[0].check_fail = data.result.check_fail
+                                            $scope.reviewOk[0].invited = data.result.invited
+                                            $scope.reviewOk[0].regist_time = data.result.regist_time
+                                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+                                        })
+                            }else{return}
+                            $scope.reviewOk.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
+
+                        })
+
+
+            };
             //$scope.reviewOk = $scope.reviewOkItems[0].data;
             //复选框的初值
             $scope.flag = false;
@@ -113,7 +160,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $scope.reviewOkItems = data.result.rows;
             $rootScope.totalCount = data.result.total;
             $rootScope.pageIndex = 1;
-            $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             $rootScope.toPage = function (index) {
 
                 if (index < 1) {
@@ -158,7 +205,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             };
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
-                $scope.changeRight($scope.reviewOkItems[0].data,0)
+                //$scope.changeRight($scope.reviewOkItems[0].data,0)
                 serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                         .then(function (data) {
                             $scope.reviewOk[0].amount = data.result.amount

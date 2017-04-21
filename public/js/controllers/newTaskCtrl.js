@@ -118,7 +118,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
         }else if($scope.task.tag_id == 3){
             $scope.tagType = '市场调研'
         }else if($scope.task.tag_id == 7){
-            $scope.tagType = '线下任务'
+            $scope.tagType = '线下任务';
+            $scope.showlineDown = true;
         }
         $scope.versionItems = [
             {
@@ -173,6 +174,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             if($scope.taskTag.tagItem == '线下任务'){
                 //alert(1)
                 $scope.task.tag_id = '7'
+                $scope.showlineDown = true;
             }
             if($scope.taskTag.tagItem == '其他任务'){
                 //alert(1)

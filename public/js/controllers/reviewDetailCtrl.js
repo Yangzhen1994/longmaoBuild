@@ -43,6 +43,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             if($scope.chooseType == 2){
                 data0.id = $scope.reviewuserID
                 storageUtils.session.setItem('_reviewList_',data0.id);
+                $scope.reviewId = data0.id
             }
             if($scope.tabSelected == 0){
                 data0.status = 2;//待审核

@@ -20,7 +20,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
             $rootScope.totalCount = searchCheckBydate.total;
             $rootScope.pageIndex = 1;
-            $rootScope.pageTotal = Math.ceil($scope.totalCount / 100);
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             $rootScope.toPage = function (index) {
 
                 if (index < 1) {
@@ -37,7 +37,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     date:'',
                     status:2,
                     page:index,
-                    rows:100,
+                    rows:10,
                 };
                 serverService.getReviewList(data)
                         .then(function (data) {
@@ -342,14 +342,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
         date:'',
         status:2,
         page:1,
-        rows:100,
+        rows:10,
         })
                 .then(function (data) {
 
                     $scope.toReviewItems = data.result.rows;
                     $rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
-                    $rootScope.pageTotal = Math.ceil($scope.totalCount / 100);
+                    $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                     $rootScope.toPage = function (index) {
 
                         if (index < 1) {
@@ -365,7 +365,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             date:'',
                             status:2,
                             page:index,
-                            rows:100,
+                            rows:10,
                         };
                         serverService.getReviewList(data)
                                 .then(function (data) {

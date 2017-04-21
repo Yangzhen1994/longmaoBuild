@@ -14,6 +14,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         },100)
         storageUtils.session.removeItem('_reviewList_');
         var drag = storageUtils.session.getItem('_DRAG_');
+        storageUtils.session.removeItem('searchCheckBydate');
         if(drag){
             //storageUtils.session.removeItem('_component_');
             storageUtils.session.removeItem('_DRAG_');

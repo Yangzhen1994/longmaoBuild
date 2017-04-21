@@ -164,6 +164,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 //alert(1)
                 $scope.task.tag_id = 6;
                 $scope.showlineDown = false;
+                $scope.tagType =''
             }
             if($scope.taskTag.tagItem == '数据采集'){
                 //alert(1)

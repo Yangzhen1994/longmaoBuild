@@ -1469,9 +1469,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                     });
                                 })
-                            }else{
-                                alert('请选择搜索类别')
-                                return;
                             }
 
                             /**任务名字**/
@@ -1588,9 +1585,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     });
 
                                 })
-                            }else{
-                                alert('请选择搜索类别');
-                                return;
                             }
                             /**poi_id**/
                             if ($scope.searchByPoiId == true) {
@@ -1705,9 +1699,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                     });
                                 })
-                            }else{
-                                alert('请选择搜索类别');
-                                return
                             }
                             console.log($scope.searhContent)
                         }

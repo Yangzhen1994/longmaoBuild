@@ -42,6 +42,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             }
             if($scope.chooseType == 2){
                 data0.id = $scope.reviewuserID
+                storageUtils.session.setItem('_reviewList_',data0.id);
             }
             if($scope.tabSelected == 0){
                 data0.status = 2;//待审核
@@ -58,6 +59,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                 if(data.result.rows && data.result.rows.length>0){
                    storageUtils.session.setItem('searchCheckBydate',data.result);
+
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
                         $scope.subTime = '';

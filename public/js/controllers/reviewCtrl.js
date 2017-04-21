@@ -39,7 +39,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             poi_id:'',
             status:'',
             device:0,
-            user:0,
+            user:1,
             page:1,
             rows:20,
             show_nocheck:1
@@ -84,7 +84,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             poi_id: '',
                             status: '',
                             device: 0,
-                            user: 0,
+                            user: 1,
                             page: index,
                             rows: 20,
                             show_nocheck: 1
@@ -281,7 +281,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 poi_id: '',
                                 status: '',
                                 device: 0,
-                                user: 0,
+                                user: 1,
                                 page: 1,
                                 rows: 200
                             }).then(function (data) {
@@ -313,7 +313,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                         poi_id: '',
                                         status: '',
                                         device: 0,
-                                        user: 0,
+                                        user: 1,
                                         page: index,
                                         rows: 20
                                     };
@@ -371,6 +371,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                                 });
                             })
+                        }else{
+                            alert('请选择搜索类别')
                         }
                         /**任务名字**/
                         if ($scope.reviewsearchByTaskName == true) {
@@ -381,7 +383,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 poi_id: '',
                                 status: '',
                                 device: 0,
-                                user: 0,
+                                user: 1,
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
@@ -413,7 +415,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                         poi_id: '',
                                         status: '',
                                         device: 0,
-                                        user: 0,
+                                        user: 1,
                                         page: index,
                                         rows: 20
                                     };
@@ -472,6 +474,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 });
 
                             })
+                        }else{
+                            alert('请选择搜索类别')
                         }
                         /**poi_id**/
                         if ($scope.reviewsearchByPoiId == true) {
@@ -482,7 +486,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 poi_id: $scope.searchReviewContent,
                                 status: '',
                                 device: 0,
-                                user: 0,
+                                user: 1,
                                 page: 1,
                                 rows: 200
                             }).then(function (data) {
@@ -514,7 +518,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                         poi_id: '',
                                         status: '',
                                         device: 0,
-                                        user: 0,
+                                        user: 1,
                                         page: index,
                                         rows: 20
                                     };
@@ -572,6 +576,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                                 });
                             })
+                        }else{
+                            alert('请选择搜索类别')
                         }
                         console.log($scope.searchReviewContent)
                     }
@@ -584,7 +590,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                             poi_id: '',
                             status: '',
                             device: 0,
-                            user: 0,
+                            user: 1,
                             page: 1,
                             rows: 20
                         }).then(function (data) {
@@ -612,7 +618,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                     poi_id: '',
                                     status: '',
                                     device: 0,
-                                    user: 0,
+                                    user: 1,
                                     page: index,
                                     rows: 20
                                 };

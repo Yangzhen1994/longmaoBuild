@@ -372,7 +372,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 });
                             })
                         }else{
-                            alert('请选择搜索类别')
+                            alert('请选择搜索类别');
+                            return
                         }
                         /**任务名字**/
                         if ($scope.reviewsearchByTaskName == true) {
@@ -475,7 +476,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                             })
                         }else{
-                            alert('请选择搜索类别')
+                            alert('请选择搜索类别');
+                            return
                         }
                         /**poi_id**/
                         if ($scope.reviewsearchByPoiId == true) {
@@ -577,7 +579,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                                 });
                             })
                         }else{
-                            alert('请选择搜索类别')
+                            alert('请选择搜索类别');
+                            return
                         }
                         console.log($scope.searchReviewContent)
                     }

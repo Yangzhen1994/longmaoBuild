@@ -164,33 +164,44 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 //alert(1)
                 $scope.task.tag_id = 6;
                 $scope.showlineDown = false;
-                $scope.tagType =''
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
             }
             if($scope.taskTag.tagItem == '数据采集'){
                 //alert(1)
                 $scope.task.tag_id = '5';
                 $scope.showlineDown = false;
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
             }
             if($scope.taskTag.tagItem == '数据标注'){
                 //alert(1)
                 $scope.task.tag_id = '4';
                 $scope.showlineDown = false;
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
             }
             if($scope.taskTag.tagItem == '市场调研'){
                 //alert(1)
                 $scope.task.tag_id = '3';
                 $scope.showlineDown = false;
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
 
             }
             if($scope.taskTag.tagItem == '线下任务'){
                 //alert(1)
                 $scope.task.tag_id = '7';
                 $scope.showlineDown = true;
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
             }
             if($scope.taskTag.tagItem == '其他任务'){
                 //alert(1)
                 $scope.task.tag_id = '0';
                 $scope.showlineDown = false;
+                $scope.tagType ='请选择';
+                $('.left').height($('.newTask').height()+11)
             }
         }
 

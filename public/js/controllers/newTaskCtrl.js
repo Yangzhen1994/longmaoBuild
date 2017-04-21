@@ -108,15 +108,20 @@ define(['app','storageUtils'], function (app,storageUtils) {
         /
          */
         if($scope.task.tag_id == 0){
-            $scope.tagType = '其他任务'
+            $scope.tagType = '其他任务';
+            $scope.showlineDown = false;
         }else if($scope.task.tag_id == 6){
-            $scope.tagType = 'APP体验'
+            $scope.tagType = 'APP体验';
+            $scope.showlineDown = false;
         }else if($scope.task.tag_id == 5){
-            $scope.tagType = '数据采集'
+            $scope.tagType = '数据采集';
+            $scope.showlineDown = false;
         }else if($scope.task.tag_id == 4){
-            $scope.tagType = '数据标注'
+            $scope.tagType = '数据标注';
+            $scope.showlineDown = false;
         }else if($scope.task.tag_id == 3){
-            $scope.tagType = '市场调研'
+            $scope.tagType = '市场调研';
+            $scope.showlineDown = false;
         }else if($scope.task.tag_id == 7){
             $scope.tagType = '线下任务';
             $scope.showlineDown = true;
@@ -157,28 +162,34 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.changeTag = function () {
             if($scope.taskTag.tagItem == 'APP体验'){
                 //alert(1)
-                $scope.task.tag_id = 6
+                $scope.task.tag_id = 6;
+                $scope.showlineDown = false;
             }
             if($scope.taskTag.tagItem == '数据采集'){
                 //alert(1)
-                $scope.task.tag_id = '5'
+                $scope.task.tag_id = '5';
+                $scope.showlineDown = false;
             }
             if($scope.taskTag.tagItem == '数据标注'){
                 //alert(1)
-                $scope.task.tag_id = '4'
+                $scope.task.tag_id = '4';
+                $scope.showlineDown = false;
             }
             if($scope.taskTag.tagItem == '市场调研'){
                 //alert(1)
-                $scope.task.tag_id = '3'
+                $scope.task.tag_id = '3';
+                $scope.showlineDown = false;
+
             }
             if($scope.taskTag.tagItem == '线下任务'){
                 //alert(1)
-                $scope.task.tag_id = '7'
+                $scope.task.tag_id = '7';
                 $scope.showlineDown = true;
             }
             if($scope.taskTag.tagItem == '其他任务'){
                 //alert(1)
-                $scope.task.tag_id = '0'
+                $scope.task.tag_id = '0';
+                $scope.showlineDown = false;
             }
         }
 

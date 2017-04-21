@@ -272,6 +272,10 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                     /***reveiewSearch**/
                     $scope.reveiewSearch = function () {
+                        if(!$scope.reviewsearchByTaskId && !$scope.reviewsearchByTaskName && !$scope.reviewsearchByPoiId){
+                            alert('请选择搜索类别');
+                            return
+                        }
                         /*任务Id*/
                         if ($scope.reviewsearchByTaskId == true) {
                             serverService.getAllTask({

@@ -1352,6 +1352,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         }
                         /**search**/
                         $scope.taskSearch = function () {
+                            if(!$scope.searchByTaskId && !$scope.searchByTaskName && !$scope.searchByPoiId){
+                                alert('请选择搜索类别');
+                                return
+                            }
                             /*任务Id*/
                             if ($scope.searchByTaskId == true) {
                                 serverService.getAllTask({

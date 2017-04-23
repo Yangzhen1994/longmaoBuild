@@ -52,11 +52,11 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             }
             if($scope.tabSelected == 1){
                 data0.status = 3;//审核成功
-                $scope.resmasg = '此任务的待审核'
+                $scope.resmasg = '此任务的审核成功'
             }
             if($scope.tabSelected == 2){
                 data0.status = 4;//审核失败
-                $scope.resmasg = '此任务的待审核'
+                $scope.resmasg = '此任务的审核失败'
             }
             console.log(data0)
             serverService.getReviewList(data0).then(function (data) {

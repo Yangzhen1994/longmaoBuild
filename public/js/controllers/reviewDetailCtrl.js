@@ -28,7 +28,14 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
 
         $scope.searchCheckBydate = function () {
-
+            if($scope.reviewuserID){
+                alert('不能为空');
+                return
+            }
+            if(!$scope.chooseType){
+                alert('请选择类别');
+                return
+            }
             var data0 = {
                 id:storageUtils.session.getItem('_reviewList_'),
                 uid:'',

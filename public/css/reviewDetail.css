@@ -42,7 +42,7 @@
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #212121;
-    left: 285px;
+    right: 394px;
 }
 .reviewDetail_radio span{
     opacity: 1;
@@ -69,8 +69,8 @@
 /*所属用户*/
 #submitTime{
     position: absolute;
-    top:22px;
-    left:179px;
+    top:19px;
+    right: 605px;
     font-size: 15px;
 }
 .selSubTime{

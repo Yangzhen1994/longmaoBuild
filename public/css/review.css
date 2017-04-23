@@ -31,8 +31,9 @@
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #212121;
-    padding-left: 197px;
-    float: left;
+    position: absolute;
+    right: 388px;
+    top:23px;
 }
 .review_radio span{
     opacity: 1;

@@ -103,14 +103,14 @@ stepTemp_content{
     list-style: none;
     width: 620px;
     position: absolute;
-    left: 500px;
+    left: 400px;
     background: url("../img/stepTemBg.png") no-repeat 1px;
     background-size: 48% 100%;
     background-attachment:scroll;
     border-right: none;
     overflow-y: auto;
     padding-bottom: 35px;
-   
+
 }
 .btn_addStep{
     text-align: center;

@@ -28,7 +28,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
 
         $scope.searchCheckBydate = function () {
-            if($scope.reviewuserID){
+            if(!$scope.reviewuserID){
                 alert('不能为空');
                 return
             }

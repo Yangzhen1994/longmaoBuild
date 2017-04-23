@@ -153,7 +153,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             date:'',
             status:4,
             page:1,
-            rows:100,
+            rows:10,
         }).then(function (data) {
             console.log(data);
             $scope.reviewNoItems = data.result.rows;

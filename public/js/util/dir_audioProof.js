@@ -69,11 +69,18 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             toDel.id = comId[comIndex].id;
                         }
                          toDel.task_id = storageUtils.session.getItem('_TaskId_');
-                        scope.stepItems[stepIndex].component.splice(comIndex,1)
+                        scope.stepItems[stepIndex].component.splice(comIndex,1);
+                        scope.$apply();
+                        /*if(toDel.tips_text == '点击输入内容'){
+                            toDel.tips_text = ' '
+                        }
                         for(var i = 0;i<comId.length;i++){
                             if(comId[i].order ==  toDel.order){
                                 comId[i].status = 0;
                                 comId[i].task_id = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
+                                if(comId[i].tips_text == '点击输入内容'){
+                                    comId[i].tips_text = ' '
+                                }
                                 serverService.submitComponent(comId[i])
                             }
                         }
@@ -83,7 +90,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         //storageUtils.session.setItem('_DRAG_',true);
                                         //window.location = '#/reviewList';
                                     }
-                                });
+                                });*/
                     })
 
             },

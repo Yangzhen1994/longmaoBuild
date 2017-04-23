@@ -75,23 +75,24 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                    window.location = '#/reviewDetail/reviewDetail/tab2'
                 }else{
-                    storageUtils.session.setItem('searchCheckBydate',data.result);
-                    if($scope.tabSelected == 0){
-                        nowdata.status = 2;//待审核
-                        window.location = '#/reviewDetail/reviewDetail/tab1'
-                    }
-                    if($scope.tabSelected == 1){
-                        nowdata.status = 3;//审核成功
-                        window.location = '#/reviewDetail/reviewDetail/tab2'
-                    }
-                    if($scope.tabSelected == 2){
-                        nowdata.status = 4;//审核失败
-                        window.location = '#/reviewDetail/reviewDetail/tab3'
-                    }
-
                     alert($scope.resmasg+'无');
                     $scope.subTime = '';
                     $scope.reviewuserID = '';
+                    storageUtils.session.setItem('searchCheckBydate',data.result);
+                    if($scope.tabSelected == 0){
+
+                        window.location = '#/reviewDetail/reviewDetail/tab1'
+                    }
+                    if($scope.tabSelected == 1){
+
+                        window.location = '#/reviewDetail/reviewDetail/tab2'
+                    }
+                    if($scope.tabSelected == 2){
+
+                        window.location = '#/reviewDetail/reviewDetail/tab3'
+                    }
+
+
 
                 }
                 $scope.subTime = ''

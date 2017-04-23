@@ -11,7 +11,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 window.location = '#/reviewDetail/reviewDetail/tab2';
                 return
             }
-            if(searchCheckBydate){
+            if(searchCheckBydate.rows.length>0){
                 $scope.toReviewItems = searchCheckBydate.rows;
                 $scope.toReview = $scope.toReviewItems[0].data;
 

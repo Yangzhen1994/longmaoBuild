@@ -94,12 +94,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
         /*地区*/
 
         /*上线版本*/
+        $scope.deviceType = '请选择';
         if($scope.task.device == 0){
             $scope.deviceType = '全部'
         }else if($scope.task.device == 1){
             $scope.deviceType = 'android';
             if($scope.task.android_version){
-                $scope.deviceType = 'android'+android_version
+                $scope.deviceType = 'android'+$scope.task.android_version
             }
         }else if($scope.task.device == 2){
             $scope.deviceType = 'ios'
@@ -230,6 +231,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.changeReviewTime();
         //保存本页
         $scope.ntsavePage = function () {
+            if(!$scope.task.tag_id){
+                $scope.task.tag_id = 0
+            }
             $scope.areaItems.forEach(function (item,index) {
                 if (!$scope.showArea || $scope.showArea == null) {
                     if (item.value == $scope.currentArea) {

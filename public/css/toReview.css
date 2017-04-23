@@ -132,7 +132,6 @@
     height: 55px;
     bottom: 0;
     border-top:  1px solid #ECECEC; ;
-    text-align: center;
     background: white;
 }
 .toReview_Right_footer a,.reviewOk_Right_footer a,.reviewNo_Right_footer a{
@@ -140,6 +139,9 @@
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
+}
+.toReview_Right_footer a{
+    margin-left: 20px;
 }
 .pre_icon,.next_icon {
     display: inline-block;
@@ -150,6 +152,7 @@
 }
 .next_icon{
     background: url("../img/icon/arrow_next.png");
+    margin-left: 3.5px;
 }
 .tr_Right_prevOne,.tr_Right_nextOne{
     display: inline-block;
@@ -162,7 +165,8 @@
 .tr_Right_nextOne{
     top: 0px;
     /*right: -75px;*/
-    position: relative;
+    position: absolute;
+    right: 20px;
 }
 .ro_Right_nextOne{
     /*right: -416px;*/
@@ -171,7 +175,7 @@
    /* right: -188px;*/
 }
 .tr_Right_prevOne .pre_icon{
-    margin-right: 5px;
+    margin-right: 3.5px;
 }
 .tr_Right_fallow, .tr_Right_reject{
     display: inline-block;
@@ -185,15 +189,27 @@
     background: #2DB7F5;
 
     color: white;
+
     /*margin-left:500px;*/
 }
-
+.toReview_Right_footer .tr_Right_fallow{
+    position: absolute;
+    left: calc(50% - 40px);
+    top: calc(50% - 20px);
+}
 .toReview_Right_footer .tr_Right_reject{
     background: #FFFFFF;
     border: 1px solid rgba(0,0,0,0.20);
     margin-left: 25px;
+    box-sizing: border-box;
+    position: absolute;
+    left: calc(50% + 64px);
+    top: calc(50% - 20px);
 }
 .reason_cover{
+
+}
+.tr_reject{
     position: absolute;
     bottom: 50px;
     padding: 0;

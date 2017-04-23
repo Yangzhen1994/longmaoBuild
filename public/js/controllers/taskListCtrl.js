@@ -31,9 +31,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             $scope.chooseType = '';
             $scope.state = '';
             $scope.selected = '';
-            $scope.loadingState = '全部';
-            $scope.loadingdevice = '全部';
-            $scope.loadingUser = '全部';
+            $scope.loadingState = '任务状态';
+            $scope.loadingdevice = '设备类型';
+            $scope.loadingUser = '所属用户';
             $scope.data = {
                 id: '',
                 title: '',

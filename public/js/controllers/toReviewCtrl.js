@@ -32,9 +32,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $rootScope.pageIndex = index;
                     }
                     $rootScope.pageIndex = index;
+
                     var data = {
                         id:reviwid,
-                        uid:$scope.toReviewItems[0].uid,
+                        uid:$scope.reviewuserID,
                         date:$scope.subTime,
                         status:2,
                         page:index,

@@ -67,7 +67,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
                         //$scope.subTime = '';
-                        //$scope.reviewuserID = '';
+                        if($scope.chooseType == 2){
+                            $scope.reviewuserID =''
+                        }
                         window.location = '#/reviewDetail/reviewDetail/tab1'
                         return
                     }

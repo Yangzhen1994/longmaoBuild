@@ -34,19 +34,17 @@ define(['app'], function(app){
                    url:'/reviewDetail/tab1',
                    templateUrl: 'tpls/toReview.html',
                    controller:'toReviewCtrl',
-                   reload:true
+
                })
                .state('reviewDetail.tab2',{
                    url:'/reviewDetail/tab2',
                    templateUrl: 'tpls/reviewOk.html',
                    controller:'ReviewOkCtrl',
-                   reload:true
                })
                .state('reviewDetail.tab3',{
                    url:'/reviewDetail/tab3',
                    templateUrl: 'tpls/ReviewNo.html',
                    controller:'ReviewNoCtrl',
-                   reload:true
                })
 
    }]);

@@ -44,9 +44,9 @@
          <input ng-model="newtask"></input>
          <div>{{newtask}}</div>-->
         <div class="tabs_header">
-            <a ui-sref="reviewDetail.tab1" class="tabs_header_1" ng-click="changeTabBorder(0)" ng-class="{tabs_header_selected:tabSelected==0}">待审核</a>
-            <a ui-sref="reviewDetail.tab2" class="tabs_header_2" ng-click="changeTabBorder(1)" ng-class="{tabs_header_selected:tabSelected==1}">审核通过</a>
-            <a ui-sref="reviewDetail.tab3" class="tabs_header_3" ng-click="changeTabBorder(2)" ng-class="{tabs_header_selected:tabSelected==2}">审核不通过</a>
+            <a ui-sref="reviewDetail.tab1" ui-sref-opts="{reload:'{{reviewDetail.tab1}}'}" class="tabs_header_1" ng-click="changeTabBorder(0)" ng-class="{tabs_header_selected:tabSelected==0}">待审核</a>
+            <a ui-sref="reviewDetail.tab2" ui-sref-opts="{reload:'{{reviewDetail.tab2}}'}" class="tabs_header_2" ng-click="changeTabBorder(1)" ng-class="{tabs_header_selected:tabSelected==1}">审核通过</a>
+            <a ui-sref="reviewDetail.tab3" ui-sref-opts="{reload:'{{reviewDetail.tab3}}'}" class="tabs_header_3" ng-click="changeTabBorder(2)" ng-class="{tabs_header_selected:tabSelected==2}">审核不通过</a>
         </div>
         <div ui-view></div>
     </div>

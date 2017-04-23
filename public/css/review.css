@@ -1,6 +1,6 @@
 /*审核界面*/
 .search-Input{
-    top:-5px;
+    top:4px;
     right: 110px;
     font-size: 16px;
 }
@@ -26,6 +26,7 @@
     font-family: PingFangSC-Regular;
     letter-spacing:0.5px;
     right: 5px;
+    top:10px;
 }
 .review_radio{
     font-family: PingFangSC-Regular;
@@ -33,7 +34,7 @@
     color: #212121;
     position: absolute;
     right: 388px;
-    top:23px;
+    top:30px;
 }
 .review_radio span{
     opacity: 1;

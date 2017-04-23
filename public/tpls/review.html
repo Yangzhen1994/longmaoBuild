@@ -20,8 +20,11 @@
             <i  class="circlechoose" ng-class="{chooseBg:chooseType == 3}"></i><span class="text">POI_ID</span>
 		</span>
     </div>
-    <div class="detail_footer clearfix" >
-        <div class="pagination_index" style="width: 450px;margin-left: 14px;margin-top: -2px">
+    <div class="detail_footer clearfix" style="    width: 450px;
+    margin-left: 14px;
+    /* position: absolute; */
+    margin-top: 30px;">
+        <div class="pagination_index">
             <ul class="clearfix">
                 <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span ng-bind="pageTotal"></span>页</li>
                 <!--<li>
@@ -36,7 +39,7 @@
     </div>
     <div  id='exportsubTime' style="    POSITION: absolute;
     right: 650px;
-    top: 23px;border: 1px solid #f2f2f2;">
+    top: 30px;border: 1px solid #f2f2f2;">
         <input style="border: none;
                         width: 150px;
                         height: 18px;
@@ -45,7 +48,7 @@
 
         </input>
     </div>
-    <div class="reviewDetail" style="width:100%;height:calc(100% - 95px);overflow-y: auto">
+    <div class="reviewDetail" style="width:100%;height:calc(100% - 84px);overflow-y: auto">
         <!-- <h2>审核列表界面</h2>
          <input ng-model="newtask"></input>
          <div>{{newtask}}</div>-->

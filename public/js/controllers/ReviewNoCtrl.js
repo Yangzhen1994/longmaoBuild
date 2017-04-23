@@ -28,7 +28,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             //console.log($scope.reviewNoItems)
         }*/
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
-        $scope.apply()
+        $scope.$apply()
         if(searchCheckBydate){
             if(searchCheckBydate.rows.length>0 && searchCheckBydate.rows[0].status == 4){
                 $scope.reviewNoItems = searchCheckBydate.rows;

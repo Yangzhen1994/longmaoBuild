@@ -60,6 +60,20 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         //console.log(scope.stepItems[stepIndex].component)
                         //alert(comIndex)
                         scope.stepItems[stepIndex].component[comIndex].status = 0;
+                        if(scope.stepItems[stepIndex].component[comIndex].id){
+                            var toDel = scope.stepItems[stepIndex].component[comIndex];
+                            toDel.task_id = storageUtils.session.getItem('_TaskId_');
+                            if(toDel.tips_text == '点击输入内容'){
+                                toDel.tips_text = ' '
+                            }
+                            serverService.submitComponent(toDel)
+                        }
+
+
+                        scope.stepItems[stepIndex].component.splice(comIndex,1)
+
+                        scope.$apply();
+                       /* scope.stepItems[stepIndex].component[comIndex].status = 0;
 
                         var toDel = scope.stepItems[stepIndex].component[comIndex];
                         console.log(toDel)
@@ -70,7 +84,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                          toDel.task_id = storageUtils.session.getItem('_TaskId_');
                         scope.stepItems[stepIndex].component.splice(comIndex,1);
-                        scope.$apply();
+                        scope.$apply();*/
                         /*if(toDel.tips_text == '点击输入内容'){
                             toDel.tips_text = ' '
                         }

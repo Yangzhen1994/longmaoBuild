@@ -16,6 +16,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             return false;
         }*/
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
+        $scope.apply()
         if(searchCheckBydate){
             if(searchCheckBydate.rows.length>0&&searchCheckBydate.rows[0].status == 2){
                 window.location = '#/reviewDetail/reviewDetail/tab1';

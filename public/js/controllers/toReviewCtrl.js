@@ -5,6 +5,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('toReviewCtrl',['$rootScope','$scope','$timeout','$window','serverService','mapService',function ($rootScope,$scope,$timeout,$window,serverService,mapService) {
         var reviwid = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
+        $scope.apply()
         console.log(searchCheckBydate)
         if(searchCheckBydate){
             if(searchCheckBydate.rows.length>0 && searchCheckBydate.rows[0].status == 3 ){

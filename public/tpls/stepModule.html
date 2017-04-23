@@ -1,6 +1,6 @@
 <!--添加步骤模板页-->
 <div class="stepTemp clearfix" >
-    <p class="stepIndex"><span>步骤{{stepItem.index}}{{stepItem.oldSteps.status == 0? '禁用' : '启用'}}<!--{{stepItem.title}}--></span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
+    <p class="stepIndex"><span>步骤{{stepItem.index}}<!--{{stepItem.title}}--></span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
     <div class="stepTemp_content clearfix">
         <div class="addbuttons">
             <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
@@ -9,7 +9,7 @@
             <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera">图片(拍照)</a>
             <a href="javascript:;" ng-click="posProof($index)" id="{{'posproof'+$index}}">+位置凭证</a>
             <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioproof'+$index}}">+录音凭证</a>
-            <a href="javascript:;" ng-click="showText($index)" id="{{'showtext'+$index}}">+显示文本</a>
+            <!--<a href="javascript:;" ng-click="showText($index)" id="{{'showtext'+$index}}">+显示文本</a>-->
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showimg'+$index}}">+显示图片</a>
 
         </div>
@@ -28,12 +28,17 @@
                             <div ng-click="showtitle($index)" id={{'imgUrl'+$index+'steptitle'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
                                 <p ng-hide="!stepItem.oldSteps.title">{{stepItem.oldSteps.title}}</p>
                                 <p ng-hide="stepItem.oldSteps.title">任务标题</p>
-                                <input style="position:absolute;left:293px;top:0px;display:none ;width: 288px;height: 30px;line-height: 30px;font-size: 16px" ng-model="stepItem.oldSteps.title" placeholder="任务标题">
+                                <input style="position:absolute;left:293px;top:0px;display:none ;width: 292px;height: 30px;line-height: 30px;font-size: 16px" ng-model="stepItem.oldSteps.title" placeholder="任务标题">
                             </div>
                             <div ng-click="showdesc($index)" id={{'imgUrl'+$index+'stepdesc'}} style="position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
                                 <p ng-hide="!stepItem.oldSteps.desc" style="word-break: break-all">{{stepItem.oldSteps.desc}}</p>
                                 <p ng-hide="stepItem.oldSteps.desc">任务描述</p>
-                                <textarea style="position:absolute;left:288px;top:0;display:none ;width: 288px;height:60px;margin-left: 6px;font-size: 13px" ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
+                                <textarea style="position:absolute;left:288px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px" ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
+                            </div>
+                            <div ng-click="showurl($index)" id={{'imgUrl'+$index+'stepurl'}} style="position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
+                                <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all">{{stepItem.oldSteps.url}}</p>
+                                <p ng-hide="stepItem.oldSteps.url">任务url</p>
+                                <textarea style="position:absolute;left:292px;top:0;display:none ;width: 288px;height:60px;margin-left: 6px;font-size: 13px" ng-model="stepItem.oldSteps.url" placeholder="url"></textarea>
                             </div>
                             <!--<div ng-click="showurl($index)" id={{'imgUrl'+$index+'url'}} style="position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
                                 <p ng-hide="!stepItem.oldSteps.url">{{stepItem.oldSteps.url}}</p>

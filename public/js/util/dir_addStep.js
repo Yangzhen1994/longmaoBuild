@@ -82,7 +82,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 1,
                         task_id: taskId,
-                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
+                        tips_text:'点击输入内容',
                         tips_image:''
                     }
                     $scope.stepItems[index].component.push(data);
@@ -329,6 +329,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.showdesc = function (index) {
                     $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').css('display','block')
                     $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').blur(function () {
+                        $(this).css('display','none')
+                    })
+                }
+                $scope.showurl = function (index) {
+                    $('#imgUrl'+index+'stepurl').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepurl').children('textarea').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }

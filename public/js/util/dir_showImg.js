@@ -75,22 +75,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 'FilesAdded': function(up, files) {
 
                                     // 文件添加进队列后，处理相关的事情
-                                    alert('添加了文件');
+                                    //alert('添加了文件');
                                     console.log(files
                                     );
-                                    $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
-                                    for (var i = 0; i < files.length; i++) {
 
-
-                                        showPreview (files[i]);
-                                    }
                                     //$('#sys-file-dialog-upload-btn'+scope.stepIndex+comIndex).attr("src",'../img/moduleImg/ic_add_a_photo_black_24dp.png');
 
                                 },
                                 'BeforeUpload': function(up, file) {
                                     // 每个文件上传前，处理相关的事情
 
-                                    alert('准备上传')
+                                    //alert('准备上传')
                                 },
                                 'UploadProgress': function(up, file) {
                                     // 每个文件上传时，处理相关的事情
@@ -98,7 +93,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 'FileUploaded': function(up, file, info) {
                                     console.log(file)
                                     console.log(info);
+                                    $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
+                                    for (var i = 0; i < files.length; i++) {
 
+
+                                        showPreview (files[i]);
+                                    }
                                     hashArr.push(jQuery.parseJSON(info));
                                     console.log(hashArr);
                                     /*$.ajax({

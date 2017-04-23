@@ -9,7 +9,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 scope.textIndex = el.parents('ul')[0].id.substr(-1,1)
                 el.click(function () {
-                    el.find('input').eq(0).css('visibility','visible');
+                    el.find('input').eq(0).css('display','block');
                     //scope.isText = true;
                     //console.log(scope.isText)
                 });
@@ -19,10 +19,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         el.find('input').eq(0).focus();
                     }
                 })*/
-                el.find('input').blur(function () {
+                el.find('input').eq(0).blur(function () {
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     //scope.isText = false;
-                    this.style.visibility = 'hidden';
+                    $(this).css('display','none')
                     if($(this).parents('li')[0].id.length == 16){
                         var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 

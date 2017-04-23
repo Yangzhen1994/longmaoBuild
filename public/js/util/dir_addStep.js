@@ -126,7 +126,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 2,
                         task_id: taskId,
-                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
+                        tips_text:'点击输入内容',
                         tips_image:''
                     };
                     if (type == 3) {
@@ -174,7 +174,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 5,
                         task_id: taskId,
-                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
+                        tips_text:'点击输入内容',
                         tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)
@@ -212,7 +212,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 6,
                         task_id: taskId,
-                        tips_text:'请点击在右侧全选编辑你的提示文本不需要请删除',
+                        tips_text:'点击输入内容',
                         tips_image:''
                     }
                     $scope.stepItems[index].component.push(data)

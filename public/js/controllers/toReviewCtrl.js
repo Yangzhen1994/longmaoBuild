@@ -35,7 +35,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var data = {
                         id:reviwid,
                         uid:$scope.toReviewItems[0].uid,
-                        date:'',
+                        date:$scope.subTime,
                         status:2,
                         page:index,
                         rows:10,
@@ -342,8 +342,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
             document.getElementById(containterId).appendChild(script);
         }*/
         serverService.getReviewList({id:reviwid,
-        uid:'',
-        date:'',
+        uid:$scope.reviewuserID,
+        date:$scope.subTime,
         status:2,
         page:1,
         rows:10,
@@ -366,7 +366,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $rootScope.pageIndex = index;
                         var data = {
                             id:reviwid,
-                            date:'',
+                            uid:$scope.reviewuserID,
+                            date:$scope.subTime,
                             status:2,
                             page:index,
                             rows:10,

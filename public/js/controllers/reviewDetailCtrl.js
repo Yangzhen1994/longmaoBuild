@@ -61,13 +61,12 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             console.log(data0)
             serverService.getReviewList(data0).then(function (data) {
                 console.log(data)
-
                 if(data.result.rows && data.result.rows.length>0){
                    storageUtils.session.setItem('searchCheckBydate',data.result);
 
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
-                        $scope.subTime = '';
+                        //$scope.subTime = '';
                         //$scope.reviewuserID = '';
                         window.location = '#/reviewDetail/reviewDetail/tab1'
                         return

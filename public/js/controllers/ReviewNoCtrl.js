@@ -153,7 +153,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         var reviwid = storageUtils.session.getItem('_reviewList_');
         serverService.getReviewList({
             id:reviwid,
-            date:'',
+            uid:$scope.reviewuserID,
+            date:$scope.subTime,
             status:4,
             page:1,
             rows:10,

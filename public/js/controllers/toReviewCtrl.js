@@ -6,7 +6,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         var reviwid = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         console.log(searchCheckBydate)
-        if(searchCheckBydate && searchCheckBydate.rows[0].status == 3 && searchCheckBydate!='[]'){
+        if(searchCheckBydate!='[]'&&searchCheckBydate && searchCheckBydate.rows[0].status == 3 ){
             window.location = '#/reviewDetail/reviewDetail/tab2';
             return
         }

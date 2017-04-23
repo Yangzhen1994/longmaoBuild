@@ -16,13 +16,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             return false;
         }*/
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
-        if(searchCheckBydate&&searchCheckBydate.rows[0].status == 2){
+        if(searchCheckBydate!='[]'&&searchCheckBydate&&searchCheckBydate.rows[0].status == 2){
             window.location = '#/reviewDetail/reviewDetail/tab1';
         }
-        if(searchCheckBydate&&searchCheckBydate.rows[0].status == 4){
+        if(searchCheckBydate!='[]'&&searchCheckBydate&&searchCheckBydate.rows[0].status == 4 ){
             window.location = '#/reviewDetail/reviewDetail/tab3';
         }
-        if(searchCheckBydate&&searchCheckBydate.rows[0].status == 3){
+        if(searchCheckBydate!='[]'&&searchCheckBydate&&searchCheckBydate.rows[0].status == 3){
             $scope.reviewOkItems = searchCheckBydate.rows;
             $scope.reviewOk = $scope.reviewOkItems[0].data;
             $scope.changeColor = 0;

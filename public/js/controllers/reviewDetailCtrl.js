@@ -39,6 +39,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             };
             if($scope.chooseType == 1){
                 data0.uid = $scope.reviewuserID
+
             }
             if($scope.chooseType == 2){
                 data0.id = $scope.reviewuserID
@@ -47,12 +48,15 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             }
             if($scope.tabSelected == 0){
                 data0.status = 2;//待审核
+                $scope.resmasg = '此任务的待审核'
             }
             if($scope.tabSelected == 1){
                 data0.status = 3;//审核成功
+                $scope.resmasg = '此任务的待审核'
             }
             if($scope.tabSelected == 2){
                 data0.status = 4;//审核失败
+                $scope.resmasg = '此任务的待审核'
             }
             console.log(data0)
             serverService.getReviewList(data0).then(function (data) {
@@ -71,7 +75,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                    window.location = '#/reviewDetail/reviewDetail/tab2'
                 }else{
-                    alert('无')
+                    alert($scope.resmasg+'无');
                     $scope.subTime = '';
                     $scope.reviewuserID = '';
                 }

@@ -3,6 +3,12 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('toReviewCtrl',['$rootScope','$scope','$timeout','$window','serverService','mapService',function ($rootScope,$scope,$timeout,$window,serverService,mapService) {
+        var reiewFlag = storageUtils.session.getItem('_FLAG_');
+        if(reiewFlag){
+            storageUtils.session.removeItem('_FLAG_');
+            window.location = '#/reviewDetail/reviewDetail/tab2'
+        }
+
         var reviwid = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
 

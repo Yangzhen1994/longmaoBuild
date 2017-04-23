@@ -27,6 +27,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
 
             //console.log($scope.reviewNoItems)
         }*/
+        var reiewFlag = storageUtils.session.getItem('_FLAG_');
+        if(reiewFlag){
+            storageUtils.session.removeItem('_FLAG_');
+            window.location = '#/reviewDetail/reviewDetail/tab1'
+        }
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         if(searchCheckBydate){
             if(searchCheckBydate.rows.length>0 && searchCheckBydate.rows[0].status == 4){

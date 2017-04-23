@@ -3,6 +3,12 @@
  */
 define(['app','storageUtils'], function (app,storageUtils,serverService) {
     return  app.controller('ReviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
+        var reiewFlag = storageUtils.session.getItem('_FLAG_');
+        if(reiewFlag){
+            storageUtils.session.removeItem('_FLAG_');
+            window.location = '#/reviewDetail/reviewDetail/tab3'
+        }
+
         var reviwid = storageUtils.session.getItem('_reviewList_');
         /*var okResult = storageUtils.session.getItem('_reviewOk_');
         if(okResult){

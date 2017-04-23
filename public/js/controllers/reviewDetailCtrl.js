@@ -81,18 +81,18 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                     $scope.reviewuserID = '';
                     storageUtils.session.setItem('searchCheckBydate',data.result);
                     if($scope.tabSelected == 0){
-
-                        window.location = '#/reviewDetail/reviewDetail/tab1'
+                        storageUtils.session.setItem('_FLAG_',true)
+                        window.location = '#/reviewDetail/reviewDetail/tab3'
 
                     }
                     if($scope.tabSelected == 1){
-
-                        window.location = '#/reviewDetail/reviewDetail/tab2'
+                        storageUtils.session.setItem('_FLAG_',true)
+                        window.location = '#/reviewDetail/reviewDetail/tab1'
 
                     }
                     if($scope.tabSelected == 2){
-
-                        window.location = '#/reviewDetail/reviewDetail/tab3'
+                        storageUtils.session.setItem('_FLAG_',true)
+                        window.location = '#/reviewDetail/reviewDetail/tab2'
 
                     }
 

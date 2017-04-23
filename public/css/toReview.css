@@ -140,9 +140,7 @@
     font-size: 13px;
     color: rgba(0,0,0,0.54);
 }
-.toReview_Right_footer a{
-    margin-left: 20px;
-}
+
 .pre_icon,.next_icon {
     display: inline-block;
     width: 16px;
@@ -161,6 +159,9 @@
     font-size: 13px;
     margin-top: 19px;
    /* margin-left: 32px;*/
+}
+.tr_Right_prevOne{
+    margin-left: 20px;
 }
 .tr_Right_nextOne{
     top: 0px;
@@ -200,8 +201,7 @@
 .toReview_Right_footer .tr_Right_reject{
     background: #FFFFFF;
     border: 1px solid rgba(0,0,0,0.20);
-    margin-left: 25px;
-    box-sizing: border-box;
+    box-sizing:border-box;
     position: absolute;
     left: calc(50% + 64px);
     top: calc(50% - 20px);

@@ -22,10 +22,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var comIndex0 = el.parents('li')[0].id.substr(-1, 1);
                 }
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
-                scope.comIndex = comIndex0
                 if(comIndex0 == '}'){
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[scope.stepItems[scope.stepIndex].component.length-1].options.split('\n');
                     comIndex0 =   scope.stepItems[scope.stepIndex].component.length-1
+                    scope.comIndex = comIndex0
                 }
                 if(scope.stepItems[scope.stepIndex].component[comIndex0].type == 7){
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
@@ -49,7 +49,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                     console.log(comIndex)
                     var optionsArr = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n');
-                    optionsArr[index] = $('#input'+comIndex+scope.stepIndex+index).val()
+                    optionsArr[index] = $('#input'+scope.stepIndex+comIndex+index).val()
                     scope.stepItems[scope.stepIndex].component[comIndex].options = optionsArr.join('\n')
                 }
                 scope.addradioOption = function () {

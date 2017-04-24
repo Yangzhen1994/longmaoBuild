@@ -72,8 +72,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var comIndex = el.parents('li')[0].id.substr(-1, 1);
                     }
                     var oldOptions = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n');
-                    var newOptions = oldOptions.splice(index,1);
-                    scope.optionsArr = newOptions
+                    oldOptions.splice(index,1);
+                    scope.stepItems[scope.stepIndex].component[comIndex].options = oldOptions.join('\n')
+                    scope.optionsArr = oldOptions;
                 }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)

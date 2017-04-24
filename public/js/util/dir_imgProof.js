@@ -193,11 +193,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     console.log(info);
                                     //alert('上传成功');
                                     $('#upimgProof-preview'+stepIndex+comIndex).children('img').remove()
-                                    for (var i = 0; i < files.length; i++) {
 
 
-                                        showPreview (files[i]);
-                                    }
+
+                                        showPreview (file);
+
                                     hashArr.push(jQuery.parseJSON(info));
                                     console.log(hashArr);
                                     /*$.ajax({

@@ -94,11 +94,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     console.log(file)
                                     console.log(info);
                                     $('#preview'+scope.stepIndex+imgIndex).children('img').remove()
-                                    for (var i = 0; i < files.length; i++) {
 
 
-                                        showPreview (files[i]);
-                                    }
+
+                                        showPreview (file);
+
                                     hashArr.push(jQuery.parseJSON(info));
                                     console.log(hashArr);
                                     /*$.ajax({

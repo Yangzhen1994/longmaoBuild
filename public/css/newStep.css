@@ -99,7 +99,8 @@ stepTemp_content{
     width: 200px;
     height: 200px;
     border: 2px solid #000;
-    background-color: #fff;
+    left:-220px;
+    top:-50px;
 }
 .box:before{
     position: absolute;
@@ -108,7 +109,7 @@ stepTemp_content{
     height: 0;
     left: 200px;
     top: 20px;
-    border-left: 10px solid #000;
+    border-left: 10px solid #009688;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
@@ -119,7 +120,7 @@ stepTemp_content{
     height: 0;
     left: 200px;
     top: 23px;
-    border-left: 7px solid #fff;
+    border-left: 7px solid #ECECEC;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
 }

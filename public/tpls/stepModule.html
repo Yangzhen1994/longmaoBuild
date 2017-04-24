@@ -5,10 +5,10 @@
         <div class="addbuttons">
             <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
             <a href="javascript:;"  ng-click="showOtherType()">+图片凭证</a>
-            <div class="box">
-                <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}"  ng-show="typeAll">+图片凭证</a>
-                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto">图片(相册)</a>
-                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera">图片(拍照)</a>
+            <div class="box" id="{{'box'+$index}}" ng-show="typeAll">
+                <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}"  ng-show="typeAll" style="position: absolute;top:-5px;left: 50px;">+图片(全部)</a>
+                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto" style="position: absolute;right: 5px;">图片(相册)</a>
+                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera" style="    position: absolute;left: 5px;top: 0px;">图片(拍照)</a>
             </div>
 
             <a href="javascript:;" ng-click="posProof($index)" id="{{'posproof'+$index}}">+位置凭证</a>

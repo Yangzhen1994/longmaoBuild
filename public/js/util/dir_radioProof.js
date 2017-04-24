@@ -67,6 +67,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                     scope.stepItems[scope.stepIndex].component[comIndex].options+='\n点我输入内容'
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
+                    setTimeout(function(){
+                        if($('#scroll'+scope.stepIndex).height()>500){
+                            $('#imgUrl'+scope.stepIndex).scrollTop($('#scroll'+scope.stepIndex).height()-500)
+                        }
+                    },50)
                 }
                 scope.delradioOption = function (index) {
                     if(el.parents('li')[0].id.length == 16){

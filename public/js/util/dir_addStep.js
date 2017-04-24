@@ -231,7 +231,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
-                    storageUtils.session.setItem('_component_', $scope.componentItems)
+                    storageUtils.session.setItem('_component_', $scope.componentItems);
                     /*$scope.showText(index)*/
                     /*serverService.submitComponent(data)
                             .then(function (data) {

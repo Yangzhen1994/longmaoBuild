@@ -22,6 +22,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var comIndex0 = el.parents('li')[0].id.substr(-1, 1);
                 }
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
+                if(comIndex0 == '}'){
+                    scope.optionsArr = scope.stepItems[scope.stepIndex].component[scope.stepItems[scope.stepIndex].component.length-1].options.split('\n');
+                    comIndex0 =   scope.stepItems[scope.stepIndex].component.length-1
+                }
+                if(scope.stepItems[scope.stepIndex].component[comIndex0].type == 7){
+                    scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
+                }
                 if(scope.stepItems[scope.stepIndex].component[comIndex0].type == 7){
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
                 }
@@ -78,23 +85,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)
-                    var img = el.find('img')
+                    
                     e.stopPropagation();
-                    console.log(img.parents('li'));
-                    if(img.parents('li')[0].id.length == 16){
-                        var comIndex = img.parents('li')[0].id.substr(-3, 3);
+                    console.log($(this).parents('li'));
+                    if($(this).parents('li')[0].id.length == 16){
+                        var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
                     }else
-                    if(img.parents('li')[0].id.length == 15){
-                        var comIndex = img.parents('li')[0].id.substr(-2, 2);
+                    if($(this).parents('li')[0].id.length == 15){
+                        var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
 
                     }else{
                         //alert($(this).parents('li')[0].id)
-                        var comIndex = img.parents('li')[0].id.substr(-1, 1);
+                        var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
                     }
 
                     //comIndex = comIndex -1
-                    var stepIndex = img.parents('li')[1].id.substr(-1, 1);
+                    var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
                     //scope.componentItems[comIndex].status = 0;
                     //scope.componentItems[comIndex].isText = ' ';
                     //console.log(scope.stepItems[stepIndex].component)
@@ -106,6 +113,16 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         if(toDel.tips_text == '点击输入内容'){
                             toDel.tips_text = ' '
                         }
+                        if(toDel.options.indexOf('点击输入内容')>-1){
+                            var optionArr = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n')
+                            optionArr.forEach(function (item,index) {
+                                if(item == '点击输入内容'){
+                                    optionArr.splice(index,1)
+                                }
+                                scope.stepItems[scope.stepIndex].component[comIndex].options = oldOptions.join('\n')
+                            })
+                        }
+                        toDel.options = scope.stepItems[scope.stepIndex].component[comIndex].options;
                         serverService.submitComponent(toDel)
                     }
 

@@ -10,6 +10,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/radioProof.html',
             link:function (scope,el,attr) {
+
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
                 //scope.optionItems = componentItem.options.split('\n');
                 scope.changeOptions = function (index) {

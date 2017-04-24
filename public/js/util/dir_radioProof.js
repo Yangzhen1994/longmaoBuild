@@ -10,8 +10,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
             restrict: "EA",
             templateUrl: 'tpls/radioProof.html',
             link:function (scope,el,attr) {
+                if(el.parents('li')[0].id.length == 16){
+                    var comIndex0 = el.parents('li')[0].id.substr(-3, 3);
 
+                }else
+                if(el.parents('li')[0].id.length == 15){
+                    var comIndex0 = el.parents('li')[0].id.substr(-2, 2);
+
+                }else{
+                    //alert($(this).parents('li')[0].id)
+                    var comIndex0 = el.parents('li')[0].id.substr(-1, 1);
+                }
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
+                scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
                 //scope.optionItems = componentItem.options.split('\n');
                 scope.changeOptions = function (index) {
                     if(el.parents('li')[0].id.length == 16){

@@ -44,6 +44,24 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     optionsArr[index] = $('#input'+scope.stepIndex+index).val()
                     scope.stepItems[scope.stepIndex].component[comIndex].options = optionsArr.join('\n')
                 }
+                scope.addradioOption = function () {
+                    if(el.parents('li')[0].id.length == 16){
+                        var comIndex = el.parents('li')[0].id.substr(-3, 3);
+
+                    }else
+                    if(el.parents('li')[0].id.length == 15){
+                        var comIndex = el.parents('li')[0].id.substr(-2, 2);
+
+                    }else{
+                        //alert($(this).parents('li')[0].id)
+                        var comIndex = el.parents('li')[0].id.substr(-1, 1);
+                    }
+                    scope.stepItems[scope.stepIndex].component[comIndex].options+='\n点我输入内容'
+                    scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
+                }
+                scope.delradioOption = function () {
+
+                }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)
                     var img = el.find('img')

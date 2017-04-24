@@ -337,7 +337,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 7,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        compress:1,
+                        options:'点击输入内容',
+                        options_other:0,
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);

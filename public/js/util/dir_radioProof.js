@@ -59,8 +59,21 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     scope.stepItems[scope.stepIndex].component[comIndex].options+='\n点我输入内容'
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
                 }
-                scope.delradioOption = function () {
+                scope.delradioOption = function (index) {
+                    if(el.parents('li')[0].id.length == 16){
+                        var comIndex = el.parents('li')[0].id.substr(-3, 3);
 
+                    }else
+                    if(el.parents('li')[0].id.length == 15){
+                        var comIndex = el.parents('li')[0].id.substr(-2, 2);
+
+                    }else{
+                        //alert($(this).parents('li')[0].id)
+                        var comIndex = el.parents('li')[0].id.substr(-1, 1);
+                    }
+                    var oldOptions = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n');
+                    var newOptions = oldOptions.splice(index,1);
+                    scope.optionsArr = newOptions
                 }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)

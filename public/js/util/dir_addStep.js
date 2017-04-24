@@ -110,8 +110,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }
                 /*图片凭证*/
                 $scope.showOtherType = function () {
-                    $scope.typePhoto = true
-                    $scope.typeCamera = true
+                    $scope.typePhoto = true;
+                    $scope.typeCamera = true;
+                    $scope.typeAll = true;
                 }
                 $scope.imgProof = function (index, type) {
                     var saved = storageUtils.session.getItem('_saved_');
@@ -141,6 +142,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     /*$scope.showText(index)*/
                     $scope.typePhoto = false;
                     $scope.typeCamera = false;
+                    $scope.typeAll = false;
                     /*serverService.submitComponent(data)
                             .then(function (data) {
                                 if (data.code == 200) {

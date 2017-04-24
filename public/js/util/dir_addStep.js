@@ -323,7 +323,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  console.log($scope.stepItems)
                  })*/
                 /*单选凭证*/
-                $scope.radioproof = function () {
+                $scope.radioproof = function (index) {
                     var saved = storageUtils.session.getItem('_saved_');
 
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')

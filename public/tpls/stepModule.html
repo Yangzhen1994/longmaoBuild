@@ -2,7 +2,7 @@
 <div class="stepTemp clearfix" >
     <p class="stepIndex"><span>步骤{{stepItem.index}}<!--{{stepItem.title}}--></span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
     <div class="stepTemp_content clearfix">
-        <div class="addbuttons">
+        <div class="addbuttons" style="position: relative">
             <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
             <a href="javascript:;"  ng-click="showOtherType()">+图片凭证</a>
             <div class="box" id="{{'box'+$index}}" ng-show="typeAll">

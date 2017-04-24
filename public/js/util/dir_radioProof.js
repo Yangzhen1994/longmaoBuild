@@ -12,6 +12,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
                 //scope.optionItems = componentItem.options.split('\n');
+                scope.changeOptions = function (index) {
+
+                    var optionsArr = scope.stepItems[scope.stepIndex].component[index].options.split('\n');
+                    optionsArr[index] = $('#input'+scope.stepIndex+index).val()
+                    scope.stepItems[scope.stepIndex].component[index].options = optionsArr.join('\n')
+                }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)
                     var img = el.find('img')

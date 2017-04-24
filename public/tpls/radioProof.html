@@ -2,6 +2,7 @@
     <ul class="{{'radio'+stepIndex+$index}}" style="width:270px;height: auto;border-top: 1px solid #ececec;;">
         <li ng-repeat="radioItem in componentItem.options.split('\n')" style="width:100%;height:40px;border-bottom: 1px solid #ececec">
             <div style="font-size:13px;display:inline-block;width: 16px;height:16px;border: 1px solid;box-sizing: border-box;border-radius:8px;margin-top: 10px"></div>
+            {{radioItem}}
             <input style="border:none" ng-model="radioItem" id="{{'input'+stepIndex+$index}}" ng-change="changeOptions($index)"></input>
         </li>
     </ul>

@@ -87,10 +87,10 @@ stepTemp_content{
 .addbuttons a:nth-child(1){
     margin-top: 65px;
 }
-.addbuttons a:nth-child(-1){
+.addbuttons a:nth-child(7){
     background: #03A9F4;
 }
-.addbuttons a:nth-child(-2){
+.addbuttons a:nth-child(8){
     background: #03A9F4;
 }
 

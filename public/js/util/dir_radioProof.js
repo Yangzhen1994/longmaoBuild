@@ -13,10 +13,21 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
                 //scope.optionItems = componentItem.options.split('\n');
                 scope.changeOptions = function (index) {
+                    if(el.parents('li')[0].id.length == 16){
+                        var comIndex = el.parents('li')[0].id.substr(-3, 3);
 
-                    var optionsArr = scope.stepItems[scope.stepIndex].component[index].options.split('\n');
+                    }else
+                    if(el.parents('li')[0].id.length == 15){
+                        var comIndex = el.parents('li')[0].id.substr(-2, 2);
+
+                    }else{
+                        //alert($(this).parents('li')[0].id)
+                        var comIndex = el.parents('li')[0].id.substr(-1, 1);
+                    }
+                    console.log(comIndex)
+                    var optionsArr = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n');
                     optionsArr[index] = $('#input'+scope.stepIndex+index).val()
-                    scope.stepItems[scope.stepIndex].component[index].options = optionsArr.join('\n')
+                    scope.stepItems[scope.stepIndex].component[comIndex].options = optionsArr.join('\n')
                 }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)

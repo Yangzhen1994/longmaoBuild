@@ -1,6 +1,6 @@
 <div class="radioProof" style="margin-bottom: 10px">
     <ul class="{{'radio'+stepIndex+$index}}" style="width:288px;height: auto;">
-        <li ng-repeat="radioItem in optionItems" style="width:100%;height:40px;">
+        <li ng-repeat="radioItem in componentItem.options.split('\n')" style="width:100%;height:40px;">
             <div style="width: 20px;height: 20px;border: 1px solid;box-sizing: border-box;border-radius: 10px;margin-top: 10px"></div>
             <span style="">radioItem</span>
         </li>

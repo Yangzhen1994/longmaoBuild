@@ -11,7 +11,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             templateUrl: 'tpls/radioProof.html',
             link:function (scope,el,attr) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
-                scope.optionItems = componentItem.options.split('\n');
+                //scope.optionItems = componentItem.options.split('\n');
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)
                     var img = el.find('img')

@@ -310,6 +310,82 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  $scope.$on('addImgProof', function () {
                  console.log($scope.stepItems)
                  })*/
+                /*单选凭证*/
+                $scope.radioproof = function () {
+                    var saved = storageUtils.session.getItem('_saved_');
+
+                    var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                    var data = {
+                        id: '',
+                        order: 10000 - $scope.componentItems.length,
+                        regex: '',
+                        regex_name: null,
+                        status: 1,
+                        step_id: $scope.stepItems[index].oldSteps.id,
+                        type: 7,
+                        task_id: taskId,
+                        tips_text:'点击输入内容',
+                        tips_image:''
+                    }
+                    $scope.stepItems[index].component.push(data)
+                    $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
+                    /*$scope.showText(index)*/
+                    /*serverService.submitComponent(data)
+                     .then(function (data) {
+                     if (data.code == 200) {
+                     serverService.getComponent(taskId)
+                     .then(function (data) {
+                     console.log(data)
+                     //把凭证信息存入到session
+                     storageUtils.session.setItem('_component_', data.result);
+                     })
+                     }
+                     })*/
+                    $timeout(function(){
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
+                    },100)
+                }
+                /*多选凭证*/
+                $scope.checkboxproof = function () {
+                    var saved = storageUtils.session.getItem('_saved_');
+
+                    var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                    var data = {
+                        id: '',
+                        order: 10000 - $scope.componentItems.length,
+                        regex: '',
+                        regex_name: null,
+                        status: 1,
+                        step_id: $scope.stepItems[index].oldSteps.id,
+                        type: 8,
+                        task_id: taskId,
+                        tips_text:'点击输入内容',
+                        tips_image:''
+                    }
+                    $scope.stepItems[index].component.push(data)
+                    $scope.componentItems.push(data);
+                    storageUtils.session.setItem('_component_', $scope.componentItems)
+                    /*$scope.showText(index)*/
+                    /*serverService.submitComponent(data)
+                     .then(function (data) {
+                     if (data.code == 200) {
+                     serverService.getComponent(taskId)
+                     .then(function (data) {
+                     console.log(data)
+                     //把凭证信息存入到session
+                     storageUtils.session.setItem('_component_', data.result);
+                     })
+                     }
+                     })*/
+                    $timeout(function(){
+                        if($('#scroll'+index).height()>500){
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        }
+                    },100)
+                }
                 /***步骤的模板编辑*/
                 $scope.stepItems.forEach(function (item,index) {
                     if(!item.oldSteps.title){

@@ -7,12 +7,14 @@
             <a href="javascript:;"  ng-click="showOtherType()">+图片凭证</a>
             <div class="box" id="{{'box'+$index}}" ng-show="typeAll">
                 <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}"  ng-show="typeAll" style="position: absolute;top:-5px;left: 50px;">+图片(全部)</a>
-                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto" style="position: absolute;right: 5px;">图片(相册)</a>
-                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera" style="position: absolute;left: 5px;top: 0px;">图片(拍照)</a>
+                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto" style="position: absolute;right: 5px;">+图片(相册)</a>
+                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera" style="position: absolute;left: 5px;top: 0px;">+图片(拍照)</a>
             </div>
 
             <a href="javascript:;" ng-click="posProof($index)" id="{{'posproof'+$index}}">+位置凭证</a>
             <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioproof'+$index}}">+录音凭证</a>
+            <a href="javascript:;" ng-click="radioproof($index)" id="{{'radioproof'+$index}}">+单选凭证</a>
+            <!--<a href="javascript:;" ng-click="checkboxproof($index)" id="{{'checkboxproof'+$index}}">+多选凭证</a>-->
             <a href="javascript:;" ng-click="showText($index)" id="{{'showtext'+$index}}">+显示文本</a>
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showimg'+$index}}">+显示图片</a>
 
@@ -83,6 +85,8 @@
                                 <imgproof-module ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></imgproof-module>
                                 <posproof-module ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></posproof-module>
                                 <audioproof-module ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audioproof-module>
+                                <radioproof-module ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radioproof-module>
+                                <!--<checkboxproof-module ng-show="{{componentItem.type==8 && componentItem.status ==1}}"></checkboxproof-module>-->
 
                             </div>
                         </li>

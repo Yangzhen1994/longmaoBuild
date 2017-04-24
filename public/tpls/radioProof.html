@@ -1,8 +1,8 @@
-<div class="radioProof" style="margin-bottom: 10px">
-    <ul class="{{'radio'+stepIndex+$index}}" style="width:288px;height: auto;">
-        <li ng-repeat="radioItem in componentItem.options.split('\n')" style="width:100%;height:40px;">
-            <div style="width: 20px;height: 20px;border: 1px solid;box-sizing: border-box;border-radius: 10px;margin-top: 10px"></div>
-            <span style="">radioItem</span>
+<div class="radioProof" style="margin-bottom: 10px;margin-left: 18px">
+    <ul class="{{'radio'+stepIndex+$index}}" style="width:270px;height: auto;border-top: 1px solid #ececec;;">
+        <li ng-repeat="radioItem in componentItem.options.split('\n')" style="width:100%;height:40px;border-bottom: 1px solid #ececec">
+            <div style="display:inline-block;width: 16px;height:16px;border: 1px solid;box-sizing: border-box;border-radius:8px;margin-top: 10px"></div>
+            <span style="">{{radioItem}}</span>
         </li>
     </ul>
     <img src="./img/icon/deleteCircle.png" alt="" style="

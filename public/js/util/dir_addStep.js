@@ -76,6 +76,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var data = {
                         id: '',
                         order: 10000 - $scope.componentItems.length,
+                        compress:1,
+                        options:'',
+                        options_other:0,
                         regex: '',
                         regex_name: null,
                         status: 1,
@@ -121,6 +124,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var data = {
                         id: '',
                         order: 10000 - $scope.componentItems.length,
+                        compress:1,
+                        options:'',
+                        options_other:0,
                         regex: '',
                         regex_name: null,
                         status: 1,
@@ -170,6 +176,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var data = {
                         id: '',
                         order: 10000 - $scope.componentItems.length,
+                        compress:1,
+                        options:'',
+                        options_other:0,
                         regex: '',
                         regex_name: null,
                         status: 1,
@@ -208,6 +217,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var data = {
                         id: '',
                         order: 10000 - $scope.componentItems.length,
+                        compress:1,
+                        options:'',
+                        options_other:0,
                         regex: '',
                         regex_name: null,
                         status: 1,

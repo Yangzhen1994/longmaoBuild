@@ -3,12 +3,14 @@
         <li ng-repeat="radioItem in optionsArr" style="width:100%;height:40px;border-bottom: 1px solid #ececec">
             <div style="font-size:13px;display:inline-block;width: 16px;height:16px;border: 1px solid;box-sizing: border-box;border-radius:8px;margin-top: 10px"></div>
             <input type="text" id="{{'input'+stepIndex+$index}}" ng-model="radioItem" ng-change="changeOptions($index)">
+            <img src="../img/icon/add.png" alt="" id="{{'add'+stepIndex+$index}}">
+            <img src="../img/icon/del2.png" alt="" id="{{'del'+stepIndex+$index}}">
         </li>
     </ul>
     <img src="./img/icon/deleteCircle.png" alt="" style="
     position: absolute;
     top:-8px;
-    right:-80px" ng-click="deleteTextProof($event,$index)"
+    right:10px" ng-click="deleteTextProof($event,$index)"
          class="{{'delete'+$index}}"
     >
 </div>

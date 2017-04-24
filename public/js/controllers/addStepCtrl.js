@@ -436,12 +436,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                             }
                                                             if(item1.type==7){
                                                                 console.log(item1.options)
-                                                                if(item1.options.indexOf('点击输入内容')>-1){
+                                                                if(item1.options.indexOf('点我输入内容')>-1){
                                                                     item1.options_other = 1;
                                                                     console.log(item1.options)
                                                                     var optionArr = item1.options.split('\n')
                                                                     optionArr.forEach(function (optionsitem,index) {
-                                                                        if(optionsitem == '点击输入内容'){
+                                                                        if(optionsitem == '点我输入内容'){
                                                                             optionArr.splice(index,1)
                                                                         }
 

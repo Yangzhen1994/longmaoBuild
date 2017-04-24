@@ -43,7 +43,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         //$scope.$emit('isText',true)
                                         //$scope.stepItems[index].component[i].isText = true
                                         $scope.stepItems[index].component[i].tips_text = '点击输入内容';
-                                        document.getElementById('deletetext' + flag +i).style.display = 'block';
+                                       // document.getElementById('deletetext' + flag +i).style.display = 'block';
                                         for (var j = 0; j < tempArr.length; j++) {
                                             if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
                                                 $scope.stepItems[index].component[i].id = tempArr[j].id;
@@ -339,7 +339,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         tips_text:'点击输入内容',
                         tips_image:'',
                         compress:1,
-                        options:'点击输入内容',
+                        options:'点我输入内容',
                         options_other:0,
                     }
                     $scope.stepItems[index].component.push(data)

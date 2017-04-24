@@ -21,6 +21,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //alert($(this).parents('li')[0].id)
                     var comIndex0 = el.parents('li')[0].id.substr(-1, 1);
                 }
+                scope.comIndex = comIndex0
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
                 if(comIndex0 == '}'){
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[scope.stepItems[scope.stepIndex].component.length-1].options.split('\n');
@@ -114,10 +115,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         if(toDel.tips_text == '点击输入内容'){
                             toDel.tips_text = ' '
                         }
-                        if(toDel.options.indexOf('点击输入内容')>-1){
+                        if(toDel.options.indexOf('点我输入内容')>-1){
                             var optionArr = scope.stepItems[scope.stepIndex].component[comIndex].options.split('\n')
                             optionArr.forEach(function (item,index) {
-                                if(item == '点击输入内容'){
+                                if(item == '点我输入内容'){
                                     optionArr.splice(index,1)
                                 }
                                 scope.stepItems[scope.stepIndex].component[comIndex].options = optionArr.join('\n')

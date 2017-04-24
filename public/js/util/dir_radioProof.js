@@ -119,7 +119,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 if(item == '点击输入内容'){
                                     optionArr.splice(index,1)
                                 }
-                                scope.stepItems[scope.stepIndex].component[comIndex].options = oldOptions.join('\n')
+                                scope.stepItems[scope.stepIndex].component[comIndex].options = optionArr.join('\n')
                             })
                         }
                         toDel.options = scope.stepItems[scope.stepIndex].component[comIndex].options;

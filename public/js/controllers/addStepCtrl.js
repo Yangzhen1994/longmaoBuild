@@ -168,6 +168,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             $scope.stepItems[step].component.push(
                                     $scope.componentItems[c]
                             )
+                            $scope.stepItems[step].component.forEach(function (item,index) {
+                                if(item.type==7){
+                                    if(item.options_other==1){
+                                        item.options+='\n点我输入内容'
+                                    }
+                                }
+                            })
                         }
                     }
                 }
@@ -426,6 +433,16 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                             item1.order = 10000 - index1;
                                                             if(item1.tips_text == '点击输入内容'){
                                                                 item1.tips_text = ' ';
+                                                            }
+                                                            if(item1.options.indexOf('点击输入内容')>-1){
+                                                                item1.options_other = 1;
+                                                                var optionArr = item1.options.split('\n')
+                                                                optionArr.forEach(function (optionsitem,index) {
+                                                                    if(optionsitem == '点击输入内容'){
+                                                                        optionArr.splice(index,1)
+                                                                    }
+                                                                    item1.options = optionArr.join('\n')
+                                                                })
                                                             }
                                                             serverService.submitComponent(item1)
                                                                     .then(function (data) {

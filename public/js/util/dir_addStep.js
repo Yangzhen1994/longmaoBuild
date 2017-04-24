@@ -111,8 +111,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 /*图片凭证*/
                 $scope.showOtherType = function () {
                     $scope.typePhoto = !$scope.typePhoto;
-                    $scope.typeCamera = !$scope.typePhoto;
-                    $scope.typeAll = !$scope.typePhoto;
+                    $scope.typeCamera = !$scope.typeCamera;
+                    $scope.typeAll = !$scope.typeAll;
                 }
                 $scope.imgProof = function (index, type) {
                     var saved = storageUtils.session.getItem('_saved_');

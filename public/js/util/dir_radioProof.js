@@ -22,7 +22,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var comIndex0 = el.parents('li')[0].id.substr(-1, 1);
                 }
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1);
-                scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
+                if(scope.stepItems[scope.stepIndex].component[comIndex0].type == 7){
+                    scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
+                }
+
                 //scope.optionItems = componentItem.options.split('\n');
                 scope.changeOptions = function (index) {
                     if(el.parents('li')[0].id.length == 16){

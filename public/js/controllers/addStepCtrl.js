@@ -170,6 +170,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $scope.componentItems[c].options+='\n点我输入内容'
                                 }
                             }
+                            $scope.stepItems[step].component.push(
+                                    $scope.componentItems[c]
+                            )
                         }
 
                     }
@@ -432,9 +435,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                 item1.tips_text = ' ';
                                                             }
                                                             if(item1.type==7){
+                                                                console.log(item1.options)
                                                                 if(item1.options.indexOf('点击输入内容')>-1){
                                                                     item1.options_other = 1;
-                                                                    var optionArr = item1.options.split('\n');
+                                                                    console.log(item1.options)
+                                                                    var optionArr = item1.options.split('\n')
                                                                     optionArr.forEach(function (optionsitem,index) {
                                                                         if(optionsitem == '点击输入内容'){
                                                                             optionArr.splice(index,1)
@@ -442,6 +447,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                                                     })
                                                                     item1.options = optionArr.join('\n')
+                                                                }else{
+                                                                    item1.options_other = 0;
                                                                 }
                                                             }
 

@@ -110,9 +110,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }
                 /*图片凭证*/
                 $scope.showOtherType = function () {
-                    $scope.typePhoto = true;
-                    $scope.typeCamera = true;
-                    $scope.typeAll = true;
+                    $scope.typePhoto = !$scope.typePhoto;
+                    $scope.typeCamera = !$scope.typePhoto;
+                    $scope.typeAll = !$scope.typePhoto;
                 }
                 $scope.imgProof = function (index, type) {
                     var saved = storageUtils.session.getItem('_saved_');

@@ -177,7 +177,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         serverService.getReviewList({
             id:reviwid,
             uid:$scope.reviewuserID,
-            date:$scope.subTime,
+            date:$rootScope.subTime,
             status:4,
             page:1,
             rows:10,

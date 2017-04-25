@@ -43,7 +43,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     var data = {
                         id:reviwid,
                         uid:$scope.reviewuserID,
-                        date:$scope.subTime,
+                        date:$rootScope.subTime,
                         status:2,
                         page:index,
                         rows:10,
@@ -368,7 +368,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         }
         serverService.getReviewList({id:reviwid,
         uid:$scope.reviewuserID,
-        date:$scope.subTime,
+        date:$rootScope.subTime,
         status:2,
         page:1,
         rows:10,
@@ -392,7 +392,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var data = {
                             id:reviwid,
                             uid:$scope.reviewuserID,
-                            date:$scope.subTime,
+                            date:$rootScope.subTime,
                             status:2,
                             page:index,
                             rows:10,

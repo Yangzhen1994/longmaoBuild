@@ -9,7 +9,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         return function (scope, element) {
             element[0].focus();
         }
-    }).directive('ngcLayDate', function($timeout) {
+    }).directive('ngcLayDate', function($timeout,$rootScope) {
         return {
             require: '?ngModel',
             restrict: 'A',
@@ -69,7 +69,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     function setViewValue() {
                         var val = element.val();
                         ngModel.$setViewValue(val);
-                        sto
+                        $rootScope.subTime = ''
                     }
                 },0);
             }

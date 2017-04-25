@@ -348,6 +348,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $scope.showrejCoverFn = function () {
                     $scope.showrejCover = true
                 };
+                $scope.closeCover = function () {
+                    $scope.showrejCover = false
+                }
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
@@ -729,6 +732,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     $scope.showrejCoverFn = function () {
                         $scope.showrejCover = true
+                    }
+                    $scope.closeCover = function () {
+                        $scope.showrejCover = false
                     }
                 })
         var okArr = [];

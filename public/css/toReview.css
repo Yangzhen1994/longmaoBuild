@@ -87,7 +87,8 @@
     color: rgba(0,0,0,0.54);
     float: left;
     margin-top: 30px;
-    margin-right: 25px;
+    width: 12%;
+    text-align:center;
 }
 .nickName_time{
     top:37px;
@@ -131,7 +132,7 @@
 }
 .toReview_Right_footer,.reviewOk_Right_footer,.reviewNo_Right_footer{
     position: absolute;
-    width: calc(35% - 2px);
+    width: 100%;
     height: 55px;
     bottom: 0;
     border-top:  1px solid #ECECEC; ;
@@ -258,9 +259,11 @@
 }
 .li_header a{
     display: inline-block;
-    width: 12.5%;
+    width: 10%;
     height:20px;
     line-height: 20px;
     text-align: center;
     text-decoration: none;
+    font-size: 13px;
+    color: #2DB7F5;
 }

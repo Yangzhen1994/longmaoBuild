@@ -39,6 +39,12 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $scope.reviewNo = $scope.reviewNoItems[0].data;
                 $scope.changeColor = 0;
                 $scope.currentIndex = 0;
+                $scope.reviewNo.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                })
                 //复选框的初值
                 $scope.flag = false;
 
@@ -95,12 +101,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
                 };
-                $scope.reviewNo.forEach(function (item,index) {
-                    if(item.type == 5){
-                        window.x = item.x;
-                        window.y = item.y;
-                    }
-                })
+
                 $scope.changeRight($scope.reviewNoItems[0],0)
                 $scope.next = function () {
                     $scope.currentIndex ++;

@@ -19,6 +19,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 return
             }
             if(searchCheckBydate.rows.length>0){
+                $scope.closeCover = function () {
+                    $scope.showrejCover = false
+                }
                 $scope.toReviewItems = searchCheckBydate.rows;
                 $scope.toReview = $scope.toReviewItems[0].data;
 
@@ -348,9 +351,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $scope.showrejCoverFn = function () {
                     $scope.showrejCover = true
                 };
-                $scope.closeCover = function () {
-                    $scope.showrejCover = false
-                }
+
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
@@ -377,7 +378,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
         rows:10,
         })
                 .then(function (data) {
-
+                    $scope.closeCover = function () {
+                        $scope.showrejCover = false
+                    }
                     $scope.toReviewItems = data.result.rows;
                     $rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
@@ -733,9 +736,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.showrejCoverFn = function () {
                         $scope.showrejCover = true
                     }
-                    $scope.closeCover = function () {
-                        $scope.showrejCover = false
-                    }
+
                 })
         var okArr = [];
         var noArr = [];

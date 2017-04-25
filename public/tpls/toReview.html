@@ -90,10 +90,10 @@
         <div class="toReview_Right_footer">
             <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>
             <a href="javascript:;" class="tr_Right_fallow" ng-click="trRightAllow()">通过</a>
-            <a href="javascript:;" class="tr_Right_reject" ng-mouseover="showrejCover = true">拒绝
+            <a href="javascript:;" class="tr_Right_reject" ng-mouseover="showrejCover = true"  ng-click="closeCover()">拒绝
                 <div class="tr_reject clearfix" ng-show="showrejCover">
                     <ul class="reason_cover" >
-                        <li class="reason_header" ng-click="closeCover()">拒绝原因</li>
+                        <li class="reason_header">拒绝原因</li>
                         <li id="{{'reson_detail'+$index}}"
                             ng-repeat="reason in reasonLists" ng-mouseover="changeReasonbg($index,e)"
                             ng-class="{cbg:bg==$index}"

@@ -69,9 +69,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     // 更新模型上的视图值
                     function setViewValue() {
-                        var val = element.val();
-                        ngModel.$setViewValue(val);
-                        //$rootScope.subTime = val
+                        setTimeout(function(){
+                            var val = element.val();
+                            ngModel.$setViewValue(val);
+                        },100)
                     }
                 },0);
             }

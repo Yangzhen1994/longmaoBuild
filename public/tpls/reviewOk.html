@@ -5,8 +5,8 @@
             <input type="checkbox"  ng-model="masterheader" ng-click="all(masterheader)" ng-checked="flag" class="tr_hideCheckBox" id="ro_checkAll"><span class="checkAllText">全选</span>
             <label for="ro_checkAll" class="checkAll_label"></label>
         </div>
-        <div class="detail_footer clearfix">
-            <div class="pagination_index" style="width: 200px;font-size: 13px">
+        <div class="detail_footer clearfix" style="width:100%">
+            <div class="pagination_index" style="width: 100%;font-size: 13px">
                 <ul class="clearfix">
                     <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span ng-bind="pageTotal"></span>页</li>
                     <!--<li>
@@ -20,16 +20,32 @@
             </div>
         </div>
         <ul class="checkItems" >
+            <li class="li_header">
+                <a href="javascript:;">任务编号</a>
+                <a href="javascript:;">任务标题</a>
+                <a href="javascript:;">任务编号</a>
+                <a href="javascript:;">单价</a>
+                <a href="javascript:;">提交用户id</a>
+                <a href="javascript:;">文本描述</a>
+                <a href="javascript:;">凭证创建时间</a>
+                <a href="javascript:;">凭证提交审核时间</a>
+                <a href="javascript:;">剩余审核时间</a>
+            </li>
             <li ng-repeat="item in reviewOkItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
                 <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'ro_checkItem'+$index}}" class="tr_hideCheckBox"></input>
                 <label for="{{'ro_checkItem'+$index}}" class="tr_labelItem" ></label>
-                <p class="nickName">{{item.uid}}</p>
+                <p class="nickName">{{item.id}}</p>
+                <p class="nickName">{{item.title}}</p>
+                <p class="nickName">{{item.amount}}</p>
+                <p class="nickName">{{item.text_desc}}</p>
+                <p class="nickName">{{item.create_time}}</p>
                 <p class="nickName_time">{{item.submit_time}}</p>
+                <p class="nickName_time">{{item.surplus_check_time}}</p>
             </li>
         </ul>
     </div>
     <div class="reviewOk_Right">
-        <div style="overflow-y: auto;height: calc(100% - 56px)">
+        <div style="overflow-y: auto;height: calc(100% - 56px);width: 100%">
             <div ng-repeat="item in reviewOk">
                <p style="color:#4CAF50" ng-show="$index == 0">总赚钱:{{item.amount}}</p>
                <p style="color:red" ng-show="$index == 0">历史被拒:{{item.check_fail}}</p>

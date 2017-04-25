@@ -434,6 +434,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                             if(item1.tips_text == '点击输入内容'){
                                                                 item1.tips_text = ' ';
                                                             }
+                                                            if(item1.tips_text.indexOf('手机号')>-1){
+                                                                item1.regex = '^.*(1\d{10})(?:[^\d].*)?$'
+                                                            }
                                                             if(item1.type==7){
                                                                 console.log(item1.options)
                                                                 if(item1.options.indexOf('点我输入内容')>-1){

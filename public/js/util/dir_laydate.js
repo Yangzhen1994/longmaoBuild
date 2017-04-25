@@ -4,7 +4,7 @@
 /**
  * 时间控件模块，引入laydate并对其进行处理(layDate.js不是layDate源文件，修改过)
  */
-define(['app'], function (app) {
+define(['app','storageUtils'], function (app,storageUtils) {
     return app.directive('autoFocus', function () {
         return function (scope, element) {
             element[0].focus();
@@ -69,6 +69,7 @@ define(['app'], function (app) {
                     function setViewValue() {
                         var val = element.val();
                         ngModel.$setViewValue(val);
+                        sto
                     }
                 },0);
             }

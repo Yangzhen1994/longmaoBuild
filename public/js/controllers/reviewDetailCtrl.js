@@ -25,10 +25,12 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.changeTabBorder = function (index) {
             $scope.tabSelected = index
         };
-        $scope.changeTime = function () {
-            $socpe.$apply()
+       /* $scope.changeTime = function () {
+            $scope.$apply()
+        }*/
+        $scope.clearTime = function () {
+            $scope.subTime = ''
         }
-
         $scope.searchCheckBydate = function () {
             if(!$scope.reviewuserID){
                 alert('输入不能为空');
@@ -72,9 +74,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 console.log(data)
                 if(data.result.rows && data.result.rows.length>0){
                    storageUtils.session.setItem('searchCheckBydate',data.result);
-                    if($scope.chooseType == 2){
-                        $scope.reviewuserID =''
-                    }
+
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
                         //$scope.subTime = '';
@@ -86,8 +86,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                    window.location = '#/reviewDetail/reviewDetail/tab2'
                 }else{
                     alert($scope.resmasg+'无');
-                    $scope.subTime = '';
-                    $scope.reviewuserID = '';
+                    //$scope.subTime = '';
+                    //$scope.reviewuserID = '';
                     storageUtils.session.setItem('searchCheckBydate',data.result);
                     if($scope.tabSelected == 0){
                         storageUtils.session.setItem('_FLAG_',true)

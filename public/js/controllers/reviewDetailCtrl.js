@@ -25,15 +25,17 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.changeTabBorder = function (index) {
             $scope.tabSelected = index
         };
-
+        $scope.changeTime = function () {
+            $socpe.$apply()
+        }
 
         $scope.searchCheckBydate = function () {
             if(!$scope.reviewuserID){
-                alert('不能为空');
+                alert('输入不能为空');
                 return
             }
             if(!$scope.chooseType){
-                alert('请选择类别');
+                alert('请选择搜索类别');
                 return
             }
             var data0 = {
@@ -70,13 +72,13 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 console.log(data)
                 if(data.result.rows && data.result.rows.length>0){
                    storageUtils.session.setItem('searchCheckBydate',data.result);
-
+                    if($scope.chooseType == 2){
+                        $scope.reviewuserID =''
+                    }
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
                         //$scope.subTime = '';
-                        if($scope.chooseType == 2){
-                            $scope.reviewuserID =''
-                        }
+
                         window.location = '#/reviewDetail/reviewDetail/tab1'
                         return
                     }

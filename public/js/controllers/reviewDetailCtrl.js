@@ -11,7 +11,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.reviewId = reviwid;
         $scope.chooseType = '';
         $scope.tabSelected = 0;
-        $rootScope.subTime = '';
+        $scope.subTime = '';
         $scope.setChoose = function (type) {
             $scope.chooseType = type
         }
@@ -29,7 +29,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             $scope.$apply()
         }*/
         $scope.clearTime = function () {
-            $rootScope.subTime = ''
+            $scope.subTime = ''
         }
         $scope.searchCheckBydate = function () {
             if(!$scope.reviewuserID){
@@ -43,7 +43,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             var data0 = {
                 id:storageUtils.session.getItem('_reviewList_'),
                 uid:'',
-                date:$rootScope.subTime,
+                date:$scope.subTime,
                 status:'',
                 page:1,
                 rows:10,
@@ -77,7 +77,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
                    //$scope.$broadcast('searchCheckBydate',data)
                     if(data.result.rows[0].status == 3){
-                        //$rootScope.subTime = '';
+                        //$scope.subTime = '';
 
                         window.location = '#/reviewDetail/reviewDetail/tab1'
                         return
@@ -86,7 +86,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                    window.location = '#/reviewDetail/reviewDetail/tab2'
                 }else{
                     alert($scope.resmasg+'无');
-                    //$rootScope.subTime = '';
+                    //$scope.subTime = '';
                     //$scope.reviewuserID = '';
                     storageUtils.session.setItem('searchCheckBydate',data.result);
                     if($scope.tabSelected == 0){
@@ -108,7 +108,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
 
 
                 }
-                $rootScope.subTime = ''
+                $scope.subTime = ''
             })
         }
     }]);

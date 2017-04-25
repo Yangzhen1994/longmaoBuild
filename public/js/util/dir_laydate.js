@@ -34,7 +34,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         },
                         clear:function(){
+                            //$rootScope.subTime = ''
                             ngModel.$setViewValue(null);
+
                         }
                     };
                     // 初始化
@@ -69,7 +71,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     function setViewValue() {
                         var val = element.val();
                         ngModel.$setViewValue(val);
-                        $rootScope.subTime = ''
+                        //$rootScope.subTime = val
                     }
                 },0);
             }

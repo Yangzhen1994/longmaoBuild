@@ -363,6 +363,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
             script.src = "http://api.map.baidu.com/api?v=2.0&ak=VcN7gumC0Wnn475XXWr4FeoyF5YYOVGC&callback=" + callback;
             document.getElementById(containterId).appendChild(script);
         }*/
+        if($scope.reviewuserID&&$scope.chooseType == 2){
+            $scope.reviewuserID = ''
+        }
         serverService.getReviewList({id:reviwid,
         uid:$scope.reviewuserID,
         date:$scope.subTime,

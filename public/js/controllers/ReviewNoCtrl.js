@@ -169,7 +169,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         }
 
 
-
+        /************/
+        if($scope.reviewuserID&&$scope.chooseType == 2){
+            $scope.reviewuserID = ''
+        }
         var reviwid = storageUtils.session.getItem('_reviewList_');
         serverService.getReviewList({
             id:reviwid,

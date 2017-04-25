@@ -45,6 +45,14 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         window.y = item.y;
                     }
                 })
+                window.initNo = function () {
+                    map = new BMap.Map("cc_map");            // 创建Map实例
+                    var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                    map.centerAndZoom(point,16);
+                    map.enableScrollWheelZoom();// 启用滚轮放大缩小
+
+
+                }
                 //复选框的初值
                 $scope.flag = false;
 

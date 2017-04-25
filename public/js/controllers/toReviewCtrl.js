@@ -74,6 +74,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
                 };
+                $scope.toReview.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                })
                 //复选框的初值
                 $scope.flag = false;
 

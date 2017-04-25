@@ -95,6 +95,12 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
                 };
+                $scope.reviewNo.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                })
                 $scope.changeRight($scope.reviewNoItems[0],0)
                 $scope.next = function () {
                     $scope.currentIndex ++;

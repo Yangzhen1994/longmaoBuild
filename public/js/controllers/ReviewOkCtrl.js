@@ -81,6 +81,12 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
 
                 };
+                $scope.reviewOk.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                })
                 //$scope.reviewOk = $scope.reviewOkItems[0].data;
                 //复选框的初值
                 $scope.flag = false;

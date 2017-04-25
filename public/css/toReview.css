@@ -127,11 +127,14 @@
     font-family: PingFangSC-Regular;
     font-size: 15px;
     color: rgba(0,0,0,1);
-    width: 518px;
+    width: 100%;
     height: auto;
     line-height: 21px;
     margin: 0 auto;
     margin-top: 5px;
+}
+.value_a{
+    text-decoration: none;
 }
 .toReview_Right_footer,.reviewOk_Right_footer,.reviewNo_Right_footer{
     position: absolute;

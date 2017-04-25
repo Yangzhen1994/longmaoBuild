@@ -60,7 +60,7 @@
                 <p style="color:red" ng-show="$index == 0">本任务被拒:{{item.task_check_fail}}</p>
                 <p>{{item.tips_text}}:</p>
                 <div class="toReview_Right_tel">
-                    <p><span ng-hide="{{item.type == 2 || item.type == 4 || item.type == 3||item.type == 6}}"><a target="_blank" ng-href="{{item.value}}" class="value_a">{{item.value}}</a></span><a target="_blank" ng-href="{{item.value}}" ng-show="{{item.type == 6}}">下载</a>
+                    <p><span ng-hide="item.type == 2 || item.type == 4 || item.type == 3||item.type == 6"><a target="_blank" ng-href="{{item.value}}" class="value_a">{{item.value}}</a></span><a target="_blank" ng-href="{{item.value}}" ng-show="{{item.type == 6}}">下载</a>
 
                         <a ng-href="{{item.value}}" ng-show="item.type == 2 || item.type == 4 || item.type == 3" target="_blank"><img ng-src="{{item.value}}" alt="" ng-show="{{item.type == 2 || item.type == 4 || item.type == 3}}" width="200px"></a>
 

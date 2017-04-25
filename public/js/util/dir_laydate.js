@@ -30,12 +30,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         max:attr.hasOwnProperty('maxDate')?attr.maxDate:'',
                         min:attr.hasOwnProperty('minDate')?attr.minDate:'',
                         choose: function(data) {
-                            scope.$apply(setViewValue);
+                            scope.$apply(setViewValue());
 
                         },
                         clear:function(){
                             //$rootScope.subTime = ''
-                            ngModel.$setViewValue(null);
+                            scope.$apply(setViewValue());
 
                         }
                     };

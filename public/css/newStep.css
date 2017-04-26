@@ -144,7 +144,7 @@ stepTemp_content{
     border-right: none;
     overflow-y: auto;
     padding-bottom: 35px;
-
+    overflow-x: hidden;
 }
 .btn_addStep{
     text-align: center;

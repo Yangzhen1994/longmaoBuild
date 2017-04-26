@@ -460,6 +460,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                         console.log(data);
                                                                         if(data.code == 200){
                                                                             //把凭证信息存入到session
+                                                                           /* serverService.getComponent(taskId2)
+                                                                                    .then(function (data) {
+                                                                                                storageUtils.session.setItem('_component_', data.result);
+                                                                                    })*/
                                                                             storageUtils.session.setItem('_component_', data.result);
                                                                             window.save = true
                                                                         }else{

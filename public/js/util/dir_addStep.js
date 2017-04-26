@@ -80,7 +80,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         options:'',
                         options_other:0,
                         regex: '',
-                        regex_name: null,
                         status: 1,
                         step_id: $scope.stepItems[index].oldSteps.id,
                         type: 1,
@@ -107,7 +106,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })*/
                     $timeout(function(){
                         if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                            $('#imgUrl'+index).scrollTop(75)
                         }
                     },100)
                 }

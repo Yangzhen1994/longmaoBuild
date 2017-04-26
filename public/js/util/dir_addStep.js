@@ -106,7 +106,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })*/
                     $timeout(function(){
                         if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop(75)
+                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
                         }
                     },100)
                 }

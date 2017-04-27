@@ -130,37 +130,57 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     /*全选通过*/
                     if($scope.master&&$scope.master == true){
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
-                            $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
-                            okArr.push($scope.reviewNoItems[i]);
-                            $scope.master = false;
+                            serverService.check({ids:$scope.reviewNoItems[i].cid,
+                                status:1
+                            })
+                                    .then(function (data) {
+                                        if(data.success ==1){
+                                            storageUtils.session.setItem('_NotoAllow_',true)
+                                        }
+                                    })
+                            //okArr.push($scope.reviewNoItems[i]);
+                            $scope.masterheader = false;
+                            $scope.masterItem = false;
                             $scope.changeRight(null);
                         }
-                        storageUtils.session.setItem('_reviewOk_',okArr);
+                        //storageUtils.session.setItem('_reviewOk_',okArr);
+
                         $scope.reviewNoItems = [];/*删除待审核的*/
+                        $scope.masterheader = false;
+                        if(storageUtils.session.getItem('_NotoAllow_')){
+                            alert('操作成功')
+                            storageUtils.session.removeItem('_NotoAllow_')
+                        }
+                        storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
+
                     }else{
                         /*没全选状态下点击next/通过*/
                         var result = []
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
                             if($scope.reviewNoItems[i].checkState == true) {
-                                console.log($scope.reviewNoItems[i].nickName+'通过');
-                                $scope.reviewNoItems[i].reviewState = 1;/*通过的状态变成1*/
-                                okArr.push($scope.reviewNoItems[i]);
+                                serverService.check({ids:$scope.reviewNoItems[i].cid,
+                                    status:1
+                                }).then(function (data) {
+                                    if(data.success == 1){
+                                        alert('操作成功')
+                                    }
+                                })
+
+                                //okArr.push($scope.reviewNoItems[i]);
                                 $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                 i--;
                             }
                         }
                         result = $scope.reviewNoItems;
                         $scope.reviewNoItems = result;
-
                         if($scope.reviewNoItems.length>0){
                             $scope.changeRight($scope.reviewNoItems[0],0);
 
                         }else{
-                            $scope.reviewNo = {}
+                            $scope.toReview = {}
                         }
+                        //storageUtils.session.setItem('_reviewOk_',okArr);
 
-                        storageUtils.session.setItem('_reviewOk_',okArr);
-                        storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                     }
 
                 };
@@ -292,14 +312,24 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         serverService.check({ids:$scope.reviewNoItems[i].cid,
                             status:1
                         })
+                                .then(function (data) {
+                                    if(data.success ==1){
+                                        storageUtils.session.setItem('_NotoAllow_',true)
+                                    }
+                                })
                         //okArr.push($scope.reviewNoItems[i]);
                         $scope.masterheader = false;
                         $scope.masterItem = false;
                         $scope.changeRight(null);
                     }
                     //storageUtils.session.setItem('_reviewOk_',okArr);
+
                     $scope.reviewNoItems = [];/*删除待审核的*/
                     $scope.masterheader = false;
+                    if(storageUtils.session.getItem('_NotoAllow_')){
+                        alert('操作成功');
+                        storageUtils.session.removeItem('_NotoAllow_')
+                    }
                     storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
 
                 }else{

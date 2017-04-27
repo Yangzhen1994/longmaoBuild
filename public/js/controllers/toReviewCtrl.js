@@ -178,12 +178,24 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.check({ids:$scope.toReviewItems[i].cid,
                                 status:1
                             })
+                                    .then(function (data) {
+                                        /*if(data.success == 1){
+                                            alert('操作成功')
+                                        }*/
+                                        if(data.success == 1){
+                                            storageUtils.session.setItem('_Allowed_',true)
+                                        }
+                                    })
                             okArr.push($scope.toReviewItems[i]);
                             $scope.masterheader = false;
                             $scope.masterItem = false;
                             $scope.changeRight(null);
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
+                        if(storageUtils.session.getItem('_Allowed')){
+                            alert('操作成功');
+                            storageUtils.session.removeItem('_Allowed')
+                        }
                         $scope.toReviewItems = [];/*删除待审核的*/
                         $scope.masterheader = false;
                         storageUtils.session.setItem('_reviewNo_',$scope.toReviewItems);
@@ -235,7 +247,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.bg = index
                 }
                 $scope.subReason = function (e,index) {
-                    var data = {ids:$scope.toReviewItems[i].cid,
+                    var data = {ids:$scope.toReviewItems[index].cid,
                         status:0,
                         message:3,
                         extmessage:'',
@@ -250,8 +262,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     /*全选拒绝*/
                     if($scope.master&&$scope.master == true){
                         for(var i=0;i<$scope.toReviewItems.length;i++){
+                            data.ids = $scope.toReviewItems[i].cid
                             serverService.check(data).then(function (data) {
-
+                                if(data.success == 1){
+                                    storageUtils.session.setItem('_Fail_',true)
+                                }
                             })
 
                             $scope.masterheader = false;
@@ -259,18 +274,24 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewNo_',noArr);
                         $scope.toReviewItems = [];/*删除待审核的*/
-                        $scope.masterheader = false
+                        $scope.masterheader = false;
+                        if(storageUtils.session.getItem('_Fail_')){
+                            alert('操作成功');
+                            storageUtils.session.removeItem('_Fail_')
+                        }
                     }else{
                         var result = []
-                        /*没全选状态下点击next/通过*/
                         for(var i=0;i<$scope.toReviewItems.length;i++){
                             if($scope.toReviewItems[i].checkState == true) {
                                 console.log($scope.toReviewItems[i].nickName+'拒绝');
                                 /*$scope.toReviewItems[i].reviewState = 2;/!*通过的状态变成2*!/
                                  $scope.toReviewItems[i].rejectReason = $scope.reasonLists[index].reasonText;
                                  noArr.push($scope.toReviewItems[i]);*/
+                                data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
-
+                                        if(data.success==1){
+                                            alert('操作成功')
+                                        }
                                 })
                                 $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
                                 i--;
@@ -313,7 +334,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 $scope.toReviewItems = [];/*删除待审核的*/
                             }else{
                                 var result = [];
-                                /*没全选状态下点击next/通过*/
+
                                 for(var i=0;i<$scope.toReviewItems.length;i++){
                                     if($scope.toReviewItems[i].checkState == true) {
                                         //console.log($scope.toReviewItems[i].nickName+'拒绝');
@@ -563,12 +584,21 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 serverService.check({ids:$scope.toReviewItems[i].cid,
                                     status:1
                                 })
+                                        .then(function (data) {
+                                            if(data.success == 1){
+                                                storageUtils.session.setItem('_Allowed_',true)
+                                            }
+                                        })
                                 okArr.push($scope.toReviewItems[i]);
                                 $scope.masterheader = false;
                                 $scope.masterItem = false;
                                 $scope.changeRight(null);
                             }
                             storageUtils.session.setItem('_reviewOk_',okArr);
+                            if(storageUtils.session.getItem('_Allowed')){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Allowed')
+                            }
                             $scope.toReviewItems = [];/*删除待审核的*/
                             $scope.masterheader = false;
                             storageUtils.session.setItem('_reviewNo_',$scope.toReviewItems);
@@ -635,8 +665,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         /*全选拒绝*/
                         if($scope.master&&$scope.master == true){
                             for(var i=0;i<$scope.toReviewItems.length;i++){
+                                data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
-
+                                    if(data.success == 1){
+                                        storageUtils.session.setItem('_Fail_',true)
+                                    }
                                 })
 
                                 $scope.masterheader = false;
@@ -644,18 +677,25 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                             storageUtils.session.setItem('_reviewNo_',noArr);
                             $scope.toReviewItems = [];/*删除待审核的*/
+                            if(storageUtils.session.getItem('_Fail_')){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Fail_')
+                            }
                             $scope.masterheader = false
                         }else{
                             var result = []
 
                             for(var i=0;i<$scope.toReviewItems.length;i++){
                                 if($scope.toReviewItems[i].checkState == true) {
-                                    console.log($scope.toReviewItems[i].nickName+'拒绝');
+
                                     /*$scope.toReviewItems[i].reviewState = 2;/!*通过的状态变成2*!/
                                     $scope.toReviewItems[i].rejectReason = $scope.reasonLists[index].reasonText;
                                     noArr.push($scope.toReviewItems[i]);*/
+                                    data.ids = $scope.toReviewItems[i].cid
                                     serverService.check(data).then(function (data) {
-
+                                            if(data.success==1){
+                                                alert('操作成功')
+                                            }
                                     })
                                     $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
                                     i--;
@@ -689,13 +729,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             message:1,
                                             extmessage:$scope.otherReason
                                         }).then(function (data) {
-
+                                                if(data.success == 1){
+                                                    storageUtils.session.setItem('_Fail_',true)
+                                                }
                                         })
                                         $scope.master = false;
                                         $scope.changeRight(null);
                                     }
                                     storageUtils.session.setItem('_reviewNo_',noArr);
                                     $scope.toReviewItems = [];/*删除待审核的*/
+                                    if(storageUtils.session.getItem('_Fail_')){
+                                        alert('操作成功');
+                                        storageUtils.session.removeItem('_Fail_')
+                                    }
                                 }else{
                                     var result = [];
 
@@ -709,9 +755,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                 status:0,
                                                 message:1,
                                                 extmessage:$scope.otherReason
-                                            }).then(function (data) {});
+                                            }).then(function (data) {
+                                                if(data.success == 1){
+                                                    alert('操作成功')
+                                                }
+                                            });
 
-                                                $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
+                                             $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
                                             i--;
                                         }
                                     }

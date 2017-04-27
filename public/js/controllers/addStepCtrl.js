@@ -443,6 +443,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                                     item1.regex = item2.code
                                                                                 }
                                                                             })
+                                                                            serverService.submitComponent(item1)
+                                                                                    .then(function (data) {
+                                                                                        console.log(data);
+                                                                                        if(data.code == 200){
+                                                                                            //把凭证信息存入到session
+                                                                                            /* serverService.getComponent(taskId2)
+                                                                                             .then(function (data) {
+                                                                                             storageUtils.session.setItem('_component_', data.result);
+                                                                                             })*/
+                                                                                            storageUtils.session.setItem('_component_', data.result);
+                                                                                            window.save = true
+                                                                                        }else{
+                                                                                            window.save = false
+                                                                                        }
+
+
+                                                                                    })
                                                                         })
 
                                                             }
@@ -464,23 +481,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                 }
                                                             }
 
-                                                            serverService.submitComponent(item1)
-                                                                    .then(function (data) {
-                                                                        console.log(data);
-                                                                        if(data.code == 200){
-                                                                            //把凭证信息存入到session
-                                                                           /* serverService.getComponent(taskId2)
-                                                                                    .then(function (data) {
-                                                                                                storageUtils.session.setItem('_component_', data.result);
-                                                                                    })*/
-                                                                            storageUtils.session.setItem('_component_', data.result);
-                                                                            window.save = true
-                                                                        }else{
-                                                                            window.save = false
-                                                                        }
 
-
-                                                                    })
                                                         })
                                                     }
                                                 }

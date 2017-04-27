@@ -10,6 +10,32 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 scope.textIndex = el.parents('ul')[0].id.substr(-1,1)
                 el.click(function () {
                     el.find('input').eq(0).css('display','block');
+                    el.find('input').eq(0).keyup(function () {
+                        var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
+                        //scope.isText = false;
+                        if(this.value.length == 1){
+                            if($(this).parents('li')[0].id.length == 16){
+                                var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
+
+                            }else
+                            if($(this).parents('li')[0].id.length == 15){
+                                var comIndex = $(this).parents('li')[0].id.substr(-2, 2);
+
+                            }else{
+                                //alert($(this).parents('li')[0].id)
+                                var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
+                            }
+                            var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
+                            console.log(stepIndex)
+                            scope.stepItems[stepIndex].component[comIndex].isText = true
+                        }
+
+                        /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
+                         .then(function () {
+
+                         })*/
+                        //serverService.submitComponent(scope.componentItems[comIndex])
+                    });
                     //scope.isText = true;
                     //console.log(scope.isText)
                 });
@@ -20,6 +46,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                 })*/
                 el.find('input').eq(0).blur(function () {
+
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     //scope.isText = false;
                     $(this).css('display','none')
@@ -35,7 +62,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var comIndex = $(this).parents('li')[0].id.substr(-1, 1);
                     }
                     var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
-                    console.log(stepIndex)
+                    console.log(stepIndex);
+                    scope.stepItems[stepIndex].component[comIndex].isText = false
                     scope.stepItems[stepIndex].component[comIndex].task_id = taskId
                     /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function () {

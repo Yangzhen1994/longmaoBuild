@@ -438,7 +438,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                 serverService.getRegex()
                                                                         .then(function (data) {
                                                                             console.log(data)
-                                                                            item1.regex = '^.*(1\d{10})(?:[^\d].*)?$'
+                                                                            data.result.forEach(function (item2,index) {
+                                                                                if(item2.value == '手机号码'){
+                                                                                    item1.regex = item2.code
+                                                                                }
+                                                                            })
                                                                         })
 
                                                             }

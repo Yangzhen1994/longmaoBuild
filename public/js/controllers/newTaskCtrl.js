@@ -30,6 +30,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 max_submit:'',
                 tag_id:'',
                 region_filter:'',
+                is_reward
                 /*//线下任务的选项
                 poi_id:'',
                 max_distance:'',

@@ -6,7 +6,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         var reiewFlag = storageUtils.session.getItem('_FLAG_');
         if(reiewFlag){
             storageUtils.session.removeItem('_FLAG_');
-            window.location = '#/reviewDetail/reviewDetail/tab3'
+            window.location = '#/reviewDetail/reviewDetail/tab3';
+            return;
         }
 
         var reviwid = storageUtils.session.getItem('_reviewList_');
@@ -26,9 +27,11 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         if(searchCheckBydate){
             if(searchCheckBydate.rows.length>0&&searchCheckBydate.rows[0].status == 2){
                 window.location = '#/reviewDetail/reviewDetail/tab1';
+                return;
             }
             if(searchCheckBydate.rows.length>0&&searchCheckBydate.rows[0].status == 4){
                 window.location = '#/reviewDetail/reviewDetail/tab3';
+                return;
             }
             if(searchCheckBydate.rows.length>0&&searchCheckBydate.rows[0].status == 3){
                 $scope.reviewOkItems = searchCheckBydate.rows;

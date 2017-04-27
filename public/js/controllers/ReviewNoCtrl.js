@@ -30,7 +30,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         var reiewFlag = storageUtils.session.getItem('_FLAG_');
         if(reiewFlag){
             storageUtils.session.removeItem('_FLAG_');
-            window.location = '#/reviewDetail/reviewDetail/tab1'
+            window.location = '#/reviewDetail/reviewDetail/tab1';
+            return;
         }
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         if(searchCheckBydate){

@@ -57,6 +57,18 @@
                 <label for="sharePrice">分享奖励(元):</label>
                 <input type="text" id="sharePrice" ng-model="task.share_award" />
             </div>
+            <div class="nt_rv_sharePrice">
+                <label for="shareTitle">分享标题:</label>
+                <input type="text" id="shareTitle" ng-model="task.share_title" />
+            </div>
+            <div class="nt_rv_sharePrice">
+                <label for="shareContent">分享内容(元):</label>
+                <input type="text" id="shareContent" ng-model="task.share_content" />
+            </div>
+            <div class="nt_rv_sharePrice">
+                <label for="shareIcon">分享图片链接(元):</label>
+                <input type="text" id="shareIcon" ng-model="task.share_icon" />
+            </div>
             <div class="nt_rv_reviewTime">
                 <label for="reviewTime">最长审核时间(小时):</label>
                 <input type="text" id="reviewTime" ng-change="changeReviewTime()" ng-model="task.max_check_time"  />

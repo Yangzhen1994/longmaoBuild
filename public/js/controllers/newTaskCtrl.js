@@ -30,7 +30,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 max_submit:'',
                 tag_id:'',
                 region_filter:'',
-                is_reward
+                is_reward:1,//是否是收徒任务
+                share_title:'',
+                share_content:'',
+                share_icon:'',
                 /*//线下任务的选项
                 poi_id:'',
                 max_distance:'',

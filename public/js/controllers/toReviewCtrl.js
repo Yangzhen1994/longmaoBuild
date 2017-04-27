@@ -6,7 +6,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
         var reiewFlag = storageUtils.session.getItem('_FLAG_');
         if(reiewFlag){
             storageUtils.session.removeItem('_FLAG_');
-            window.location = '#/reviewDetail/reviewDetail/tab2'
+            window.location = '#/reviewDetail/reviewDetail/tab2';
+            return;
         }
 
         var reviwid = storageUtils.session.getItem('_reviewList_');

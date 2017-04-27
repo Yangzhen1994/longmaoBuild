@@ -134,7 +134,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 status:1
                             })
                                     .then(function (data) {
-                                        if(data.success ==1){
+                                        if(data.result.success ==1){
                                             storageUtils.session.setItem('_NotoAllow_',true)
                                         }
                                     })
@@ -161,7 +161,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 serverService.check({ids:$scope.reviewNoItems[i].cid,
                                     status:1
                                 }).then(function (data) {
-                                    if(data.success == 1){
+                                    if(data.result.success == 1){
                                         alert('操作成功')
                                     }
                                 })
@@ -313,7 +313,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             status:1
                         })
                                 .then(function (data) {
-                                    if(data.success ==1){
+                                    if(data.result.success ==1){
                                         storageUtils.session.setItem('_NotoAllow_',true)
                                     }
                                 })
@@ -340,7 +340,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             serverService.check({ids:$scope.reviewNoItems[i].cid,
                                 status:1
                             }).then(function (data) {
-                                if(data.success == 1){
+                                if(data.result.success == 1){
                                     alert('操作成功')
                                 }
                             })

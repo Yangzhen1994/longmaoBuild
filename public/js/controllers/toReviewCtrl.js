@@ -179,10 +179,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 status:1
                             })
                                     .then(function (data) {
-                                        /*if(data.success == 1){
+                                        /*if(data.result.success == 1){
                                             alert('操作成功')
                                         }*/
-                                        if(data.success == 1){
+                                        if(data.result.success == 1){
                                             storageUtils.session.setItem('_Allowed_',true)
                                         }
                                     })
@@ -208,7 +208,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 serverService.check({ids:$scope.toReviewItems[i].cid,
                                     status:1
                                 }).then(function (data) {
-                                    if(data.success == 1){
+                                    if(data.result.success == 1){
                                         alert('操作成功')
                                     }
                                 })
@@ -264,7 +264,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         for(var i=0;i<$scope.toReviewItems.length;i++){
                             data.ids = $scope.toReviewItems[i].cid
                             serverService.check(data).then(function (data) {
-                                if(data.success == 1){
+                                if(data.result.success == 1){
                                     storageUtils.session.setItem('_Fail_',true)
                                 }
                             })
@@ -289,7 +289,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                  noArr.push($scope.toReviewItems[i]);*/
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
-                                        if(data.success==1){
+                                        if(data.result.success==1){
                                             alert('操作成功')
                                         }
                                 })
@@ -585,7 +585,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     status:1
                                 })
                                         .then(function (data) {
-                                            if(data.success == 1){
+                                            if(data.result.success == 1){
                                                 storageUtils.session.setItem('_Allowed_',true)
                                             }
                                         })
@@ -611,7 +611,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     serverService.check({ids:$scope.toReviewItems[i].cid,
                                                         status:1
                                     }).then(function (data) {
-                                        if(data.success == 1){
+                                        if(data.result.success == 1){
                                             alert('操作成功')
                                         }
                                     })
@@ -667,7 +667,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             for(var i=0;i<$scope.toReviewItems.length;i++){
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
-                                    if(data.success == 1){
+                                    if(data.result.success == 1){
                                         storageUtils.session.setItem('_Fail_',true)
                                     }
                                 })
@@ -693,7 +693,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     noArr.push($scope.toReviewItems[i]);*/
                                     data.ids = $scope.toReviewItems[i].cid
                                     serverService.check(data).then(function (data) {
-                                            if(data.success==1){
+                                            if(data.result.success==1){
                                                 alert('操作成功')
                                             }
                                     })
@@ -729,7 +729,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             message:1,
                                             extmessage:$scope.otherReason
                                         }).then(function (data) {
-                                                if(data.success == 1){
+                                                if(data.result.success == 1){
                                                     storageUtils.session.setItem('_Fail_',true)
                                                 }
                                         })
@@ -756,7 +756,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                 message:1,
                                                 extmessage:$scope.otherReason
                                             }).then(function (data) {
-                                                if(data.success == 1){
+                                                if(data.result.success == 1){
                                                     alert('操作成功')
                                                 }
                                             });

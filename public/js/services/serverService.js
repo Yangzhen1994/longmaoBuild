@@ -275,7 +275,7 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
-        /**获取下拉菜单*/
+        /**获取下拉菜单地区*/
 
         function getSelectData() {
             var defer = $q.defer();
@@ -296,7 +296,26 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
-
+        //获取验证的正则
+        function getRegex() {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/sys/dict/options.json?key=DICT.TOTORO.TASK.UNIQUEREGEXP';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
         //获取历史被拒等
         function getInfoData(data) {
             var defer = $q.defer();
@@ -319,6 +338,7 @@ define(['app'], function (app) {
             return defer.promise
         }
         return {getSelectData,getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
-            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent,getInfoData};
+            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent,
+            getInfoData,getRegex};
     }])
 })

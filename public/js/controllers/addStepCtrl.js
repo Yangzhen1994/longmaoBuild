@@ -435,7 +435,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                                                 item1.tips_text = ' ';
                                                             }
                                                             if(item1.tips_text.indexOf('手机号')>-1){
-                                                                item1.regex = '^.*(1\d{10})(?:[^\d].*)?$'
+                                                                serverService.getRegex()
+                                                                        .then(function (data) {
+                                                                            console.log(data)
+                                                                            item1.regex = '^.*(1\d{10})(?:[^\d].*)?$'
+                                                                        })
+
                                                             }
                                                             if(item1.type==7){
                                                                 console.log(item1.options)

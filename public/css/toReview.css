@@ -274,4 +274,5 @@
     text-decoration: none;
     font-size: 13px;
     color: #2DB7F5;
+    white-space: nowrap;
 }

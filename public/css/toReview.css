@@ -205,7 +205,7 @@
 }
 .toReview_Right_footer .tr_Right_fallow{
     position: absolute;
-    left: calc(50% - 92px);
+    left: calc(50% - 82px);
     top: calc(50% - 20px);
 }
 .toReview_Right_footer .tr_Right_reject{
@@ -213,7 +213,7 @@
     border: 1px solid rgba(0,0,0,0.20);
     box-sizing:border-box;
     position: absolute;
-    left: calc(50% + 12px);
+    left: calc(50% + 3px);
     top: calc(50% - 20px);
 }
 .reason_cover{

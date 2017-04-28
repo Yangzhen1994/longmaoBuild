@@ -53,7 +53,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             {
                 $scope.data.user = 1;
                 //$scope.isDownLine = true
-                $scope.nowUser = '归属用户'
+                $('#belongUser option').eq(-1).prop('selected',true)
                 storageUtils.session.removeItem('_DOWNLINE_')
             }
             /*上来显示任务*/

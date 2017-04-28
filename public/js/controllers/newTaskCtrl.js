@@ -348,6 +348,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         $scope.ntprePage = function () {
             //操作
             storageUtils.session.removeItem('editData');
+            storageUtils.session.setItem('_DOWNLINE_',true)
             window.location = '#/taskList'
         }
 

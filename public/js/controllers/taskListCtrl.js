@@ -53,7 +53,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             {
                 $scope.data.user = 1;
                 //$scope.isDownLine = true
-                $('#belongUser option').eq(-1).prop('selected',true)
+                $timeout(function () {
+                    $('#belongUser option').eq(0).prop('selected',false)
+                    $('#belongUser option').eq(-1).prop('selected',true)
+                })
+
                 storageUtils.session.removeItem('_DOWNLINE_')
             }
             /*上来显示任务*/

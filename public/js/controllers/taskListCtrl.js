@@ -33,7 +33,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             $scope.selected = '';
             $scope.loadingState = '任务状态';
             $scope.loadingdevice = '设备类型';
-            $scope.loadingUser = '所属用户';
+            $scope.loadingUser = '全部用户';
             $scope.data = {
                 id: '',
                 title: '',
@@ -47,6 +47,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 show_nocheck: 1
             };
             var dataArr = [];
+
+            if(storageUtils.session.getItem('_DOWNLINE_'))
+            {
+                $scope.data.user = 1;
+                $scope.isDownLine = true
+                storageUtils.session.removeItem('_DOWNLINE_')
+            }
             /*上来显示任务*/
 
             serverService.getAllTask($scope.data)
@@ -1709,10 +1716,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             serverService.getUpdownLine($scope.items[index].id)
                                     .then(function (result) {
                                         if (result.code == 200) {
-                                            alert('操作成功')
-                                            window.location.reload()
+                                            alert('操作成功');
+                                            storageUtils.session.setItem('_DOWNLINE_',true);
+                                            window.location.reload();
                                         } else {
-                                            alert('操作失败请查看余额是否充足')
+                                            alert('操作失败请查看余额是否充足');
+                                            storageUtils.session.setItem('_DOWNLINE_',true);
                                             window.location.reload();
                                         }
                                     })

@@ -36,7 +36,8 @@
         <div>
             <select id='belongUser' class="belongUser" ng-model="belongUser" ng-options="item.belongTo for item in belongToUserItems"
                     ng-change="upUsershow()">
-                <option value="">所属用户</option>
+                <option value="" ng-hide="isDownLine">全部用户</option>
+                <option value="" ng-show="isDownLine">归属用户</option>
             </select>
         </div>
     </div>

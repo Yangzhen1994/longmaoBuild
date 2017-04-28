@@ -20,8 +20,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 return
             }
             if(searchCheckBydate.rows.length>0){
-                $scope.closeCover = function () {
+                $scope.closeCover = function (e) {
+                    e.stopPropagation();
                     $scope.showrejCover = false
+                };
+                $scope.stopSub = function (e) {
+                    e.stopPropagation();
                 }
                 $scope.toReviewItems = searchCheckBydate.rows;
                 $scope.toReview = $scope.toReviewItems[0].data;
@@ -247,6 +251,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.bg = index
                 }
                 $scope.subReason = function (e,index) {
+                    if(e){
+                        e.stopPropagation()
+                    }
                     var data = {ids:$scope.toReviewItems[index].cid,
                         status:0,
                         message:3,
@@ -400,8 +407,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
         rows:10,
         })
                 .then(function (data) {
-                    $scope.closeCover = function () {
+                    $scope.closeCover = function (e) {
+                        e.stopPropagation();
                         $scope.showrejCover = false
+                    };
+                    $scope.stopSub = function (e) {
+                        e.stopPropagation();
                     }
                     $scope.toReviewItems = data.result.rows;
                     $rootScope.totalCount = data.result.total;
@@ -650,6 +661,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $scope.bg = index
                     }
                     $scope.subReason = function (e,index) {
+                        e.stopPropagation();
                         var data = {ids:$scope.toReviewItems[index].cid,
                             status:0,
                             message:3,

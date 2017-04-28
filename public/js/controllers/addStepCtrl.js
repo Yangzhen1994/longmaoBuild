@@ -493,6 +493,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $timeout(function () {
                             if(save){
                                 alert('保存成功');
+                                storageUtils.session.setItem('_DOWNLINE_',true)
                                 window.location.reload()
                             }
                         },2200)

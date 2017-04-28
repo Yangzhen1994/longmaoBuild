@@ -224,6 +224,7 @@
     bottom: 50px;
     padding: 0;
     margin: 0;
+    right: -10px;
 }
 .reason_cover li{
     list-style: none;

@@ -84,7 +84,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             show_nocheck: 1
                         };
                         if ($scope.nowUserFlag) {
-                            data.user = 1
+                            data.user = 1;
+                            $scope.loadingUser = '归属用户';
+                            $scope.userLate = true;
                         }
                         serverService.getAllTask(data)
                             .then(function (data) {

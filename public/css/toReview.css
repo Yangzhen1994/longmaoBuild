@@ -216,9 +216,6 @@
     left: calc(50% + 3px);
     top: calc(50% - 20px);
 }
-.reason_cover{
-
-}
 .tr_reject{
     position: absolute;
     bottom: 50px;
@@ -231,8 +228,8 @@
     border: 1px solid rgba(0,0,0,0.20);
     font-family: PingFangSC-Regular;
     font-size: 13px;
-    padding-left: 13px;
-    width: 234px;
+    color: rgba(0,0,0,0.87);
+    width: 247px;
     box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.20);
 }
 .reason_cover .reason_header{
@@ -240,8 +237,15 @@
     background: #FFFFFF;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
-    padding-left: 13px;
-    width: 234px;
+    padding-left: 8px;
+    width: 239px;
+}
+.reason_cover .reason_cover_span{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    background: white;
+    text-indent: 2em;
 }
 .reason_cover #orderReason{
     border: none;

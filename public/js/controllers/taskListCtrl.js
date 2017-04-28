@@ -58,7 +58,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $('#belongUser>option').eq(-1).attr('selected',true);
                 },100)
 
-                storageUtils.session.removeItem('_DOWNLINE_')
+                storageUtils.session.removeItem('_DOWNLINE_');
+                $scope.nowUserFlag = true
             }
             /*上来显示任务*/
 
@@ -96,6 +97,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     rows: 20,
                                     show_nocheck: 1
                                 };
+                                if($scope.nowUserFlag){
+                                    data.user = 1;
+                                    $socpe.nowUserFlag = false
+                                }
                                 serverService.getAllTask(data)
                                         .then(function (data) {
                                             $rootScope.taskLists = data.result.rows

@@ -231,6 +231,7 @@
     color: rgba(0,0,0,0.87);
     width: 247px;
     box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.20);
+    background: white;
 }
 .reason_cover .reason_header{
     text-align: left;

@@ -995,9 +995,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
 
                     $scope.upUserShow = function () {
+                        $scope.userLate = false;
                         //console.log($scope.belongUser.belongTo)
                         if ($scope.belongUser == null) {
                             //window.location.reload();
+                            if($scope.nowUserFlag){
+                                $scope.userLate = false ;
+                                $scope.nowUserFlag = false;
+                            }
                             if (!$scope.userLate) {
                                 serverService.getAllTask({
                                     id: '',

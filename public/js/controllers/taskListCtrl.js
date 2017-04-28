@@ -59,7 +59,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 },100)
 
                 storageUtils.session.removeItem('_DOWNLINE_');
-                $scope.nowUserFlag = true
+                //$scope.nowUserFlag = true
             }
             /*上来显示任务*/
 
@@ -85,22 +85,35 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = index;
                                 }
                                 $rootScope.pageIndex = index;
-                                var data = {
-                                    id: '',
-                                    title: '',
-                                    pid: '',
-                                    poi_id: '',
-                                    status: '',
-                                    device: 0,
-                                    user: 0,
-                                    page: index,
-                                    rows: 20,
-                                    show_nocheck: 1
-                                };
-                                if($scope.nowUserFlag){
-                                    data.user = 1;
-                                    $socpe.nowUserFlag = false
+                                if($scope.newUserFlag){
+                                    var data = {
+                                        id: '',
+                                        title: '',
+                                        pid: '',
+                                        poi_id: '',
+                                        status: '',
+                                        device: 0,
+                                        user: 1,
+                                        page: index,
+                                        rows: 20,
+                                        show_nocheck: 1
+                                    };
+                                }else{
+                                    var data = {
+                                        id: '',
+                                        title: '',
+                                        pid: '',
+                                        poi_id: '',
+                                        status: '',
+                                        device: 0,
+                                        user: 0,
+                                        page: index,
+                                        rows: 20,
+                                        show_nocheck: 1
+                                    };
                                 }
+
+
                                 serverService.getAllTask(data)
                                         .then(function (data) {
                                             $rootScope.taskLists = data.result.rows

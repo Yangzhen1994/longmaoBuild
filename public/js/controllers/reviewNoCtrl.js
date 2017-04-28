@@ -3,7 +3,7 @@
  */
 
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
-    return  app.controller('ReviewNoCtrl',['$scope','serverService',function ($scope,serverService) {
+    return  app.controller('reviewNoCtrl',['$scope','serverService',function ($scope,serverService) {
         /*var okArr = [];
         var noArr = []
         var reviewok = storageUtils.session.getItem('_reviewOk_');

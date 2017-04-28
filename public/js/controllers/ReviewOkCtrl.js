@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/17.
  */
 define(['app','storageUtils'], function (app,storageUtils,serverService) {
-    return  app.controller('ReviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
+    return  app.controller('reviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
         var reiewFlag = storageUtils.session.getItem('_FLAG_');
         if(reiewFlag){
             storageUtils.session.removeItem('_FLAG_');
@@ -10,18 +10,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             return;
         }
 
-        var reviwid = storageUtils.session.getItem('_reviewList_');
-        /*var okResult = storageUtils.session.getItem('_reviewOk_');
-        if(okResult){
-            okResult.forEach(function (item,index) {
-                item.checkState = false
-            })
-            $scope.reviewOkItems = okResult;
-            console.log($scope.reviewOkItems)
-        }else{
-            //console.log($scope.reviewOkItems)
-            return false;
-        }*/
+        var reviewId = storageUtils.session.getItem('_reviewList_');
+        
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
 
         if(searchCheckBydate){
@@ -52,7 +42,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     }
                     $rootScope.pageIndex = index;
                     var data = {
-                        id:reviwid,
+                        id:reviewId,
                         uid:$scope.reviewuserID,
                         date:$scope.subTime,
                         status:3,
@@ -175,12 +165,12 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         }
 
         /******************/
-        var reviwid = storageUtils.session.getItem('_reviewList_');
+        var reviewId = storageUtils.session.getItem('_reviewList_');
         if($scope.reviewuserID&&$scope.chooseType == 2){
             $scope.reviewuserID = ''
         }
         serverService.getReviewList({
-            id:reviwid,
+            id:reviewId,
             uid:$scope.reviewuserID,
             date:$scope.subTime,
             status:3,
@@ -203,7 +193,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 }
                 $rootScope.pageIndex = index;
                 var data = {
-                    id:reviwid,
+                    id:reviewId,
                     uid:$scope.reviewuserID,
                     date:$scope.subTime,
                     status:3,

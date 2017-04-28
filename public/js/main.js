@@ -33,8 +33,8 @@
             "reviewCtrl":"controllers/reviewCtrl",
             "reviewDetailCtrl":"controllers/reviewDetailCtrl",
             "toReviewCtrl":"controllers/toReviewCtrl",
-            "ReviewOkCtrl":"controllers/ReviewOkCtrl",
-            "ReviewNoCtrl":"controllers/ReviewNoCtrl",
+            "reviewOkCtrl":"controllers/reviewOkCtrl",
+            "reviewNoCtrl":"controllers/reviewNoCtrl",
             "toReviewDetailCtrl":"controllers/toReviewDetailCtrl",
             "addStepCtrl":"controllers/addStepCtrl",
             "textProofCtrl":"controllers/textProofCtrl",
@@ -103,7 +103,7 @@
 
     require(['angular','angular-route','angular-ui-route','angular-sanitize','ui-sortable','ng-file-upload','app','route','storageUtils',
             'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_radioProof','dir_showImg','dir_showText','dir_keyEvents','dir_showsteptext','dir_showstepimg','headerCtrl','newTaskCtrl','taskListCtrl',
-            'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "ReviewOkCtrl", "ReviewNoCtrl",
+            'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "reviewOkCtrl", "reviewNoCtrl",
                 "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],
         function (angular){
             angular.bootstrap(document,["dcApp"]);

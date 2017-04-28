@@ -39,12 +39,12 @@ define(['app'], function(app){
                .state('reviewDetail.tab2',{
                    url:'/reviewDetail/tab2',
                    templateUrl: 'tpls/reviewOk.html',
-                   controller:'ReviewOkCtrl',
+                   controller:'reviewOkCtrl',
                })
                .state('reviewDetail.tab3',{
                    url:'/reviewDetail/tab3',
-                   templateUrl: 'tpls/ReviewNo.html',
-                   controller:'ReviewNoCtrl',
+                   templateUrl: 'tpls/reviewNo.html',
+                   controller:'reviewNoCtrl',
                })
 
    }]);

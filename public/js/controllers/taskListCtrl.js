@@ -54,9 +54,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.data.user = 1;
                 //$scope.isDownLine = true
                 $timeout(function () {
-                    $('#belongUser option').eq(0).prop('selected',false)
-                    $('#belongUser option').eq(-1).prop('selected',true)
-                })
+                    $('#belongUser>option').eq(0).attr('selected',false);
+                    $('#belongUser>option').eq(-1).attr('selected',true);
+                },100)
 
                 storageUtils.session.removeItem('_DOWNLINE_')
             }

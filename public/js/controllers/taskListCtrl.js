@@ -34,6 +34,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             $scope.loadingState = '任务状态';
             $scope.loadingdevice = '设备类型';
             $scope.loadingUser = '全部用户';
+            $scope.nowUser = '全部用户';
             $scope.data = {
                 id: '',
                 title: '',
@@ -51,7 +52,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             if(storageUtils.session.getItem('_DOWNLINE_'))
             {
                 $scope.data.user = 1;
-                $scope.isDownLine = true
+                //$scope.isDownLine = true
+                $scope.nowUser = '归属用户'
                 storageUtils.session.removeItem('_DOWNLINE_')
             }
             /*上来显示任务*/

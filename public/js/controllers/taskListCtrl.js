@@ -59,7 +59,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 },100)
 
                 storageUtils.session.removeItem('_DOWNLINE_');
-                //$scope.nowUserFlag = true
+                $scope.nowUserFlag = true
             }
             /*上来显示任务*/
 
@@ -85,35 +85,21 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $rootScope.pageIndex = index;
                                 }
                                 $rootScope.pageIndex = index;
-                                if($scope.newUserFlag){
-                                    var data = {
-                                        id: '',
-                                        title: '',
-                                        pid: '',
-                                        poi_id: '',
-                                        status: '',
-                                        device: 0,
-                                        user: 1,
-                                        page: index,
-                                        rows: 20,
-                                        show_nocheck: 1
-                                    };
-                                }else{
-                                    var data = {
-                                        id: '',
-                                        title: '',
-                                        pid: '',
-                                        poi_id: '',
-                                        status: '',
-                                        device: 0,
-                                        user: 0,
-                                        page: index,
-                                        rows: 20,
-                                        show_nocheck: 1
-                                    };
+                                var data = {
+                                    id: '',
+                                    title: '',
+                                    pid: '',
+                                    poi_id: '',
+                                    status: '',
+                                    device: 0,
+                                    user: 0,
+                                    page: index,
+                                    rows: 20,
+                                    show_nocheck: 1
+                                };
+                                if($scope.nowUserFlag){
+                                    data.user = 1
                                 }
-
-
                                 serverService.getAllTask(data)
                                         .then(function (data) {
                                             $rootScope.taskLists = data.result.rows
@@ -221,7 +207,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             storageUtils.session.setItem('_state_',$scope.taskState)
                             //console.log($scope.taskState.state)//正在进行
                             if ($scope.taskState == null) {
-
+                                $scope.nowUserFlag = false
                                 //window.location.reload();
                                 //没有点击下一页之后走这里
                                 if(!$scope.statusLate){
@@ -1267,6 +1253,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         };
                         $scope.turntoSelf = function () {
                             //window.location.reload();
+                            $scope.nowUserFlag = false
                             $scope.taskState = null;
                             $scope.deviceType = null;
                             $scope.belongUser = null;

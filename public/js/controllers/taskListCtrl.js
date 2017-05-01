@@ -86,7 +86,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if ($scope.nowUserFlag) {
                             data.user = 1;
                             $scope.loadingUser = '归属用户';
-                            $scope.userLate = true;
                         }
                         serverService.getAllTask(data)
                             .then(function (data) {
@@ -995,14 +994,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
 
                     $scope.upUserShow = function () {
-                        $scope.userLate = false;
+                        //$scope.userLate = false;
                         //console.log($scope.belongUser.belongTo)
                         if ($scope.belongUser == null) {
                             //window.location.reload();
-                            if($scope.nowUserFlag){
-                                $scope.userLate = false ;
+                           /* if($scope.nowUserFlag){
                                 $scope.nowUserFlag = false;
-                            }
+                            }*/
                             if (!$scope.userLate) {
                                 serverService.getAllTask({
                                     id: '',

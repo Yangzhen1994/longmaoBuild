@@ -85,7 +85,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 1,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        isText:true//修改必须全选才编辑
                     }
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
@@ -133,7 +134,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 2,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        isText:true//修改必须全选才编辑
                     };
                     if (type == 3) {
                         data.type = 3
@@ -185,7 +187,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 5,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        isText:true//修改必须全选才编辑
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
@@ -226,7 +229,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 6,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        isText:true//修改必须全选才编辑
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
@@ -340,6 +344,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         compress:1,
                         options:'点我输入内容',
                         options_other:0,
+                        isText:true//修改必须全选才编辑
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);
@@ -377,7 +382,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         type: 8,
                         task_id: taskId,
                         tips_text:'点击输入内容',
-                        tips_image:''
+                        tips_image:'',
+                        isText:true//修改必须全选才编辑
                     }
                     $scope.stepItems[index].component.push(data)
                     $scope.componentItems.push(data);

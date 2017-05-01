@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/23.
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-    app.directive('showtextModule',['serverService',function (serverService) {
+    app.directive('showTextModule',['serverService',function (serverService) {
         return {
             restrict: "EA",
             templateUrl: 'tpls/showText.html',

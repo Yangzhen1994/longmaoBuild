@@ -76,16 +76,16 @@
 
                         <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;">
                             <div>
-                                <showtext-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></showtext-module>
+                                <show-text-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></show-text-module>
 
-                                <textproof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
+                                <text-proof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 
-                                </textproof-module>
+                                </text-proof-module>
 
-                                <imgproof-module ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></imgproof-module>
-                                <posproof-module ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></posproof-module>
-                                <audioproof-module ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audioproof-module>
-                                <radioproof-module ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radioproof-module>
+                                <img-proof-module ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></img-proof-module>
+                                <pos-proof-module ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></pos-proof-module>
+                                <audio-proof-module ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audio-proof-module>
+                                <radio-proof-module ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radio-proof-module>
                                 <!--<checkboxproof-module ng-show="{{componentItem.type==8 && componentItem.status ==1}}"></checkboxproof-module>-->
 
                             </div>

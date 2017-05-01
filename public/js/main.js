@@ -47,18 +47,16 @@
             //工具
             'storageUtils' : 'util/storageUtils',
             'changeLeftNav' : 'util/changeLeftNav',
-            'dir_textProof' : 'util/dir_textProof',
-            'dir_imgProof' : 'util/dir_imgProof',
-            'dir_laydate' : 'util/dir_laydate',
-            'dir_addStep' : 'util/dir_addStep',
-            'dir_audioProof' : 'util/dir_audioProof',
-            'dir_posProof' : 'util/dir_posProof',
-            'dir_showImg' : 'util/dir_showImg',
-            'dir_showText' : 'util/dir_showText',
-            'dir_keyEvents' : 'util/dir_keyEvents',
-            'dir_showsteptext' : 'util/dir_showsteptext',
-            'dir_showstepimg' : 'util/dir_showstepimg',
-            'dir_radioProof' : 'util/dir_radioProof',
+            'dirTextProof' : 'util/dirTextProof',
+            'dirImgProof' : 'util/dirImgProof',
+            'dirLaydate' : 'util/dirLaydate',
+            'dirAddStep' : 'util/dirAddStep',
+            'dirAudioProof' : 'util/dirAudioProof',
+            'dirPosProof' : 'util/dirPosProof',
+            'dirShowImg' : 'util/dirShowImg',
+            'dirShowText' : 'util/dirShowText',
+            'dirKeyEvents' : 'util/dirKeyEvents',
+            'dirRadioProof' : 'util/dirRadioProof',
         },
 
         /*
@@ -102,7 +100,7 @@
     });
 
     require(['angular','angular-route','angular-ui-route','angular-sanitize','ui-sortable','ng-file-upload','app','route','storageUtils',
-            'dir_textProof','dir_imgProof','dir_laydate','dir_addStep','dir_posProof','dir_audioProof','dir_radioProof','dir_showImg','dir_showText','dir_keyEvents','dir_showsteptext','dir_showstepimg','headerCtrl','newTaskCtrl','taskListCtrl',
+            'dirTextProof','dirImgProof','dirLaydate','dirAddStep','dirPosProof','dirAudioProof','dirRadioProof','dirShowImg','dirShowText','dirKeyEvents','headerCtrl','newTaskCtrl','taskListCtrl',
             'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "reviewOkCtrl", "reviewNoCtrl",
                 "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],
         function (angular){

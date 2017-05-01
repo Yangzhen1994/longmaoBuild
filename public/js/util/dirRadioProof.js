@@ -5,7 +5,7 @@
  * Created by 73951 on 2017/3/21.
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-    app.directive('radioproofModule',['serverService',function (serverService) {
+    app.directive('radioProofModule',['serverService',function (serverService) {
         return {
             restrict: "EA",
             templateUrl: 'tpls/radioProof.html',

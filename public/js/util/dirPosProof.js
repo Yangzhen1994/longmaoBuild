@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/21.
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-    app.directive('posproofModule',['serverService',function (serverService) {
+    app.directive('posProofModule',['serverService',function (serverService) {
         return {
             restrict: "EA",
             templateUrl: 'tpls/posProof.html',

@@ -8,7 +8,7 @@
  * 浏览器端数据存在的工具模块
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-    app.directive('showimgModule',['serverService',function (serverService) {
+    app.directive('showImgModule',['serverService',function (serverService) {
         return {
             restrict: "EA",
             templateUrl: 'tpls/showImg.html',

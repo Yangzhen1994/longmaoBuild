@@ -1002,7 +1002,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                            /* if($scope.nowUserFlag){
                                 $scope.nowUserFlag = false;
                             }*/
-                            if (!$scope.userLate) {
+                            if (!$scope.userLate || $scope.loadingUser == '全部用户') {
                                 serverService.getAllTask({
                                     id: '',
                                     title: '',

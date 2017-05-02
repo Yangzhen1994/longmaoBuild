@@ -10,7 +10,7 @@
                 <p class="nt_lvph_title">{{task.title}}</p>
                 <p class="nt_lvph_detail">任务个数{{task.num}}&nbsp个&nbsp|&nbsp{{task.end_time.substr(11,5)}}&nbsp截止&nbsp|&nbsp最长审核&nbsp{{reviewTimeDay}}&nbsp天</p>
                 <p class="nt_lvph_rightPrice">￥{{task.amount/2}}</p>
-                <pre class="summaryDetail" style="white-space: inherit;" ng-bind-html="showtaskDesc"></pre>
+                <pre class="summaryDetail" style="white-space: inherit;" ng-bind-html="showTaskDesc"></pre>
                 <a href="" class="sharePrice">分享赚{{0.1+0.9+task.amount*0.1+ 1*task.share_award | number:2}}元</a>
                 <a href="" class="getTaskPrice">领取任务赚{{task.amount/2}}元</a>
                 <!--<li ng-repeat="item in items">
@@ -49,7 +49,7 @@
                         font-size: 15px;
                         height: 15px;
                         line-height: 15px;
-" ng-show="priceDesc">若想显示3.5请填写7</div>
+                        " ng-show="priceDesc">若想显示3.5请填写7</div>
                 </a>
 
             </div>
@@ -75,7 +75,7 @@
             </div>
             <div class="nt_rv_summary">
                 <label for="summary">任务简介</label>
-                <textarea name="summary" id="summary" cols="30" rows="10" ng-model="task.desc" ng-change ='changeshowtaskDesc()'></textarea>
+                <textarea name="summary" id="summary" cols="30" rows="10" ng-model="task.desc" ng-change ='changeShowTaskDesc()'></textarea>
             </div>
             <div class="nt_rv_userGetTime">
                 <label for="userGetTime">用户领取时间(小时)</label>
@@ -94,7 +94,7 @@
             <div class="nt_rv_lineVersion">
                 <label for="lineVersion">上线版本:</label>
                 <select id="lineVersion"
-                        ng-change="changelineVersion()"
+                        ng-change="changeLineVersion()"
                         ng-model="lineVersion" ng-options="item.version for item in versionItems">
                     <!--<option value="" ng-show="task.android_version">{{'android'+task.android_version}}</option>-->
                     <option value="">{{deviceType}}</option>
@@ -109,15 +109,15 @@
                     <option value="">{{tagType}}</option>
                 </select>
             </div>
-            <div class="nt_rv_poiid" style="margin-top: 8px" ng-show="showlineDown">
+            <div class="nt_rv_poiid" style="margin-top: 8px" ng-show="showLineDown">
                 <label for="poiid">POI_ID:</label>
                 <input type="text" id="poiid" ng-model="task.poi_id" style="margin-left: 20px"/>
             </div>
-            <div class="nt_rv_maxDistance" style="margin-top: 8px" ng-show="showlineDown">
+            <div class="nt_rv_maxDistance" style="margin-top: 8px" ng-show="showLineDown">
                 <label for="shortDesc">有效领取距离(米):</label>
                 <input type="text" id="maxDistance" ng-model="task.max_distance" />
             </div>
-            <div class="nt_rv_shortDesc" style="margin-top: 8px" ng-show="showlineDown">
+            <div class="nt_rv_shortDesc" style="margin-top: 8px" ng-show="showLineDown">
                 <label for="shortDesc">简短描述:</label>
                 <input type="text" id="shortDesc" ng-model="task.short_desc" />
             </div>
@@ -125,12 +125,9 @@
     </div>
     <div class="nt_footer">
         <div class="btn_area">
-            <a href="" class="savePage" ng-click="ntsavePage()">保存本页</a>
-            <a href="" class="prePage" ng-click="ntprePage()">上一项</a>
-            <a href="" class="nextPage" ng-click="ntnextPage()">下一项</a>
+            <a href="" class="savePage" ng-click="ntSavePage()">保存本页</a>
+            <a href="" class="prePage" ng-click="ntPrePage()">上一项</a>
+            <a href="" class="nextPage" ng-click="ntNextPage()">下一项</a>
         </div>
     </div>
-   <!-- <button ng-click="addItem1()">add1</button>
-    <button ng-click="addItem2()">add2</button>
-    <button ng-click="addItem3()">add3</button>-->
 </div>

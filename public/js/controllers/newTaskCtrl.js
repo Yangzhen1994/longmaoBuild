@@ -6,14 +6,10 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return app.controller('newTaskCtrl',['$scope','$timeout','serverService', function ($scope, $timeout,serverService) {
-
-
         var editTask = storageUtils.session.getItem('editData');
-
-
         if(editTask){
             $scope.task = editTask;
-            console.log($scope.task)
+            console.log($scope.task);
         }else{
             $scope.task = {
                 title:'',
@@ -33,7 +29,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 is_reward:1,//是否是收徒任务
                 share_title:'',
                 share_content:'',
-                share_icon:'',
+                share_icon:''
                 /*//线下任务的选项
                 poi_id:'',
                 max_distance:'',
@@ -41,95 +37,65 @@ define(['app','storageUtils'], function (app,storageUtils) {
             }
         }
         serverService.getSelectData()
-                .then(function (data) {
-                    $scope.areaItems = data.result;
-                    $scope.areaItems.push({
-                        value:'全国',
-                        code:''
-                    })
-                    $scope.areaItems.forEach(function (item,index) {
-                        if(item.code ==  $scope.task.region_filter){
-                            $scope.currentArea =item.value;
-                        }
-                    })
-                    if(!$scope.task.region_filter || $scope.task.region_filter ==''){
-                        $scope.currentArea ='全国';
+            .then(function (data) {
+                $scope.areaItems = data.result;
+                $scope.areaItems.push({
+                    value:'全国',
+                    code:''
+                })
+                $scope.areaItems.forEach(function (item,index) {
+                    if(item.code ==  $scope.task.region_filter){
+                        $scope.currentArea =item.value;
                     }
                 })
+                if(!$scope.task.region_filter || $scope.task.region_filter ==''){
+                    $scope.currentArea ='全国';
+                }
+            });
         $scope.newtaskTitle = '请输入标题';
         $scope.newTaskCount = '任务个数';
         $scope.isshow = false;
         $scope.redOne = '点我试一下';
-        $scope.showtaskDesc = $scope.task.desc.replace(/\n/g,'<br>');
-        $scope.changeshowtaskDesc = function () {
+        $scope.showTaskDesc = $scope.task.desc.replace(/\n/g,'<br>');
+        $scope.changeShowTaskDesc = function () {
             console.log('changed')
-            $scope.showtaskDesc = $scope.task.desc.replace(/\n/g,'<br>');
+            $scope.showTaskDesc = $scope.task.desc.replace(/\n/g,'<br>');
         }
-        /*格式title*/
-        //$scope.title = $scope.task.title.replace(/&nbsp/g,'');
-        //$scope.title = $scope.title.replace(/;/g,'');
-        //console.log($scope.title)
-        /*格式num*/
-        //$scope.taskNum = $scope.task.num.split(';')[3];
-        //$scope.remainTask = 1*$scope.taskNum - $scope.task.num.split('>')[1].split('<')[0]*1;
-        //console.log($scope.task.num.split(';')[0]*1)
-        /*格式amount*/
-        //$scope.amount = $scope.task.amount.replace(/元/g,'')
-        /*$scope.task = {
-            newtaskTitle:'请输入标题',
-            newtaskCount:'',
-            summary: '龙猫最赚钱的任务就是特工任务。他是这样\n做的: \n 1.点领取任务按钮领取这个任务; \n 2.领取完毕按着要求一步步做任务; \n 3.提交凭证交给龙猫 \n 4.龙猫审核通过后钱就加到你余额了！',
-            sharePrice: '',
-            startTime: '',
-            endTime:'',
-            price:'',//单价
-            reviewTime:'',//最长审核时间
-            userGetTime:'',//用户领取时间
-            maxSubCount:'',//最大提交次数
-            showArea:'',//显示区域
-            lineVersion:'',//上线版本
-            showOther:'',//显示顺序
-        };*/
-
-
-
-
         /*日历*/
         /*地区*/
-
         /*上线版本*/
         $scope.deviceType = '请选择';
         if($scope.task.device == 0){
-            $scope.deviceType = '全部'
+            $scope.deviceType = '全部';
         }else if($scope.task.device == 1){
             $scope.deviceType = 'android';
             if($scope.task.android_version){
-                $scope.deviceType = 'android'+$scope.task.android_version
+                $scope.deviceType = 'android'+$scope.task.android_version;
             }
         }else if($scope.task.device == 2){
-            $scope.deviceType = 'ios'
+            $scope.deviceType = 'ios';
         }
         /*任务分类*
         /
          */
         if($scope.task.tag_id == 0){
             $scope.tagType = '其他任务';
-            $scope.showlineDown = false;
+            $scope.showLineDown = false;
         }else if($scope.task.tag_id == 6){
             $scope.tagType = 'APP体验';
-            $scope.showlineDown = false;
+            $scope.showLineDown = false;
         }else if($scope.task.tag_id == 5){
             $scope.tagType = '数据采集';
-            $scope.showlineDown = false;
+            $scope.showLineDown = false;
         }else if($scope.task.tag_id == 4){
             $scope.tagType = '数据标注';
-            $scope.showlineDown = false;
+            $scope.showLineDown = false;
         }else if($scope.task.tag_id == 3){
             $scope.tagType = '市场调研';
-            $scope.showlineDown = false;
+            $scope.showLineDown = false;
         }else if($scope.task.tag_id == 7){
             $scope.tagType = '线下任务';
-            $scope.showlineDown = true;
+            $scope.showLineDown = true;
         }
         $scope.versionItems = [
             {
@@ -171,28 +137,28 @@ define(['app','storageUtils'], function (app,storageUtils) {
             if($scope.taskTag.tagItem == 'APP体验'){
                 //alert(1)
                 $scope.task.tag_id = 6;
-                $scope.showlineDown = false;
+                $scope.showLineDown = false;
                 $scope.tagType ='请选择';
 
             }
             if($scope.taskTag.tagItem == '数据采集'){
                 //alert(1)
                 $scope.task.tag_id = '5';
-                $scope.showlineDown = false;
+                $scope.showLineDown = false;
                 $scope.tagType ='请选择';
 
             }
             if($scope.taskTag.tagItem == '数据标注'){
                 //alert(1)
                 $scope.task.tag_id = '4';
-                $scope.showlineDown = false;
+                $scope.showLineDown = false;
                 $scope.tagType ='请选择';
 
             }
             if($scope.taskTag.tagItem == '市场调研'){
                 //alert(1)
                 $scope.task.tag_id = '3';
-                $scope.showlineDown = false;
+                $scope.showLineDown = false;
                 $scope.tagType ='请选择';
 
 
@@ -200,32 +166,29 @@ define(['app','storageUtils'], function (app,storageUtils) {
             if($scope.taskTag.tagItem == '线下任务'){
                 //alert(1)
                 $scope.task.tag_id = '7';
-                $scope.showlineDown = true;
+                $scope.showLineDown = true;
                 $scope.tagType ='请选择';
 
             }
             if($scope.taskTag.tagItem == '其他任务'){
                 //alert(1)
                 $scope.task.tag_id = '0';
-                $scope.showlineDown = false;
+                $scope.showLineDown = false;
                 $scope.tagType ='请选择';
 
             }
         }
 
         //假设仅仅安卓对应状态 吗 为 0
-        $scope.changelineVersion = function () {
+        $scope.changeLineVersion = function () {
             if($scope.lineVersion.version == 'android'){
-                //alert(1)
-                $scope.task.device = '1'
+                $scope.task.device = '1';
             }
             if($scope.lineVersion.version == 'ios'){
-                //alert(1)
-                $scope.task.device = '2'
+                $scope.task.device = '2';
             }
             if($scope.lineVersion.version == '全部'){
-                //alert(1)
-                $scope.task.device = '0'
+                $scope.task.device = '0';
             }
         }
         //审核时间转换
@@ -234,9 +197,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
         };
         $scope.changeReviewTime();
         //保存本页
-        $scope.ntsavePage = function () {
+        $scope.ntSavePage = function () {
             if(!$scope.task.tag_id){
-                $scope.task.tag_id = 0
+                $scope.task.tag_id = 0;
             }
             $scope.areaItems.forEach(function (item,index) {
                 if (!$scope.showArea || $scope.showArea == null) {
@@ -248,8 +211,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $scope.task.region_filter = item.code;
                     }
                 }
-
-
             });
             $scope.task.order = 100;
             if(!$scope.task.poi_id){
@@ -266,11 +227,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                  //把当前的id存入session
                                  storageUtils.session.setItem('_TaskId_',$scope.task.id);
                                  //获取当前任务的凭证信息
-                                 var oldtaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
-                                 if(oldtaskId && oldtaskId != null){
-                                     serverService.getComponent(oldtaskId)
+                                 var oldTaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
+                                 if(oldTaskId && oldTaskId != null){
+                                     serverService.getComponent(oldTaskId)
                                              .then(function (data) {
-                                                 console.log(data)
+                                                 console.log(data);
                                                  //把凭证信息存入到session
                                                  storageUtils.session.setItem('_component_',data.result);
                                              })
@@ -280,14 +241,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                              }else{
                                  storageUtils.session.setItem('_newTaskid_',data.result)
                              }
-                             window.location ='#/addStep'
+                             window.location ='#/addStep';
 
 
                          }else{
-                             alert('请检查信息是否填写完整~')
+                             alert('请检查信息是否填写完整~');
                          }
                      })
-
            /* id:
             title:test
             desc:33
@@ -315,48 +275,30 @@ define(['app','storageUtils'], function (app,storageUtils) {
                share_icon:*/
         };
         //下一页
-        $scope.ntnextPage = function () {
-            //
-            /*var editTask = storageUtils.session.getItem('editData');
-            if(!editTask){
-                alert('要先保存才能下一项哦');
-                return
-            }*/
-
-            /*if(!$scope.task.id){*/
-
-                $scope.ntsavePage()
-            //}
-            //$scope.ntsavePage()
-            //把当前的id存入session
-            //storageUtils.session.setItem('_TaskId_',$scope.task.id);
+        $scope.ntNextPage = function () {
+            $scope.ntSavePage();
             //获取当前任务的凭证信息
-            var oldtaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
-            if(oldtaskId && oldtaskId != null){
-                serverService.getComponent(oldtaskId)
+            var oldTaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
+            if(oldTaskId && oldTaskId != null){
+                serverService.getComponent(oldTaskId)
                         .then(function (data) {
-                            console.log(data)
+                            console.log(data);
                             //把凭证信息存入到session
                             storageUtils.session.setItem('_component_',data.result);
                         })
             }
-
-            /*window.location = '#/addStep'*/
-
         };
         //上一页
-        $scope.ntprePage = function () {
+        $scope.ntPrePage = function () {
             //操作
             storageUtils.session.removeItem('editData');
-            storageUtils.session.setItem('_DOWNLINE_',true)
+            storageUtils.session.setItem('_DOWNLINE_',true);
             window.location = '#/taskList'
         }
-
-
         //资费说明
         $scope.priceDesc = false;
         $scope.showPriceDesc = function () {
-            $scope.priceDesc = ! $scope.priceDesc
+            $scope.priceDesc = ! $scope.priceDesc;
         }
        /*if(dragsort){
              storageUtils.session.removeItem('_DRAG_')

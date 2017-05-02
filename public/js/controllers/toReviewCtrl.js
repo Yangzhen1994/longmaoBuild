@@ -3,14 +3,14 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('toReviewCtrl',['$rootScope','$scope','$timeout','$window','serverService','mapService',function ($rootScope,$scope,$timeout,$window,serverService,mapService) {
-        var reiewFlag = storageUtils.session.getItem('_FLAG_');
-        if(reiewFlag){
+        var reviewFlag = storageUtils.session.getItem('_FLAG_');
+        if(reviewFlag){
             storageUtils.session.removeItem('_FLAG_');
             window.location = '#/reviewDetail/reviewDetail/tab2';
             return;
         }
 
-        var reviwid = storageUtils.session.getItem('_reviewList_');
+        var reviewId = storageUtils.session.getItem('_reviewList_');
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
 
         console.log(searchCheckBydate)
@@ -22,23 +22,20 @@ define(['app','storageUtils'], function (app,storageUtils) {
             if(searchCheckBydate.rows.length>0){
                 $scope.closeCover = function (e) {
                     e.stopPropagation();
-                    $scope.showrejCover = false
+                    $scope.showRejCover = false
                 };
                 $scope.stopSub = function (e) {
                     e.stopPropagation();
-                }
+                };
                 $scope.toReviewItems = searchCheckBydate.rows;
                 $scope.toReview = $scope.toReviewItems[0].data;
-
                 $scope.checkedBox = 0;
                 $scope.changeColor = 0;
                 $scope.currentIndex = 0;
-
                 $rootScope.totalCount = searchCheckBydate.total;
                 $rootScope.pageIndex = 1;
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
-
                     if (index < 1) {
                         index = 1
                     }
@@ -49,28 +46,63 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $rootScope.pageIndex = index;
 
                     var data = {
-                        id:reviwid,
-                        uid:$scope.reviewuserID,
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
                         date:$scope.subTime,
                         status:2,
                         page:index,
                         rows:10,
                     };
                     serverService.getReviewList(data)
-                            .then(function (data) {
-                                $scope.toReviewItems = data.result.rows;
-                                if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                        .then(function (data) {
+                            $scope.toReviewItems = data.result.rows;
+                            if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                                $scope.toReview = $scope.toReviewItems[0].data;
+                                serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
+                                    .then(function (data) {
+                                        $scope.toReview[0].amount = data.result.amount
+                                        $scope.toReview[0].check_fail = data.result.check_fail
+                                        $scope.toReview[0].invited = data.result.invited
+                                        $scope.toReview[0].regist_time = data.result.regist_time
+                                        $scope.toReview[0].task_check_fail =data.result.task_check_fail
+                                    })
+                            }else{return}
+                            $scope.toReview.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
 
-                                    $scope.toReview = $scope.toReviewItems[0].data;
-                                    serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
-                                            .then(function (data) {
-                                                $scope.toReview[0].amount = data.result.amount
-                                                $scope.toReview[0].check_fail = data.result.check_fail
-                                                $scope.toReview[0].invited = data.result.invited
-                                                $scope.toReview[0].regist_time = data.result.regist_time
-                                                $scope.toReview[0].task_check_fail =data.result.task_check_fail
-                                            })
-                                }else{return}
+                        })
+                };
+                $scope.toReview.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                });
+                window.initOk = function () {
+                    map = new BMap.Map("cc_map");            // 创建Map实例
+                    var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                    map.centerAndZoom(point,16);
+                    map.enableScrollWheelZoom();// 启用滚轮放大缩小
+                };
+                //复选框的初值
+                $scope.flag = false;
+                $scope.masterItem = false;
+                $scope.otherReason ='';
+                $scope.changeRight = function (item,index) {
+                    if(item && item.data){
+                        serverService.getInfoData({uid:item.uid,tid:item.id})
+                            .then(function (data) {
+                                $scope.toReview = item.data;
+                                $scope.toReview[0].amount = data.result.amount;
+                                $scope.toReview[0].check_fail = data.result.check_fail;
+                                $scope.toReview[0].invited = data.result.invited;
+                                $scope.toReview[0].regist_time = data.result.regist_time;
+                                $scope.toReview[0].task_check_fail =data.result.task_check_fail;
+
                                 $scope.toReview.forEach(function (item,index) {
                                     if(item.type == 5){
                                         window.x = item.x;
@@ -79,50 +111,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 })
 
                             })
-
-
-                };
-                $scope.toReview.forEach(function (item,index) {
-                    if(item.type == 5){
-                        window.x = item.x;
-                        window.y = item.y;
-                    }
-                })
-                window.initOk = function () {
-                    map = new BMap.Map("cc_map");            // 创建Map实例
-                    var point = new BMap.Point( window.x,window.y); // 创建点坐标
-                    map.centerAndZoom(point,16);
-                    map.enableScrollWheelZoom();// 启用滚轮放大缩小
-
-
-                };
-                //复选框的初值
-                $scope.flag = false;
-
-                $scope.masterItem = false;
-                $scope.otherReason ='';
-
-
-
-                $scope.changeRight = function (item,index) {
-                    if(item && item.data){
-                        serverService.getInfoData({uid:item.uid,tid:item.id})
-                                .then(function (data) {
-                                    $scope.toReview = item.data;
-                                    $scope.toReview[0].amount = data.result.amount;
-                                    $scope.toReview[0].check_fail = data.result.check_fail;
-                                    $scope.toReview[0].invited = data.result.invited;
-                                    $scope.toReview[0].regist_time = data.result.regist_time;
-                                    $scope.toReview[0].task_check_fail =data.result.task_check_fail;
-
-                                    $scope.toReview.forEach(function (item,index) {
-                                        if(item.type == 5){
-                                            window.x = item.x;
-                                            window.y = item.y;
-                                        }
-                                    })
-
-                                })
                     }else{
                         $scope.toReview = {}
                     }
@@ -151,11 +139,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     for(var i=0;i<$scope.toReviewItems.length;i++){
                         //console.log($scope.toReviewItems[i].checkState)
                         if(!$scope.toReviewItems[i].checkState){
-                            $scope.masterheader = false;
+                            $scope.masterHeader = false;
                             $scope.flag = false;
                             return false
                         }else{
-                            $scope.masterheader = true
+                            $scope.masterHeader = true;
                             $scope.flag = true;
                         }
                     }
@@ -182,26 +170,30 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.check({ids:$scope.toReviewItems[i].cid,
                                 status:1
                             })
-                                    .then(function (data) {
-                                        /*if(data.result.success == 1){
-                                            alert('操作成功')
-                                        }*/
-                                        if(data.result.success == 1){
-                                            storageUtils.session.setItem('_Allowed_',true)
-                                        }
-                                    })
+                            .then(function (data) {
+                                /*if(data.result.success == 1){
+                                    alert('操作成功')
+                                }*/
+                                if(data.result.success == 1){
+                                    storageUtils.session.setItem('_Allowed_',true)
+                                }else{
+                                    storageUtils.session.setItem('_Allowed_',false)
+                                }
+                            });
                             okArr.push($scope.toReviewItems[i]);
-                            $scope.masterheader = false;
+                            $scope.masterHeader = false;
                             $scope.masterItem = false;
                             $scope.changeRight(null);
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
-                        if(storageUtils.session.getItem('_Allowed')){
-                            alert('操作成功');
-                            storageUtils.session.removeItem('_Allowed')
-                        }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Allowed') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Allowed')
+                            }
+                        },100);
                         $scope.toReviewItems = [];/*删除待审核的*/
-                        $scope.masterheader = false;
+                        $scope.masterHeader = false;
                         storageUtils.session.setItem('_reviewNo_',$scope.toReviewItems);
 
                     }else{
@@ -213,7 +205,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     status:1
                                 }).then(function (data) {
                                     if(data.result.success == 1){
-                                        alert('操作成功')
+                                        storageUtils.session.setItem('_Allowed_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Allowed_',false)
                                     }
                                 })
 
@@ -222,6 +216,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 i--;
                             }
                         }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Allowed') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Allowed')
+                            }
+                        },100);
                         result = $scope.toReviewItems;
                         $scope.toReviewItems = result;
                         if($scope.toReviewItems.length>0){
@@ -245,7 +245,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         reasonText :'非新用户'
                     }
                 ]
-                $scope.showrejCover = false;
+                $scope.showRejCover = false;
 
                 $scope.changeReasonbg = function (index) {
                     $scope.bg = index
@@ -273,19 +273,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             serverService.check(data).then(function (data) {
                                 if(data.result.success == 1){
                                     storageUtils.session.setItem('_Fail_',true)
+                                }else{
+                                    storageUtils.session.setItem('_Fail_',false)
                                 }
-                            })
-
-                            $scope.masterheader = false;
+                            });
+                            $scope.masterHeader = false;
                             $scope.changeRight(null);
                         }
                         storageUtils.session.setItem('_reviewNo_',noArr);
                         $scope.toReviewItems = [];/*删除待审核的*/
-                        $scope.masterheader = false;
-                        if(storageUtils.session.getItem('_Fail_')){
-                            alert('操作成功');
-                            storageUtils.session.removeItem('_Fail_')
-                        }
+                        $scope.masterHeader = false;
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Fail_') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Fail_')
+                            }
+                        },100)
+
                     }else{
                         var result = []
                         for(var i=0;i<$scope.toReviewItems.length;i++){
@@ -296,14 +300,22 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                  noArr.push($scope.toReviewItems[i]);*/
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
-                                        if(data.result.success==1){
-                                            alert('操作成功')
-                                        }
+                                    if(data.result.success == 1){
+                                        storageUtils.session.setItem('_Fail_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Fail_',false)
+                                    }
                                 })
                                 $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
                                 i--;
                             }
                         }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Fail_') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Fail_')
+                            }
+                        },100)
                         result = $scope.toReviewItems;
                         $scope.toReviewItems = result;
                         if($scope.toReviewItems.length>0){
@@ -314,10 +326,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewNo_',noArr);
                     }
-                    $scope.showrejCover = false;
+                    $scope.showRejCover = false;
 
                 }
-                $scope.subotherReason = function (e) {
+                $scope.subOtherReason = function (e) {
                     if(e){
                         var keycode = window.event?e.keyCode:e.which;
                         if(keycode==13){
@@ -332,9 +344,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         message:1,
                                         extmessage:$scope.otherReason
                                     }).then(function (data) {
-
+                                        if(data.result.success == 1){
+                                            storageUtils.session.setItem('_Fail_',true)
+                                        }else{
+                                            storageUtils.session.setItem('_Fail_',false)
+                                        }
                                     })
                                     $scope.master = false;
+                                    $timeout(function () {
+                                        if(storageUtils.session.getItem('_Fail_') == true){
+                                            alert('操作成功');
+                                            storageUtils.session.removeItem('_Fail_')
+                                        }
+                                    },100)
                                     $scope.changeRight(null);
                                 }
                                 storageUtils.session.setItem('_reviewNo_',noArr);
@@ -352,12 +374,23 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             status:0,
                                             message:1,
                                             extmessage:$scope.otherReason
-                                        }).then(function (data) {});
-
+                                        }).then(function (data) {
+                                            if(data.result.success == 1){
+                                                storageUtils.session.setItem('_Fail_',true)
+                                            }else{
+                                                storageUtils.session.setItem('_Fail_',false)
+                                            }
+                                        });
                                         $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
                                         i--;
                                     }
                                 }
+                                $timeout(function () {
+                                    if(storageUtils.session.getItem('_Fail_') == true){
+                                        alert('操作成功');
+                                        storageUtils.session.removeItem('_Fail_')
+                                    }
+                                },100)
                                 result = $scope.toReviewItems;
                                 $scope.toReviewItems = result;
                                 if($scope.toReviewItems.length>0){
@@ -371,436 +404,414 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                             console.log($scope.otherReason);
 
-                            $scope.showrejCover = false;
+                            $scope.showRejCover = false;
 
                         }
                     }
                 };
 
-                $scope.showrejCoverFn = function () {
-                    $scope.showrejCover = true
+                $scope.showRejCoverFn = function () {
+                    $scope.showRejCover = true
                 };
 
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
         }
-
-
-
-
-
-        /*function loadMapAPI(containterId, callback) {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "http://api.map.baidu.com/api?v=2.0&ak=VcN7gumC0Wnn475XXWr4FeoyF5YYOVGC&callback=" + callback;
-            document.getElementById(containterId).appendChild(script);
-        }*/
-        if($scope.reviewuserID&&$scope.chooseType == 2){
-            $scope.reviewuserID = ''
+        if($scope.reviewUserId&&$scope.chooseType == 2){
+            $scope.reviewUserId = ''
         }
-        serverService.getReviewList({id:reviwid,
-        uid:$scope.reviewuserID,
+        serverService.getReviewList({id:reviewId,
+        uid:$scope.reviewUserId,
         date:$scope.subTime,
         status:2,
         page:1,
         rows:10,
         })
-                .then(function (data) {
-                    $scope.closeCover = function (e) {
-                        e.stopPropagation();
-                        $scope.showrejCover = false
-                    };
-                    $scope.stopSub = function (e) {
-                        e.stopPropagation();
+            .then(function (data) {
+                $scope.closeCover = function (e) {
+                    e.stopPropagation();
+                    $scope.showRejCover = false
+                };
+                $scope.stopSub = function (e) {
+                    e.stopPropagation();
+                }
+                $scope.toReviewItems = data.result.rows;
+                $rootScope.totalCount = data.result.total;
+                $rootScope.pageIndex = 1;
+                $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                $rootScope.toPage = function (index) {
+                    if (index < 1) {
+                        index = 1
                     }
-                    $scope.toReviewItems = data.result.rows;
-                    $rootScope.totalCount = data.result.total;
-                    $rootScope.pageIndex = 1;
-                    $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
-                    $rootScope.toPage = function (index) {
-
-                        if (index < 1) {
-                            index = 1
-                        }
-                        if (index > $rootScope.pageTotal) {
-                            index--;
-                            $rootScope.pageIndex = index;
-                        }
+                    if (index > $rootScope.pageTotal) {
+                        index--;
                         $rootScope.pageIndex = index;
-                        var data = {
-                            id:reviwid,
-                            uid:$scope.reviewuserID,
-                            date:$scope.subTime,
-                            status:2,
-                            page:index,
-                            rows:10,
-                        };
-                        serverService.getReviewList(data)
-                                .then(function (data) {
-                                    $scope.toReviewItems = data.result.rows;
-                                    if($scope.toReviewItems && $scope.toReviewItems.length>0){
-
-                                        $scope.toReview = $scope.toReviewItems[0].data;
-                                        serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
-                                                .then(function (data) {
-                                                    $scope.toReview[0].amount = data.result.amount
-                                                    $scope.toReview[0].check_fail = data.result.check_fail
-                                                    $scope.toReview[0].invited = data.result.invited
-                                                    $scope.toReview[0].regist_time = data.result.regist_time
-                                                    $scope.toReview[0].task_check_fail =data.result.task_check_fail
-                                                })
-                                    }else{return}
-
-                                    $scope.toReview.forEach(function (item,index) {
-                                        if(item.type == 5){
-                                            window.x = item.x;
-                                            window.y = item.y;
-                                        }
-                                    })
-
-                                })
-
-
+                    }
+                    $rootScope.pageIndex = index;
+                    var data = {
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
+                        date:$scope.subTime,
+                        status:2,
+                        page:index,
+                        rows:10,
                     };
-                    if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                    serverService.getReviewList(data)
+                        .then(function (data) {
+                            $scope.toReviewItems = data.result.rows;
+                            if($scope.toReviewItems && $scope.toReviewItems.length>0){
 
-                        $scope.toReview = $scope.toReviewItems[0].data;
-                        serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
-                                .then(function (data) {
-                                    $scope.toReview[0].amount = data.result.amount
-                                    $scope.toReview[0].check_fail = data.result.check_fail
-                                    $scope.toReview[0].invited = data.result.invited
-                                    $scope.toReview[0].regist_time = data.result.regist_time
-                                    $scope.toReview[0].task_check_fail =data.result.task_check_fail
-                                })
-                    }else{return}
-
-                    /*var map;
-
-                    window.init = function () {
-                        map = new BMap.Map("cc_map");            // 创建Map实例
-                        var point = new BMap.Point($scope.toReview.x, $scope.toReview.y); // 创建点坐标
-                        map.centerAndZoom(point,15);
-                        // map.enableScrollWheelZoom();// 启用滚轮放大缩小
-                        /!*****初始化列表**********!/
-
-
-                    }
-
-                    loadMapAPI('mapDiv',init)*/
-                    $scope.toReview.forEach(function (item,index) {
-                        if(item.type == 5){
-                            window.x = item.x;
-                            window.y = item.y;
-                        }
-                    })
-
-
-                    window.init = function () {
-                        map = new BMap.Map("cc_map");            // 创建Map实例
-                        var point = new BMap.Point( window.x,window.y); // 创建点坐标
-                        map.centerAndZoom(point,16);
-                        map.enableScrollWheelZoom();// 启用滚轮放大缩小
-
-
-                    }
-                    console.log($scope.toReview);
-
-
-                    $scope.checkedBox = 0;
-                    $scope.changeColor = 0;
-                    $scope.currentIndex = 0;
-                    //复选框的初值
-                    $scope.flag = false;
-
-                    $scope.masterItem = false;
-                    $scope.otherReason ='';
-
-
-                    $scope.changeRight = function (item,index) {
-                        if(item && item.data){
-                            serverService.getInfoData({uid:item.uid,tid:item.id})
-                                    .then(function (data) {
-                                        $scope.toReview = item.data;
-                                        $scope.toReview[0].amount = data.result.amount
-                                        $scope.toReview[0].check_fail = data.result.check_fail
-                                        $scope.toReview[0].invited = data.result.invited
-                                        $scope.toReview[0].regist_time = data.result.regist_time
-                                        $scope.toReview[0].task_check_fail =data.result.task_check_fail
-
-                                        $scope.toReview.forEach(function (item,index) {
-                                            if(item.type == 5){
-                                                window.x = item.x;
-                                                window.y = item.y;
-                                            }
-                                        })
-
-                                    })
-                        }else{
-                            $scope.toReview = {}
-                        }
-                        $scope.changeColor = index;
-                        $scope.currentIndex = index;
-                    }
-                    $scope.all= function (master) {
-
-                        $scope.masterItem = master;
-
-                        for(var i=0;i<$scope.toReviewItems.length;i++){
-                            $scope.toReviewItems[i].checkState=master;
-                        }
-                        //$scope.currentIndex = $scope.toReviewItems.length;
-
-
-
-                    };
-                    $scope.cancelOne = function (ev,x,index) {
-                        ev  = event || window.event;
-                        if(ev && ev.stopPropagation){
-                            ev.stopPropagation()
-                        }
-                        $scope.toReviewItems[index].checkState = x;
-                        for(var i=0;i<$scope.toReviewItems.length;i++){
-                            //console.log($scope.toReviewItems[i].checkState)
-                            if(!$scope.toReviewItems[i].checkState){
-                                $scope.masterheader = false;
-                                $scope.flag = false;
-                                return false
-                            }else{
-                                $scope.masterheader = true
-                                $scope.flag = true;
-                            }
-                        }
-                    };
-                    $scope.next = function () {
-
-                        $scope.currentIndex ++;
-                        if($scope.currentIndex >= $scope.toReviewItems.length ){
-                            $scope.currentIndex = $scope.toReviewItems.length - 1
-                        }
-                        $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
-                    }
-                    $scope.prev = function () {
-                        $scope.currentIndex --;
-                        if($scope.currentIndex < 0 ){
-                            $scope.currentIndex = 0
-                        }
-                        $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
-                    }
-                    $scope.trRightAllow = function () {
-                        /*全选通过*/
-                        if($scope.master&&$scope.master == true){
-                            for(var i=0;i<$scope.toReviewItems.length;i++){
-                                serverService.check({ids:$scope.toReviewItems[i].cid,
-                                    status:1
-                                })
+                                $scope.toReview = $scope.toReviewItems[0].data;
+                                serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
                                         .then(function (data) {
-                                            if(data.result.success == 1){
-                                                storageUtils.session.setItem('_Allowed_',true)
-                                            }
+                                            $scope.toReview[0].amount = data.result.amount;
+                                            $scope.toReview[0].check_fail = data.result.check_fail;
+                                            $scope.toReview[0].invited = data.result.invited;
+                                            $scope.toReview[0].regist_time = data.result.regist_time;
+                                            $scope.toReview[0].task_check_fail =data.result.task_check_fail;
                                         })
-                                okArr.push($scope.toReviewItems[i]);
-                                $scope.masterheader = false;
-                                $scope.masterItem = false;
-                                $scope.changeRight(null);
-                            }
-                            storageUtils.session.setItem('_reviewOk_',okArr);
-                            if(storageUtils.session.getItem('_Allowed')){
+                            }else{return}
+
+                            $scope.toReview.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
+
+                        })
+                };
+                if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                    $scope.toReview = $scope.toReviewItems[0].data;
+                    serverService.getInfoData({uid:$scope.toReviewItems[0].uid,tid:$scope.toReviewItems[0].id})
+                        .then(function (data) {
+                            $scope.toReview[0].amount = data.result.amount;
+                            $scope.toReview[0].check_fail = data.result.check_fail;
+                            $scope.toReview[0].invited = data.result.invited;
+                            $scope.toReview[0].regist_time = data.result.regist_time;
+                            $scope.toReview[0].task_check_fail =data.result.task_check_fail;
+                        })
+                }else{return}
+                $scope.toReview.forEach(function (item,index) {
+                    if(item.type == 5){
+                        window.x = item.x;
+                        window.y = item.y;
+                    }
+                });
+                window.init = function () {
+                    map = new BMap.Map("cc_map");            // 创建Map实例
+                    var point = new BMap.Point( window.x,window.y); // 创建点坐标
+                    map.centerAndZoom(point,16);
+                    map.enableScrollWheelZoom();// 启用滚轮放大缩小
+                };
+                console.log($scope.toReview);
+                $scope.checkedBox = 0;
+                $scope.changeColor = 0;
+                $scope.currentIndex = 0;
+                //复选框的初值
+                $scope.flag = false;
+                $scope.masterItem = false;
+                $scope.otherReason ='';
+                $scope.changeRight = function (item,index) {
+                    if(item && item.data){
+                        serverService.getInfoData({uid:item.uid,tid:item.id})
+                            .then(function (data) {
+                                $scope.toReview = item.data;
+                                $scope.toReview[0].amount = data.result.amount;
+                                $scope.toReview[0].check_fail = data.result.check_fail;
+                                $scope.toReview[0].invited = data.result.invited;
+                                $scope.toReview[0].regist_time = data.result.regist_time;
+                                $scope.toReview[0].task_check_fail =data.result.task_check_fail;
+                                $scope.toReview.forEach(function (item,index) {
+                                    if(item.type == 5){
+                                        window.x = item.x;
+                                        window.y = item.y;
+                                    }
+                                })
+
+                            })
+                    }else{
+                        $scope.toReview = {}
+                    }
+                    $scope.changeColor = index;
+                    $scope.currentIndex = index;
+                }
+                $scope.all= function (master) {
+                    $scope.masterItem = master;
+
+                    for(var i=0;i<$scope.toReviewItems.length;i++){
+                        $scope.toReviewItems[i].checkState=master;
+                    }
+                    //$scope.currentIndex = $scope.toReviewItems.length;
+                };
+                $scope.cancelOne = function (ev,x,index) {
+                    ev  = event || window.event;
+                    if(ev && ev.stopPropagation){
+                        ev.stopPropagation()
+                    }
+                    $scope.toReviewItems[index].checkState = x;
+                    for(var i=0;i<$scope.toReviewItems.length;i++){
+                        //console.log($scope.toReviewItems[i].checkState)
+                        if(!$scope.toReviewItems[i].checkState){
+                            $scope.masterHeader = false;
+                            $scope.flag = false;
+                            return false
+                        }else{
+                            $scope.masterHeader = true;
+                            $scope.flag = true;
+                        }
+                    }
+                };
+                $scope.next = function () {
+                    $scope.currentIndex ++;
+                    if($scope.currentIndex >= $scope.toReviewItems.length ){
+                        $scope.currentIndex = $scope.toReviewItems.length - 1
+                    }
+                    $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
+                };
+                $scope.prev = function () {
+                    $scope.currentIndex --;
+                    if($scope.currentIndex < 0 ){
+                        $scope.currentIndex = 0
+                    }
+                    $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
+                }
+                $scope.trRightAllow = function () {
+                    /*全选通过*/
+                    if($scope.master&&$scope.master == true){
+                        for(var i=0;i<$scope.toReviewItems.length;i++){
+                            serverService.check({ids:$scope.toReviewItems[i].cid,
+                                status:1
+                            })
+                                .then(function (data) {
+                                    if(data.result.success == 1){
+                                        storageUtils.session.setItem('_Allowed_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Allowed_',false) 
+                                    }
+                                });
+                            okArr.push($scope.toReviewItems[i]);
+                            $scope.masterHeader = false;
+                            $scope.masterItem = false;
+                            $scope.changeRight(null);
+                        }
+                        storageUtils.session.setItem('_reviewOk_',okArr);
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Allowed') == true){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Allowed')
                             }
-                            $scope.toReviewItems = [];/*删除待审核的*/
-                            $scope.masterheader = false;
-                            storageUtils.session.setItem('_reviewNo_',$scope.toReviewItems);
+                        },100);
+                        $scope.toReviewItems = [];/*删除待审核的*/
+                        $scope.masterHeader = false;
+                        storageUtils.session.setItem('_reviewNo_',$scope.toReviewItems);
+                    }else{
+                        /*没全选状态下点击next/通过*/
+                        var result = []
+                        for(var i=0;i<$scope.toReviewItems.length;i++){
+                            if($scope.toReviewItems[i].checkState == true) {
+                                serverService.check({ids:$scope.toReviewItems[i].cid,
+                                                    status:1
+                                }).then(function (data) {
+                                    if(data.result.success == 1){
+                                        storageUtils.session.setItem('_Allowed_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Allowed_',false)
+                                    }
+                                });
+
+                                okArr.push($scope.toReviewItems[i]);
+                                $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
+                                i--;
+                            }
+                        }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Allowed') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Allowed')
+                            }
+                        },100);
+                        result = $scope.toReviewItems;
+                        $scope.toReviewItems = result;
+                        if($scope.toReviewItems.length>0){
+                            $scope.changeRight($scope.toReviewItems[0],0);
 
                         }else{
-                            /*没全选状态下点击next/通过*/
-                            var result = []
-                            for(var i=0;i<$scope.toReviewItems.length;i++){
-                                if($scope.toReviewItems[i].checkState == true) {
-                                    serverService.check({ids:$scope.toReviewItems[i].cid,
-                                                        status:1
-                                    }).then(function (data) {
-                                        if(data.result.success == 1){
-                                            alert('操作成功')
-                                        }
-                                    })
-
-                                    okArr.push($scope.toReviewItems[i]);
-                                    $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
-                                    i--;
-                                }
-                            }
-                            result = $scope.toReviewItems;
-                            $scope.toReviewItems = result;
-                            if($scope.toReviewItems.length>0){
-                                $scope.changeRight($scope.toReviewItems[0],0);
-
-                            }else{
-                                $scope.toReview = {}
-                            }
-                            storageUtils.session.setItem('_reviewOk_',okArr);
-
+                            $scope.toReview = {}
                         }
-
-                    };
-
-                    /*拒绝*/
-                    $scope.reasonLists = [
-                        {
-                            reasonText :'与要求的内容不符'
-                        },
-                        {
-                            reasonText :'非新用户'
-                        }
-                    ]
-                    $scope.showrejCover = false;
-
-                    $scope.changeReasonbg = function (index) {
-                        $scope.bg = index
+                        storageUtils.session.setItem('_reviewOk_',okArr);
                     }
-                    $scope.subReason = function (e,index) {
-                        e.stopPropagation();
-                        var data = {ids:$scope.toReviewItems[index].cid,
-                            status:0,
-                            message:3,
-                            extmessage:'',
-                            reason:$scope.reasonLists[index].reasonText
+
+                };
+                /*拒绝*/
+                $scope.reasonLists = [
+                    {
+                        reasonText :'与要求的内容不符'
+                    },
+                    {
+                        reasonText :'非新用户'
+                    }
+                ]
+                $scope.showRejCover = false;
+                $scope.changeReasonbg = function (index) {
+                    $scope.bg = index
+                };
+                $scope.subReason = function (e,index) {
+                    e.stopPropagation();
+                    var data = {ids:$scope.toReviewItems[index].cid,
+                        status:0,
+                        message:3,
+                        extmessage:'',
+                        reason:$scope.reasonLists[index].reasonText
+                    }
+                    if(index == 0){
+                        data.message == 3
+                    }
+                    if(index == 1){
+                        data.message == 2
+                    }
+                    /*全选拒绝*/
+                    if($scope.master&&$scope.master == true){
+                        for(var i=0;i<$scope.toReviewItems.length;i++){
+                            data.ids = $scope.toReviewItems[i].cid
+                            serverService.check(data).then(function (data) {
+                                if(data.result.success == 1){
+                                    storageUtils.session.setItem('_Fail_',true)
+                                }else{
+                                    storageUtils.session.setItem('_Fail_',false)
+                                }
+                            });
+
+                            $scope.masterHeader = false;
+                            $scope.changeRight(null);
                         }
-                        if(index == 0){
-                            data.message == 3
-                        }
-                        if(index == 1){
-                            data.message == 2
-                        }
-                        /*全选拒绝*/
-                        if($scope.master&&$scope.master == true){
-                            for(var i=0;i<$scope.toReviewItems.length;i++){
+                        storageUtils.session.setItem('_reviewNo_',noArr);
+                        $scope.toReviewItems = [];/*删除待审核的*/
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Fail_') == true){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Fail_')
+                            }
+                        },100);
+                        $scope.masterHeader = false
+                    }else{
+                        var result = []
+                        for(var i=0;i<$scope.toReviewItems.length;i++){
+                            if($scope.toReviewItems[i].checkState == true) {
+                                /*$scope.toReviewItems[i].reviewState = 2;/!*通过的状态变成2*!/
+                                $scope.toReviewItems[i].rejectReason = $scope.reasonLists[index].reasonText;
+                                noArr.push($scope.toReviewItems[i]);*/
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
                                     if(data.result.success == 1){
                                         storageUtils.session.setItem('_Fail_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Fail_',false)
                                     }
-                                })
-
-                                $scope.masterheader = false;
-                                $scope.changeRight(null);
+                                });
+                                $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
+                                i--;
                             }
-                            storageUtils.session.setItem('_reviewNo_',noArr);
-                            $scope.toReviewItems = [];/*删除待审核的*/
-                            if(storageUtils.session.getItem('_Fail_')){
+                        }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_Fail_') == true){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Fail_')
                             }
-                            $scope.masterheader = false
+                        },100);
+                        result = $scope.toReviewItems;
+                        $scope.toReviewItems = result;
+                        if($scope.toReviewItems.length>0){
+                            $scope.changeRight($scope.toReviewItems[0],0);
+
                         }else{
-                            var result = []
-
-                            for(var i=0;i<$scope.toReviewItems.length;i++){
-                                if($scope.toReviewItems[i].checkState == true) {
-
-                                    /*$scope.toReviewItems[i].reviewState = 2;/!*通过的状态变成2*!/
-                                    $scope.toReviewItems[i].rejectReason = $scope.reasonLists[index].reasonText;
-                                    noArr.push($scope.toReviewItems[i]);*/
-                                    data.ids = $scope.toReviewItems[i].cid
-                                    serverService.check(data).then(function (data) {
-                                            if(data.result.success==1){
-                                                alert('操作成功')
-                                            }
-                                    })
-                                    $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
-                                    i--;
-                                }
-                            }
-                            result = $scope.toReviewItems;
-                            $scope.toReviewItems = result;
-                            if($scope.toReviewItems.length>0){
-                                $scope.changeRight($scope.toReviewItems[0],0);
-
-                            }else{
-                                $scope.toReview = {}
-                            }
-                            storageUtils.session.setItem('_reviewNo_',noArr);
+                            $scope.toReview = {}
                         }
-                        $scope.showrejCover = false;
-
+                        storageUtils.session.setItem('_reviewNo_',noArr);
                     }
-                    $scope.subotherReason = function (e) {
-                        if(e){
-                            var keycode = window.event?e.keyCode:e.which;
-                            if(keycode==13){
-                                /*全选拒绝*/
-                                if($scope.master&&$scope.master == true){
-                                    for(var i=0;i<$scope.toReviewItems.length;i++){
-                                       /* $scope.toReviewItems[i].reviewState = 2;/!*拒绝的状态变成2*!/
-                                        $scope.toReviewItems[i].rejectReason = $scope.otherReason;
-                                        noArr.push($scope.toReviewItems[i]);*/
+                    $scope.showRejCover = false;
+
+                }
+                $scope.subOtherReason = function (e) {
+                    if(e){
+                        var keycode = window.event?e.keyCode:e.which;
+                        if(keycode==13){
+                            /*全选拒绝*/
+                            if($scope.master&&$scope.master == true){
+                                for(var i=0;i<$scope.toReviewItems.length;i++){
+                                    serverService.check({ids:$scope.toReviewItems[i].cid,
+                                        status:0,
+                                        message:1,
+                                        extmessage:$scope.otherReason
+                                    }).then(function (data) {
+                                        if(data.result.success == 1){
+                                            storageUtils.session.setItem('_Fail_',true)
+                                        }else{
+                                            storageUtils.session.setItem('_Fail_',false)
+                                        }
+                                    })
+                                    $scope.master = false;
+                                    $scope.changeRight(null);
+                                }
+                                storageUtils.session.setItem('_reviewNo_',noArr);
+                                $scope.toReviewItems = [];/*删除待审核的*/
+                                $timeout(function () {
+                                    if(storageUtils.session.getItem('_Fail_') == true){
+                                        alert('操作成功');
+                                        storageUtils.session.removeItem('_Fail_')
+                                    }
+                                },100);
+                            }else{
+                                var result = [];
+                                for(var i=0;i<$scope.toReviewItems.length;i++){
+                                    if($scope.toReviewItems[i].checkState == true) {
                                         serverService.check({ids:$scope.toReviewItems[i].cid,
                                             status:0,
                                             message:1,
                                             extmessage:$scope.otherReason
                                         }).then(function (data) {
-                                                if(data.result.success == 1){
-                                                    storageUtils.session.setItem('_Fail_',true)
-                                                }
-                                        })
-                                        $scope.master = false;
-                                        $scope.changeRight(null);
+                                            if(data.result.success == 1){
+                                                storageUtils.session.setItem('_Fail_',true)
+                                            }else{
+                                                storageUtils.session.setItem('_Fail_',false)
+                                            }
+                                        });
+
+                                         $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
+                                        i--;
                                     }
-                                    storageUtils.session.setItem('_reviewNo_',noArr);
-                                    $scope.toReviewItems = [];/*删除待审核的*/
-                                    if(storageUtils.session.getItem('_Fail_')){
+                                }
+                                $timeout(function () {
+                                    if(storageUtils.session.getItem('_Fail_') == true){
                                         alert('操作成功');
                                         storageUtils.session.removeItem('_Fail_')
                                     }
+                                },100);
+                                result = $scope.toReviewItems;
+                                $scope.toReviewItems = result;
+                                if($scope.toReviewItems.length>0){
+                                    $scope.changeRight($scope.toReviewItems[0],0);
+
                                 }else{
-                                    var result = [];
-
-                                    for(var i=0;i<$scope.toReviewItems.length;i++){
-                                        if($scope.toReviewItems[i].checkState == true) {
-                                            //console.log($scope.toReviewItems[i].nickName+'拒绝');
-                                           // $scope.toReviewItems[i].reviewState = 2;/*通过的状态变成2*/
-                                            //$scope.toReviewItems[i].rejectReason = $scope.otherReason;
-                                           // noArr.push($scope.toReviewItems[i]);
-                                            serverService.check({ids:$scope.toReviewItems[i].cid,
-                                                status:0,
-                                                message:1,
-                                                extmessage:$scope.otherReason
-                                            }).then(function (data) {
-                                                if(data.result.success == 1){
-                                                    alert('操作成功')
-                                                }
-                                            });
-
-                                             $scope.toReviewItems.splice(i, 1);/*删除待审核的*/
-                                            i--;
-                                        }
-                                    }
-                                    result = $scope.toReviewItems;
-                                    $scope.toReviewItems = result;
-                                    if($scope.toReviewItems.length>0){
-                                        $scope.changeRight($scope.toReviewItems[0],0);
-
-                                    }else{
-                                        $scope.toReview = {}
-                                    }
-                                    storageUtils.session.setItem('_reviewNo_',noArr);
+                                    $scope.toReview = {}
                                 }
-
-                                console.log($scope.otherReason);
-
-                                $scope.showrejCover = false;
-
+                                storageUtils.session.setItem('_reviewNo_',noArr);
                             }
+
+                            console.log($scope.otherReason);
+
+                            $scope.showRejCover = false;
+
                         }
-                    };
-
-                    $scope.showrejCoverFn = function () {
-                        $scope.showrejCover = true
                     }
+                };
 
-                })
+                $scope.showRejCoverFn = function () {
+                    $scope.showRejCover = true
+                }
+
+            })
         var okArr = [];
         var noArr = [];
         var reviewok = storageUtils.session.getItem('_reviewOk_');
@@ -810,10 +821,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
         var reviewno = storageUtils.session.getItem('_reviewNo_');
         if(reviewno!=null){
             noArr=reviewno;
-
         }
-
-
-
     }])
 })

@@ -7,12 +7,7 @@
  */
 define(['app','storageUtils'], function (app,storageUtils) {
     return  app.controller('imgProofCtrl',['$scope','serverService',function ($scope,serverService) {
-
-        /*$scope.textProofemit = function () {
-         $scope.$emit('textProof',$scope.moniInput)
-
-         }*/
-        $scope.deleteimgProof = function (e,index) {
+        $scope.deleteImgProof = function (e,index) {
 
             var length = $scope.componentItems.length;
             $scope.componentItems[index].status = 0;

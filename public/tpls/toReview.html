@@ -3,7 +3,7 @@
 
     <div class="toReview_left" style="overflow-y: auto">
         <div class="checkHeader">
-            <input type="checkbox" ng-model="masterheader" ng-click="all(masterheader)" ng-checked="flag"
+            <input type="checkbox" ng-model="masterHeader" ng-click="all(masterHeader)" ng-checked="flag"
                    class="tr_hideCheckBox" id="checkAll"><span class="checkAllText">全选</span>
             <label for="checkAll" class="checkAll_label"></label>
             <div class="detail_footer clearfix" style="width:100%;position: absolute;top: 11px;left: 80px;">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <button id="allow" ng-click="trRightAllow()">通过</button>
-            <button id="reject" ng-click="showrejCoverFn()">拒绝</button>
+            <button id="reject" ng-click="showRejCoverFn()">拒绝</button>
         </div>
 
 
@@ -110,9 +110,9 @@
         <div class="toReview_Right_footer">
             <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>
             <a href="javascript:;" class="tr_Right_fallow" ng-click="trRightAllow()">通过</a>
-            <a href="javascript:;" class="tr_Right_reject" ng-mouseover="showrejCover = true"
+            <a href="javascript:;" class="tr_Right_reject" ng-mouseover="showRejCover = true"
                ng-click="subReason($event,0)">拒绝
-                <div class="tr_reject clearfix" ng-show="showrejCover">
+                <div class="tr_reject clearfix" ng-show="showRejCover">
                     <ul class="reason_cover">
                         <li class="reason_header" ng-click="closeCover($event)">拒绝原因</li>
                         <li id="{{'reson_detail'+$index}}"
@@ -124,7 +124,7 @@
                         </li>
                         <li class="input_other_reason">
                             <input type="text" name="orderReason" id="orderReason"
-                                   ng-click="stopSub($event)" ng-keyup="subotherReason($event)" ng-model="otherReason"
+                                   ng-click="stopSub($event)" ng-keyup="subOtherReason($event)" ng-model="otherReason"
                                    placeholder="请填写其它原因">
                         </li>
                     </ul>

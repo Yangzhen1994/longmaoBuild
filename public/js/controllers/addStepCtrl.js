@@ -6,7 +6,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         //$('.left').css('height',846);
         //获取当前任务id
         var taskId = storageUtils.session.getItem('_TaskId_');
-        var newtaskId = storageUtils.session.getItem('_newTaskid_');
+        var newTaskId = storageUtils.session.getItem('_newTaskid_');
         //var oldStep = storageUtils.session.getItem('_oldStep_');
 
         //delete/
@@ -74,8 +74,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             }, 100)
         };
         /*新建步骤*/
-        if (newtaskId && newtaskId != 'undefined') {
-            serverService.getStepById(newtaskId)
+        if (newTaskId && newTaskId != 'undefined') {
+            serverService.getStepById(newTaskId)
                     .then(function (data) {
                         console.log(data.result);
                         $scope.stepCount = 0;
@@ -319,7 +319,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 imagesStr = '';
             }
             $timeout(function () {
-                var taskId2 = taskId || newtaskId
+                var taskId2 = taskId || newTaskId
                 serverService.getStepById(taskId2)
                 .then(function (data) {
                     console.log(data.result)
@@ -381,8 +381,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 item1.options_other = 1;
                                                 console.log(item1.options)
                                                 var optionArr = item1.options.split('\n')
-                                                optionArr.forEach(function (optionsitem, index) {
-                                                    if (optionsitem == '点我输入内容') {
+                                                optionArr.forEach(function (optionsItem, index) {
+                                                    if (optionsItem == '点我输入内容') {
                                                         optionArr.splice(index, 1)
                                                     }
 

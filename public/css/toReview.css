@@ -153,7 +153,7 @@
     background: url("../img/icon/arrow_next.png");
     margin-left: 3.5px;
 }
-.tr-right_prev-one,.tr-right-next-one{
+.tr-right-prev-one,.tr-right-next-one{
     display: inline-block;
     height: 18px;
     line-height: 18px;

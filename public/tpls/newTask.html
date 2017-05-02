@@ -4,14 +4,14 @@
         <a ui-sref="taskList" id="breadNewTask">任务列表<span>/</span></a>
         <a ui-sref="addTask" id="breadNewTaskMessage">任务基本信息</a>
     </div>
-    <div class="content clearfix" style="height: auto">
+    <div class="content clearfix">
         <div class="nt-left-view">
             <ul ng-model="items" ui-sortable="sortableOptions" class="nt-lv-ph">
                 <p class="nt-lvph-title">{{task.title}}</p>
                 <p class="nt-lvph-detail">
                     任务个数{{task.num}}&nbsp个&nbsp|&nbsp{{task.end_time.substr(11,5)}}&nbsp截止&nbsp|&nbsp最长审核&nbsp{{reviewTimeDay}}&nbsp天</p>
                 <p class="nt-lvph-rightPrice">￥{{task.amount/2}}</p>
-                <pre class="summary-detail" style="white-space: inherit;" ng-bind-html="showTaskDesc"></pre>
+                <pre class="summary-detail" ng-bind-html="showTaskDesc"></pre>
                 <a href="" class="share-price">分享赚{{0.1+0.9+task.amount*0.1+ 1*task.share_award | number:2}}元</a>
                 <a href="" class="get-task-price">领取任务赚{{task.amount/2}}元</a>
             </ul>
@@ -34,18 +34,8 @@
             <div class="nt-rv-price">
                 <label for="price">单价(元):</label>
                 <input type="text" id="price" ng-model="task.amount"/>
-                <a href=""
-                   style="text-decoration:underline;position:relative;float:right;font-size: 10px;color: blue;right:220px;top:5px"
-                   ng-click="showPriceDesc()" id="showPriceDesc">费率说明
-                    <div style="position: absolute;
-                        left: 55px;
-                        width: 150px;
-                        top: 1px;
-                        color: #b1b1b1;
-                        font-size: 15px;
-                        height: 15px;
-                        line-height: 15px;
-                        " ng-show="priceDesc">若想显示3.5请填写7
+                <a href="" ng-click="showPriceDesc()" id="showPriceDesc">费率说明
+                    <div class="price-desc" ng-show="priceDesc">若想显示3.5请填写7
                     </div>
                 </a>
 

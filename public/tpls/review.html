@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/review.css">
-<div style="height:100%;background: #ececec;" class="review"><!--ng-controller="firstPage"-->
+<div  class="review"><!--ng-controller="firstPage"-->
 
     <div class="bread">
         <a ng-click="returnToSelf()" ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
@@ -20,10 +20,7 @@
             <i class="circle-choose" ng-class="{chooseBg:chooseType == 3}"></i><span class="text">POI_ID</span>
 		</span>
     </div>
-    <div class="detail-footer clearfix" style="    width: 450px;
-    margin-left: 14px;
-    /* position: absolute; */
-    margin-top: 30px;">
+    <div class="detail-footer clearfix">
         <div class="pagination-index">
             <ul class="clearfix">
                 <li>共<span ng-bind="totalCount"></span>条记录，<span ng-bind="pageIndex"></span>/<span
@@ -45,28 +42,20 @@
             </ul>
         </div>
     </div>
-    <div id='exportSubTime' style="    POSITION: absolute;
-    right: 650px;
-    top: 30px;border: 1px solid #f2f2f2;">
-        <input style="border: none;
-                        width: 150px;
-                        height: 18px;
-                        border-radius: 5px;"
-               type="text" ngc-lay-date class="export-submit-time" ng-model="exportSubmitTime" id="selSubTime"
+    <div id='exportSubTime'>
+        <input type="text" ngc-lay-date class="export-submit-time" ng-model="exportSubmitTime" id="selSubTime"
                placeholder="导出需要选择提交时间"/>
     </div>
-    <div class="review-detail" style="width:100%;height:calc(100% - 84px);overflow-y: auto">
+    <div class="review-detail">
         <!-- <h2>审核列表界面</h2>
          <input ng-model="newtask"></input>
          <div>{{newtask}}</div>-->
         <ul id="reviewUl">
             <li ng-repeat="item in items" ng-show="!item.show">
                 <div id="{{'review'+$index}}" ng-show="item.exportShow">
-                    <select ng-change="chooseState(item)"
+                    <select class="export-state" ng-change="chooseState(item)"
                             ng-model="item.exportItem"
                             ng-options="itemselect.exportState for itemselect in exportStates"
-                            style="font-size: 13px;position: absolute;left: 210px"
-
                     >
                         <option value="">请选择</option>
                     </select>

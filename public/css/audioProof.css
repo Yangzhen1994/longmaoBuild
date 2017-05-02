@@ -1,0 +1,32 @@
+.audio-proof-wrap{
+    overflow-wrap: break-word;
+    margin-left: 4px;
+    padding-top: 2px;
+    width: 276px;
+    height: 69px;
+    background: url('../img/moduleImg/rectangle_audio.png');
+    position: relative;
+}
+.audio-proof-text{
+    width: 280px;
+    height: 25px;
+    margin: 0 auto;
+    margin-top: 3px;
+    text-align: center;
+    color: gray;
+    font-size: 13px;
+}
+.audio-proof-textarea{
+    border: none;
+    width: 292px;
+    position: absolute;
+    top: 0;
+    left: 300px;
+    height: 69px;
+    visibility: hidden
+}
+.audio-proof-img{
+    position: absolute;
+    top:-8px;
+    right:0px;
+}

@@ -139,7 +139,7 @@
     width: 620px;
     position: absolute;
     left: 400px;
-    background: url("../img/stepTemBg.png") no-repeat 1px;
+    background: url("../img/step_temp_bg.png") no-repeat 1px;
     background-size: 48% 100%;
     background-attachment:scroll;
     border-right: none;

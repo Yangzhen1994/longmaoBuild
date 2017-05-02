@@ -1,0 +1,45 @@
+.img-proof{
+    margin-bottom: 10px
+}
+.img-proof-wrap{
+    position:relative;
+}
+.img-proof-wrap span{
+    position: absolute;
+}
+.up-img-proof{
+    width: 80px;
+    height: 79px;
+    position: absolute;
+    background: red;
+    right: 58px;
+    top: 20px;
+    opacity: 0
+}
+.up-img-proof-preview{
+    width: 75px;
+    height: 110px;
+    position: absolute;
+    z-index: 9;
+    left: 25px;
+    top: 20px;
+}
+.img-proof-tips-image{
+    width: 75px;
+    height: 110px;
+    position: absolute;
+    left: 25px;top:20px
+}
+.img-proof-tips-image img{
+   width: 100%;
+    height: 100%;
+}
+.img-proof-rectangle{
+    width: 250px;
+    height: 150px;
+}
+.img-proof-del{
+    position: absolute;
+    top:-8px;
+    right:30px;
+}

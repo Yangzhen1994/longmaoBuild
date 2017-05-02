@@ -93,7 +93,7 @@ html,body{
     width: 32px;
     height: 32px;
     content: '';
-    background: url("../img/icon/taskicon.png") no-repeat;
+    background: url("../img/icon/task_icon.png") no-repeat;
     background-size: 100% 100%;
     position: absolute;
     left: 24px;
@@ -103,7 +103,7 @@ html,body{
     width: 32px;
     height: 32px;
     content: '';
-    background: url("../img/icon/reviewicon.png") no-repeat;
+    background: url("../img/icon/review_icon.png") no-repeat;
     background-size: 100% 100%;
     position: absolute;
     left: 24px;

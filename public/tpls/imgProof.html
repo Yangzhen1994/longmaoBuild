@@ -1,32 +1,15 @@
-<div class="imgProof" style="margin-bottom: 10px">
-    <div style="position:relative;">
-        <span style="position: absolute;">{{imgdesc}}</span>
-        <div id={{'upImgProof'+stepIndex+$index}} style="    width: 80px;
-            height: 79px;
-            position: absolute;
-            background: red;
-            right: 58px;
-            top: 20px;
-            opacity: 0"></div>
-        <div id={{'upImgProofList'+stepIndex+$index}}></div>
-        <div id={{'upImgProofPreview'+stepIndex+$index}} style="    width: 75px;
-    height: 110px;
-
-    position: absolute;
-    z-index: 9;
-    left: 25px;
-    top: 20px;"></div>
-        <div style="width: 75px;height: 110px;position: absolute;left: 25px;top:20px"
-             ng-show="componentItem.tips_image">
-            <img ng-src="{{componentItem.tips_image}}" alt="" style="width: 100%;height: 100%">
+<link rel="stylesheet" href="./css/imgProof.css">
+<div class="img-proof">
+    <div class="img-proof-wrap">
+        <span>{{imgdesc}}</span>
+        <div class="up-img-proof" id={{'upImgProof'+stepIndex+$index}}></div>
+        <div class="up-img-proof-list" id={{'upImgProofList'+stepIndex+$index}}></div>
+        <div class="up-img-proof-preview" id={{'upImgProofPreview'+stepIndex+$index}}></div>
+        <div class="img-proof-tips-image" ng-show="componentItem.tips_image">
+            <img ng-src="{{componentItem.tips_image}}" alt="">
         </div>
-        <img src="../img/moduleImg/Rectangle.png" alt="" style="width: 250px;height: 150px">
-        <img src="./img/icon/deleteCircle.png" alt="" style="
-    position: absolute;
-    top:-8px;
-    right:30px"
-             id="{{'delete'+$index}}"
-        >
+        <img class="img-proof-rectangle" src="../img/moduleImg/rectangle.png" alt="">
+        <img class="img-proof-del" src="./img/icon/delete_circle.png" alt="" id="{{'delete'+$index}}">
     </div>
 </div>
   

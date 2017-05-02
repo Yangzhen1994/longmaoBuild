@@ -30,11 +30,11 @@
     width: 16px;
     height:16px;
     margin: 12px 12px 12px 8px;
-    background: url("../img/icon/uncheckedBox.png") no-repeat;
+    background: url("../img/icon/unchecked_box.png") no-repeat;
 
 }
 .tr-hide-checkbox:Checked~label{
-    background: url("../img/icon/checkedBox.png") no-repeat;
+    background: url("../img/icon/checked_box.png") no-repeat;
 }
 .check-header .check-all-label{
     margin-left: -20px;

@@ -4,7 +4,7 @@
     right: 110px;
     font-size: 16px;
 }
-.review_searchArea{
+.review-searchArea{
     position: absolute;
     top:11px;
     right:14px;
@@ -12,7 +12,7 @@
     height: 50px;
 }
 
-.search-Btn-review{
+.search-btn-review{
     border-radius:2px;
     position: absolute;
     border: none;
@@ -28,7 +28,7 @@
     right: 5px;
     top:10px;
 }
-.review_radio{
+.review-radio{
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #212121;
@@ -36,10 +36,10 @@
     right: 388px;
     top:30px;
 }
-.review_radio span{
+.review-radio span{
     opacity: 1;
 }
-.review_radio span i{
+.review-radio span i{
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -52,43 +52,43 @@
     color: #212121;
     margin-bottom: 3px;
 }
-.review_radio span .chooseBg{
+.review-radio span .chooseBg{
     background: url(../img/green_circle.png) no-repeat;
     background-size: 100%;
     border:none;
 }
 
-.reviewDetail{
+.review-detail{
     width: 816px;
     height: 658px;/*______*/
     margin: 0 auto;
     background: white;
 }
 
-#review_ul li{
+#reviewUl li{
     width: 100%;
     height: 90px;
     border-bottom: 1px solid #ececec;
     position: relative;
 }
-#review_ul li .review-header{
+#reviewUl li .review-header{
     width: 100%;
     height: 21px;
     font-family: PingFangSC-Regular;
     font-size: 15px;
 }
-#review_ul li .id {
+#reviewUl li .id {
     float: left;
     margin-left: 16px;
     margin-top: 26px;
 }
-#review_ul li .title {
+#reviewUl li .title {
 
     float: left;
     margin-top: 26px;
     margin-left: 10px;
 }
-#review_ul li .review-detail{
+#reviewUl li .review-detail{
     color:#303030;
     font-size: 13px;
     width: auto;
@@ -114,7 +114,7 @@
     top:30px;
     right:25px;
 }
-.review-button .firstButton{
+.review-button .first-button{
     font-size: 13px;
     background: #2DB7F5;
     color:#FFFFFF;

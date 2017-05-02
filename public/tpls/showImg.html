@@ -1,11 +1,7 @@
 <link rel="stylesheet" href="./css/showImg.css">
-<div class="showImg" style="height:auto;margin-top:5px;margin-left: 8px;margin-bottom: 10px;position: relative"  class="showimg">
-    <!--<div style="width: 100px;
-    font-size: 13px;
-    height: 20px;
-    line-height: 20px;">选择提示图片</div>-->
-    <img ng-src="{{images}}" alt="" class="stepImg" ng-show="images" id={{'step'+stepIndex+'img'+$index}}>
-    <div id={{'stepContainer'+stepIndex+'img'+$index}}></div>
+<div class="show-img" style="height:auto;margin-top:5px;margin-left: 8px;margin-bottom: 10px;position: relative">
+    <img ng-src="{{images}}" alt="" class="step-img" ng-show="images" id={{'step'+stepIndex+'Img'+$index}}>
+    <div id={{'stepContainer'+stepIndex+'Img'+$index}}></div>
     <div id={{'preview'+stepIndex+$index}} style="    display: block;
     position: absolute;
     top: 0;
@@ -21,48 +17,3 @@
          id="{{'delete'+stepIndex+$index}}"
     >
 </div>
-   <!--<div class="moniImg" >
-       <div ng-repeat="item in thumb" style="width:50%;float: left;" >
-           &lt;!&ndash; 采用angular循环的方式，对存入thumb的图片进行展示 &ndash;&gt;
-           <label>
-               <img ng-src="{{item.imgSrc}}" style="width:100%;height:100%"/>
-           </label><div ng-if="item.imgSrc" ng-click="img_del($index)" style="display: inline-block;
-    margin-top: -20px;height: 20px;width: 16px;height: 16px;background: url('./img/icon/del.png')"></div>
-       </div>
-   </div>-->
-    <!--上传图片-->
-    <!--<div class="upImg">
-        &lt;!&ndash;<img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" alt="" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-             multiple accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-        <div style="height: 20px;margin-top: -30px;">File:{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-            <div class="progress" ng-show="f.progress >= 0">
-                <div style="width:{{f.progress}}%"
-                     ng-bind="f.progress + '%'">
-                </div>
-            </div>
-        </div>&ndash;&gt;
-        <label for="upFile" id="upFileLabel"><img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" alt=""></label>
-        <input type="file" name="upFile" multiple="multiple" id="upFile">
-    </div>-->
-
-    <!--<input type="file"  onchange="angular.element(this).scope().img_upload(this.files,this)">
-    <section >
-        <img src="./img/moduleImg/ic_add_a_photo_black_24dp.png" style="width: 24px;height: 24px"/>
-                    <div ng-repeat="item in thumb_default" >
-                        &lt;!&ndash; 这里之所以写个循环，是为了后期万一需要多个‘加号'框 &ndash;&gt;
-                        <form id="totoro-task">
-                            <input type="file"  multiple class="one-input" accept="image/*" file-model="images"/>
-                        </form>
-                    </div>
-             &lt;!&ndash;   <input type="submit" name="" value="提 交" ng-click="submit_form()"/>&ndash;&gt;
-    </section>
-    <img src="./img/icon/deleteCircle.png" alt="" style="
-    position: absolute;
-    top:-8px;
-    right:-16px" ng-click="deleteImg($event,middleItem)">-->
-
-
-<script>
-
-
-</script>

@@ -59,8 +59,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         var hashArr = []
                         var uploader = Qiniu.uploader({
                             runtimes: 'html5,html4',
-                            browse_button: 'step'+scope.stepIndex+'img'+imgIndex,
-                            container: 'stepContainer'+scope.stepIndex+'img'+imgIndex,
+                            browse_button: 'step'+scope.stepIndex+'Img'+imgIndex,
+                            container: 'stepContainer'+scope.stepIndex+'Img'+imgIndex,
                             //drop_element: 'sys-file-dialog-list'+comIndex,
                             max_file_size: '100mb',
                             //dragdrop: true,
@@ -101,29 +101,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                     hashArr.push(jQuery.parseJSON(info));
                                     console.log(hashArr);
-                                    /*$.ajax({
-                                     url:'http://manager.test.shandianshua.com/sys/file/save.json',
-                                     method:'POST',
-                                     xhrFields: {
-                                     withCredentials: true
-                                     },
-                                     data:{
-                                     space:'',
-                                     key:file.id,
-                                     title:file.name,
-                                     name:file.target_name,
-                                     type:file.type?file.type:file.title.replace(/^[^\.]+\./,''),
-                                     size:file.size
-                                     },
-                                     dataType:'json',
-                                     async:false
-                                     })*/
-                                    // 每个文件上传成功后，处理相关的事情
-                                    // 其中info是文件上传成功后，服务端返回的json，形式如：
-                                    // {
-                                    //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                                    //    "key": "gogopher.jpg"
-                                    //  }
                                     // 查看简单反馈
                                     var domain = up.getOption('domain');
                                     var res = jQuery.parseJSON(info);

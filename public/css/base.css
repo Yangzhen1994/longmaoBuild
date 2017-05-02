@@ -152,28 +152,28 @@ select{
     background: #ECECEC;
     outline:none;
 }
-.selectArea{
+.select-area{
     width: 380px;
     height: 56px;
     margin-left: 16px;
     margin-top: 13px;
     float: left;
 }
-.selectArea div{
+.select-area div{
     float: left;
     text-align: center;
     height: 32px;
     border-right: 1px solid rgba(0,0,0,0.12);
 }
-.selectArea div:last-child{
+.select-area div:last-child{
     border:none
 }
-.selectArea .taskState{
+.select-area .task-state{
     width: 90px;
     height: 32px;
     margin-right: 25px;
 }
-.selectArea .deviceType{
+.select-area .device-type{
     width: 90px;
     height: 32px;
     margin-right: 25px;
@@ -181,21 +181,21 @@ select{
     margin-left: 25px;
 
 }
-.selectArea .belongUser{
+.select-area .belong-user{
     width: 90px;
     height: 32px;
 
     margin-left: 25px;
 }
-.selectArea img{
+.select-area img{
     vertical-align: middle;
 }
-.searchArea{
+.search-area{
     position: absolute;
     top:16px;
     right:0px;
 }
-.search-Input{
+.search-input{
     font-size: 16px;
     position: absolute;
     border: none;
@@ -206,14 +206,8 @@ select{
     right: 112px;
     background: #FAFAFA;
 }
-#search_glass{
-    position: absolute;
-    width: 17px;
-    height: 17px;
-    top:2px;
-    right: 338px;
-}
-.search-Btn{
+
+.search-btn{
     position: absolute;
     border: none;
     outline: none;
@@ -257,14 +251,14 @@ select{
     border:none;
 }
 /*taskDetail界面*/
-.taskDetail{
+.task-detail{
     margin: 0 auto;
     background: white;
     height: 100%;
 }
 
 
-.addTask{
+.add-task{
     display: block;
     text-decoration: none;
     border: none;
@@ -287,30 +281,30 @@ select{
 ul{
     list-style: none;
 }
-#taskList_ul li{
+#taskListUl li{
     width: 100%;
     height: 90px;
     border-bottom: 1px solid #ececec;
     position: relative;
 }
-#taskList_ul li .taskList-header{
+#taskListUl li .task-list-header{
     width: 100%;
     height: 50px;
     font-family: PingFangSC-Regular;
     font-size: 15px;
 }
-#taskList_ul li .id {
+#taskListUl li .id {
     float: left;
     margin-left: 16px;
     margin-top: 26px;
 }
-#taskList_ul li .title {
+#taskListUl li .title {
 
     float: left;
     margin-top: 26px;
     margin-left: 10px;
 }
-#taskList_ul li .taskList-detail{
+#taskListUl li .taskList-detail{
     color:#303030;
     font-size: 13px;
     width: auto;
@@ -319,10 +313,10 @@ ul{
     left: 10px;
     line-height: 18px;
 }
-.taskList-detail span{
+.task-list-detail span{
     margin-right: 20px;
 }
-.taskList-button a{
+.task-list-button a{
     display: block;
     text-decoration: none;
     width: 80px;
@@ -335,21 +329,21 @@ ul{
     line-height: 40px;
     top:30px;
 }
-.taskList-button .firstButton{
+.task-list-button .first-button{
     right:120px;
 }
-.taskList-button .firstButton:hover{
+.task-list-button .first-button:hover{
     cursor: pointer;
 }
-.taskList-button .secondButton{
+.task-list-button .second-button{
 
     right: 20px;
 }
-.taskList-button .secondButton:hover{
+.task-list-button .second-button:hover{
 
     cursor: pointer;
 }
-.pagination_index ul li{
+.pagination-index ul li{
     float: left;
     margin-right: 8px;
 }

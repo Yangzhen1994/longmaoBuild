@@ -1,22 +1,23 @@
 <div class="imgProof" style="margin-bottom: 10px">
     <div style="position:relative;">
         <span style="position: absolute;">{{imgdesc}}</span>
-        <div id={{'upimgProof'+stepIndex+$index}} style="    width: 80px;
+        <div id={{'upImgProof'+stepIndex+$index}} style="    width: 80px;
             height: 79px;
             position: absolute;
             background: red;
             right: 58px;
             top: 20px;
             opacity: 0"></div>
-        <div id={{'upimgProof-list'+stepIndex+$index}}></div>
-        <div id={{'upimgProof-preview'+stepIndex+$index}} style="    width: 75px;
+        <div id={{'upImgProofList'+stepIndex+$index}}></div>
+        <div id={{'upImgProofPreview'+stepIndex+$index}} style="    width: 75px;
     height: 110px;
 
     position: absolute;
     z-index: 9;
     left: 25px;
     top: 20px;"></div>
-        <div style="width: 75px;height: 110px;position: absolute;left: 25px;top:20px" ng-show="componentItem.tips_image">
+        <div style="width: 75px;height: 110px;position: absolute;left: 25px;top:20px"
+             ng-show="componentItem.tips_image">
             <img ng-src="{{componentItem.tips_image}}" alt="" style="width: 100%;height: 100%">
         </div>
         <img src="../img/moduleImg/Rectangle.png" alt="" style="width: 250px;height: 150px">

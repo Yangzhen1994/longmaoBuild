@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="./css/newStep.css">
 <link rel="stylesheet" href="./css/upload.css">
-<div class="newStep">
+<div class="new-step">
     <div class="bread" >
-        <a ui-sref="taskList" id="bread_newStep">任务列表<span>/</span></a>
-        <a href="javascript:;" id="bread_newStepMessage">任务步骤</a>
+        <a ui-sref="taskList" id="breadNewStep">任务列表<span>/</span></a>
+        <a href="javascript:;" id="breadNewStepMessage">任务步骤</a>
     </div>
-    <div class="stepModule">
-        <ul class="stepModule_ul">
+    <div class="step-module">
+        <ul class="step-module-ul">
             <li ng-repeat="stepItem in stepItems" id="{{'stepItem'+$index}}" style="position: relative">
-                <div ng-show="{{stepItem.showValue==1}}">
+                <div ng-show="stepItem.showValue==1">
                     <step-module></step-module>
                 </div>
 
@@ -16,28 +16,15 @@
 
         </ul>
     </div>
-    <div class="btn_addStep">
+    <div class="btn-add-step">
         <a ng-click="addStepModule(stepCount+1)">+</a>
         <div>添加一个步骤模板</div>
     </div>
-    <div class="addStep_footer">
-        <div class="ad_footer_center">
-            <a href="" class="as_prePage" ng-click="asprePage()">上一项</a>
-            <a href="" class="as_saveTask" ng-click="assaveTask()">保存任务</a>
+    <div class="add-step-footer">
+        <div class="ad-footer-center">
+            <a href="" class="as-pre-page" ng-click="asprePage()">上一项</a>
+            <a href="" class="as-save-task" ng-click="assaveTask()">保存任务</a>
         </div>
     </div>
-    <!--<div>
-        <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-            Select File
-        </button>
-        File:
-        <div>{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-            <span class="progress" ng-show="f.progress >= 0">
-            <div style="width:{{f.progress}}%"
-               ng-bind="f.progress + '%'"></div>
-            </span>
-        </div>
-    </div>-->
 </div>
   

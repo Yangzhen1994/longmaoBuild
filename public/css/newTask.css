@@ -1,4 +1,4 @@
-#bread_newTask{
+#breadNewTask{
     display: block;
     margin-left: 16px;
     margin-top: 11px;
@@ -10,11 +10,11 @@
     text-decoration: none;
     font-family: PingFangSC-Regular;
 }
-#bread_newTask span{
+#breadNewTask span{
     margin-left: 7px;
     color: #cccccc;
 }
-#bread_newTaskMessage{
+#breadNewTaskMessage{
     display: block;
     font-family: PingFangSC-Regular;
     font-size: 13px;
@@ -26,7 +26,7 @@
     left: 90px;
     text-decoration: none;
 }
-.nt_leftView{
+.nt-left-view{
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
     position: relative;
     margin: 0 auto;
@@ -44,10 +44,10 @@
 ul{
     list-style: none;
 }
-.nt_lv_ph{
+.nt-lv-ph{
     position: relative;
 }
-.nt_lvph_title{
+.nt-lvph-title{
     position: absolute;
     height: 13px;
     top: 80px;
@@ -55,7 +55,7 @@ ul{
     font-size: 8px;
     left: 15px;
 }
-.nt_lvph_detail{
+.nt-lvph-detail{
     position: absolute;
     height: 8px;
     top: 100px;
@@ -65,14 +65,14 @@ ul{
     color: #D1D1D1;
     transform: scale(0.9);
 }
-.nt_lvph_rightPrice{
+.nt-lvph-rightPrice{
     position: absolute;
     color: orangered;
     font-size: 22px;
     top: 83px;
     right: 10px;
 }
-.nt_lvph_taskSummary{
+.nt-lvph-taskSummary{
     width: 230px;
     height: 95px;
     position: absolute;
@@ -82,7 +82,7 @@ ul{
     color:#D2B9A0;
     overflow: hidden;
 }
-.summaryDetail{
+.summary-detail{
     width: 280px;
     height: 95px;
     position: absolute;
@@ -95,7 +95,7 @@ ul{
     word-break: break-all;
     overflow-y: auto;
 }
-.sharePrice,.getTaskPrice{
+.share-price,.get-task-price{
     display: inline-block;
     position: absolute;
     height: 13px;
@@ -109,18 +109,18 @@ ul{
     letter-spacing: 1px;
     text-decoration: none;
 }
-.getTaskPrice{
+.get-task-price{
     color: white;
     left:170px;
     top:506px
 }
 /*rightview*/
 
-.nt_rightView{
+.nt-right-view{
     position: relative;
     padding-left: 10px;
 }
-.nt_rightView{
+.nt-right-view{
     width: 416px;
     height: auto;
     background: white;
@@ -129,12 +129,12 @@ ul{
     margin-left: 10px;
     margin-top: 30px;
 }
-.nt_rightView label{
+.nt-right-view label{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
 }
-.nt_rightView input{
+.nt-right-view input{
     border:1px solid #737373;
     border-radius: 5px;
     width: 280px;
@@ -144,61 +144,61 @@ ul{
     margin-left: 12px;
     padding-left: 5px;
 }
-.nt_rv_title{
+.nt-rv-title{
     margin-top: 8px;
 }
-.nt_rv_title input{
+.nt-rv-title input{
     width:323px;
     height:32px;
 }
-.nt_rv_taskCount{
+.nt-rv-taskCount{
     margin-top: 8px;
 }
-.nt_rv_taskCount input{
+.nt-rv-taskCount input{
     width:66px;
     height:32px;
 }
-.nt_rv_timePicker {
+.nt-rv-timePicker {
     margin-top: 8px;
 }
-.nt_rv_timePicker input{
+.nt-rv-timePicker input{
     font-size: 13px;
     width: 155px;
     height: 32px;
 }
-.nt_rightView #start,.nt_rightView #end{
+.nt-rightView #start,.nt-rightView #end{
     background: url("../img/icon/temepicker.png") no-repeat;
     background-position: right center;
 }
-.nt_rv_price {
+.nt-rv-price {
     margin-top: 8px;
 }
-.nt_rv_price input{
+.nt-rv-price input{
     width: 66px;
     height: 32px;
 }
-.nt_rv_sharePrice {
+.nt-rv-sharePrice {
     margin-top: 8px;
 }
-.nt_rv_sharePrice input{
+.nt-rv-sharePrice input{
     width: 66px;
     height: 32px;
 }
-.nt_rv_reviewTime{
+.nt-rv-reviewTime{
     margin-top: 8px ;
 }
-.nt_rv_reviewTime input{
+.nt-rv-reviewTime input{
     width: 66px;
     height: 32px;
 }
-.nt_rv_summary{
+.nt-rv-summary{
     margin-top: 8px;
 }
-.nt_rv_summary label{
+.nt-rv-summary label{
    position: relative;
    top:-80px;
 }
-.nt_rv_summary textarea{
+.nt-rv-summary textarea{
 
     width: 323px;
     height: 94px;
@@ -207,24 +207,24 @@ ul{
     margin-left: 12px;
     padding: 5px;
 }
-.nt_rv_userGetTime {
+.nt-rv-userGetTime {
     margin-top: 8px;
 }
-.nt_rv_userGetTime input{
+.nt-rv-userGetTime input{
     width: 66px;
     height: 32px;
 }
-.nt_rv_maxSubCount{
+.nt-rv-maxSubCount{
     margin-top: 8px;
 }
-.nt_rv_maxSubCount input{
+.nt-rv-maxSubCount input{
     width: 66px;
     height: 32px;
 }
-.nt_rv_showArea{
+.nt-rv-showArea{
     margin-top: 8px;
 }
-.nt_rv_showArea select{
+.nt-rv-showArea select{
     margin-left: 12px;
     background: white;
     width: 120px;
@@ -232,10 +232,10 @@ ul{
     border: 1px solid #737373;
     border-radius: 4px;
 }
-.nt_rv_lineVersion {
+.nt-rv-lineVersion {
     margin-top: 8px;
 }
-.nt_rv_lineVersion select{
+.nt-rv-lineVersion select{
     margin-left: 12px;
     background: white;
     width: 120px;
@@ -243,10 +243,10 @@ ul{
     border: 1px solid #737373;
     border-radius: 4px;
 }
-.nt_rv_taskTag {
+.nt-rv-taskTag {
     margin-top: 8px;
 }
-.nt_rv_taskTag select{
+.nt-rv-taskTag select{
     margin-left: 12px;
     background: white;
     width: 120px;
@@ -265,21 +265,21 @@ ul{
     clear: both;
 }
 /*底部*/
-.nt_footer{
+.nt-footer{
     width: 100%;
     height: 63px;
     border-top: 1px solid #cccccc;
     overflow: hidden;
     background: white;
 }
-.nt_footer .btn_area{
+.nt-footer .btn-area{
     text-align: center;
     width: 400px;
     height: 40px;
     margin: 0 auto;
     margin-top: 12px;
 }
-.nt_footer .btn_area a{
+.nt-footer .btn-area a{
     display: inline-block;
     font-family: PingFangSC-Regular;
     font-size: 13px;
@@ -293,7 +293,7 @@ ul{
     line-height: 40px;
     text-decoration: none;
 }
-.nt_footer .btn_area .nextPage{
+.nt-footer .btn-area .next-page{
     background: #2DB7F5;
     color: white;
 }

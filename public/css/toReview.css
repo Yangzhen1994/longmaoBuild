@@ -1,4 +1,4 @@
-.toReview,.reviewOk,.reviewNo{
+.to-review,.review-ok,.review-no{
     width:calc(100% - 2px);
     height:93%;
     position: relative;
@@ -6,7 +6,7 @@
 }
 
 
-.toReview_left,.reviewOk_left,.reviewNo_left{
+.to-review-left,.review-ok-left,.review-no-left{
     float: left;
     width: 70%;
     height: 100%;
@@ -14,23 +14,17 @@
     background: white;
     overflow-x: hidden;
 }
-.checkHeader{
+.check-header{
     height: 39px;
     border-bottom: 1px solid #ECECEC;
     position: relative;
 }
-/*#forcheckAll{
-    display: inline-block;
-    width: 15px;
-    height:15px;
-    border:1px solid #c0c0c0;
-    margin: 12px 12px 12px 8px;
-}*/
-.tr_hideCheckBox{
+
+.tr-hide-checkbox{
     display: none;
 }
 
-.tr_hideCheckBox~label{
+.tr-hide-checkbox~label{
     display: inline-block;
     width: 16px;
     height:16px;
@@ -38,13 +32,13 @@
     background: url("../img/icon/uncheckedBox.png") no-repeat;
 
 }
-.tr_hideCheckBox:Checked~label{
+.tr-hide-checkbox:Checked~label{
     background: url("../img/icon/checkedBox.png") no-repeat;
 }
-.checkHeader .checkAll_label{
+.check-header .check-all-label{
     margin-left: -20px;
 }
-.checkAllText{
+.check-all-text{
     font-family: PingFangSC-Regular;
     font-size: 12px;
     color: #c0c0c0;
@@ -52,7 +46,7 @@
     left: 28px;
     top:-16px
 }
-#allow,#reject,#rn_allow{
+#allow,#reject,#rnAllow{
     outline: none;
     width: 56px;
     height: 24px;
@@ -66,22 +60,19 @@
     position: absolute;
     top:8px;
 }
-#allow,#rn_allow{
+#allow,#rnAllow{
     right: 69px;
 }
 #reject{
     right: 5px;
 }
-.checkItems li{
+.check-items li{
     position: relative;
     width: 100%;
     height: 71px;
     border-bottom: 1px solid #ECECEC;
 }
-.nickName,.nickName_time{
-    /*position: absolute;
-    top:20px;
-    left: 40px;*/
+.nick-name,.nick-name-time{
     font-family: PingFangSC-Regular;
     font-size: 12px;
     color: rgba(0,0,0,0.54);
@@ -90,10 +81,10 @@
     width: 12%;
     text-align:center;
 }
-.nickName_time{
+.nick-name-time{
     top:37px;
 }
-.checkItems li .nickName_no,.checkItems li .nickName_time_no{
+.check-items li .nick-name_no,.check-items li .nick-name_time_no{
     position: absolute;
     top:8px;
     left: 22px;
@@ -101,29 +92,29 @@
     font-size: 12px;
     color: rgba(0,0,0,0.54);
 }
-.checkItems li .nickName_time_no{
+.checkItems li .nick-name_time_no{
     top:25px;
 }
-.checkItems li .tr_labelItem{
+.check-items li .tr-label-item{
     position: absolute;
     /*left:-10px;*/
     top:18px;
     /*margin-top: 28px;
     margin-left: 16px;*/
 }
-.toReview_Right,.reviewOk_Right,.reviewNo_Right{
+.to-review-right,.review-ok-right,.review-no-right{
     float: left;
     width: calc(30% - 2px);;
     height:100%;
     position: relative;
 }
-.toReview_Right p,.reviewOk_Right p,.reviewNo p{
+.to-review-right p,.review-ok-right p,.review-no-right p{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
     /*margin: 12px 0 0 18px;*/
 }
-.toReview_Right_tel,.reviewOk_Right_tel,.reviewNo_Right_tel{
+.to-review-right-tel,.review-ok-right_tel,.review-no-right-tel{
     font-family: PingFangSC-Regular;
     font-size: 15px;
     color: rgba(0,0,0,1);
@@ -133,10 +124,10 @@
     margin: 0 auto;
     margin-top: 5px;
 }
-.value_a{
+.value-a{
     text-decoration: none;
 }
-.toReview_Right_footer,.reviewOk_Right_footer,.reviewNo_Right_footer{
+.to-review-right-footer,.review-ok-right-footer,.review-no-right-footer{
     position: absolute;
     width: 100%;
     height: 55px;
@@ -144,25 +135,25 @@
     border-top:  1px solid #ECECEC; ;
     background: white;
 }
-.toReview_Right_footer a,.reviewOk_Right_footer a,.reviewNo_Right_footer a{
+.to-review-right-footer a,.review-ok-right-footer a,.review-no-right-footer a{
     text-decoration: none;
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.54);
 }
 
-.pre_icon,.next_icon {
+.pre-icon,.next-icon {
     display: inline-block;
     width: 16px;
     height:16px;
     background: url("../img/icon/arrow_pre.png");
     vertical-align: text-top;
 }
-.next_icon{
+.next-icon{
     background: url("../img/icon/arrow_next.png");
     margin-left: 3.5px;
 }
-.tr_Right_prevOne,.tr_Right_nextOne{
+.tr-right_prev-one,.tr-right-next-one{
     display: inline-block;
     height: 18px;
     line-height: 18px;
@@ -170,25 +161,23 @@
     margin-top: 19px;
    /* margin-left: 32px;*/
 }
-.tr_Right_prevOne{
+.tr-right-prev-one{
     margin-left: 20px;
 }
-.tr_Right_nextOne{
+.tr-right-next-one{
     top: 0px;
     /*right: -75px;*/
     position: absolute;
     right: 20px;
 }
-.ro_Right_nextOne{
+.ro-right-next-one{
     /*right: -416px;*/
 }
-.rn_Right_nextOne{
-   /* right: -188px;*/
-}
-.tr_Right_prevOne .pre_icon{
+
+.tr-right-prev-one .pre-icon{
     margin-right: 3.5px;
 }
-.tr_Right_fallow, .tr_Right_reject{
+.tr-right-fallow, .tr-right-reject{
     display: inline-block;
     width: 80px;
     height: 40px;
@@ -196,19 +185,19 @@
     text-align: center;
     border-radius: 3px;
 }
-.toReview_Right_footer .tr_Right_fallow{
+.to-review-right-footer .tr-right-fallow{
     background: #2DB7F5;
 
     color: white;
 
     /*margin-left:500px;*/
 }
-.toReview_Right_footer .tr_Right_fallow{
+.to-review-right-footer .tr-right-fallow{
     position: absolute;
     left: calc(50% - 82px);
     top: calc(50% - 20px);
 }
-.toReview_Right_footer .tr_Right_reject{
+.to-review-right-footer .tr-right-reject{
     background: #FFFFFF;
     border: 1px solid rgba(0,0,0,0.20);
     box-sizing:border-box;
@@ -216,14 +205,14 @@
     left: calc(50% + 3px);
     top: calc(50% - 20px);
 }
-.tr_reject{
+.tr-reject{
     position: absolute;
     bottom: 50px;
     padding: 0;
     margin: 0;
     right: -10px;
 }
-.reason_cover li{
+.reason-cover li{
     list-style: none;
     border: 1px solid rgba(0,0,0,0.20);
     font-family: PingFangSC-Regular;
@@ -233,7 +222,7 @@
     box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.20);
     background: white;
 }
-.reason_cover .reason_header{
+.reason-cover .reason-header{
     text-align: left;
     background: #FFFFFF;
     font-size: 13px;
@@ -241,14 +230,14 @@
     padding-left: 8px;
     width: 239px;
 }
-.reason_cover .reason_cover_span{
+.reason-cover .reason-cover-span{
     display: inline-block;
     width: 100%;
     text-align: left;
     background: white;
     text-indent: 2em;
 }
-.reason_cover #orderReason{
+.reason-cover #orderReason{
     border: none;
     outline: none;
     width: 100%;
@@ -266,12 +255,12 @@
 .beTall{
     height: 150px;
 }
-.li_header{
+.li-header{
     width: 100%;
     height:40px !important;
     line-height: 40px;
 }
-.li_header a{
+.li-header a{
     display: inline-block;
     width: 12%;
     height:20px;

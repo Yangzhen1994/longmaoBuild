@@ -5,13 +5,6 @@ define([], function () {
     return {
         USER_KEY : '_user_',
         KEYS : {
-            USER : '_user_',
-            EDIT_ADDR : '_edit_addr_',
-            ORDER_ADDR : '_order_addr_',
-            MAP_ADDR : '_map_addr_',
-            SEARCH_ADDR : '_search_addr_',
-            LOC_ADDR : '_loc_addr_',
-            CART : '_cart_'
         },
         session : {
             //保存到session

@@ -11,38 +11,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 templateUrl: 'tpls/textProof.html',
                 link:function (scope,el,attr) {
                     var slideInput = document.getElementById('slideInput');
-                    /*el.on('click',function () {
-                        //scope.isshow = true;
-                        el.find('input').eq(0).css('visibility','visible')
-                        el.find('input').eq(0).on('blur',function () {
-                            $(this).css('visibility','hidden');
-                        })
-                    })*/
-
-
-                        /*el.on('click',function () {
-                         //scope.isshow = true;
-                         el.find('input').eq(0).css('visibility','visible')
-                         el.find('input').eq(0).on('blur',function () {
-                         $(this).css('visibility','hidden');
-                         })
-                         })*/
                         el.click(function (e) {
-
-
-                            //scope.stepItems[stepIndex].component[comIndex].isText = ' ';
-
-
-
-                            // console.log(scope.stepItems[stepIndex].component)
-
-
-                            //$(this).css('display', 'none')
-
-
-                        })
+                        });
                         el.find('img').eq(-1).click(function (e) {
-                            e.stopPropagation();
                             e.stopPropagation();
                             console.log($(this).parents('li'));
                             if($(this).parents('li')[0].id.length == 16){
@@ -73,30 +44,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 serverService.submitComponent(toDel)
                             }
 
-
-                            scope.stepItems[stepIndex].component.splice(comIndex,1)
-
+                            scope.stepItems[stepIndex].component.splice(comIndex,1);
                             scope.$apply();
-                            /*if(toDel.tips_text == '点击输入内容'){
-                                toDel.tips_text = ' '
-                            }
-                            for(var i = 0;i<comId.length;i++){
-                                if(comId[i].order ==  toDel.order){
-                                    comId[i].status = 0;
-                                    comId[i].task_id = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
-                                    if(comId[i].tips_text == '点击输入内容'){
-                                        comId[i].tips_text = ' '
-                                    }
-                                    serverService.submitComponent(comId[i])
-                                }
-                            }
-                            serverService.submitComponent(toDel)
-                                    .then(function (data) {
-                                        if (data.code == 200) {
-                                            //storageUtils.session.setItem('_DRAG_',true);
-                                            //window.location = '#/reviewList';
-                                        }
-                                    });*/
                         })
 
                     }

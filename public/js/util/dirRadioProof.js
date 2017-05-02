@@ -34,7 +34,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 if(scope.stepItems[scope.stepIndex].component[comIndex0].type == 7){
                     scope.optionsArr = scope.stepItems[scope.stepIndex].component[comIndex0].options.split('\n')
                 }
-
                 //scope.optionItems = componentItem.options.split('\n');
                 scope.changeOptions = function (index) {
                     if(el.parents('li')[0].id.length == 16){
@@ -53,7 +52,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     optionsArr[index] = $('#input'+scope.stepIndex+comIndex+index).val()
                     scope.stepItems[scope.stepIndex].component[comIndex].options = optionsArr.join('\n')
                 }
-                scope.addradioOption = function () {
+                scope.addRadioOption = function () {
                     if(el.parents('li')[0].id.length == 16){
                         var comIndex = el.parents('li')[0].id.substr(-3, 3);
 
@@ -74,7 +73,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     },50)
                 }
-                scope.delradioOption = function (index) {
+                scope.delRadioOption = function (index) {
                     if(el.parents('li')[0].id.length == 16){
                         var comIndex = el.parents('li')[0].id.substr(-3, 3);
 
@@ -93,7 +92,6 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 el.find('img').eq(-1).click(function (e) {
                     //alert(1)
-                    
                     e.stopPropagation();
                     console.log($(this).parents('li'));
                     if($(this).parents('li')[0].id.length == 16){

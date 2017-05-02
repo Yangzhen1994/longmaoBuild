@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="./css/toReview.css">
-<div class="reviewNo" key-events>
-    <div class="reviewNo_left" style="overflow-y: auto">
-        <div class="checkHeader">
-            <input type="checkbox"  ng-model="masterHeader" ng-click="all(masterHeader)" ng-checked="flag" class="tr_hideCheckBox" id="ro_checkAll"><span class="checkAllText">全选</span>
-            <label for="ro_checkAll" class="checkAll_label"></label>
-            <button id="rn_allow" ng-click="rnRightAllow()" >通过</button>
+<div class="review-no" key-events>
+    <div class="review-no-left" style="overflow-y: auto">
+        <div class="check-header">
+            <input type="checkbox" ng-model="masterHeader" ng-click="all(masterHeader)" ng-checked="flag"
+                   class="tr-hide-checkbox" id="rnCheckAll"><span class="check-all-text">全选</span>
+            <label for="rnCheckAll" class="check-all-label"></label>
+            <button id="rnAllow" ng-click="rnRightAllow()">通过</button>
         </div>
-        <ul class="checkItems" >
-            <li class="li_header">
+        <ul class="check-items">
+            <li class="li-header">
                 <a href="javascript:;" style="width: 11%">任务编号</a>
                 <a href="javascript:;">任务标题</a>
                 <a href="javascript:;">单价</a>
@@ -17,21 +18,28 @@
                 <a href="javascript:;">凭证提交审核时间</a>
                 <a href="javascript:;">审核失败原因</a>
             </li>
-            <li ng-repeat="item in reviewNoItems" ng-click="changeRight(item,$index)" ng-class="{changeColor:changeColor == $index}">
-                <input type="checkbox"  ng-model="item.checkState" ng-checked="masterItem" ng-click="cancelOne($event,item.checkState,$index)" id="{{'rn_checkItem'+$index}}" class="tr_hideCheckBox"></input>
-                <label for="{{'rn_checkItem'+$index}}" class="tr_labelItem" ></label>
-                <p class="nickName">{{item.id}}</p>
-                <p class="nickName" title={{item.title}} style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.title}}</p>
-                <p class="nickName">{{item.amount}}</p>
-                <p class="nickName">{{item.uid}}</p>
-                <p class="nickName" title={{item.text_desc}} style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.text_desc}}</p>
-                <p class="nickName" style="text-align: right">{{item.created_time}}</p>
-                <p class="nickName_time" style="text-align: right">{{item.submit_time}}</p>
-                <p class="nickName_time" title={{item.reason}} style="text-align: right;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.reason}}</p>
+            <li ng-repeat="item in reviewNoItems" ng-click="changeRight(item,$index)"
+                ng-class="{changeColor:changeColor == $index}">
+                <input type="checkbox" ng-model="item.checkState" ng-checked="masterItem"
+                       ng-click="cancelOne($event,item.checkState,$index)" id="{{'rn_checkItem'+$index}}"
+                       class="tr-hide-checkbox"/>
+                <label for="{{'rn_checkItem'+$index}}" class="tr-label-item"></label>
+                <p class="nick-name">{{item.id}}</p>
+                <p class="nick-name" title={{item.title}}
+                   style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.title}}</p>
+                <p class="nick-name">{{item.amount}}</p>
+                <p class="nick-name">{{item.uid}}</p>
+                <p class="nick-name" title={{item.text_desc}}
+                   style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.text_desc}}</p>
+                <p class="nick-name" style="text-align: right">{{item.created_time}}</p>
+                <p class="nick-name-time" style="text-align: right">{{item.submit_time}}</p>
+                <p class="nick-name-time" title={{item.reason}}
+                   style="text-align: right;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{item.reason}}</p>
             </li>
         </ul>
     </div>
-    <div class="reviewNo_Right">
+    <div class="review-no-right">
         <div style="overflow-y: auto;height:calc(100% - 56px)">
             <div ng-repeat="item in reviewNo">
                 <p style="color:#4CAF50" ng-show="$index == 0">总赚钱:{{item.amount}}</p>
@@ -40,10 +48,15 @@
                 <p style="color:black" ng-show="$index == 0">注册时间:{{item.regist_time}}</p>
                 <p style="color:red" ng-show="$index == 0">本任务被拒:{{item.task_check_fail}}</p>
                 <p>{{item.tips_text}}:</p>
-                <div class="toReview_Right_tel">
-                    <p><span ng-hide="item.type == 2 || item.type == 4 || item.type == 3||item.type == 6"><a target="_blank" ng-href="{{item.value}}" class="value_a">{{item.value}}</a></span><a ng-href="{{item.value}}" ng-show="{{item.type == 6}}" target="_blank">下载</a>
+                <div class="to-review-right-tel">
+                    <p><span ng-hide="item.type == 2 || item.type == 4 || item.type == 3||item.type == 6"><a
+                            target="_blank" ng-href="{{item.value}}" class="value-a">{{item.value}}</a></span><a
+                            ng-href="{{item.value}}" ng-show="item.type == 6" target="_blank">下载</a>
 
-                        <a ng-href="{{item.value}}" ng-show="item.type == 2 || item.type == 4 || item.type == 3" target="_blank"><img ng-src="{{item.value}}" alt="" ng-show="{{item.type == 2 || item.type == 4 || item.type == 3}}" width="200px"></a>
+                        <a ng-href="{{item.value}}" ng-show="item.type == 2 || item.type == 4 || item.type == 3"
+                           target="_blank"><img ng-src="{{item.value}}" alt=""
+                                                ng-show="item.type == 2 || item.type == 4 || item.type == 3"
+                                                width="200px"></a>
 
                     </p>
 
@@ -68,10 +81,12 @@
                 </div>
             </div>
         </div>
-        <div class="toReview_Right_footer">
-            <a href="javascript:;" class="tr_Right_prevOne" ng-click="prev()"><i class="pre_icon"></i>上一个</a>
-            <a href="javascript:;" class="tr_Right_fallow" ng-click="rnRightAllow()" style="left:calc(50% - 40px)">通过</a>
-            <a href="javascript:;" class="tr_Right_nextOne ro_Right_nextOne rn_Right_nextOne" ng-click="next()">下一个<i class="next_icon"></i></a>
+        <div class="to-review-right-footer">
+            <a href="javascript:;" class="tr-right-prev-one" ng-click="prev()"><i class="pre-icon"></i>上一个</a>
+            <a href="javascript:;" class="tr-right-fallow" ng-click="rnRightAllow()"
+               style="left:calc(50% - 40px)">通过</a>
+            <a href="javascript:;" class="tr-right_next-one ro-right-next-one rn-right-next-one" ng-click="next()">下一个<i
+                    class="next-icon"></i></a>
         </div>
     </div>
 </div>

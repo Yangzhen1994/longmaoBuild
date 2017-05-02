@@ -6,71 +6,71 @@
     display: block;
     clear: both;
 }
-.newStep .bread{
+.new-step .bread{
     width: auto;
     height:auto;
     margin-left: 16px;
     margin-top: 16px;
 }
-.newStep .bread a{
+.new-step .bread a{
     text-align: center;
     text-decoration: none;
 }
-.newStep .bread #bread_newStep{
+.new-step .bread #breadNewStep{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.20);
 }
-.bread #bread_newStep span{
+.bread #breadNewStep span{
     margin-left: 8px;
 }
-.newStep .bread #bread_newStepMessage{
+.new-step .bread #breadNewStepMessage{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: rgba(0,0,0,0.87);
     margin-left: 8px;
 }
 
-.stepModule_ul{
+.step-module-ul{
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 /*模板块*/
-.stepTemp{
+.step-temp{
     width: 100%;
     height: 580px;
     margin: 0 auto;
     border-top: 1px solid #cccccc;
     margin-top: 30px;
 }
-.stepIndex{
+.step-index{
     margin-left: 365px;
     margin-top: 15px;
 }
-.stepTemp .stepIndex span{
+.step-temp .step-index span{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     margin-left: -65px;
 }
-.stepTemp .stepIndex a{
+.step-index .step-index a{
     display: inline-block;
     margin-left: 25px;
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: #727272;
 }
-stepTemp_content{
+.step-temp-content{
     position: relative;
     float: left;
 }
-.addbuttons{
+.add-buttons{
     margin-left: 300px;
     width: 100px;
     float: left;
 }
-.addbuttons a{
+.add-buttons a{
     display: block;
     text-decoration: none;
     color: white;
@@ -84,13 +84,13 @@ stepTemp_content{
     margin-top: 15px;
     letter-spacing: 0.5px;
 }
-.addbuttons a:nth-child(1){
+.add-buttons a:nth-child(1){
     margin-top: 65px;
 }
-.addbuttons a:nth-child(7){
+.add-buttons a:nth-child(7){
     background: #03A9F4;
 }
-.addbuttons a:nth-child(8){
+.add-buttons a:nth-child(8){
     background: #03A9F4;
 }
 
@@ -127,7 +127,7 @@ stepTemp_content{
     border-bottom: 7px solid transparent;
 }
 
-.temp_md_ul{
+.temp-md-ul{
     float: left;
     margin-left: 32px;
     margin-top: 16px;
@@ -146,14 +146,14 @@ stepTemp_content{
     padding-bottom: 35px;
     overflow-x: hidden;
 }
-.btn_addStep{
+.btn-add-step{
     text-align: center;
 }
-.btn_addStep a:hover{
+.btn-add-step a:hover{
     cursor:pointer;
 }
 
-.btn_addStep a{
+.btn-add-step a{
     display: block;
     text-decoration: none;
     border: none;
@@ -171,7 +171,7 @@ stepTemp_content{
     margin-top: 50px;
     margin-bottom: 80px;
 }
-.btn_addStep div{
+.btn-add-step div{
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: #009688;
@@ -179,7 +179,7 @@ stepTemp_content{
 }
 
 /*footer按钮*/
-.as_prePage,.as_saveTask{
+.as-pre-page,.as-save-task{
     display: block;
     float: left;
     font-family: PingFangSC-Regular;
@@ -196,16 +196,16 @@ stepTemp_content{
     margin-top: 12px;
     margin-left: 45px;
 }
-.as_saveTask{
+.as-save-task{
     background: #2DB7F5;
     color: white;
     margin-right: 10px;
     margin-left: 8px;
 }
-.addStep_footer{
+.add-step-footer{
     background: white;
 }
-.ad_footer_center{
+.ad-footer-center{
     width: 250px;
     height: 64px;
     margin: 0 auto;

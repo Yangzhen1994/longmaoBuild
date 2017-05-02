@@ -1,13 +1,17 @@
-<div class="showText" style="position: relative;font-size: 13px;color: #B1B1B1;
-    width: 320px;
-    height: auto;
-    transform: scale(0.8);
-    margin-left: -15px;
-    visibility: visible;
-    margin-bottom: 10px;
-    "><pre style="white-space: inherit;
+<style>
+    .show-text{
+        position: relative;font-size: 13px;color: #B1B1B1;
+        width: 320px;
+        height: auto;
+        transform: scale(0.8);
+        margin-left: -15px;
+        visibility: visible;
+        margin-bottom: 10px;
+    }
+</style>
+<div class="show-text"><pre style="white-space: inherit;
     word-break: break-all;">{{componentItem.tips_text}}</pre>
-    <input type="text"  ng-model="componentItem.tips_text" style="position: absolute;
+    <input type="text" ng-model="componentItem.tips_text" style="position: absolute;
     top:0px;
     left: 365px;
     font-size: 13px;
@@ -20,10 +24,4 @@
     border-radius: 4px;
     font-family: PingFangSC-Regular;
     ">
-    <!--<img src="./img/icon/deleteCircle.png" alt="" style="
-    position: absolute;
-    top:-8px;
-    right:-16px" ng-click="deleteOne($event,$index)"
-    id={{'deletetext'+textIndex+$index}} ng-show="componentItem.tips_text" class="delCircle"
-    >-->
 </div>

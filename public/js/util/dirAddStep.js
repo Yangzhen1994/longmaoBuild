@@ -26,45 +26,45 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var tempArr = []
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     serverService.getComponent(taskId)
-                            .then(function (data) {
-                                //console.log(data)
-                                //把凭证信息存入到session
-                                storageUtils.session.setItem('_component_', data.result);
-                                var componentList = storageUtils.session.getItem('_component_');
-                                if (componentList && componentList != null) {
-                                    componentList.forEach(function (item, index) {
-                                        if (item.status == 1 && !item.tips_text) {
-                                            tempArr.push({id: item.id, order: item.order})
-                                        }
-                                    })
-                                }
-                                for (var i = 0; i < $scope.stepItems[index].component.length; i++) {
-                                    if ((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1) {
-                                        //$scope.$emit('isText',true)
-                                        //$scope.stepItems[index].component[i].isText = true
-                                        $scope.stepItems[index].component[i].tips_text = '点击输入内容';
-                                       // document.getElementById('deletetext' + flag +i).style.display = 'block';
-                                        for (var j = 0; j < tempArr.length; j++) {
-                                            if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
-                                                $scope.stepItems[index].component[i].id = tempArr[j].id;
-                                                $scope.stepItems[index].component[i].task_id = taskId;
-                                                serverService.submitComponent($scope.stepItems[index].component[i])
-                                                        .then(function (data) {
-                                                            if (data.code == 200) {
+                        .then(function (data) {
+                            //console.log(data)
+                            //把凭证信息存入到session
+                            storageUtils.session.setItem('_component_', data.result);
+                            var componentList = storageUtils.session.getItem('_component_');
+                            if (componentList && componentList != null) {
+                                componentList.forEach(function (item, index) {
+                                    if (item.status == 1 && !item.tips_text) {
+                                        tempArr.push({id: item.id, order: item.order})
+                                    }
+                                })
+                            }
+                            for (var i = 0; i < $scope.stepItems[index].component.length; i++) {
+                                if ((!$scope.stepItems[index].component[i].tips_text || $scope.stepItems[index].component[i].tips_text == ' ') && $scope.stepItems[index].component[i].status == 1) {
+                                    //$scope.$emit('isText',true)
+                                    //$scope.stepItems[index].component[i].isText = true
+                                    $scope.stepItems[index].component[i].tips_text = '点击输入内容';
+                                   // document.getElementById('deletetext' + flag +i).style.display = 'block';
+                                    for (var j = 0; j < tempArr.length; j++) {
+                                        if ($scope.stepItems[index].component[i].order == tempArr[j].order) {
+                                            $scope.stepItems[index].component[i].id = tempArr[j].id;
+                                            $scope.stepItems[index].component[i].task_id = taskId;
+                                            serverService.submitComponent($scope.stepItems[index].component[i])
+                                                    .then(function (data) {
+                                                        if (data.code == 200) {
 
-                                                                // storageUtils.session.setItem('_DRAG_',true);
-                                                                // window.location = '#/reviewList';
-                                                            }
-                                                        })
-                                                continue
-                                            }
-
+                                                            // storageUtils.session.setItem('_DRAG_',true);
+                                                            // window.location = '#/reviewList';
+                                                        }
+                                                    })
+                                            continue
                                         }
 
                                     }
 
                                 }
-                            })
+
+                            }
+                        })
                 };
 
                 /*文本凭证*/
@@ -87,7 +87,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         tips_text:'点击输入内容',
                         tips_image:'',
                         isText:true//修改必须全选才编辑
-                    }
+                    };
                     $scope.stepItems[index].component.push(data);
                     $scope.componentItems.push(data);
                     storageUtils.session.setItem('_component_', $scope.componentItems)
@@ -418,21 +418,21 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         item.oldSteps.url=''
                     }
                 })
-                $scope.showtitle = function (index) {
-                    $('#imgUrl'+index+'steptitle').children('input').eq('-1').css('display','block')
-                    $('#imgUrl'+index+'steptitle').children('input').eq('-1').blur(function () {
+                $scope.showTitle = function (index) {
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }
-                $scope.showdesc = function (index) {
-                    $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').css('display','block')
-                    $('#imgUrl'+index+'stepdesc').children('textarea').eq('-1').blur(function () {
+                $scope.showDesc = function (index) {
+                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }
-                $scope.showurl = function (index) {
-                    $('#imgUrl'+index+'stepurl').children('textarea').eq('-1').css('display','block')
-                    $('#imgUrl'+index+'stepurl').children('textarea').eq('-1').blur(function () {
+                $scope.showUrl = function (index) {
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }

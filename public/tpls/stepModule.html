@@ -1,100 +1,117 @@
 <!--添加步骤模板页-->
-<div class="stepTemp clearfix" >
-    <p class="stepIndex"><span>步骤{{stepItem.index}}<!--{{stepItem.title}}--></span><a href="javascript:;" ng-click="removeStep($index)">删除此步</a></p>
-    <div class="stepTemp_content clearfix">
-        <div class="addbuttons" style="position: relative">
-            <a href="javascript:;" ng-click="textProof($index)" id="{{'tesxproof'+$index}}">+文本凭证</a>
-            <a href="javascript:;"  ng-click="showOtherType()">+图片凭证</a>
+<div class="step-temp clearfix">
+    <p class="step-index"><span>步骤{{stepItem.index}}<!--{{stepItem.title}}--></span><a href="javascript:;"
+                                                                                       ng-click="removeStep($index)">删除此步</a>
+    </p>
+    <div class="step-temp-content clearfix">
+        <div class="add-buttons" style="position: relative">
+            <a href="javascript:;" ng-click="textProof($index)" id="{{'textProof'+$index}}">+文本凭证</a>
+            <a href="javascript:;" ng-click="showOtherType()">+图片凭证</a>
             <div class="box" id="{{'box'+$index}}" ng-show="typeAll">
-                <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgproof'+$index}}"  ng-show="typeAll" style="position: absolute;top:-5px;left: 50px;">+图片(全部)</a>
-                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto" style="position: absolute;right: 5px;">+图片(相册)</a>
-                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera" style="position: absolute;left: 5px;top: 0px;">+图片(拍照)</a>
+                <a href="javascript:;" ng-click="imgProof($index)" id="{{'imgProof'+$index}}" ng-show="typeAll"
+                   style="position: absolute;top:-5px;left: 50px;">+图片(全部)</a>
+                <a href="javascript:;" ng-click="imgProof($index,3)" id="{{'imgPhoto'+$index}}" ng-show="typePhoto"
+                   style="position: absolute;right: 5px;">+图片(相册)</a>
+                <a href="javascript:;" ng-click="imgProof($index,4)" id="{{'imgCamera'+$index}}" ng-show="typeCamera"
+                   style="position: absolute;left: 5px;top: 0px;">+图片(拍照)</a>
             </div>
-
-            <a href="javascript:;" ng-click="posProof($index)" id="{{'posproof'+$index}}">+位置凭证</a>
-            <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioproof'+$index}}">+录音凭证</a>
-            <a href="javascript:;" ng-click="radioproof($index)" id="{{'radioproof'+$index}}">+单选凭证</a>
+            <a href="javascript:;" ng-click="posProof($index)" id="{{'posProof'+$index}}">+位置凭证</a>
+            <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioProof'+$index}}">+录音凭证</a>
+            <a href="javascript:;" ng-click="radioproof($index)" id="{{'radioProof'+$index}}">+单选凭证</a>
             <!--<a href="javascript:;" ng-click="checkboxproof($index)" id="{{'checkboxproof'+$index}}">+多选凭证</a>-->
-            <a href="javascript:;" ng-click="showText($index)" id="{{'showtext'+$index}}">+显示文本</a>
-            <a href="javascript:;" ng-click="showImg($index)" id="{{'showimg'+$index}}">+显示图片</a>
+            <a href="javascript:;" ng-click="showText($index)" id="{{'showText'+$index}}">+显示文本</a>
+            <a href="javascript:;" ng-click="showImg($index)" id="{{'showImg'+$index}}">+显示图片</a>
 
         </div>
-        <div class="middleView ">
+        <div class="middleView">
             <img src="../img/stepHeader.png" alt="" style="
                                                     position: absolute;
                                                     left: 432px;
                                                     top: 49px;
                                                     z-index: 99;
             ">
-            <ul   class="temp_md_ul"  id="{{'imgUrl'+$index}}">
+            <ul class="temp-md-ul" id="{{'imgUrl'+$index}}">
                 <div style="height: 80px;width: 100%"></div>
                 <!--<div style="overflow-y:auto;">-->
-                <div id="{{'scroll'+$index}}" ng-model = "stepItem.component" ui-sortable="sortableOptions">
-                        <div class="oldStep" style="width: 300px;height:auto;">
-                            <div ng-click="showtitle($index)" id={{'imgUrl'+$index+'steptitle'}} style="margin-top:5px;position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
-                                <p ng-hide="!stepItem.oldSteps.title">{{stepItem.oldSteps.title}}</p>
-                                <p ng-hide="stepItem.oldSteps.title">任务标题</p>
-                                <input style="padding-left:5px;position:absolute;left:293px;top:0px;display:none ;width: 292px;height: 30px;line-height: 30px;font-size: 16px" ng-model="stepItem.oldSteps.title" placeholder="任务标题">
-                            </div>
-                            <div ng-click="showdesc($index)" id={{'imgUrl'+$index+'stepdesc'}} style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
-                                <p ng-hide="!stepItem.oldSteps.desc" style="word-break: break-all">{{stepItem.oldSteps.desc}}</p>
-                                <p ng-hide="stepItem.oldSteps.desc">任务描述</p>
-                                <textarea style="padding:5px;position:absolute;left:288px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;resize: vertical;" ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
-                            </div>
-                            <div ng-click="showurl($index)" id={{'imgUrl'+$index+'stepurl'}} style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
-                                <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all">{{stepItem.oldSteps.url}}</p>
-                                <p ng-hide="stepItem.oldSteps.url">任务url</p>
-                                <textarea style="padding:5px;position:absolute;left:292px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
-                                background: #FFFFFF;
-                                border: 1px solid #9E9E9E;
-                                border-radius: 4px;" ng-model="stepItem.oldSteps.url" placeholder="url"></textarea>
-                            </div>
+                <div id="{{'scroll'+$index}}" ng-model="stepItem.component" ui-sortable="sortableOptions">
+                    <div class="oldStep" style="width: 300px;height:auto;">
+                        <div ng-click="showTitle($index)" id={{'imgUrl'+$index+'stepTitle'}}
+                             style="margin-top:5px;position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
+                            <p ng-hide="!stepItem.oldSteps.title">{{stepItem.oldSteps.title}}</p>
+                            <p ng-hide="stepItem.oldSteps.title">任务标题</p>
+                            <input style="padding-left:5px;position:absolute;left:293px;top:0px;display:none ;width: 292px;height: 30px;line-height: 30px;font-size: 16px"
+                                   ng-model="stepItem.oldSteps.title" placeholder="任务标题">
+                        </div>
+                        <div ng-click="showDesc($index)" id={{'imgUrl'+$index+'stepDesc'}}
+                             style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
+                            <p ng-hide="!stepItem.oldSteps.desc" style="word-break: break-all">
+                                {{stepItem.oldSteps.desc}}</p>
+                            <p ng-hide="stepItem.oldSteps.desc">任务描述</p>
+                            <textarea
+                                    style="padding:5px;position:absolute;left:288px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;resize: vertical;"
+                                    ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
+                        </div>
+                        <div ng-click="showUrl($index)" id={{'imgUrl'+$index+'stepUrl'}}
+                             style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
+                            <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all">
+                                {{stepItem.oldSteps.url}}</p>
+                            <p ng-hide="stepItem.oldSteps.url">任务url</p>
+                            <textarea style="padding:5px;position:absolute;left:292px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
+                            background: #FFFFFF;
+                            border: 1px solid #9E9E9E;
+                            border-radius: 4px;" ng-model="stepItem.oldSteps.url" placeholder="url"></textarea>
+                        </div>
 
-                            <div ng-repeat="images in stepItem.oldSteps.images_list track by $index">
-                                <show-img-module ng-show="images"></show-img-module>
-                            </div>
-
-
+                        <div ng-repeat="images in stepItem.oldSteps.images_list track by $index">
+                            <show-img-module ng-show="images"></show-img-module>
                         </div>
 
 
+                    </div>
 
-                        <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="width: 288px;height:auto;">
-                            <div>
-                                <show-text-module ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></show-text-module>
 
-                                <text-proof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
+                    <li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}"
+                        style="width: 288px;height:auto;">
+                        <div>
+                            <show-text-module
+                                    ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></show-text-module>
 
-                                </text-proof-module>
+                            <text-proof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 
-                                <img-proof-module ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></img-proof-module>
-                                <pos-proof-module ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></pos-proof-module>
-                                <audio-proof-module ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audio-proof-module>
-                                <radio-proof-module ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radio-proof-module>
-                                <!--<checkboxproof-module ng-show="{{componentItem.type==8 && componentItem.status ==1}}"></checkboxproof-module>-->
+                            </text-proof-module>
 
-                            </div>
-                        </li>
+                            <img-proof-module
+                                    ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></img-proof-module>
+                            <pos-proof-module
+                                    ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></pos-proof-module>
+                            <audio-proof-module
+                                    ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audio-proof-module>
+                            <radio-proof-module
+                                    ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radio-proof-module>
+                            <!--<checkboxproof-module ng-show="{{componentItem.type==8 && componentItem.status ==1}}"></checkboxproof-module>-->
+
+                        </div>
+                    </li>
                 </div>
                 <!--</div>-->
-                        <!--<li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="border-top: 1px solid #c3c3c3;width: 288px;height: 200px">
-                            <div>
-                                &lt;!&ndash;<p ng-show="{{componentItem.type == 1}}">文本凭证</p>
-                                <p  style="font-size: 13px;color: #c3c3c3">提示文本</p>
-                                <textarea type="text" ng-show="{{componentItem.type == 1}}" ng-model="componentItem.tips_text" style="width: 288px;
-                                height: 20px;
-                                border-radius: 8px;">
-                                <div ng-show="{{componentItem.type == 2}}" style="width: 288px;height: 200px;margin-left: 6px">
-                                    <p>提示图片</p>
-                                    <textarea type="text" ng-model="componentItem.tips_image" style="width: 100%;border: none;" class="imgUrl" placeholder="图片地址"></textarea>
-                                    <img ng-src="{{componentItem.tips_image}}" style="display: block;width: 100%;height: 100%"></img>
-                                </div>&ndash;&gt;
-                                <textproof-module ng-show="{{componentItem.type == 1}}"></textproof-module>
-                                <imgproof-module ng-show="{{componentItem.type==2}}"></imgproof-module>
-                                <showtext-module ng-show="{{componentItem.tips_text == 5}}"></showtext-module>
-                                <showimg-module ng-show="{{componentItem.tips_image == 6}}"></showimg-module>
-                            </div>
-                        </li>-->
+                <!--<li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="border-top: 1px solid #c3c3c3;width: 288px;height: 200px">
+                    <div>
+                        &lt;!&ndash;<p ng-show="{{componentItem.type == 1}}">文本凭证</p>
+                        <p  style="font-size: 13px;color: #c3c3c3">提示文本</p>
+                        <textarea type="text" ng-show="{{componentItem.type == 1}}" ng-model="componentItem.tips_text" style="width: 288px;
+                        height: 20px;
+                        border-radius: 8px;">
+                        <div ng-show="{{componentItem.type == 2}}" style="width: 288px;height: 200px;margin-left: 6px">
+                            <p>提示图片</p>
+                            <textarea type="text" ng-model="componentItem.tips_image" style="width: 100%;border: none;" class="imgUrl" placeholder="图片地址"></textarea>
+                            <img ng-src="{{componentItem.tips_image}}" style="display: block;width: 100%;height: 100%"></img>
+                        </div>&ndash;&gt;
+                        <textproof-module ng-show="{{componentItem.type == 1}}"></textproof-module>
+                        <imgproof-module ng-show="{{componentItem.type==2}}"></imgproof-module>
+                        <showtext-module ng-show="{{componentItem.tips_text == 5}}"></showtext-module>
+                        <showimg-module ng-show="{{componentItem.tips_image == 6}}"></showimg-module>
+                    </div>
+                </li>-->
             </ul>
             <img src="../img/stepfooter.png" alt="" style="
                                                     position: absolute;

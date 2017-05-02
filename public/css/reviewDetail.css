@@ -9,12 +9,12 @@
     top: 11px;
     left: 90px;
 }
-.search-Input{
+.search-input{
     top:-5px;
     right: 110px;
     font-size: 16px;
 }
-.reviewDetail_searchArea{
+.review-detail-search-area{
     position: absolute;
     top:22px;
     right:14px;
@@ -22,7 +22,7 @@
     height: 50px;
 }
 
-.search-Btn-reviewDetail{
+.search-btn-review-detail{
     border-radius:2px;
     position: absolute;
     border: none;
@@ -37,18 +37,18 @@
     letter-spacing:0.5px;
     right: 5px;
 }
-.reviewDetail_radio{
+.review-detail-radio{
     position: absolute;
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #212121;
     right: 394px;
 }
-.reviewDetail_radio span{
+.review-detail-radio span{
     opacity: 1;
     padding-right: 6px;
 }
-.reviewDetail_radio span i{
+.review-detail-radio span i{
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -61,7 +61,7 @@
     color: #212121;
     margin-bottom: 3px;
 }
-.reviewDetail_radio span .chooseBg{
+.review-detail-radio span .chooseBg{
     background: url(../img/green_circle.png) no-repeat;
     background-size: 100%;
     border:none;
@@ -73,25 +73,25 @@
     right: 605px;
     font-size: 15px;
 }
-.selSubTime{
+.sel-sub-time{
     width: 90px;
     height: 32px;
 
 }
 /*detail*/
-.reviewDetail_detail{
+.review-detail-detail{
     width: 100%;
     height: calc(100% - 107px);/*____*/
     margin: 0 auto;
     margin-top: 50px;
     background: white;
 }
-.tabs_header{
+.tabs-header{
     width: 100%;
     height:56px;
     border-bottom: 2px solid #ECECEC;
 }
-.tabs_header_1,.tabs_header_2,.tabs_header_3{
+.tabs-header-1,.tabs-header-2,.tabs-header-3{
     display: inline-block;
     text-align: center;
     height: 48px;

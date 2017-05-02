@@ -190,7 +190,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == true){
+                            if(storageUtils.session.getItem('_Allowed') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Allowed')
                             }
@@ -220,7 +220,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == true){
+                            if(storageUtils.session.getItem('_Allowed') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Allowed')
                             }
@@ -287,7 +287,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         $scope.toReviewItems = [];/*删除待审核的*/
                         $scope.masterHeader = false;
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Fail_') == true){
+                            if(storageUtils.session.getItem('_Fail_') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Fail_')
                             }
@@ -314,7 +314,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Fail_') == true){
+                            if(storageUtils.session.getItem('_Fail_') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Fail_')
                             }
@@ -355,7 +355,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     })
                                     $scope.master = false;
                                     $timeout(function () {
-                                        if(storageUtils.session.getItem('_Fail_') == true){
+                                        if(storageUtils.session.getItem('_Fail_') == 'true'){
                                             alert('操作成功');
                                             storageUtils.session.removeItem('_Fail_')
                                         }
@@ -389,7 +389,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     }
                                 }
                                 $timeout(function () {
-                                    if(storageUtils.session.getItem('_Fail_') == true){
+                                    if(storageUtils.session.getItem('_Fail_') == 'true'){
                                         alert('操作成功');
                                         storageUtils.session.removeItem('_Fail_')
                                     }
@@ -604,7 +604,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == true){
+                            if(storageUtils.session.getItem('_Allowed') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Allowed')
                             }
@@ -633,7 +633,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == true){
+                            if(storageUtils.session.getItem('_Allowed') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Allowed')
                             }
@@ -695,7 +695,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         storageUtils.session.setItem('_reviewNo_',noArr);
                         $scope.toReviewItems = [];/*删除待审核的*/
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Fail_') == true){
+                            if(storageUtils.session.getItem('_Fail_') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Fail_')
                             }
@@ -721,7 +721,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Fail_') == true){
+                            if(storageUtils.session.getItem('_Fail_') == 'true'){
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_Fail_')
                             }
@@ -763,7 +763,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                 storageUtils.session.setItem('_reviewNo_',noArr);
                                 $scope.toReviewItems = [];/*删除待审核的*/
                                 $timeout(function () {
-                                    if(storageUtils.session.getItem('_Fail_') == true){
+                                    if(storageUtils.session.getItem('_Fail_') == 'true'){
                                         alert('操作成功');
                                         storageUtils.session.removeItem('_Fail_')
                                     }
@@ -789,7 +789,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     }
                                 }
                                 $timeout(function () {
-                                    if(storageUtils.session.getItem('_Fail_') == true){
+                                    if(storageUtils.session.getItem('_Fail_') == 'true'){
                                         alert('操作成功');
                                         storageUtils.session.removeItem('_Fail_')
                                     }

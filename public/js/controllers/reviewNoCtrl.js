@@ -123,7 +123,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $scope.reviewNoItems = [];/*删除待审核的*/
                         $scope.masterHeader = false;
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_NotoAllow_')==true){
+                            if(storageUtils.session.getItem('_NotoAllow_')== 'true'){
                                 alert('操作成功')
                                 storageUtils.session.removeItem('_NotoAllow_')
                             }
@@ -148,7 +148,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_NotoAllow_') == true){
+                            if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
                                 alert('操作成功')
                                 storageUtils.session.removeItem('_NotoAllow_')
                             }
@@ -304,7 +304,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     $scope.reviewNoItems = [];/*删除待审核的*/
                     $scope.masterHeader = false;
                     $timeout(function () {
-                        if(storageUtils.session.getItem('_NotoAllow_') == true){
+                        if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
                             alert('操作成功');
                             storageUtils.session.removeItem('_NotoAllow_')
                         }
@@ -330,7 +330,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         }
                     }
                     $timeout(function () {
-                        if(storageUtils.session.getItem('_NotoAllow_') == true){
+                        if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
                             alert('操作成功');
                             storageUtils.session.removeItem('_NotoAllow_')
                         }

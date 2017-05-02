@@ -18,6 +18,7 @@
     height: 39px;
     border-bottom: 1px solid #ECECEC;
     position: relative;
+    width: 70%;
 }
 
 .tr-hide-checkbox{

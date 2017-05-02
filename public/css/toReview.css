@@ -9,7 +9,7 @@
 .to-review-left,.review-ok-left,.review-no-left{
     float: left;
     width: 70%;
-    height: calc(100% - 40px);
+    height: calc(100% - 39px);
     border-right: 1px solid #ECECEC;
     background: white;
     overflow-x: hidden;
@@ -19,6 +19,7 @@
     border-bottom: 1px solid #ECECEC;
     position: relative;
     width: 70%;
+    border-right: 1px solid #ECECEC;
 }
 
 .tr-hide-checkbox{

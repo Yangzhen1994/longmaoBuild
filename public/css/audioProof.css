@@ -23,7 +23,8 @@
     top: 0;
     left: 300px;
     height: 69px;
-    visibility: hidden
+    visibility: hidden;
+    padding: 5px;
 }
 .audio-proof-img{
     position: absolute;

@@ -120,7 +120,7 @@
     margin-top: 26px;
     margin-left: 10px;
 }
-#reviewUl li .review-detail{
+#reviewUl li .review-detail-detail{
     color:#303030;
     font-size: 13px;
     width: auto;
@@ -131,7 +131,7 @@
     font-family: PingFangSC-Regular;
     color: rgba(0,0,0,0.54);
 }
-.review-detail span{
+.review-detail-detail span{
     margin-right: 30px;
 }
 .review-button a{

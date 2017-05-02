@@ -30,8 +30,8 @@
     background: #f2f2f2;
     color: #b1b1b1
 }
-.radio-proof img:last-child{
+.radio-proof-delcircle{
     position: absolute;
-    top:-16px;
-    right:0px;
+    right: 0px;
+    top:-15px;
 }

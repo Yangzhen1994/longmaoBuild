@@ -9,7 +9,7 @@
 .to-review-left,.review-ok-left,.review-no-left{
     float: left;
     width: 70%;
-    height: calc(100% - 20px);
+    height: calc(100% - 40px);
     border-right: 1px solid #ECECEC;
     background: white;
     overflow-x: hidden;
@@ -108,7 +108,7 @@
     width: calc(30% - 2px);;
     height:100%;
     position: relative;
-    top:-19px
+    top:-39px
 }
 .to-review-right p,.review-ok-right p,.review-no-right p{
     font-family: PingFangSC-Regular;

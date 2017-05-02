@@ -125,7 +125,7 @@ html,body{
 .bread{
     width: 300px;
 }
-#bread-taskList{
+#breadTaskList{
     display: inline-block;
     margin-left: 16px;
     margin-top: 11px;
@@ -138,10 +138,10 @@ html,body{
     font-family: PingFangSC-Regular;
 }
 
-#bread-taskList:hover{
+#breadTaskList:hover{
     cursor: pointer;
 }
-#bread-taskList span{
+#breadTaskList span{
     margin-left: 7px;
     color: #cccccc;
 }
@@ -304,14 +304,16 @@ ul{
     margin-top: 26px;
     margin-left: 10px;
 }
-#taskListUl li .taskList-detail{
-    color:#303030;
+#taskListUl li .task-list-detail{
+    font-family: PingFangSC-Regular;
+    color: rgba(0,0,0,0.54);
+    line-height: 18px;
     font-size: 13px;
     width: auto;
     position: absolute;
     top: 60px;
     left: 10px;
-    line-height: 18px;
+
 }
 .task-list-detail span{
     margin-right: 20px;

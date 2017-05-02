@@ -4,7 +4,7 @@
     right: 110px;
     font-size: 16px;
 }
-.review-searchArea{
+.review-search-area{
     position: absolute;
     top:11px;
     right:14px;
@@ -60,9 +60,13 @@
 
 .review-detail{
     width: 816px;
-    height: 658px;/*______*/
+    /*height: 658px;*//*______*/
     margin: 0 auto;
     background: white;
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: rgba(0,0,0,0.54);
+    line-height: 18px;
 }
 
 #reviewUl li{

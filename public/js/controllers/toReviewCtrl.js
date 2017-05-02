@@ -97,6 +97,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
                                 $scope.toReview = item.data;
+                                if($scope.toReview.length == 0){
+                                    $scope.push({})
+                                }
                                 $scope.toReview[0].amount = data.result.amount;
                                 $scope.toReview[0].check_fail = data.result.check_fail;
                                 $scope.toReview[0].invited = data.result.invited;
@@ -518,6 +521,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
                                 $scope.toReview = item.data;
+                                if($scope.toReview.length == 0){
+                                    $scope.toReview.push({})
+                                }
                                 $scope.toReview[0].amount = data.result.amount;
                                 $scope.toReview[0].check_fail = data.result.check_fail;
                                 $scope.toReview[0].invited = data.result.invited;

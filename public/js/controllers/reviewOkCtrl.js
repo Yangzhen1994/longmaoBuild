@@ -116,6 +116,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
                                 $scope.reviewOk = item.data;
+                                if($scope.reviewOk.length == 0){
+                                    $scope.reviewOk.push({})
+                                }
                                 $scope.reviewOk[0].amount = data.result.amount;
                                 $scope.reviewOk[0].check_fail = data.result.check_fail;
                                 $scope.reviewOk[0].invited = data.result.invited;
@@ -215,6 +218,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             };
             if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                 $scope.reviewOk = $scope.reviewOkItems[0].data;
+                if($scope.reviewOk.length == 0){
+                    $scope.reviewOk.push({})
+                }
                 //$scope.changeRight($scope.reviewOkItems[0].data,0)
                 serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                     .then(function (data) {
@@ -271,6 +277,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                         .then(function (data) {
                             $scope.reviewOk = item.data;
+                            if($scope.reviewOk.length == 0){
+                                $scope.reviewOk.push({})
+                            }
                             $scope.reviewOk[0].amount = data.result.amount
                             $scope.reviewOk[0].check_fail = data.result.check_fail
                             $scope.reviewOk[0].invited = data.result.invited

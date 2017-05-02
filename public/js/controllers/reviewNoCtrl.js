@@ -61,6 +61,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         serverService.getInfoData({uid:item.uid,tid:item.id})
                             .then(function (data) {
                                 $scope.reviewNo = item.data;
+                                if($scope.reviewNo.length == 0){
+                                    $scope.reviewNo.push({})
+                                }
                                 $scope.reviewNo[0].amount = data.result.amount;
                                 $scope.reviewNo[0].check_fail = data.result.check_fail;
                                 $scope.reviewNo[0].invited = data.result.invited;
@@ -107,6 +110,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             .then(function (data) {
                                 if(data.result.success ==1){
                                     storageUtils.session.setItem('_NotoAllow_',true)
+                                }else{
+                                    storageUtils.session.setItem('_NotoAllow_',false)
                                 }
                             });
                             //okArr.push($scope.reviewNoItems[i]);
@@ -118,7 +123,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $scope.reviewNoItems = [];/*删除待审核的*/
                         $scope.masterHeader = false;
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_NotoAllow_')){
+                            if(storageUtils.session.getItem('_NotoAllow_')==true){
                                 alert('操作成功')
                                 storageUtils.session.removeItem('_NotoAllow_')
                             }
@@ -136,17 +141,18 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                         storageUtils.session.setItem('_NotoAllow_',true)
                                     }
                                 });
-                                $timeout(function () {
-                                    if(storageUtils.session.getItem('_NotoAllow_')){
-                                        alert('操作成功')
-                                        storageUtils.session.removeItem('_NotoAllow_')
-                                    }
-                                },100)
+
                                 //okArr.push($scope.reviewNoItems[i]);
                                 $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                 i--;
                             }
                         }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_NotoAllow_') == true){
+                                alert('操作成功')
+                                storageUtils.session.removeItem('_NotoAllow_')
+                            }
+                        },100)
                         result = $scope.reviewNoItems;
                         $scope.reviewNoItems = result;
                         if($scope.reviewNoItems.length>0){
@@ -179,6 +185,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             $scope.reviewNoItems = data.result.rows;
             if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                 $scope.reviewNo = $scope.reviewNoItems[0].data;
+                if($scope.reviewNo.length == 0){
+                    $scope.reviewNo.push({})
+                }
                 serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
                     .then(function (data) {
                         $scope.reviewNo[0].amount = data.result.amount;
@@ -236,6 +245,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     serverService.getInfoData({uid:item.uid,tid:item.id})
                         .then(function (data) {
                             $scope.reviewNo = item.data;
+                            if($scope.reviewNo.length == 0){
+                                $scope.reviewNo.push({})
+                            }
                             $scope.reviewNo[0].amount = data.result.amount;
                             $scope.reviewNo[0].check_fail = data.result.check_fail;
                             $scope.reviewNo[0].invited = data.result.invited;

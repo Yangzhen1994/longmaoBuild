@@ -374,7 +374,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
 
                                             })
-                                        }, 100);
+                                        }, 300);
                                         if (item1.type == 7) {
                                             console.log(item1.options)
                                             if (item1.options.indexOf('点我输入内容') > -1) {
@@ -405,7 +405,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     storageUtils.session.setItem('_DOWNLINE_', true)
                     window.location.reload()
                 }
-            }, 2200)
+            }, 2500)
             // serverService.getStepById(storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_'))
             //window.location.reload()
         }

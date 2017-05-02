@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="./css/toReview.css">
 <div class="review-ok">
     <div class="review-ok-left" style="overflow-y: auto">
-        <div class="checkHeader">
+        <div class="check-header">
             <input type="checkbox" ng-model="masterHeader" ng-click="all(masterHeader)" ng-checked="flag"
-                   class="tr-hide-checkboxheckBox" id="roCheckAll"><span class="checkAllText">全选</span>
+                   class="tr-hide-checkbox" id="roCheckAll"><span class="check-all-text">全选</span>
             <label for="roCheckAll" class="check-all-label"></label>
             <div class="detail-footer clearfix" style="width:100%;position: absolute;top: 11px;left: 80px;">
                 <div class="pagination-index" style="width: 100%;font-size: 13px">
@@ -84,10 +84,10 @@
 
                 </div>
                 <div ng-if="item.type == 5" id="mapDiv" style="position: relative">
-                    <div id="cc-map" style="margin-left: 20px;width:100%;height: 200px;margin: 0 auto">
+                    <div id="cc_map" style="margin-left: 20px;width:100%;height: 200px;margin: 0 auto">
                         {{item.x}} , {{item.y}}
                     </div>
-                    <div class="cc-icon" style="width: 1.83rem;   /*2.69rem*/
+                    <div class="cc_icon" style="width: 1.83rem;   /*2.69rem*/
                                                 height: 3rem;  /*3.625rem*/
                                                 position: absolute;
                                                 top: 24%;

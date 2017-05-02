@@ -26,7 +26,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.stepItems[i].index--
             }
             //同步height
-            $('.left').css('height', Math.round($('.newStep').innerHeight() / 2) + 432);
+            $('.left').css('height', Math.round($('.new-step').innerHeight() / 2) + 432);
             if (0 == $scope.stepCount) {
                 $('.left').css('height', 846);
             }
@@ -70,7 +70,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
              $scope.stepCount --;
              }*/
             $timeout(function () {
-                $('.left').css('height', $('.newStep').innerHeight() + 17)
+                $('.left').css('height', $('.new-step').innerHeight() + 17)
             }, 100)
         };
         /*新建步骤*/

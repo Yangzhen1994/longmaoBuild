@@ -292,6 +292,7 @@ ul{
     height: 50px;
     font-family: PingFangSC-Regular;
     font-size: 15px;
+    color: rgba(0,0,0,0.87);
 }
 #taskListUl li .id {
     float: left;

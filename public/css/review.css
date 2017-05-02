@@ -80,6 +80,7 @@
     height: 21px;
     font-family: PingFangSC-Regular;
     font-size: 15px;
+    color: rgba(0,0,0,0.87);
 }
 #reviewUl li .id {
     float: left;
@@ -100,6 +101,8 @@
     top: 60px;
     left: 10px;
     line-height: 18px;
+    font-family: PingFangSC-Regular;
+    color: rgba(0,0,0,0.54);
 }
 .review-detail span{
     margin-right: 30px;

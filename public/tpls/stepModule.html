@@ -23,11 +23,11 @@
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showImg'+$index}}">+显示图片</a>
 
         </div>
-        <div class="middleView">
+        <div class="middleView" style="position: relative;">
             <img src="../img/stepHeader.png" alt="" style="
                                                     position: absolute;
                                                     left: 432px;
-                                                    top: 49px;
+                                                    top: 15px;
                                                     z-index: 99;
             ">
             <ul class="temp-md-ul" id="{{'imgUrl'+$index}}">
@@ -93,30 +93,11 @@
                         </div>
                     </li>
                 </div>
-                <!--</div>-->
-                <!--<li ng-repeat="componentItem in stepItem.component" id="{{'componentItem'+$index}}" style="border-top: 1px solid #c3c3c3;width: 288px;height: 200px">
-                    <div>
-                        &lt;!&ndash;<p ng-show="{{componentItem.type == 1}}">文本凭证</p>
-                        <p  style="font-size: 13px;color: #c3c3c3">提示文本</p>
-                        <textarea type="text" ng-show="{{componentItem.type == 1}}" ng-model="componentItem.tips_text" style="width: 288px;
-                        height: 20px;
-                        border-radius: 8px;">
-                        <div ng-show="{{componentItem.type == 2}}" style="width: 288px;height: 200px;margin-left: 6px">
-                            <p>提示图片</p>
-                            <textarea type="text" ng-model="componentItem.tips_image" style="width: 100%;border: none;" class="imgUrl" placeholder="图片地址"></textarea>
-                            <img ng-src="{{componentItem.tips_image}}" style="display: block;width: 100%;height: 100%"></img>
-                        </div>&ndash;&gt;
-                        <textproof-module ng-show="{{componentItem.type == 1}}"></textproof-module>
-                        <imgproof-module ng-show="{{componentItem.type==2}}"></imgproof-module>
-                        <showtext-module ng-show="{{componentItem.tips_text == 5}}"></showtext-module>
-                        <showimg-module ng-show="{{componentItem.tips_image == 6}}"></showimg-module>
-                    </div>
-                </li>-->
             </ul>
             <img src="../img/stepfooter.png" alt="" style="
                                                     position: absolute;
                                                     left: 432px;
-                                                    bottom: -10px;
+                                                    bottom: 22px;
                                                     z-index: 99;
             ">
         </div>

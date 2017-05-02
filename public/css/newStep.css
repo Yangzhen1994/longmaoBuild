@@ -54,7 +54,7 @@
     font-size: 13px;
     margin-left: -65px;
 }
-.step-index .step-index a{
+.step-temp .step-index a{
     display: inline-block;
     margin-left: 25px;
     font-family: PingFangSC-Regular;
@@ -64,6 +64,7 @@
 .step-temp-content{
     position: relative;
     float: left;
+    height:100%;
 }
 .add-buttons{
     margin-left: 300px;

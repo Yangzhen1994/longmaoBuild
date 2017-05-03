@@ -1710,7 +1710,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     if(data.code == 200){
                                         alert('复制成功');
                                         storageUtils.session.setItem('_DOWNLINE_',true);
-                                        window.location='#/taskList'
+                                        window.location.reload();
                                     }
                                 })
                         }

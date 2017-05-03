@@ -167,10 +167,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         page:1,
                         rows:10,
                         sort:'created_time',
-                        order:'asc'
+                        order:'desc'
                     };
                     if($scope.orderFlag){
-                        data.order = 'desc';
+                        data.order = 'asc';
                     }
                     switch ($scope.tabSelected){
                         case 0:
@@ -523,10 +523,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     page:1,
                     rows:10,
                     sort:'created_time',
-                    order:'asc'
+                    order:'desc'
                 };
                 if($scope.orderFlag){
-                    data.order = 'desc';
+                    data.order = 'asc';
                 }
                 switch ($scope.tabSelected){
                     case 0:

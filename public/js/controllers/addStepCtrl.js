@@ -12,7 +12,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         serverService.getRegex()
             .then(function (data) {
                 $scope.regexArr = data.result
-            })
+            });
         //delete/
         $scope.removeStep = function (index) {
             $scope.stepItems[index].oldSteps.status = 0;

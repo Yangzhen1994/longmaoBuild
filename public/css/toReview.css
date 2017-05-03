@@ -283,11 +283,20 @@
     margin-left: -1.23rem;
 }
 .created-time:after{
-    content:url(../img/icon/sort.png);
+    content:attr(data-content);
+    vertical-align: middle;
+    position: relative;
+    top: 1px;
 }
 .submit-time:after{
-    content:url(../img/icon/sort.png);
+    content:attr(data-content);
+    vertical-align: middle;
+    position: relative;
+    top: 1px;
 }
 .surplus-check-time:after{
-    content:url(../img/icon/sort.png);
+    content:attr(data-content);
+    vertical-align: middle;
+    position: relative;
+    top: 1px;
 }

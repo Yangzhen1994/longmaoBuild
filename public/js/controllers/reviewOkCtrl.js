@@ -170,15 +170,15 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         order:'desc'
                     };
                     switch (num){
-                        case 1:
+                        case 0:
                             data.sort = 'created_time';
                             data.order = 'asc';
                             break;
-                        case 2:
+                        case 1:
                             data.sort = 'submit_time';
                             data.order = 'asc';
                             break;
-                        case 3:
+                        case 2:
                             data.sort = 'surplus_check_time';
                             data.order = 'desc';
                             break;
@@ -187,6 +187,27 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         data.order = 'desc';
                         if(num == 3){
                             data.order = 'asc';
+                        }
+                    }
+                    if(data.order == 'desc'){
+                        if(num == 0){
+                            $('.created-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                        }
+                        if(num == 1){
+                            $('.submit-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                        }
+                        if(num == 2){
+                            $('.surplus-check-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                        }
+                    }else{
+                        if(num == 0){
+                            $('.created-time').attr('data-content','url(../img/icon/sort_asc.png)')
+                        }
+                        if(num == 1){
+                            $('.submit-time').attr('data-content','url(../img/icon/sort_asc.png)')
+                        }
+                        if(num == 2){
+                            $('.surplus-check-time').attr('data-content','url(../img/icon/sort_asc.png)')
                         }
                     }
                     switch ($scope.tabSelected){
@@ -453,6 +474,27 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     data.order = 'desc';
                     if(num == 3){
                         data.order = 'asc';
+                    }
+                }
+                if(data.order == 'desc'){
+                    if(num == 0){
+                        $('.created-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                    }
+                    if(num == 1){
+                        $('.submit-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                    }
+                    if(num == 2){
+                        $('.surplus-check-time').attr('data-content','url(../img/icon/sort_desc.png)')
+                    }
+                }else{
+                    if(num == 0){
+                        $('.created-time').attr('data-content','url(../img/icon/sort_asc.png)')
+                    }
+                    if(num == 1){
+                        $('.submit-time').attr('data-content','url(../img/icon/sort_asc.png)')
+                    }
+                    if(num == 2){
+                        $('.surplus-check-time').attr('data-content','url(../img/icon/sort_asc.png)')
                     }
                 }
                 switch ($scope.tabSelected){

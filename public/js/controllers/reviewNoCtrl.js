@@ -207,7 +207,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             .then(function (resData) {
                                 $scope.orderFlag = !$scope.orderFlag;
                                 $scope.reviewNoItems = resData.result.rows;
-
+                                $scope.changeRight($scope.reviewNoItems[0],0)
                             })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
@@ -437,7 +437,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         .then(function (resData) {
                             $scope.orderFlag = !$scope.orderFlag;
                             $scope.reviewNoItems = resData.result.rows;
-
+                            $scope.changeRight($scope.reviewNoItems[0],0)
                         })
             };
         })

@@ -264,10 +264,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         reason:$scope.reasonLists[index].reasonText
                     }
                     if(index == 0){
-                        data.message == 3
+                        data.message = 3;
                     }
                     if(index == 1){
-                        data.message == 2
+                        data.message = 2;
                     }
                     /*全选拒绝*/
                     if($scope.master&&$scope.master == true){
@@ -512,6 +512,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                                             })
                                 };
+                                $scope.changeRight($scope.toReviewItems[0],0)
                             })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
@@ -774,10 +775,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         reason:$scope.reasonLists[index].reasonText
                     }
                     if(index == 0){
-                        data.message == 3
+                        data.message = 3;
                     }
                     if(index == 1){
-                        data.message == 2
+                        data.message = 2;
                     }
                     /*全选拒绝*/
                     if($scope.master&&$scope.master == true){
@@ -963,6 +964,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         .then(function (resData) {
                             $scope.orderFlag = !$scope.orderFlag;
                             $scope.toReviewItems = resData.result.rows;
+                            $scope.changeRight($scope.toReviewItems[0],0)
                             $rootScope.totalCount = resData.result.total;
                             $rootScope.pageIndex = 1;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);

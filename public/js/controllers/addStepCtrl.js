@@ -8,7 +8,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         var taskId = storageUtils.session.getItem('_TaskId_');
         var newTaskId = storageUtils.session.getItem('_newTaskid_');
         //var oldStep = storageUtils.session.getItem('_oldStep_');
-
+        //获取验证的正则表达式
+        serverService.getRegex()
+            .then(function (data) {
+                $scope.regexArr = data.result
+            })
         //delete/
         $scope.removeStep = function (index) {
             $scope.stepItems[index].oldSteps.status = 0;
@@ -344,17 +348,25 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             item1.tips_text = ' ';
                                         }
                                         if (item1.tips_text.indexOf('手机号') > -1) {
-                                            serverService.getRegex()
-                                            .then(function (data) {
-                                                console.log(data)
-                                                data.result.forEach(function (item2, index) {
+                                                $scope.regexArr.forEach(function (item2, index) {
                                                     if (item2.value == '手机号码') {
                                                         item1.regex = item2.code
                                                     }
                                                 })
-
+                                        }
+                                        if (item1.tips_text.indexOf('银行卡') > -1) {
+                                            $scope.regexArr.forEach(function (item2, index) {
+                                                if (item2.value == '银行卡号') {
+                                                    item1.regex = item2.code
+                                                }
                                             })
-
+                                        }
+                                        if (item1.tips_text.indexOf('身份证') > -1) {
+                                            $scope.regexArr.forEach(function (item2, index) {
+                                                if (item2.value == '身份证') {
+                                                    item1.regex = item2.code
+                                                }
+                                            })
                                         }
                                         $timeout(function () {
                                             serverService.submitComponent(item1)
@@ -371,8 +383,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 } else {
                                                     window.save = false
                                                 }
-
-
                                             })
                                         }, 300);
                                         if (item1.type == 7) {

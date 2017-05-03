@@ -24,12 +24,5 @@ define(['app','storageUtils'], function (app,storageUtils) {
             storageUtils.session.setItem('_DRAG_', true)
             window.location = '#/reviewList';
         }
-
-
-
-
-
-
-
     }])
 })

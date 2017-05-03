@@ -456,27 +456,6 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         data.order = 'asc';
                     }
                 }
-                if(data.order == 'desc'){
-                    if(num == 0){
-                        $('.created-time').attr('data-content','url(../img/icon/sort_desc.png)')
-                    }
-                    if(num == 1){
-                        $('.submit-time').attr('data-content','url(../img/icon/sort_desc.png)')
-                    }
-                    if(num == 2){
-                        $('.surplus-check-time').attr('data-content','url(../img/icon/sort_desc.png)')
-                    }
-                }else{
-                    if(num == 0){
-                        $('.created-time').attr('data-content','url(../img/icon/sort_asc.png)')
-                    }
-                    if(num == 1){
-                        $('.submit-time').attr('data-content','url(../img/icon/sort_asc.png)')
-                    }
-                    if(num == 2){
-                        $('.surplus-check-time').attr('data-content','url(../img/icon/sort_asc.png)')
-                    }
-                }
                 switch ($scope.tabSelected){
                     case 0:
                         data.status = 2;

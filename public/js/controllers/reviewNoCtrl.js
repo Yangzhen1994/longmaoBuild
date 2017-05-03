@@ -199,13 +199,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         }
                     }
                     switch ($scope.tabSelected){
-                        case 1:
-                            data.sort = 2;
+                        case 0:
+                            data.status = 2;
                             break;
-                        case 2:
+                        case 1:
                             data.status = 3;
                             break;
-                        case 3:
+                        case 2:
                             data.status = 4;
                             break;
                     };
@@ -436,13 +436,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
                 }
                 switch ($scope.tabSelected){
-                    case 1:
-                        data.sort = 2;
+                    case 0:
+                        data.status = 2;
                         break;
-                    case 2:
+                    case 1:
                         data.status = 3;
                         break;
-                    case 3:
+                    case 2:
                         data.status = 4;
                         break;
                 };

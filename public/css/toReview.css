@@ -274,3 +274,11 @@
     color: #2DB7F5;
     white-space: nowrap;
 }
+.cc-icon{
+    width: 1.83rem;   /*2.69rem*/
+    height: 3rem;  /*3.625rem*/
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    margin-left: -1.23rem;
+}

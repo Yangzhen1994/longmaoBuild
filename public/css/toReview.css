@@ -253,7 +253,7 @@
     background:  rgba(44,183,245,0.30);
 }
 .cbg{
-    background: #ececec;
+    background: #ececec !important;
 }
 .beTall{
     height: 150px;
@@ -270,7 +270,7 @@
     line-height: 20px;
     text-align: center;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 10px;
     color: #2DB7F5;
     white-space: nowrap;
 }

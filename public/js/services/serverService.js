@@ -337,8 +337,29 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
+        //复制任务
+        function getCopy(data) {
+            var defer = $q.defer();
+            var url = 'http://manager.test.shandianshua.com/totoro/task/task/copy.json';
+            $.ajax({
+                type: "POST",
+                url: url,
+                xhrFields: {
+                    withCredentials: true
+                },
+                data:data,
+                //全部data
+                success: function (data) {
+                    defer.resolve(data)
+                },
+                error: function (data) {
+                    console.error(data)
+                }
+            })
+            return defer.promise
+        }
         return {getSelectData,getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
             getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent,
-            getInfoData,getRegex};
+            getInfoData,getRegex,getCopy};
     }])
 })

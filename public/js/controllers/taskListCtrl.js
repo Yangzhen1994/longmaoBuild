@@ -1701,6 +1701,21 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 window.location = '#/addTask'
                             })
                     };
+                    /*复制任务*/
+                    $scope.copyTask = function (index) {
+                        var data = {id:$scope.items[index].id};
+                        if(confirm("确定要复制吗")){
+                            serverService.getCopy(data)
+                                .then(function (data) {
+                                    if(data.code == 200){
+                                        alert('复制成功');
+                                        storageUtils.session.setItem('_DOWNLINE_',true);
+                                        window.location='#/taskList'
+                                    }
+                                })
+                        }
+
+                    }
                 })
         }]);
 });

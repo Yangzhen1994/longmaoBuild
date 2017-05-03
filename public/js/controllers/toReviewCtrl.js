@@ -250,7 +250,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 ]
                 $scope.showRejCover = false;
 
-                $scope.changeReasonbg = function (index) {
+                $scope.changeReasonBg = function (index) {
                     $scope.bg = index
                 }
                 $scope.subReason = function (e,index) {
@@ -267,7 +267,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         data.message = 3;
                     }
                     if(index == 1){
-                        data.message = 2;
+                        data.message = 4;
                     }
                     /*全选拒绝*/
                     if($scope.master&&$scope.master == true){
@@ -763,7 +763,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                 ]
                 $scope.showRejCover = false;
-                $scope.changeReasonbg = function (index) {
+                $scope.changeReasonBg = function (index) {
                     $scope.bg = index
                 };
                 $scope.subReason = function (e,index) {
@@ -778,7 +778,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         data.message = 3;
                     }
                     if(index == 1){
-                        data.message = 2;
+                        data.message = 4;
                     }
                     /*全选拒绝*/
                     if($scope.master&&$scope.master == true){

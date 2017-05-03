@@ -115,12 +115,8 @@
                 <div class="tr-reject clearfix" ng-show="showRejCover">
                     <ul class="reason-cover">
                         <li class="reason-header" ng-click="closeCover($event)">拒绝原因</li>
-                        <li id="{{'reasonDetail'+$index}}"
-                            ng-repeat="reason in reasonLists" ng-mouseover="changeReasonbg($index,e)"
-                            ng-class="{cbg:bg==$index}"
-                            ng-click="subReason($event,$index)"
-                        >
-                            <span class="reason-cover-span">{{reason.reasonText}}</span>
+                        <li id="{{'reasonDetail'+$index}}" ng-repeat="reason in reasonLists" ng-click="subReason($event,$index)">
+                            <span class="reason-cover-span" ng-class="{cbg:bg==$index}" ng-mouseover="changeReasonBg($index,e)">{{reason.reasonText}}</span>
                         </li>
                         <li class="input-other-reason">
                             <input type="text" name="orderReason" id="orderReason"

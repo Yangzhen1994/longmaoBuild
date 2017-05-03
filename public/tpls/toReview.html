@@ -40,9 +40,9 @@
                 <a href="javascript:;">单价</a>
                 <a href="javascript:;">提交用户id</a>
                 <a href="javascript:;">文本描述</a>
-                <a href="javascript:;" ng-click="orderByTimes(1)">凭证创建时间</a>
-                <a href="javascript:;" ng-click="orderByTimes(2)">凭证提交审核时间</a>
-                <a href="javascript:;" ng-click="orderByTimes(3)">剩余审核时间</a>
+                <a href="javascript:;" ng-click="orderByTimes(1)" class="created-time">凭证创建时间</a>
+                <a href="javascript:;" ng-click="orderByTimes(2)" class="submit-time">凭证提交审核时间</a>
+                <a href="javascript:;" ng-click="orderByTimes(3)" class="surplus-check-time">剩余审核时间</a>
             </li>
             <li ng-repeat="item in toReviewItems" ng-click="changeRight(item,$index)"
                 ng-class="{changeColor:changeColor == $index}">

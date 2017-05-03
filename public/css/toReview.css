@@ -282,3 +282,12 @@
     left: 50%;
     margin-left: -1.23rem;
 }
+.created-time:after{
+    content:url(../img/icon/sort.png);
+}
+.submit-time:after{
+    content:url(../img/icon/sort.png);
+}
+.surplus-check-time:after{
+    content:url(../img/icon/sort.png);
+}

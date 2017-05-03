@@ -307,10 +307,11 @@ ul{
 }
 #taskListUl li .copy{
     float: left;
-    margin-top: 26px;
+    margin-top: 28px;
     margin-left: 10px;
     text-decoration: none;
     color: #2DB7F5;
+    font-size: 13px;
 }
 #taskListUl li .task-list-detail{
     font-family: PingFangSC-Regular;

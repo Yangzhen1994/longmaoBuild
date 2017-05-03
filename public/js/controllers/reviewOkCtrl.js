@@ -189,7 +189,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                             data.order = 'asc';
                         }
                     }
-                    
+
                     switch ($scope.tabSelected){
                         case 0:
                             data.status = 2;
@@ -437,15 +437,15 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     order:'desc'
                 };
                 switch (num){
-                    case 1:
+                    case 0:
                         data.sort = 'created_time';
                         data.order = 'asc';
                         break;
-                    case 2:
+                    case 1:
                         data.sort = 'submit_time';
                         data.order = 'asc';
                         break;
-                    case 3:
+                    case 2:
                         data.sort = 'surplus_check_time';
                         data.order = 'desc';
                         break;

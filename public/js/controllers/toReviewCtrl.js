@@ -416,7 +416,104 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $scope.showRejCoverFn = function () {
                     $scope.showRejCover = true
                 };
-                
+                /*排序*/
+                $scope.orderByTimes = function (num) {
+                    var reviewId = storageUtils.session.getItem('_reviewList_');
+                    if($scope.chooseType == 2){
+                        $scope.reviewUserId = ''
+                    }
+                    var data = {
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
+                        date:$scope.subTime,
+                        status:'',
+                        page:1,
+                        rows:10,
+                        sort:'created_time',
+                        order:'asc'
+                    };
+                    if($scope.orderFlag){
+                        data.order = 'desc';
+                    }
+                    switch ($scope.tabSelected){
+                        case 1:
+                            data.sort = 2;
+                            break;
+                        case 2:
+                            data.status = 3;
+                            break;
+                        case 3:
+                            data.status = 4;
+                            break;
+                    };
+                    switch (num){
+                        case 1:
+                            data.sort = 'created_time';
+                            break;
+                        case 2:
+                            data.sort = 'submit_time';
+                            break;
+                        case 3:
+                            data.sort = 'surplus_check_time';
+                            break;
+                    };
+                    serverService.getReviewList(data)
+                            .then(function (resData) {
+                                $scope.orderFlag = !$scope.orderFlag;
+                                $scope.toReviewItems = resData.result.rows;
+                                $rootScope.totalCount = resData.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                                $rootScope.toPage = function (index) {
+                                    if (index < 1) {
+                                        index = 1
+                                    }
+                                    if (index > $rootScope.pageTotal) {
+                                        index--;
+                                        $rootScope.pageIndex = index;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var paginationData = {
+                                        id:reviewId,
+                                        uid:$scope.reviewUserId,
+                                        date:$scope.subTime,
+                                        status:2,
+                                        page:index,
+                                        rows:10,
+                                        order:data.order,
+                                        sort:data.sort
+                                    };
+                                    serverService.getReviewList(paginationData)
+                                            .then(function (data) {
+                                                $scope.toReviewItems = data.result.rows;
+                                                if($scope.toReviewItems && $scope.toReviewItems.length>0){
+                                                    $scope.toReview = $scope.toReviewItems[0].data;
+                                                    serverService.getInfoData(
+                                                            {
+                                                                uid:$scope.toReviewItems[0].uid,
+                                                                tid:$scope.toReviewItems[0].id
+                                                            }
+                                                    )
+                                                            .then(function (data) {
+                                                                $scope.toReview[0].amount = data.result.amount;
+                                                                $scope.toReview[0].check_fail = data.result.check_fail;
+                                                                $scope.toReview[0].invited = data.result.invited;
+                                                                $scope.toReview[0].regist_time = data.result.regist_time;
+                                                                $scope.toReview[0].task_check_fail =data.result.task_check_fail;
+                                                            })
+                                                }else{return}
+
+                                                $scope.toReview.forEach(function (item,index) {
+                                                    if(item.type == 5){
+                                                        window.x = item.x;
+                                                        window.y = item.y;
+                                                    }
+                                                })
+
+                                            })
+                                };
+                            })
+                };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
@@ -824,6 +921,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 /*排序*/
                 $scope.orderByTimes = function (num) {
                     var reviewId = storageUtils.session.getItem('_reviewList_');
+                    if($scope.chooseType == 2){
+                        $scope.reviewUserId = ''
+                    };
                     var data = {
                         id:reviewId,
                         uid:$scope.reviewUserId,
@@ -834,6 +934,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         sort:'created_time',
                         order:'asc'
                     };
+                    if($scope.orderFlag){
+                        data.order = 'desc';
+                    }
                     switch ($scope.tabSelected){
                         case 1:
                             data.sort = 2;
@@ -857,9 +960,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             break;
                     };
                     serverService.getReviewList(data)
-                        .then(function (data) {
-                            $scope.toReviewItems = data.result.rows;
-                            $rootScope.totalCount = data.result.total;
+                        .then(function (resData) {
+                            $scope.orderFlag = !$scope.orderFlag;
+                            $scope.toReviewItems = resData.result.rows;
+                            $rootScope.totalCount = resData.result.total;
                             $rootScope.pageIndex = 1;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
@@ -871,15 +975,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $rootScope.pageIndex = index;
                                 }
                                 $rootScope.pageIndex = index;
-                                var data = {
+                                var paginationData = {
                                     id:reviewId,
                                     uid:$scope.reviewUserId,
                                     date:$scope.subTime,
                                     status:2,
                                     page:index,
                                     rows:10,
+                                    order:data.order,
+                                    sort:data.sort
                                 };
-                                serverService.getReviewList(data)
+                                serverService.getReviewList(paginationData)
                                     .then(function (data) {
                                         $scope.toReviewItems = data.result.rows;
                                         if($scope.toReviewItems && $scope.toReviewItems.length>0){

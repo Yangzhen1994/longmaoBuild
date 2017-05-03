@@ -153,7 +153,103 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     }
                     $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
                 };
+                $scope.orderByTimes = function (num) {
+                    var reviewId = storageUtils.session.getItem('_reviewList_');
+                    if($scope.chooseType == 2){
+                        $scope.reviewUserId = ''
+                    }
+                    var data = {
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
+                        date:$scope.subTime,
+                        status:'',
+                        page:1,
+                        rows:10,
+                        sort:'created_time',
+                        order:'asc'
+                    };
+                    if($scope.orderFlag){
+                        data.order = 'desc';
+                    }
+                    switch ($scope.tabSelected){
+                        case 0:
+                            data.status = 2;
+                            break;
+                        case 1:
+                            data.status = 3;
+                            break;
+                        case 2:
+                            data.status = 4;
+                            break;
+                    };
+                    switch (num){
+                        case 1:
+                            data.sort = 'created_time';
+                            break;
+                        case 2:
+                            data.sort = 'submit_time';
+                            break;
+                        case 3:
+                            data.sort = 'surplus_check_time';
+                            break;
+                    };
+                    serverService.getReviewList(data)
+                            .then(function (resData) {
+                                $scope.orderFlag = !$scope.orderFlag;
+                                $scope.reviewOkItems = resData.result.rows;
+                                $rootScope.totalCount = resData.result.total;
+                                $rootScope.pageIndex = 1;
+                                $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                                $rootScope.toPage = function (index) {
+                                    if (index < 1) {
+                                        index = 1
+                                    }
+                                    if (index > $rootScope.pageTotal) {
+                                        index--;
+                                        $rootScope.pageIndex = index;
+                                    }
+                                    $rootScope.pageIndex = index;
+                                    var paginationData = {
+                                        id:reviewId,
+                                        uid:$scope.reviewUserId,
+                                        date:$scope.subTime,
+                                        status:3,
+                                        page:index,
+                                        rows:10,
+                                        order:data.order,
+                                        sort:data.sort
+                                    };
+                                    serverService.getReviewList(paginationData)
+                                            .then(function (data) {
+                                                $scope.reviewOkItems = data.result.rows;
+                                                if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                                    $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                                    serverService.getInfoData(
+                                                            {
+                                                                uid:$scope.reviewOkItems[0].uid,
+                                                                tid:$scope.reviewOkItems[0].id
+                                                            }
+                                                    )
+                                                            .then(function (data) {
+                                                                $scope.reviewOk[0].amount = data.result.amount;
+                                                                $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                                                $scope.reviewOk[0].invited = data.result.invited;
+                                                                $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                                            })
+                                                }else{return}
 
+                                                $scope.reviewOk.forEach(function (item,index) {
+                                                    if(item.type == 5){
+                                                        window.x = item.x;
+                                                        window.y = item.y;
+                                                    }
+                                                })
+
+                                            })
+                                };
+                            })
+                };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
@@ -315,7 +411,6 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
             }
             /*排序*/
-
             $scope.orderByTimes = function (num) {
                 var reviewId = storageUtils.session.getItem('_reviewList_');
                 if($scope.chooseType == 2){
@@ -332,8 +427,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     order:'asc'
                 };
                 if($scope.orderFlag){
-                    data.order = 'desc'
-                    $scope.orderFlag =  !$scope.orderFlag
+                    data.order = 'desc';
                 }
                 switch ($scope.tabSelected){
                     case 0:
@@ -358,10 +452,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         break;
                 };
                 serverService.getReviewList(data)
-                        .then(function (data) {
-                            $scope.orderFlag = true;
-                            $scope.reviewOkItems = data.result.rows;
-                            $rootScope.totalCount = data.result.total;
+                        .then(function (resData) {
+                            $scope.orderFlag = !$scope.orderFlag;
+                            $scope.reviewOkItems = resData.result.rows;
+                            $rootScope.totalCount = resData.result.total;
                             $rootScope.pageIndex = 1;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
@@ -373,42 +467,44 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                     $rootScope.pageIndex = index;
                                 }
                                 $rootScope.pageIndex = index;
-                                var data = {
+                                var paginationData = {
                                     id:reviewId,
                                     uid:$scope.reviewUserId,
                                     date:$scope.subTime,
-                                    status:2,
+                                    status:3,
                                     page:index,
                                     rows:10,
+                                    order:data.order,
+                                    sort:data.sort
                                 };
-                                serverService.getReviewList(data)
-                                        .then(function (data) {
-                                            $scope.reviewOkItems = data.result.rows;
-                                            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
-                                                $scope.reviewOk = $scope.reviewOkItems[0].data;
-                                                serverService.getInfoData(
-                                                        {
-                                                            uid:$scope.reviewOkItems[0].uid,
-                                                            tid:$scope.reviewOkItems[0].id
-                                                        }
-                                                )
-                                                        .then(function (data) {
-                                                            $scope.reviewOk[0].amount = data.result.amount;
-                                                            $scope.reviewOk[0].check_fail = data.result.check_fail;
-                                                            $scope.reviewOk[0].invited = data.result.invited;
-                                                            $scope.reviewOk[0].regist_time = data.result.regist_time;
-                                                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
-                                                        })
-                                            }else{return}
-
-                                            $scope.reviewOk.forEach(function (item,index) {
-                                                if(item.type == 5){
-                                                    window.x = item.x;
-                                                    window.y = item.y;
-                                                }
+                                serverService.getReviewList(paginationData)
+                                    .then(function (data) {
+                                        $scope.reviewOkItems = data.result.rows;
+                                        if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                            $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                            serverService.getInfoData(
+                                                    {
+                                                        uid:$scope.reviewOkItems[0].uid,
+                                                        tid:$scope.reviewOkItems[0].id
+                                                    }
+                                            )
+                                            .then(function (data) {
+                                                $scope.reviewOk[0].amount = data.result.amount;
+                                                $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                                $scope.reviewOk[0].invited = data.result.invited;
+                                                $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
                                             })
+                                        }else{return}
 
+                                        $scope.reviewOk.forEach(function (item,index) {
+                                            if(item.type == 5){
+                                                window.x = item.x;
+                                                window.y = item.y;
+                                            }
                                         })
+
+                                    })
                             };
                         })
             };

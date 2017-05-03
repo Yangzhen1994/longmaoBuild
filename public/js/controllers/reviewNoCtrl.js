@@ -3,7 +3,7 @@
  */
 
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
-    return  app.controller('reviewNoCtrl',['$scope','$timeout','serverService',function ($scope,$timeout,serverService) {
+    return  app.controller('reviewNoCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if(reviewFlag){
             storageUtils.session.removeItem('_FLAG_');
@@ -162,6 +162,53 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         }
                         //storageUtils.session.setItem('_reviewOk_',okArr);
                     }
+                };
+                $scope.orderByTimes = function (num) {
+                    var reviewId = storageUtils.session.getItem('_reviewList_');
+                    if($scope.chooseType == 2){
+                        $scope.reviewUserId = ''
+                    };
+                    var data = {
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
+                        date:$scope.subTime,
+                        status:'',
+                        page:1,
+                        rows:10,
+                        sort:'created_time',
+                        order:'asc'
+                    };
+                    if($scope.orderFlag){
+                        data.order = 'desc';
+                    }
+                    switch ($scope.tabSelected){
+                        case 1:
+                            data.sort = 2;
+                            break;
+                        case 2:
+                            data.status = 3;
+                            break;
+                        case 3:
+                            data.status = 4;
+                            break;
+                    };
+                    switch (num){
+                        case 1:
+                            data.sort = 'created_time';
+                            break;
+                        case 2:
+                            data.sort = 'submit_time';
+                            break;
+                        case 3:
+                            data.sort = 'surplus_check_time';
+                            break;
+                    };
+                    serverService.getReviewList(data)
+                            .then(function (resData) {
+                                $scope.orderFlag = !$scope.orderFlag;
+                                $scope.reviewNoItems = resData.result.rows;
+
+                            })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
@@ -344,6 +391,54 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
                     //storageUtils.session.setItem('_reviewOk_',okArr);
                 }
+            };
+
+            $scope.orderByTimes = function (num) {
+                var reviewId = storageUtils.session.getItem('_reviewList_');
+                if($scope.chooseType == 2){
+                    $scope.reviewUserId = ''
+                };
+                var data = {
+                    id:reviewId,
+                    uid:$scope.reviewUserId,
+                    date:$scope.subTime,
+                    status:'',
+                    page:1,
+                    rows:10,
+                    sort:'created_time',
+                    order:'asc'
+                };
+                if($scope.orderFlag){
+                    data.order = 'desc';
+                }
+                switch ($scope.tabSelected){
+                    case 1:
+                        data.sort = 2;
+                        break;
+                    case 2:
+                        data.status = 3;
+                        break;
+                    case 3:
+                        data.status = 4;
+                        break;
+                };
+                switch (num){
+                    case 1:
+                        data.sort = 'created_time';
+                        break;
+                    case 2:
+                        data.sort = 'submit_time';
+                        break;
+                    case 3:
+                        data.sort = 'surplus_check_time';
+                        break;
+                };
+                serverService.getReviewList(data)
+                        .then(function (resData) {
+                            $scope.orderFlag = !$scope.orderFlag;
+                            $scope.reviewNoItems = resData.result.rows;
+
+                        })
             };
         })
     }])

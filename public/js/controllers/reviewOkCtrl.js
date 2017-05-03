@@ -169,8 +169,25 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         sort:'created_time',
                         order:'desc'
                     };
+                    switch (num){
+                        case 1:
+                            data.sort = 'created_time';
+                            data.order = 'asc';
+                            break;
+                        case 2:
+                            data.sort = 'submit_time';
+                            data.order = 'asc';
+                            break;
+                        case 3:
+                            data.sort = 'surplus_check_time';
+                            data.order = 'desc';
+                            break;
+                    };
                     if($scope.orderFlag){
-                        data.order = 'asc';
+                        data.order = 'desc';
+                        if(num == 3){
+                            data.order = 'asc';
+                        }
                     }
                     switch ($scope.tabSelected){
                         case 0:
@@ -183,17 +200,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                             data.status = 4;
                             break;
                     };
-                    switch (num){
-                        case 1:
-                            data.sort = 'created_time';
-                            break;
-                        case 2:
-                            data.sort = 'submit_time';
-                            break;
-                        case 3:
-                            data.sort = 'surplus_check_time';
-                            break;
-                    };
+
                     serverService.getReviewList(data)
                             .then(function (resData) {
                                 $scope.orderFlag = !$scope.orderFlag;
@@ -428,8 +435,25 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     sort:'created_time',
                     order:'desc'
                 };
+                switch (num){
+                    case 1:
+                        data.sort = 'created_time';
+                        data.order = 'asc';
+                        break;
+                    case 2:
+                        data.sort = 'submit_time';
+                        data.order = 'asc';
+                        break;
+                    case 3:
+                        data.sort = 'surplus_check_time';
+                        data.order = 'desc';
+                        break;
+                };
                 if($scope.orderFlag){
-                    data.order = 'asc';
+                    data.order = 'desc';
+                    if(num == 3){
+                        data.order = 'asc';
+                    }
                 }
                 switch ($scope.tabSelected){
                     case 0:
@@ -442,17 +466,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         data.status = 4;
                         break;
                 };
-                switch (num){
-                    case 1:
-                        data.sort = 'created_time';
-                        break;
-                    case 2:
-                        data.sort = 'submit_time';
-                        break;
-                    case 3:
-                        data.sort = 'surplus_check_time';
-                        break;
-                };
+
                 serverService.getReviewList(data)
                         .then(function (resData) {
                             $scope.orderFlag = !$scope.orderFlag;

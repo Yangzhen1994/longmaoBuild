@@ -232,13 +232,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                                                 tid:$scope.reviewOkItems[0].id
                                                             }
                                                     )
-                                                            .then(function (data) {
-                                                                $scope.reviewOk[0].amount = data.result.amount;
-                                                                $scope.reviewOk[0].check_fail = data.result.check_fail;
-                                                                $scope.reviewOk[0].invited = data.result.invited;
-                                                                $scope.reviewOk[0].regist_time = data.result.regist_time;
-                                                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
-                                                            })
+                                                    .then(function (data) {
+                                                        $scope.reviewOk[0].amount = data.result.amount;
+                                                        $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                                        $scope.reviewOk[0].invited = data.result.invited;
+                                                        $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                                    })
                                                 }else{return}
 
                                                 $scope.reviewOk.forEach(function (item,index) {

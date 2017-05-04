@@ -132,7 +132,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         //任务分类
         $scope.changeTag = function () {
             $timeout(function () {
-                $('.left').height($('.newTask').height()+11)
+                $('.left').height($('.new-task').height()+11)
             },100)
             if($scope.taskTag.tagItem == 'APP体验'){
                 //alert(1)

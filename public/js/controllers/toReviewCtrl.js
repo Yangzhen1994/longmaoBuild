@@ -190,9 +190,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == 'true'){
+                            if(storageUtils.session.getItem('_Allowed_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_Allowed')
+                                storageUtils.session.removeItem('_Allowed_')
                             }
                         },100);
                         $scope.toReviewItems = [];/*删除待审核的*/
@@ -220,9 +220,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == 'true'){
+                            if(storageUtils.session.getItem('_Allowed_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_Allowed')
+                                storageUtils.session.removeItem('_Allowed_')
                             }
                         },100);
                         result = $scope.toReviewItems;
@@ -393,7 +393,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         alert('操作成功');
                                         storageUtils.session.removeItem('_Fail_')
                                     }
-                                },100)
+                                },100);
                                 result = $scope.toReviewItems;
                                 $scope.toReviewItems = result;
                                 if($scope.toReviewItems.length>0){
@@ -714,9 +714,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         storageUtils.session.setItem('_reviewOk_',okArr);
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == 'true'){
+                            if(storageUtils.session.getItem('_Allowed_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_Allowed')
+                                storageUtils.session.removeItem('_Allowed_')
                             }
                         },100);
                         $scope.toReviewItems = [];/*删除待审核的*/
@@ -743,9 +743,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
                             }
                         }
                         $timeout(function () {
-                            if(storageUtils.session.getItem('_Allowed') == 'true'){
+                            if(storageUtils.session.getItem('_Allowed_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_Allowed')
+                                storageUtils.session.removeItem('_Allowed_')
                             }
                         },100);
                         result = $scope.toReviewItems;

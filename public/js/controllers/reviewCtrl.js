@@ -156,7 +156,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                     ];
                     $scope.export = function (item, index) {
                         var num = 1;
-                        item.exportShow = true;
+                        item.exportShow = !item.exportShow;
                         var data0 = {
                             id: item.id,
                             uid: '',
@@ -187,6 +187,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             serverService.getReviewList(data0)
                                 .then(function (data) {
                                     item.exportShow = false;
+                                    item.exportItem = {};
                                     var data = {
                                         uid: '',
                                         tid: item.id,
@@ -195,7 +196,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                         tip: 1
                                     };
                                     if (!data.date) {
-                                        alert('请选择事件');
+                                        alert('请选择时间');
                                     } else {
                                         var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id=' + data.tid + '&uid=' + data.uid + '&date=' + data.date + '&status=' + data.status + '&tip=1'
                                         window.open(url)

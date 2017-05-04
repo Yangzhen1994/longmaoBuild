@@ -1,9 +1,14 @@
 .text-proof{
-    margin-left:0px;
     height: 50px;
     width: 220px;
     position: relative;
     box-sizing: border-box;
+    margin-left: 8px;
+}
+.text-proof-del-img{
+    position: absolute;
+    top:-8px;
+    right:-80px
 }
 .moniInput{
     margin-left:10px;

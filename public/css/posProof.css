@@ -3,10 +3,18 @@
     height: 116px;
 
     position: relative;
-
+    margin-left: 18px;
+    margin-bottom: 10px
 }
 .pos-proof img{
     width: 100%;
+}
+.pos-proof-del-img{
+    clear: both;
+    position: absolute;
+    top:-8px;
+    right: 5px;
+    width:32px;
 }
 .posEdit{
     position: absolute;

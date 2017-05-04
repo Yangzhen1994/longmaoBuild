@@ -1,11 +1,9 @@
 <link rel="stylesheet" href="./css/textProof.css">
 <div class="text-proof" ng-controller="textProofCtrl" style="margin-bottom: 10px">
     <img src="../img/moduleImg/rectangle_text.png" alt="" style="width: 288px;height: 48px">
-    <img src="./img/icon/delete_circle.png" alt="" style="
-    position: absolute;
-    top:-8px;
-    right:-80px" ng-click="deleteTextProof($event,$index)"
-         class="{{'delete'+$index}}"
+    <img src="./img/icon/delete_circle.png" alt="" ng-click="deleteTextProof($event,$index)"
+         id="{{'delete'+$index}}"
+         class="text-proof-del-img"
     >
 </div>
 

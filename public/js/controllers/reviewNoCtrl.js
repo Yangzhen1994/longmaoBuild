@@ -109,13 +109,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                             status:1
                                         }
                                 )
-                                        .then(function (data) {
-                                            if(data.result.success ==1){
-                                                storageUtils.session.setItem('_NotoAllow_',true)
-                                            }else{
-                                                storageUtils.session.setItem('_NotoAllow_',false)
-                                            }
-                                        });
+                                .then(function (data) {
+                                    if(data.result.success ==1){
+                                        storageUtils.session.setItem('_NotoAllow_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_NotoAllow_',false)
+                                    }
+                                });
                                 //okArr.push($scope.reviewNoItems[i]);
                                 $scope.masterHeader = false;
                                 $scope.masterItem = false;
@@ -127,7 +127,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             $timeout(function () {
                                 if(storageUtils.session.getItem('_NotoAllow_')== 'true'){
                                     alert('操作成功')
-                                    storageUtils.session.removeItem('_NotoAllow_')
+                                    storageUtils.session.removeItem('_NotoAllow_');
+                                    //操作成功后tab间切换实现刷新目的
+                                    storageUtils.session.setItem('_reviewNoChecked_',true);
+                                    window.location = '/reviewDetail/reviewDetail/tab2';
                                 }
                             },100);
                             storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
@@ -151,8 +154,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             }
                             $timeout(function () {
                                 if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
-                                    alert('操作成功')
-                                    storageUtils.session.removeItem('_NotoAllow_')
+                                    alert('操作成功');
+                                    storageUtils.session.removeItem('_NotoAllow_');
+                                    //操作成功后tab间切换实现刷新目的
+                                    storageUtils.session.setItem('_reviewNoChecked_',true);
+                                    window.location = '/reviewDetail/reviewDetail/tab2';
                                 }
                             },100)
                             result = $scope.reviewNoItems;
@@ -215,11 +221,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     };
 
                     serverService.getReviewList(data)
-                            .then(function (resData) {
-                                $scope.orderFlag = !$scope.orderFlag;
-                                $scope.reviewNoItems = resData.result.rows;
-                                $scope.changeRight($scope.reviewNoItems[0],0)
-                            })
+                        .then(function (resData) {
+                            $scope.orderFlag = !$scope.orderFlag;
+                            $scope.reviewNoItems = resData.result.rows;
+                            $scope.changeRight($scope.reviewNoItems[0],0)
+                        })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
@@ -366,7 +372,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $timeout(function () {
                             if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_NotoAllow_')
+                                storageUtils.session.removeItem('_NotoAllow_');
+                                //操作成功后tab间切换实现刷新目的
+                                storageUtils.session.setItem('_reviewNoChecked_',true);
+                                window.location = '/reviewDetail/reviewDetail/tab2';
                             }
                         },100);
                         storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
@@ -392,7 +401,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $timeout(function () {
                             if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
                                 alert('操作成功');
-                                storageUtils.session.removeItem('_NotoAllow_')
+                                storageUtils.session.removeItem('_NotoAllow_');
+                                //操作成功后tab间切换实现刷新目的
+                                storageUtils.session.setItem('_reviewNoChecked_',true);
+                                window.location = '/reviewDetail/reviewDetail/tab2';
                             }
                         },100);
                         result = $scope.reviewNoItems;

@@ -4,12 +4,23 @@
 define(['app','storageUtils'], function (app,storageUtils,serverService) {
     return  app.controller('reviewOkCtrl',['$scope','$rootScope','serverService',function ($scope,$rootScope,serverService) {
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
+        var toReviewChecked = storageUtils.session.getItem('_toReviewChecked_');
+        var reviewNoChecked = storageUtils.session.getItem('_reviewNoChecked_');
         if(reviewFlag){
             storageUtils.session.removeItem('_FLAG_');
             window.location = '#/reviewDetail/reviewDetail/tab3';
             return;
         }
-
+        if(toReviewChecked){
+            storageUtils.session.removeItem('_toReviewChecked_');
+            window.location = '#/reviewDetail/reviewDetail/tab1';
+            return;
+        }
+        if(reviewNoChecked){
+            storageUtils.session.removeItem('_reviewNoChecked_');
+            window.location = '#/reviewDetail/reviewDetail/tab3';
+            return;
+        }
         var reviewId = storageUtils.session.getItem('_reviewList_');
         
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');

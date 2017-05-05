@@ -363,6 +363,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                             $timeout(function () {
                                                 if(storageUtils.session.getItem('_Fail_') == 'true'){
                                                     alert('操作成功');
+                                                    $scope.otherReason = '';
                                                     storageUtils.session.removeItem('_Fail_')
                                                 }
                                             },100)
@@ -397,6 +398,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                         $timeout(function () {
                                             if(storageUtils.session.getItem('_Fail_') == 'true'){
                                                 alert('操作成功');
+                                                $scope.otherReason = '';
                                                 storageUtils.session.removeItem('_Fail_')
                                             }
                                         },100);
@@ -888,6 +890,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $timeout(function () {
                                         if(storageUtils.session.getItem('_Fail_') == 'true'){
                                             alert('操作成功');
+                                            $scope.otherReason = '';
                                             storageUtils.session.removeItem('_Fail_')
                                         }
                                     },100);
@@ -914,6 +917,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     $timeout(function () {
                                         if(storageUtils.session.getItem('_Fail_') == 'true'){
                                             alert('操作成功');
+                                            $scope.otherReason = '';
                                             storageUtils.session.removeItem('_Fail_')
                                         }
                                     },100);
@@ -927,12 +931,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                                     }
                                     storageUtils.session.setItem('_reviewNo_',noArr);
                                 }
+                                $scope.showRejCover = false;
                             }
 
 
                             console.log($scope.otherReason);
 
-                            $scope.showRejCover = false;
+
 
                         }
                     }

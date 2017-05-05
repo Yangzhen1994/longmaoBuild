@@ -9,14 +9,20 @@ define(['app'], function (app) {
                 //debugger;
                 element.on('click', function (event) {
 
-                    $(document).ready(function(){
-                        $(document).bind("keyup", keyUpevents);
+                    $('key-area').ready(function(){
+                        $('key-area').bind("keyup", keyUpevents);
                     });
                     function keyUpevents(e) {
                         var kc = window.event?e.keyCode:e.which;
                         console.log(kc);
                         if(kc == 187 || kc == 107){
-                            $('.tr-right-fallow').trigger('click');
+                            if(scope.tabSelected == 0){
+                                $('.tr-right-fallow').trigger('click');
+                            }else if(scope.tabSelected == 2){
+                                $('.rn-right-fallow').trigger('click');
+                            }
+
+
                             //$('#rnAllow').trigger('click')
                         }else if(kc == 97 || kc == 49){//小键盘1 或者 大键盘1
                             $('#reasonDetail0').trigger('click')

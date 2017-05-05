@@ -130,7 +130,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     storageUtils.session.removeItem('_NotoAllow_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_reviewNoChecked_',true);
-                                    window.location = '/reviewDetail/reviewDetail/tab2';
+                                    window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
                             },100);
                             storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
@@ -158,7 +158,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     storageUtils.session.removeItem('_NotoAllow_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_reviewNoChecked_',true);
-                                    window.location = '/reviewDetail/reviewDetail/tab2';
+                                    window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
                             },100)
                             result = $scope.reviewNoItems;
@@ -375,7 +375,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 storageUtils.session.removeItem('_NotoAllow_');
                                 //操作成功后tab间切换实现刷新目的
                                 storageUtils.session.setItem('_reviewNoChecked_',true);
-                                window.location = '/reviewDetail/reviewDetail/tab2';
+                                window.location = '#/reviewDetail/reviewDetail/tab2';
                             }
                         },100);
                         storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
@@ -404,7 +404,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 storageUtils.session.removeItem('_NotoAllow_');
                                 //操作成功后tab间切换实现刷新目的
                                 storageUtils.session.setItem('_reviewNoChecked_',true);
-                                window.location = '/reviewDetail/reviewDetail/tab2';
+                                window.location = '#/reviewDetail/reviewDetail/tab2';
                             }
                         },100);
                         result = $scope.reviewNoItems;

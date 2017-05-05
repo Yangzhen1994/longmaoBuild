@@ -99,69 +99,72 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 };
                 $scope.rnRightAllow = function () {
                     /*全选通过*/
-                    if($scope.master&&$scope.master == true){
-                        for(var i=0;i<$scope.reviewNoItems.length;i++){
-                            serverService.check(
-                                {
-                                    ids:$scope.reviewNoItems[i].cid,
-                                    status:1
-                                }
-                            )
-                            .then(function (data) {
-                                if(data.result.success ==1){
-                                    storageUtils.session.setItem('_NotoAllow_',true)
-                                }else{
-                                    storageUtils.session.setItem('_NotoAllow_',false)
-                                }
-                            });
-                            //okArr.push($scope.reviewNoItems[i]);
-                            $scope.masterHeader = false;
-                            $scope.masterItem = false;
-                            $scope.changeRight(null);
-                        }
-                        //storageUtils.session.setItem('_reviewOk_',okArr);
-                        $scope.reviewNoItems = [];/*删除待审核的*/
-                        $scope.masterHeader = false;
-                        $timeout(function () {
-                            if(storageUtils.session.getItem('_NotoAllow_')== 'true'){
-                                alert('操作成功')
-                                storageUtils.session.removeItem('_NotoAllow_')
-                            }
-                        },100);
-                        storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
-                        }else{
-                        /*没全选状态下点击next/通过*/
-                        var result = [];
-                        for(var i=0;i<$scope.reviewNoItems.length;i++){
-                            if($scope.reviewNoItems[i].checkState == true) {
-                                serverService.check({ids:$scope.reviewNoItems[i].cid,
-                                    status:1
-                                }).then(function (data) {
-                                    if(data.result.success ==1){
-                                        storageUtils.session.setItem('_NotoAllow_',true)
-                                    }
-                                });
-
+                    if(confirm('确认通过?')){
+                        if($scope.master&&$scope.master == true){
+                            for(var i=0;i<$scope.reviewNoItems.length;i++){
+                                serverService.check(
+                                        {
+                                            ids:$scope.reviewNoItems[i].cid,
+                                            status:1
+                                        }
+                                )
+                                        .then(function (data) {
+                                            if(data.result.success ==1){
+                                                storageUtils.session.setItem('_NotoAllow_',true)
+                                            }else{
+                                                storageUtils.session.setItem('_NotoAllow_',false)
+                                            }
+                                        });
                                 //okArr.push($scope.reviewNoItems[i]);
-                                $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
-                                i--;
+                                $scope.masterHeader = false;
+                                $scope.masterItem = false;
+                                $scope.changeRight(null);
                             }
-                        }
-                        $timeout(function () {
-                            if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
-                                alert('操作成功')
-                                storageUtils.session.removeItem('_NotoAllow_')
-                            }
-                        },100)
-                        result = $scope.reviewNoItems;
-                        $scope.reviewNoItems = result;
-                        if($scope.reviewNoItems.length>0){
-                            $scope.changeRight($scope.reviewNoItems[0],0);
+                            //storageUtils.session.setItem('_reviewOk_',okArr);
+                            $scope.reviewNoItems = [];/*删除待审核的*/
+                            $scope.masterHeader = false;
+                            $timeout(function () {
+                                if(storageUtils.session.getItem('_NotoAllow_')== 'true'){
+                                    alert('操作成功')
+                                    storageUtils.session.removeItem('_NotoAllow_')
+                                }
+                            },100);
+                            storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                         }else{
-                            $scope.toReview = {}
+                            /*没全选状态下点击next/通过*/
+                            var result = [];
+                            for(var i=0;i<$scope.reviewNoItems.length;i++){
+                                if($scope.reviewNoItems[i].checkState == true) {
+                                    serverService.check({ids:$scope.reviewNoItems[i].cid,
+                                        status:1
+                                    }).then(function (data) {
+                                        if(data.result.success ==1){
+                                            storageUtils.session.setItem('_NotoAllow_',true)
+                                        }
+                                    });
+
+                                    //okArr.push($scope.reviewNoItems[i]);
+                                    $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                                    i--;
+                                }
+                            }
+                            $timeout(function () {
+                                if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
+                                    alert('操作成功')
+                                    storageUtils.session.removeItem('_NotoAllow_')
+                                }
+                            },100)
+                            result = $scope.reviewNoItems;
+                            $scope.reviewNoItems = result;
+                            if($scope.reviewNoItems.length>0){
+                                $scope.changeRight($scope.reviewNoItems[0],0);
+                            }else{
+                                $scope.toReview = {}
+                            }
+                            //storageUtils.session.setItem('_reviewOk_',okArr);
                         }
-                        //storageUtils.session.setItem('_reviewOk_',okArr);
                     }
+
                 };
                 $scope.orderByTimes = function (num) {
                     var reviewId = storageUtils.session.getItem('_reviewList_');
@@ -337,67 +340,70 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             };
             $scope.rnRightAllow = function () {
                 /*全选通过*/
-                if($scope.master&&$scope.master == true){
-                    for(var i=0;i<$scope.reviewNoItems.length;i++){
-                        serverService.check({ids:$scope.reviewNoItems[i].cid,
-                            status:1
-                        })
-                        .then(function (data) {
-                            if(data.result.success ==1){
-                                storageUtils.session.setItem('_NotoAllow_',true)
-                            }else{
-                                storageUtils.session.setItem('_NotoAllow_',false)
-                            }
-                        });
-                        //okArr.push($scope.reviewNoItems[i]);
-                        $scope.masterHeader = false;
-                        $scope.masterItem = false;
-                        $scope.changeRight(null);
-                    }
-                    //storageUtils.session.setItem('_reviewOk_',okArr);
-                    $scope.reviewNoItems = [];/*删除待审核的*/
-                    $scope.masterHeader = false;
-                    $timeout(function () {
-                        if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
-                            alert('操作成功');
-                            storageUtils.session.removeItem('_NotoAllow_')
-                        }
-                    },100);
-                    storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
-                }else{
-                    /*没全选状态下点击next/通过*/
-                    var result = [];
-                    for(var i=0;i<$scope.reviewNoItems.length;i++){
-                        if($scope.reviewNoItems[i].checkState == true) {
+                if(confirm('确认通过?')){
+                    if($scope.master&&$scope.master == true){
+                        for(var i=0;i<$scope.reviewNoItems.length;i++){
                             serverService.check({ids:$scope.reviewNoItems[i].cid,
                                 status:1
-                            }).then(function (data) {
-                                if(data.result.success ==1){
-                                    storageUtils.session.setItem('_NotoAllow_',true)
-                                }else{
-                                    storageUtils.session.setItem('_NotoAllow_',false)
-                                }
-                            });
+                            })
+                                    .then(function (data) {
+                                        if(data.result.success ==1){
+                                            storageUtils.session.setItem('_NotoAllow_',true)
+                                        }else{
+                                            storageUtils.session.setItem('_NotoAllow_',false)
+                                        }
+                                    });
                             //okArr.push($scope.reviewNoItems[i]);
-                            $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
-                            i--;
+                            $scope.masterHeader = false;
+                            $scope.masterItem = false;
+                            $scope.changeRight(null);
                         }
-                    }
-                    $timeout(function () {
-                        if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
-                            alert('操作成功');
-                            storageUtils.session.removeItem('_NotoAllow_')
-                        }
-                    },100);
-                    result = $scope.reviewNoItems;
-                    $scope.reviewNoItems = result;
-                    if($scope.reviewNoItems.length>0){
-                        $scope.changeRight($scope.reviewNoItems[0],0);
+                        //storageUtils.session.setItem('_reviewOk_',okArr);
+                        $scope.reviewNoItems = [];/*删除待审核的*/
+                        $scope.masterHeader = false;
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_NotoAllow_')
+                            }
+                        },100);
+                        storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                     }else{
-                        $scope.toReview = {}
+                        /*没全选状态下点击next/通过*/
+                        var result = [];
+                        for(var i=0;i<$scope.reviewNoItems.length;i++){
+                            if($scope.reviewNoItems[i].checkState == true) {
+                                serverService.check({ids:$scope.reviewNoItems[i].cid,
+                                    status:1
+                                }).then(function (data) {
+                                    if(data.result.success ==1){
+                                        storageUtils.session.setItem('_NotoAllow_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_NotoAllow_',false)
+                                    }
+                                });
+                                //okArr.push($scope.reviewNoItems[i]);
+                                $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                                i--;
+                            }
+                        }
+                        $timeout(function () {
+                            if(storageUtils.session.getItem('_NotoAllow_') == 'true'){
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_NotoAllow_')
+                            }
+                        },100);
+                        result = $scope.reviewNoItems;
+                        $scope.reviewNoItems = result;
+                        if($scope.reviewNoItems.length>0){
+                            $scope.changeRight($scope.reviewNoItems[0],0);
+                        }else{
+                            $scope.toReview = {}
+                        }
+                        //storageUtils.session.setItem('_reviewOk_',okArr);
                     }
-                    //storageUtils.session.setItem('_reviewOk_',okArr);
                 }
+
             };
 
             $scope.orderByTimes = function (num) {

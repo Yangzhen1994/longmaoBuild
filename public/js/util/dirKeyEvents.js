@@ -9,8 +9,8 @@ define(['app'], function (app) {
                 //debugger;
                 element.on('click', function (event) {
 
-                    $('key-area').ready(function(){
-                        $('key-area').bind("keyup", keyUpevents);
+                    $('.key-area').ready(function(){
+                        $('.key-area').bind("keyup", keyUpevents);
                     });
                     function keyUpevents(e) {
                         var kc = window.event?e.keyCode:e.which;

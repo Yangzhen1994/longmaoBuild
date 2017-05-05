@@ -7,10 +7,10 @@ define(['app'], function (app) {
             restrict: 'A',
             link: function (scope, element, attrs, controller) {
                 //debugger;
-                element.on('click', function (event) {
+                element.one('click', function (event) {
 
                     $('.key-area').ready(function(){
-                        $('.key-area').bind("keyup", keyUpevents);
+                        $(document).bind("keyup", keyUpevents);
                     });
                     function keyUpevents(e) {
                         var kc = window.event?e.keyCode:e.which;

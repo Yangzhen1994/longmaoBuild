@@ -253,7 +253,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                 $scope.changeReasonBg = function (index) {
                     $scope.bg = index
-                }
+                };
                 $scope.subReason = function (e,index) {
                     if(confirm('确认拒绝么？')){
                         if(e){

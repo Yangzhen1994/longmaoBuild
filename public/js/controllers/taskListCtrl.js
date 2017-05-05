@@ -1686,7 +1686,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         storageUtils.session.setItem('_DOWNLINE_', true);
                                         window.location.reload();
                                     } else {
-                                        alert('操作失败请查看余额是否充足');
+                                        alert('操作失败请查看余额是否充足或者任务是否已过期');
                                         storageUtils.session.setItem('_DOWNLINE_', true);
                                         window.location.reload();
                                     }

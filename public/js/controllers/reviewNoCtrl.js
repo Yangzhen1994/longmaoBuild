@@ -97,8 +97,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
                     $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
                 };
-                $scope.rnRightAllow = function () {
+                $scope.rnRightAllow = function (e) {
                     /*全选通过*/
+                    e.stopPropagation();
                     if(confirm('确认通过?')){
                         if($scope.master&&$scope.master == true){
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
@@ -338,7 +339,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
             };
-            $scope.rnRightAllow = function () {
+            $scope.rnRightAllow = function (e) {
+                e.stopPropagation();
                 /*全选通过*/
                 if(confirm('确认通过?')){
                     if($scope.master&&$scope.master == true){

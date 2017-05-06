@@ -159,6 +159,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     });
 
                                     //okArr.push($scope.reviewNoItems[i]);
+                                    storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                     $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                     i--;
                                 }
@@ -177,7 +178,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             if($scope.reviewNoItems.length>0){
                                 $scope.changeRight($scope.reviewNoItems[0],0);
                             }else{
-                                $scope.toReview = {}
+                                $scope.reviewNo = {}
                             }
                             //storageUtils.session.setItem('_reviewOk_',okArr);
                         }
@@ -248,14 +249,18 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             $scope.reviewUserId = ''
         }
         var reviewId = storageUtils.session.getItem('_reviewList_');
-        serverService.getReviewList({
+        $scope.data = {
             id:reviewId,
             uid:$scope.reviewUserId,
             date:$scope.subTime,
             status:4,
             page:1,
             rows:10
-        }).then(function (data) {
+        };
+        if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_')){
+            $scope.data.page = $rootScope.page;
+        }
+        serverService.getReviewList($scope.data).then(function (data) {
             console.log(data);
             $scope.reviewNoItems = data.result.rows;
             if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
@@ -415,6 +420,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     }
                                 });
                                 //okArr.push($scope.reviewNoItems[i]);
+                                storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                 $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                 i--;
                             }
@@ -433,7 +439,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         if($scope.reviewNoItems.length>0){
                             $scope.changeRight($scope.reviewNoItems[0],0);
                         }else{
-                            $scope.toReview = {}
+                            $scope.reviewNo = {}
                         }
                         //storageUtils.session.setItem('_reviewOk_',okArr);
                     }
@@ -495,6 +501,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             $scope.changeRight($scope.reviewNoItems[0],0)
                         })
             };
+            if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_')) {
+                var currentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
+                storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
+                $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex],currentCheckIndex)
+            }else{
+                $scope.changeRight($scope.reviewNoItems[0],0)
+            }
         })
     }])
 });

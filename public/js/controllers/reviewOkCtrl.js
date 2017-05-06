@@ -112,7 +112,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     $scope.reviewOkItems[index].checkState = x;
                     for(var i=0;i<$scope.reviewOkItems.length;i++){
 
-                        if(!$scope.toReviewItems[i].checkState){
+                        if(!$scope.reviewOkItems[i].checkState){
                             $scope.masterHeader = false;
                             $scope.flag = false;
                             return false
@@ -175,7 +175,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         uid:$scope.reviewUserId,
                         date:$scope.subTime,
                         status:'',
-                        page:1,
+                        page:$rootScope.pageIndex,
                         rows:10,
                         sort:'created_time',
                         order:'desc'
@@ -214,62 +214,62 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     };
 
                     serverService.getReviewList(data)
-                            .then(function (resData) {
-                                $scope.orderFlag = !$scope.orderFlag;
-                                $scope.reviewOkItems = resData.result.rows;
-                                $scope.changeRight($scope.reviewOkItems[0],0);
-                                $rootScope.totalCount = resData.result.total;
-                                $rootScope.pageIndex = 1;
-                                $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
-                                $rootScope.toPage = function (index) {
-                                    if (index < 1) {
-                                        index = 1
-                                    }
-                                    if (index > $rootScope.pageTotal) {
-                                        index--;
-                                        $rootScope.pageIndex = index;
-                                    }
+                        .then(function (resData) {
+                            $scope.orderFlag = !$scope.orderFlag;
+                            $scope.reviewOkItems = resData.result.rows;
+                            $scope.changeRight($scope.reviewOkItems[0],0);
+                            $rootScope.totalCount = resData.result.total;
+                            $rootScope.pageIndex = $rootScope.pageIndex;
+                            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                            $rootScope.toPage = function (index) {
+                                if (index < 1) {
+                                    index = 1
+                                }
+                                if (index > $rootScope.pageTotal) {
+                                    index--;
                                     $rootScope.pageIndex = index;
-                                    var paginationData = {
-                                        id:reviewId,
-                                        uid:$scope.reviewUserId,
-                                        date:$scope.subTime,
-                                        status:3,
-                                        page:index,
-                                        rows:10,
-                                        order:data.order,
-                                        sort:data.sort
-                                    };
-                                    serverService.getReviewList(paginationData)
-                                            .then(function (data) {
-                                                $scope.reviewOkItems = data.result.rows;
-                                                if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
-                                                    $scope.reviewOk = $scope.reviewOkItems[0].data;
-                                                    serverService.getInfoData(
-                                                            {
-                                                                uid:$scope.reviewOkItems[0].uid,
-                                                                tid:$scope.reviewOkItems[0].id
-                                                            }
-                                                    )
-                                                    .then(function (data) {
-                                                        $scope.reviewOk[0].amount = data.result.amount;
-                                                        $scope.reviewOk[0].check_fail = data.result.check_fail;
-                                                        $scope.reviewOk[0].invited = data.result.invited;
-                                                        $scope.reviewOk[0].regist_time = data.result.regist_time;
-                                                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
-                                                    })
-                                                }else{return}
-
-                                                $scope.reviewOk.forEach(function (item,index) {
-                                                    if(item.type == 5){
-                                                        window.x = item.x;
-                                                        window.y = item.y;
-                                                    }
-                                                })
-
-                                            })
+                                }
+                                $rootScope.pageIndex = index;
+                                var paginationData = {
+                                    id:reviewId,
+                                    uid:$scope.reviewUserId,
+                                    date:$scope.subTime,
+                                    status:3,
+                                    page:index,
+                                    rows:10,
+                                    order:data.order,
+                                    sort:data.sort
                                 };
-                            })
+                                serverService.getReviewList(paginationData)
+                                        .then(function (data) {
+                                            $scope.reviewOkItems = data.result.rows;
+                                            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                                $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                                serverService.getInfoData(
+                                                        {
+                                                            uid:$scope.reviewOkItems[0].uid,
+                                                            tid:$scope.reviewOkItems[0].id
+                                                        }
+                                                )
+                                                .then(function (data) {
+                                                    $scope.reviewOk[0].amount = data.result.amount;
+                                                    $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                                    $scope.reviewOk[0].invited = data.result.invited;
+                                                    $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                                    $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                                })
+                                            }else{return}
+
+                                            $scope.reviewOk.forEach(function (item,index) {
+                                                if(item.type == 5){
+                                                    window.x = item.x;
+                                                    window.y = item.y;
+                                                }
+                                            })
+
+                                        })
+                            };
+                        })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
@@ -317,13 +317,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                             $scope.reviewOk = $scope.reviewOkItems[0].data;
                             serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
-                                    .then(function (data) {
-                                        $scope.reviewOk[0].amount = data.result.amount
-                                        $scope.reviewOk[0].check_fail = data.result.check_fail
-                                        $scope.reviewOk[0].invited = data.result.invited
-                                        $scope.reviewOk[0].regist_time = data.result.regist_time
-                                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
-                                    })
+                                .then(function (data) {
+                                    $scope.reviewOk[0].amount = data.result.amount;
+                                    $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                    $scope.reviewOk[0].invited = data.result.invited;
+                                    $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                    $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                })
                         }else{return}
                         $scope.reviewOk.forEach(function (item,index) {
                             if(item.type == 5){
@@ -342,11 +342,11 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 //$scope.changeRight($scope.reviewOkItems[0].data,0)
                 serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                     .then(function (data) {
-                        $scope.reviewOk[0].amount = data.result.amount
-                        $scope.reviewOk[0].check_fail = data.result.check_fail
-                        $scope.reviewOk[0].invited = data.result.invited
-                        $scope.reviewOk[0].regist_time = data.result.regist_time
-                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+                        $scope.reviewOk[0].amount = data.result.amount;
+                        $scope.reviewOk[0].check_fail = data.result.check_fail;
+                        $scope.reviewOk[0].invited = data.result.invited;
+                        $scope.reviewOk[0].regist_time = data.result.regist_time;
+                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
                     })
             }else{return}
             $scope.reviewOk.forEach(function (item,index) {
@@ -381,7 +381,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 }
                 $scope.reviewOkItems[index].checkState = x;
                 for(var i=0;i<$scope.reviewOkItems.length;i++){
-                    if(!$scope.toReviewItems[i].checkState){
+                    if(!$scope.reviewOkItems[i].checkState){
                         $scope.masterHeader = false;
                         $scope.flag = false;
                         return false
@@ -398,11 +398,11 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                             if($scope.reviewOk.length == 0){
                                 $scope.reviewOk.push({})
                             }
-                            $scope.reviewOk[0].amount = data.result.amount
-                            $scope.reviewOk[0].check_fail = data.result.check_fail
-                            $scope.reviewOk[0].invited = data.result.invited
-                            $scope.reviewOk[0].regist_time = data.result.regist_time
-                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail
+                            $scope.reviewOk[0].amount = data.result.amount;
+                            $scope.reviewOk[0].check_fail = data.result.check_fail;
+                            $scope.reviewOk[0].invited = data.result.invited;
+                            $scope.reviewOk[0].regist_time = data.result.regist_time;
+                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
 
                             $scope.reviewOk.forEach(function (item,index) {
                                 if(item.type == 5){
@@ -442,7 +442,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     uid:$scope.reviewUserId,
                     date:$scope.subTime,
                     status:'',
-                    page:1,
+                    page:$rootScope.pageIndex,
                     rows:10,
                     sort:'created_time',
                     order:'desc'
@@ -480,62 +480,62 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 };
 
                 serverService.getReviewList(data)
-                        .then(function (resData) {
-                            $scope.orderFlag = !$scope.orderFlag;
-                            $scope.reviewOkItems = resData.result.rows;
-                            $scope.changeRight($scope.reviewOkItems[0],0);
-                            $rootScope.totalCount = resData.result.total;
-                            $rootScope.pageIndex = 1;
-                            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
-                            $rootScope.toPage = function (index) {
-                                if (index < 1) {
-                                    index = 1
-                                }
-                                if (index > $rootScope.pageTotal) {
-                                    index--;
-                                    $rootScope.pageIndex = index;
-                                }
+                    .then(function (resData) {
+                        $scope.orderFlag = !$scope.orderFlag;
+                        $scope.reviewOkItems = resData.result.rows;
+                        $scope.changeRight($scope.reviewOkItems[0],0);
+                        $rootScope.totalCount = resData.result.total;
+                        $rootScope.pageIndex = $rootScope.pageIndex;
+                        $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                        $rootScope.toPage = function (index) {
+                            if (index < 1) {
+                                index = 1
+                            }
+                            if (index > $rootScope.pageTotal) {
+                                index--;
                                 $rootScope.pageIndex = index;
-                                var paginationData = {
-                                    id:reviewId,
-                                    uid:$scope.reviewUserId,
-                                    date:$scope.subTime,
-                                    status:3,
-                                    page:index,
-                                    rows:10,
-                                    order:data.order,
-                                    sort:data.sort
-                                };
-                                serverService.getReviewList(paginationData)
-                                    .then(function (data) {
-                                        $scope.reviewOkItems = data.result.rows;
-                                        if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
-                                            $scope.reviewOk = $scope.reviewOkItems[0].data;
-                                            serverService.getInfoData(
-                                                    {
-                                                        uid:$scope.reviewOkItems[0].uid,
-                                                        tid:$scope.reviewOkItems[0].id
-                                                    }
-                                            )
-                                            .then(function (data) {
-                                                $scope.reviewOk[0].amount = data.result.amount;
-                                                $scope.reviewOk[0].check_fail = data.result.check_fail;
-                                                $scope.reviewOk[0].invited = data.result.invited;
-                                                $scope.reviewOk[0].regist_time = data.result.regist_time;
-                                                $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
-                                            })
-                                        }else{return}
-
-                                        $scope.reviewOk.forEach(function (item,index) {
-                                            if(item.type == 5){
-                                                window.x = item.x;
-                                                window.y = item.y;
-                                            }
-                                        })
-
-                                    })
+                            }
+                            $rootScope.pageIndex = index;
+                            var paginationData = {
+                                id:reviewId,
+                                uid:$scope.reviewUserId,
+                                date:$scope.subTime,
+                                status:3,
+                                page:index,
+                                rows:10,
+                                order:data.order,
+                                sort:data.sort
                             };
-                        })
+                            serverService.getReviewList(paginationData)
+                                .then(function (data) {
+                                    $scope.reviewOkItems = data.result.rows;
+                                    if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                        $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                        serverService.getInfoData(
+                                                {
+                                                    uid:$scope.reviewOkItems[0].uid,
+                                                    tid:$scope.reviewOkItems[0].id
+                                                }
+                                        )
+                                        .then(function (data) {
+                                            $scope.reviewOk[0].amount = data.result.amount;
+                                            $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                            $scope.reviewOk[0].invited = data.result.invited;
+                                            $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                        })
+                                    }else{return}
+
+                                    $scope.reviewOk.forEach(function (item,index) {
+                                        if(item.type == 5){
+                                            window.x = item.x;
+                                            window.y = item.y;
+                                        }
+                                    })
+
+                                })
+                        };
+                    })
             };
         })
     }])

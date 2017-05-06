@@ -90,7 +90,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
                     $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
                 }
-                $scope.prev = function () {
+                $scope.noPrev = function () {
                     $scope.currentIndex --;
                     if($scope.currentIndex < 0 ){
                         $scope.currentIndex = 0
@@ -354,7 +354,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
             }
-            $scope.prev = function () {
+            $scope.noPrev = function () {
                 $scope.currentIndex --;
                 if($scope.currentIndex < 0 ){
                     $scope.currentIndex = 0
@@ -380,13 +380,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             serverService.check({ids:$scope.reviewNoItems[i].cid,
                                 status:1
                             })
-                                    .then(function (data) {
-                                        if(data.result.success ==1){
-                                            storageUtils.session.setItem('_NotoAllow_',true)
-                                        }else{
-                                            storageUtils.session.setItem('_NotoAllow_',false)
-                                        }
-                                    });
+                            .then(function (data) {
+                                if(data.result.success ==1){
+                                    storageUtils.session.setItem('_NotoAllow_',true)
+                                }else{
+                                    storageUtils.session.setItem('_NotoAllow_',false)
+                                }
+                            });
                             //okArr.push($scope.reviewNoItems[i]);
                             $scope.masterHeader = false;
                             $scope.masterItem = false;
@@ -407,7 +407,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                     }else{
                         /*没全选状态下点击next/通过*/
-                        var result = [];
+
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
                             if($scope.reviewNoItems[i].checkState == true) {
                                 serverService.check({ids:$scope.reviewNoItems[i].cid,

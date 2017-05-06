@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-        <button id="allow" ng-click="trRightAllow()">通过</button>
+        <button id="allow" ng-click="trRightAllow($event)">通过</button>
         <button id="reject" ng-click="showRejCoverFn()">拒绝</button>
     </div>
     <div class="to-review-left" style="overflow-y: auto">
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="to-review-right-footer">
-            <a href="javascript:;" class="tr-right-prev-one" ng-click="prev()"><i class="pre-icon"></i>上一个</a>
+            <a href="javascript:;" class="tr-right-prev-one" ng-click="okPrev()"><i class="pre-icon"></i>上一个</a>
             <a href="javascript:;" class="tr-right-fallow" ng-click="trRightAllow($event)">通过</a>
             <a href="javascript:;" class="tr-right-reject" ng-mouseover="showRejCover = true"
                ng-click="subReason($event,0)">拒绝

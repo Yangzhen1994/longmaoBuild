@@ -29,7 +29,7 @@ define(['app'], function (app) {
                         }else if(kc == 98 || kc == 50){//小键盘2 或者 大键盘2
                             $('#reasonDetail1').trigger('click')
                         }else if(kc == 99 || kc == 51){
-                            scope.showrejCover = true
+                            scope.showRejCover = true
                             $('#orderReason').trigger('keyup')
                         }
 

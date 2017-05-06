@@ -1,14 +1,17 @@
 /**
  * Created by 73951 on 2017/3/23.
  */
-define(['app'], function (app) {
+define(['app','storageUtils'], function (app,storageUtils) {
     app.directive('keyEvents',[function () {
         return {
             restrict: 'A',
             link: function (scope, element, attrs, controller) {
                 //debugger;
                 element.one('click', function (event) {
-
+                    if(storageUtils.session.getItem('_keyuped_')){
+                        storageUtils.session.removeItem('_keyuped_');
+                        return;
+                    }
                     $('.key-area').ready(function(){
                         $(document).bind("keyup", keyUpevents);
                     });

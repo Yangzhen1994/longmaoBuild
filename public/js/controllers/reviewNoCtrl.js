@@ -100,6 +100,17 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $scope.rnRightAllow = function (e) {
                     /*全选通过*/
                     e.stopPropagation();
+                    var result = [];
+                    $scope.reviewNoItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            result.push(item)
+                        }
+                    });
+                    if(result.length == 0){
+                        alert('请勾选要操作的项！');
+                        return;
+                    }
+
                     if(confirm('确认通过?')){
                         if($scope.master&&$scope.master == true){
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
@@ -136,7 +147,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                         }else{
                             /*没全选状态下点击next/通过*/
-                            var result = [];
+
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
                                 if($scope.reviewNoItems[i].checkState == true) {
                                     serverService.check({ids:$scope.reviewNoItems[i].cid,
@@ -348,6 +359,16 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             $scope.rnRightAllow = function (e) {
                 e.stopPropagation();
                 /*全选通过*/
+                var result = [];
+                $scope.reviewNoItems.forEach(function (item,index) {
+                    if(item.checkState == true){
+                        result.push(item)
+                    }
+                });
+                if(result.length == 0){
+                    alert('请勾选要操作的项！');
+                    return;
+                }
                 if(confirm('确认通过?')){
                     if($scope.master&&$scope.master == true){
                         for(var i=0;i<$scope.reviewNoItems.length;i++){

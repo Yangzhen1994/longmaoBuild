@@ -168,6 +168,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 $scope.trRightAllow = function () {
                     /*全选通过*/
+                    e.stopPropagation();
+                    var result = [];
+                    $scope.toReviewItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            result.push(item)
+                        }
+                    });
+                    if(result.length == 0){
+                        alert('请勾选要操作的项！');
+                        return;
+                    }
                     if(confirm('确认通过么?')){
                         if($scope.master&&$scope.master == true){
                             for(var i=0;i<$scope.toReviewItems.length;i++){
@@ -205,7 +216,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                         }else{
                             /*没全选状态下点击next/通过*/
-                            var result = []
+
                             for(var i=0;i<$scope.toReviewItems.length;i++){
                                 if($scope.toReviewItems[i].checkState == true) {
                                     serverService.check({ids:$scope.toReviewItems[i].cid,
@@ -261,6 +272,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.bg = index
                 };
                 $scope.subReason = function (e,index) {
+                    e.stopPropagation();
+                    var result = [];
+                    $scope.toReviewItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            result.push(item)
+                        }
+                    });
+                    if(result.length == 0){
+                        alert('请勾选要操作的项！');
+                        return;
+                    }
                     if(confirm('确认拒绝么？')){
                         if(e){
                             e.stopPropagation()
@@ -351,6 +373,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 $scope.subOtherReason = function (e) {
 
                         if(e){
+                            e.stopPropagation();
+                            var result = [];
+                            $scope.toReviewItems.forEach(function (item,index) {
+                                if(item.checkState == true){
+                                    result.push(item)
+                                }
+                            });
+                            if(result.length == 0){
+                                alert('请勾选要操作的项！');
+                                return;
+                            }
                             var keycode = window.event?e.keyCode:e.which;
                             if(keycode==13){
                                 /*全选拒绝*/
@@ -725,19 +758,30 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 $scope.trRightAllow = function () {
                     /*全选通过*/
+                    e.stopPropagation();
+                    var result = [];
+                    $scope.toReviewItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            result.push(item)
+                        }
+                    });
+                    if(result.length == 0){
+                        alert('请勾选要操作的项！');
+                        return;
+                    }
                     if(confirm('确认通过么？')){
                         if($scope.master&&$scope.master == true){
                             for(var i=0;i<$scope.toReviewItems.length;i++){
                                 serverService.check({ids:$scope.toReviewItems[i].cid,
                                     status:1
                                 })
-                                        .then(function (data) {
-                                            if(data.result.success == 1){
-                                                storageUtils.session.setItem('_Allowed_',true)
-                                            }else{
-                                                storageUtils.session.setItem('_Allowed_',false)
-                                            }
-                                        });
+                                .then(function (data) {
+                                    if(data.result.success == 1){
+                                        storageUtils.session.setItem('_Allowed_',true)
+                                    }else{
+                                        storageUtils.session.setItem('_Allowed_',false)
+                                    }
+                                });
                                 okArr.push($scope.toReviewItems[i]);
                                 $scope.masterHeader = false;
                                 $scope.masterItem = false;
@@ -805,6 +849,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     $scope.bg = index
                 };
                 $scope.subReason = function (e,index) {
+                    e.stopPropagation();
+                    var result = [];
+                    $scope.toReviewItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            result.push(item)
+                        }
+                    });
+                    if(result.length == 0){
+                        alert('请勾选要操作的项！');
+                        return;
+                    }
                     if(confirm('确认拒绝么？')){
                         e.stopPropagation();
                         var data = {ids:$scope.toReviewItems[index].cid,
@@ -889,6 +944,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 }
                 $scope.subOtherReason = function (e) {
                     if(e){
+                        e.stopPropagation();
+                        var result = [];
+                        $scope.toReviewItems.forEach(function (item,index) {
+                            if(item.checkState == true){
+                                result.push(item)
+                            }
+                        });
+                        if(result.length == 0){
+                            alert('请勾选要操作的项！');
+                            return;
+                        }
                         var keycode = window.event?e.keyCode:e.which;
                         if(keycode==13){
                             /*全选拒绝*/

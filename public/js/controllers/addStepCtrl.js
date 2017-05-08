@@ -36,9 +36,18 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             }
             // console.log($scope.stepItems[index].oldSteps);
             if (data.id) {
-                serverService.saveStep(data).then(function (data) {
-                    if (data.code == 200) {
+                serverService.saveStep(data).then(function (resData) {
+                    if (resData.code == 200) {
+                        serverService.getComponent(taskId)
+                            .then(function (componentData) {
+                                componentData.result.forEach(function (item,index) {
+                                    if(item.step_id == data.id){
+                                        item.status = 0;
+                                        serverService.submitComponent(item)
+                                    }
+                                })
 
+                            })
                     }
                 })
             }

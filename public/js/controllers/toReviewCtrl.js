@@ -654,11 +654,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             $scope.data.page = storageUtils.session.getItem('_currentPageIndex_')
         }
         if(storageUtils.session.getItem('_toReviewSort_')){
-            $scope.sort = storageUtils.session.getItem('_toReviewSort_');
+            $scope.data.sort = storageUtils.session.getItem('_toReviewSort_');
             //storageUtils.session.removeItem('_toReviewSort_');
         }
         if(storageUtils.session.getItem('_toReviewOrder_')){
-            $scope.order = storageUtils.session.getItem('_toReviewOrder_');
+            $scope.data.order = storageUtils.session.getItem('_toReviewOrder_');
             //storageUtils.session.removeItem('_toReviewOrder_');
         }
         serverService.getReviewList($scope.data)
@@ -873,7 +873,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     }
                                 });
 
-                                okArr.push($scope.toReviewItems[i]);
+
                                 //storageUtils.session.setItem('_currentCheckIndex_', i);
                                 $scope.toReviewItems.splice(i, 1);
                                 /*删除待审核的*/
@@ -961,7 +961,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 $scope.masterHeader = false;
                                 $scope.changeRight(null);
                             }
-                            storageUtils.session.setItem('_reviewNo_', noArr);
                             $scope.toReviewItems = [];
                             /*删除待审核的*/
                             $timeout(function () {

@@ -37,7 +37,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         id:reviewId,
                         uid:$scope.reviewUserId,
                         date:$scope.subTime,
-                        status:3,
+                        status:4,
                         page:index,
                         rows:10
                     };
@@ -307,7 +307,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     id:reviewId,
                                     uid:$scope.reviewUserId,
                                     date:$scope.subTime,
-                                    status:3,
+                                    status:4,
                                     page:index,
                                     rows:10,
                                     order:data.order,
@@ -684,7 +684,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 id:reviewId,
                                 uid:$scope.reviewUserId,
                                 date:$scope.subTime,
-                                status:3,
+                                status:4,
                                 page:index,
                                 rows:10,
                                 order:data.order,

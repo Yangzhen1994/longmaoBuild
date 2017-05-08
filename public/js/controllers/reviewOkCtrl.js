@@ -67,8 +67,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                 $scope.reviewOkItems = data.result.rows;
                                 if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                                     $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                    if ($scope.reviewOk.length == 0) {
+                                        $scope.reviewOk.push({})
+                                    }
                                     serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                                         .then(function (data) {
+                                            $scope.currentIndex = 0;
+                                            $scope.changeColor = 0;
                                             $scope.reviewOk[0].amount = data.result.amount;
                                             $scope.reviewOk[0].check_fail = data.result.check_fail;
                                             $scope.reviewOk[0].invited = data.result.invited;
@@ -152,7 +157,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
                 };
-                $scope.changeRight($scope.reviewOkItems[0],0)
+                $scope.changeRight($scope.reviewOkItems[0],0);
                 $scope.next = function () {
                     $scope.currentIndex ++;
                     if($scope.currentIndex >= $scope.reviewOkItems.length ){
@@ -248,6 +253,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                         $scope.reviewOkItems = data.result.rows;
                                         if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                                             $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                            if($scope.reviewOk.length == 0){
+                                                $scope.reviewOk.push({})
+                                            }
                                             serverService.getInfoData(
                                                     {
                                                         uid:$scope.reviewOkItems[0].uid,
@@ -255,6 +263,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                                     }
                                             )
                                             .then(function (data) {
+                                                $scope.currentIndex = 0;
+                                                $scope.changeColor = 0;
                                                 $scope.reviewOk[0].amount = data.result.amount;
                                                 $scope.reviewOk[0].check_fail = data.result.check_fail;
                                                 $scope.reviewOk[0].invited = data.result.invited;
@@ -331,8 +341,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         $scope.reviewOkItems = data.result.rows;
                         if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                             $scope.reviewOk = $scope.reviewOkItems[0].data;
+                            if($scope.reviewOk.length == 0){
+                                $socpe.reviewOk.push({})
+                            }
                             serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                                 .then(function (data) {
+                                    $scope.currentIndex = 0;
+                                    $scope.changeColor = 0;
                                     $scope.reviewOk[0].amount = data.result.amount;
                                     $scope.reviewOk[0].check_fail = data.result.check_fail;
                                     $scope.reviewOk[0].invited = data.result.invited;
@@ -357,6 +372,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 //$scope.changeRight($scope.reviewOkItems[0].data,0)
                 serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
                     .then(function (data) {
+                        $scope.currentIndex = 0;
+                        $scope.changeColor = 0;
                         $scope.reviewOk[0].amount = data.result.amount;
                         $scope.reviewOk[0].check_fail = data.result.check_fail;
                         $scope.reviewOk[0].invited = data.result.invited;
@@ -526,6 +543,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                     $scope.reviewOkItems = data.result.rows;
                                     if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
                                         $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                        if($scope.reviewOk.length == 0){
+                                            $socpe.reviewOk.push({})
+                                        }
                                         serverService.getInfoData(
                                                 {
                                                     uid:$scope.reviewOkItems[0].uid,
@@ -533,6 +553,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                                                 }
                                         )
                                         .then(function (data) {
+                                            $scope.currentIndex = 0;
+                                            $scope.changeColor = 0;
                                             $scope.reviewOk[0].amount = data.result.amount;
                                             $scope.reviewOk[0].check_fail = data.result.check_fail;
                                             $scope.reviewOk[0].invited = data.result.invited;

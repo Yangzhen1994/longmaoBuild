@@ -46,8 +46,14 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             $scope.reviewNoItems = data.result.rows;
                             if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                                 $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                if ($scope.reviewNo.length == 0) {
+                                    $scope.reviewNo.push({})
+                                }
                                 serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
                                         .then(function (data) {
+                                            $scope.currentIndex = 0;
+                                            $scope.changeColor = 0;
+
                                             $scope.reviewNo[0].amount = data.result.amount;
                                             $scope.reviewNo[0].check_fail = data.result.check_fail;
                                             $scope.reviewNo[0].invited = data.result.invited;
@@ -318,6 +324,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                         $scope.reviewNoItems = data.result.rows;
                                         if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                                             $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                            if ($scope.reviewNo.length == 0) {
+                                                $scope.reviewNo.push({})
+                                            }
                                             serverService.getInfoData(
                                                     {
                                                         uid:$scope.reviewNoItems[0].uid,
@@ -325,6 +334,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                                     }
                                             )
                                             .then(function (data) {
+                                                $scope.currentIndex = 0;
+                                                $scope.changeColor = 0;
                                                 $scope.reviewNo[0].amount = data.result.amount;
                                                 $scope.reviewNo[0].check_fail = data.result.check_fail;
                                                 $scope.reviewNo[0].invited = data.result.invited;
@@ -343,7 +354,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     })
                             };
                             storageUtils.session.setItem('_reviewNoSort_',data.sort);
-                            storageUtils.session.setItem('_reviewNoOther_',data.order);
+                            storageUtils.session.setItem('_reviewNoOrder_',data.order);
                         })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
@@ -369,11 +380,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             storageUtils.session.removeItem('_noCurrentPageIndex_');
         }
         if(storageUtils.session.getItem('_reviewNoSort_')){
-            $scope.data.sort = storageUtils.session.getItem('_reviewNoSort_',data.sort);
+            $scope.data.sort = storageUtils.session.getItem('_reviewNoSort_');
             storageUtils.session.removeItem('_reviewNoSort_')
         }
         if(storageUtils.session.getItem('_reviewNoOrder_')){
-            $scope.data.sort = storageUtils.session.getItem('_reviewNoOrder_',data.sort);
+            $scope.data.order = storageUtils.session.getItem('_reviewNoOrder_');
             storageUtils.session.removeItem('_reviewNoOrder_')
         }
         serverService.getReviewList($scope.data).then(function (data) {
@@ -406,14 +417,19 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $scope.reviewNoItems = data.result.rows;
                         if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                             $scope.reviewNo = $scope.reviewNoItems[0].data;
+                            if ($scope.reviewNo.length == 0) {
+                                $scope.reviewNo.push({})
+                            }
                             serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
-                                    .then(function (data) {
-                                        $scope.reviewNo[0].amount = data.result.amount;
-                                        $scope.reviewNo[0].check_fail = data.result.check_fail;
-                                        $scope.reviewNo[0].invited = data.result.invited;
-                                        $scope.reviewNo[0].regist_time = data.result.regist_time;
-                                        $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
-                                    })
+                                .then(function (data) {
+                                    $scope.currentIndex = 0;
+                                    $scope.changeColor = 0;
+                                    $scope.reviewNo[0].amount = data.result.amount;
+                                    $scope.reviewNo[0].check_fail = data.result.check_fail;
+                                    $scope.reviewNo[0].invited = data.result.invited;
+                                    $scope.reviewNo[0].regist_time = data.result.regist_time;
+                                    $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
+                                })
                         }else{return}
                         $scope.reviewNo.forEach(function (item,index) {
                             if(item.type == 5){
@@ -431,6 +447,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
                     .then(function (data) {
+                        $scope.currentIndex = 0;
+                        $scope.changeColor = 0;
                         $scope.reviewNo[0].amount = data.result.amount;
                         $scope.reviewNo[0].check_fail = data.result.check_fail;
                         $scope.reviewNo[0].invited = data.result.invited;
@@ -695,6 +713,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     $scope.reviewNoItems = data.result.rows;
                                     if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                                         $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                        if ($scope.reviewNo.length == 0) {
+                                            $scope.reviewNo.push({})
+                                        }
                                         serverService.getInfoData(
                                                 {
                                                     uid:$scope.reviewNoItems[0].uid,
@@ -702,6 +723,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                                 }
                                         )
                                         .then(function (data) {
+                                            $scope.currentIndex = 0;
+                                            $scope.changeColor = 0
                                             $scope.reviewNo[0].amount = data.result.amount;
                                             $scope.reviewNo[0].check_fail = data.result.check_fail;
                                             $scope.reviewNo[0].invited = data.result.invited;

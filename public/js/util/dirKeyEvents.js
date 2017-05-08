@@ -12,9 +12,16 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         storageUtils.session.removeItem('_keyuped_');
                         return;
                     }
-                    $('.key-area').ready(function(){
-                        $(document).bind("keyup", keyUpevents);
-                    });
+                    if(scope.tabSelected == 0){
+                        $('.to-key-area').ready(function(){
+                            $(document).bind("keyup", keyUpevents);
+                        });
+                    }else if(scope.tabSelected == 2){
+                        $('.no-key-area').ready(function(){
+                            $(document).bind("keyup", keyUpevents);
+                        });
+                    }
+
                     function keyUpevents(e) {
                         var kc = window.event?e.keyCode:e.which;
                         console.log(kc);

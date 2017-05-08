@@ -361,7 +361,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 return
             }
         }
-        
+
         /************/
         if($scope.reviewUserId&&$scope.chooseType == 2){
             $scope.reviewUserId = ''
@@ -381,11 +381,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
         }
         if(storageUtils.session.getItem('_reviewNoSort_')){
             $scope.data.sort = storageUtils.session.getItem('_reviewNoSort_');
-            storageUtils.session.removeItem('_reviewNoSort_')
+            //storageUtils.session.removeItem('_reviewNoSort_')
         }
         if(storageUtils.session.getItem('_reviewNoOrder_')){
             $scope.data.order = storageUtils.session.getItem('_reviewNoOrder_');
-            storageUtils.session.removeItem('_reviewNoOrder_')
+            //storageUtils.session.removeItem('_reviewNoOrder_')
         }
         serverService.getReviewList($scope.data).then(function (data) {
             console.log(data);
@@ -554,7 +554,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     return;
                 }
                 if(confirm('确认通过?')){
-                    if($scope.master&&$scope.master == true){
+                    if($scope.masterHeader&&$scope.masterHeader == true){
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
                             serverService.check({ids:$scope.reviewNoItems[i].cid,
                                 status:1
@@ -746,12 +746,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         storageUtils.session.setItem('_reviewNoOrder_',data.order);
                     })
             };
-            if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_')) {
+            if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_') && storageUtils.session.getItem('_currentCheckIndex_')!=10) {
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex],noReviewCurrentCheckIndex)
             }else{
-                $scope.changeRight($scope.reviewNoItems[0],0)
+                $scope.changeRight($scope.reviewNoItems[0],0);
+                storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
             }
         })
     }])

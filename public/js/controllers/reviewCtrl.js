@@ -9,6 +9,12 @@
  */
 define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
     return app.controller('reviewCtrl', ['$rootScope', '$scope', '$timeout', 'serverService', function ($rootScope, $scope, $timeout, serverService) {
+        storageUtils.session.removeItem('_toReviewSort_');
+        storageUtils.session.removeItem('_toReviewOrder_');
+        storageUtils.session.removeItem('_reviewOkSort_');
+        storageUtils.session.removeItem('_reviewOkOrder_');
+        storageUtils.session.removeItem('_reviewNoSort_');
+        storageUtils.session.removeItem('_reviewNoOrder_');
         $timeout(function () {
             $('.left').height($('.right').height())
         }, 100)

@@ -54,17 +54,24 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             }
             if($scope.tabSelected == 0){
                 data0.status = 2;//待审核
+                data0.sort = storageUtils.session.getItem('_toReviewSort_');
+                data0.order = storageUtils.session.getItem('_toReviewOrder_');
                 $scope.resMsg = '此任务的待审核'
             }
             if($scope.tabSelected == 1){
                 data0.status = 3;//审核成功
+                data0.sort = storageUtils.session.getItem('_reviewOkSort_');
+                data0.order = storageUtils.session.getItem('_reviewOkOrder_');
                 $scope.resMsg = '此任务的审核成功'
             }
             if($scope.tabSelected == 2){
                 data0.status = 4;//审核失败
+                data0.sort = storageUtils.session.getItem('_reviewNoSort_');
+                data0.order = storageUtils.session.getItem('_reviewNoOrder_');
                 $scope.resMsg = '此任务的审核失败'
             }
-            console.log(data0)
+            console.log(data0);
+
             serverService.getReviewList(data0).then(function (data) {
                 console.log(data)
                 if(data.result.rows && data.result.rows.length>0){

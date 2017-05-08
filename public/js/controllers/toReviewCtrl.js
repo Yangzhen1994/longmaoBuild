@@ -655,11 +655,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         }
         if(storageUtils.session.getItem('_toReviewSort_')){
             $scope.sort = storageUtils.session.getItem('_toReviewSort_');
-            storageUtils.session.removeItem('_toReviewSort_');
+            //storageUtils.session.removeItem('_toReviewSort_');
         }
         if(storageUtils.session.getItem('_toReviewOrder_')){
             $scope.order = storageUtils.session.getItem('_toReviewOrder_');
-            storageUtils.session.removeItem('_toReviewOrder_');
+            //storageUtils.session.removeItem('_toReviewOrder_');
         }
         serverService.getReviewList($scope.data)
             .then(function (data) {

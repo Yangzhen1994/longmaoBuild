@@ -282,6 +282,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
                                     })
                             };
+                            storageUtils.session.setItem('_reviewOkSort_',data.sort);
+                            storageUtils.session.setItem('_reviewOkOrder_',data.order);
                         })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
@@ -305,11 +307,11 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
         if(storageUtils.session.getItem('_reviewOkSort_')){
             $scope.data.sort = storageUtils.session.getItem('_reviewOkSort_')
-            storageUtils.session.removeItem('_reviewOkSort_')
+            //storageUtils.session.removeItem('_reviewOkSort_')
         }
         if(storageUtils.session.getItem('_reviewOkOrder_')){
             $scope.data.order = storageUtils.session.getItem('_reviewOkOrder_');
-            storageUtils.session.removeItem('_reviewOkOrder_');
+            //storageUtils.session.removeItem('_reviewOkOrder_');
         }
         serverService.getReviewList($scope.data).then(function (data) {
             console.log(data);

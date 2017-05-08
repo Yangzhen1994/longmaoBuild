@@ -4,6 +4,7 @@
 
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
     return  app.controller('reviewNoCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
+        var reviewId = storageUtils.session.getItem('_reviewList_');
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if(reviewFlag){
             storageUtils.session.removeItem('_FLAG_');
@@ -17,6 +18,51 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $scope.reviewNo = $scope.reviewNoItems[0].data;
                 $scope.changeColor = 0;
                 $scope.currentIndex = 0;
+                $rootScope.totalCount = searchCheckBydate.total;
+                $rootScope.pageIndex = 1;
+                $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                $rootScope.toPage = function (index) {
+                    if (index < 1) {
+                        index = 1
+                    }
+                    if (index > $rootScope.pageTotal) {
+                        index--;
+                        $rootScope.pageIndex = index;
+                    }
+                    $rootScope.pageIndex = index;
+                    if ($scope.reviewUserId && $scope.chooseType == 2) {
+                        $scope.reviewUserId = ''
+                    }
+                    var data = {
+                        id:reviewId,
+                        uid:$scope.reviewUserId,
+                        date:$scope.subTime,
+                        status:3,
+                        page:index,
+                        rows:10
+                    };
+                    serverService.getReviewList(data)
+                        .then(function (data) {
+                            $scope.reviewNoItems = data.result.rows;
+                            if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
+                                $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
+                                        .then(function (data) {
+                                            $scope.reviewNo[0].amount = data.result.amount;
+                                            $scope.reviewNo[0].check_fail = data.result.check_fail;
+                                            $scope.reviewNo[0].invited = data.result.invited;
+                                            $scope.reviewNo[0].regist_time = data.result.regist_time;
+                                            $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
+                                        })
+                            }else{return}
+                            $scope.reviewNo.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
+                            })
+                        })
+                };
                 $scope.reviewNo.forEach(function (item,index) {
                     if(item.type == 5){
                         window.x = item.x;
@@ -112,7 +158,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
 
                     if(confirm('确认通过?')){
-                        if($scope.master&&$scope.master == true){
+                        if($scope.masterHeader && $scope.masterHeader == true){
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
                                 serverService.check(
                                         {
@@ -140,6 +186,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     alert('操作成功')
                                     storageUtils.session.removeItem('_NotoAllow_');
                                     //操作成功后tab间切换实现刷新目的
+                                    storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10);
+                                    storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_reviewNoChecked_',true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -159,8 +208,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     });
 
                                     //okArr.push($scope.reviewNoItems[i]);
-                                    storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
+                                    //storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                     $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                                    if($scope.checkedCount>=1 && i != 0){
+                                        storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
+                                    }
                                     i--;
                                 }
                             }
@@ -171,6 +223,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_reviewNoChecked_',true);
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
                             },100)
@@ -237,7 +290,60 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         .then(function (resData) {
                             $scope.orderFlag = !$scope.orderFlag;
                             $scope.reviewNoItems = resData.result.rows;
-                            $scope.changeRight($scope.reviewNoItems[0],0)
+                            $scope.changeRight($scope.reviewNoItems[0],0);
+                            $rootScope.totalCount = resData.result.total;
+                            $rootScope.pageIndex = $rootScope.pageIndex;
+                            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                            $rootScope.toPage = function (index) {
+                                if (index < 1) {
+                                    index = 1
+                                }
+                                if (index > $rootScope.pageTotal) {
+                                    index--;
+                                    $rootScope.pageIndex = index;
+                                }
+                                $rootScope.pageIndex = index;
+                                var paginationData = {
+                                    id:reviewId,
+                                    uid:$scope.reviewUserId,
+                                    date:$scope.subTime,
+                                    status:3,
+                                    page:index,
+                                    rows:10,
+                                    order:data.order,
+                                    sort:data.sort
+                                };
+                                serverService.getReviewList(paginationData)
+                                    .then(function (data) {
+                                        $scope.reviewNoItems = data.result.rows;
+                                        if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
+                                            $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                            serverService.getInfoData(
+                                                    {
+                                                        uid:$scope.reviewNoItems[0].uid,
+                                                        tid:$scope.reviewNoItems[0].id
+                                                    }
+                                            )
+                                            .then(function (data) {
+                                                $scope.reviewNo[0].amount = data.result.amount;
+                                                $scope.reviewNo[0].check_fail = data.result.check_fail;
+                                                $scope.reviewNo[0].invited = data.result.invited;
+                                                $scope.reviewNo[0].regist_time = data.result.regist_time;
+                                                $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
+                                            })
+                                        }else{return}
+
+                                        $scope.reviewNo.forEach(function (item,index) {
+                                            if(item.type == 5){
+                                                window.x = item.x;
+                                                window.y = item.y;
+                                            }
+                                        })
+
+                                    })
+                            };
+                            storageUtils.session.setItem('_reviewNoSort_',data.sort);
+                            storageUtils.session.setItem('_reviewNoOther_',data.order);
                         })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
@@ -258,12 +364,66 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             page:1,
             rows:10
         };
-        if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_')){
-            $scope.data.page = $rootScope.page;
+        if(storageUtils.session.getItem('_noCurrentPageIndex_')){
+            $scope.data.page = storageUtils.session.getItem('_noCurrentPageIndex_');
+            storageUtils.session.removeItem('_noCurrentPageIndex_');
+        }
+        if(storageUtils.session.getItem('_reviewNoSort_')){
+            $scope.data.sort = storageUtils.session.getItem('_reviewNoSort_',data.sort);
+            storageUtils.session.removeItem('_reviewNoSort_')
+        }
+        if(storageUtils.session.getItem('_reviewNoOrder_')){
+            $scope.data.sort = storageUtils.session.getItem('_reviewNoOrder_',data.sort);
+            storageUtils.session.removeItem('_reviewNoOrder_')
         }
         serverService.getReviewList($scope.data).then(function (data) {
             console.log(data);
             $scope.reviewNoItems = data.result.rows;
+            $rootScope.totalCount = data.result.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+            $rootScope.toPage = function (index) {
+                if (index < 1) {
+                    index = 1
+                }
+                if (index > $rootScope.pageTotal) {
+                    index--;
+                    $rootScope.pageIndex = index;
+                }
+                $rootScope.pageIndex = index;
+                var data = {
+                    id:reviewId,
+                    uid:$scope.reviewUserId,
+                    date:$scope.subTime,
+                    status:4,
+                    page:index,
+                    rows:10,
+                    sort:$scope.data.sort,
+                    order:$scope.data.order
+                };
+                serverService.getReviewList(data)
+                    .then(function (data) {
+                        $scope.reviewNoItems = data.result.rows;
+                        if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
+                            $scope.reviewNo = $scope.reviewNoItems[0].data;
+                            serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
+                                    .then(function (data) {
+                                        $scope.reviewNo[0].amount = data.result.amount;
+                                        $scope.reviewNo[0].check_fail = data.result.check_fail;
+                                        $scope.reviewNo[0].invited = data.result.invited;
+                                        $scope.reviewNo[0].regist_time = data.result.regist_time;
+                                        $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
+                                    })
+                        }else{return}
+                        $scope.reviewNo.forEach(function (item,index) {
+                            if(item.type == 5){
+                                window.x = item.x;
+                                window.y = item.y;
+                            }
+                        })
+
+                    })
+            };
             if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
                 $scope.reviewNo = $scope.reviewNoItems[0].data;
                 if($scope.reviewNo.length == 0){
@@ -401,6 +561,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 alert('操作成功');
                                 storageUtils.session.removeItem('_NotoAllow_');
                                 //操作成功后tab间切换实现刷新目的
+                                storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10);
+                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
                                 storageUtils.session.setItem('_keyuped_',true);
                                 storageUtils.session.setItem('_reviewNoChecked_',true);
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -422,8 +584,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     }
                                 });
                                 //okArr.push($scope.reviewNoItems[i]);
-                                storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
+                                //storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                 $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
+                                if($scope.checkedCount>=1 && i != 0){
+                                    storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
+                                }
                                 i--;
                             }
                         }
@@ -434,6 +599,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 //操作成功后tab间切换实现刷新目的
                                 storageUtils.session.setItem('_reviewNoChecked_',true);
                                 storageUtils.session.setItem('_keyuped_',true);
+                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex)
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
                             }
                         },100);
@@ -498,11 +664,64 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 };
 
                 serverService.getReviewList(data)
-                        .then(function (resData) {
-                            $scope.orderFlag = !$scope.orderFlag;
-                            $scope.reviewNoItems = resData.result.rows;
-                            $scope.changeRight($scope.reviewNoItems[0],0)
-                        })
+                    .then(function (resData) {
+                        $scope.orderFlag = !$scope.orderFlag;
+                        $scope.reviewNoItems = resData.result.rows;
+                        $scope.changeRight($scope.reviewNoItems[0],0);
+                        $rootScope.totalCount = resData.result.total;
+                        $rootScope.pageIndex = $rootScope.pageIndex;
+                        $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
+                        $rootScope.toPage = function (index) {
+                            if (index < 1) {
+                                index = 1
+                            }
+                            if (index > $rootScope.pageTotal) {
+                                index--;
+                                $rootScope.pageIndex = index;
+                            }
+                            $rootScope.pageIndex = index;
+                            var paginationData = {
+                                id:reviewId,
+                                uid:$scope.reviewUserId,
+                                date:$scope.subTime,
+                                status:3,
+                                page:index,
+                                rows:10,
+                                order:data.order,
+                                sort:data.sort
+                            };
+                            serverService.getReviewList(paginationData)
+                                .then(function (data) {
+                                    $scope.reviewNoItems = data.result.rows;
+                                    if($scope.reviewNoItems && $scope.reviewNoItems.length>0){
+                                        $scope.reviewNo = $scope.reviewNoItems[0].data;
+                                        serverService.getInfoData(
+                                                {
+                                                    uid:$scope.reviewNoItems[0].uid,
+                                                    tid:$scope.reviewNoItems[0].id
+                                                }
+                                        )
+                                        .then(function (data) {
+                                            $scope.reviewNo[0].amount = data.result.amount;
+                                            $scope.reviewNo[0].check_fail = data.result.check_fail;
+                                            $scope.reviewNo[0].invited = data.result.invited;
+                                            $scope.reviewNo[0].regist_time = data.result.regist_time;
+                                            $scope.reviewNo[0].task_check_fail =data.result.task_check_fail;
+                                        })
+                                    }else{return}
+
+                                    $scope.reviewNo.forEach(function (item,index) {
+                                        if(item.type == 5){
+                                            window.x = item.x;
+                                            window.y = item.y;
+                                        }
+                                    })
+
+                                })
+                        };
+                        storageUtils.session.setItem('_reviewNoSort_',data.sort);
+                        storageUtils.session.setItem('_reviewNoOrder_',data.order);
+                    })
             };
             if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_')) {
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');

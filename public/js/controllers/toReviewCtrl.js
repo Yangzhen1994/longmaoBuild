@@ -3,6 +3,8 @@
  */
 define(['app', 'storageUtils'], function (app, storageUtils) {
     return app.controller('toReviewCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'serverService', 'mapService', function ($rootScope, $scope, $timeout, $window, serverService, mapService) {
+        $scope.checkedCount = 0;
+        var toReviewCurrentPage = storageUtils.session.getItem('_currentPageIndex_');
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if (reviewFlag) {
             storageUtils.session.removeItem('_FLAG_');
@@ -44,7 +46,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         $rootScope.pageIndex = index;
                     }
                     $rootScope.pageIndex = index;
-
+                    if ($scope.reviewUserId && $scope.chooseType == 2) {
+                        $scope.reviewUserId = ''
+                    }
                     var data = {
                         id: reviewId,
                         uid: $scope.reviewUserId,
@@ -184,7 +188,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         return;
                     }
                     if (confirm('确认通过么?')) {
-                        if ($scope.master && $scope.master == true) {
+                        if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                 serverService.check({
                                     ids: $scope.toReviewItems[i].cid,
@@ -212,6 +216,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.removeItem('_Allowed_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_currentCheckIndex_', 10);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -238,9 +244,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     });
 
                                     okArr.push($scope.toReviewItems[i]);
-                                    storageUtils.session.setItem('_currentCheckIndex_', i);
+                                    //storageUtils.session.setItem('_currentCheckIndex_', i);
                                     $scope.toReviewItems.splice(i, 1);
                                     /*删除待审核的*/
+                                    if($scope.checkedCount>=1 && i != 0){
+                                        storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
+                                    }
                                     i--;
                                 }
                             }
@@ -250,6 +259,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.removeItem('_Allowed_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -312,7 +322,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             data.message = 4;
                         }
                         /*全选拒绝*/
-                        if ($scope.master && $scope.master == true) {
+                        if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
@@ -335,6 +345,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.removeItem('_Fail_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_currentCheckIndex_', 10);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -355,9 +367,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.setItem('_Fail_', false)
                                         }
                                     });
-                                    storageUtils.session.setItem('_currentCheckIndex_', i);
+                                    //storageUtils.session.setItem('_currentCheckIndex_', i);
                                     $scope.toReviewItems.splice(i, 1);
                                     /*删除待审核的*/
+                                    if($scope.checkedCount>=1 && i != 0){
+                                        storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
+                                    }
                                     i--;
                                 }
                             }
@@ -367,6 +382,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.removeItem('_Fail_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -403,7 +419,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (keycode == 13) {
                             /*全选拒绝*/
                             if (confirm('确认拒绝么？')) {
-                                if ($scope.master && $scope.master == true) {
+                                if ($scope.masterHeader && $scope.masterHeader == true) {
                                     for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                         /* $scope.toReviewItems[i].reviewState = 2;/!*拒绝的状态变成2*!/
                                          $scope.toReviewItems[i].rejectReason = $scope.otherReason;
@@ -428,6 +444,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.removeItem('_Fail_');
                                                 //操作成功后tab间切换实现刷新目的
                                                 storageUtils.session.setItem('_keyuped_',true);
+                                                storageUtils.session.setItem('_currentCheckIndex_', 10);
+                                                storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                                 storageUtils.session.setItem('_toReviewChecked_', true);
                                                 window.location = '#/reviewDetail/reviewDetail/tab2';
                                             }
@@ -456,9 +474,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     storageUtils.session.setItem('_Fail_', false)
                                                 }
                                             });
-                                            storageUtils.session.setItem('_currentCheckIndex_', i);
+                                            //storageUtils.session.setItem('_currentCheckIndex_', i);
                                             $scope.toReviewItems.splice(i, 1);
                                             /*删除待审核的*/
+                                            if($scope.checkedCount>=1 && i != 0){
+                                                storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
+                                            }
                                             i--;
                                         }
                                     }
@@ -469,6 +490,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_',true);
+                                            storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
@@ -597,14 +619,16 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                     })
                             };
-                            $scope.changeRight($scope.toReviewItems[0], 0)
+                            $scope.changeRight($scope.toReviewItems[0], 0);
+                            storageUtils.session.setItem('_toReviewSort_',data.sort);
+                            storageUtils.session.setItem('_toReviewOrder_',data.order);
                         })
                 };
                 storageUtils.session.removeItem('searchCheckBydate');
                 return
             }
         }
-
+        /************/
         if ($scope.reviewUserId && $scope.chooseType == 2) {
             $scope.reviewUserId = ''
         }
@@ -616,8 +640,16 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             page: 1,
             rows: 10,
         };
-        if (storageUtils.session.getItem('_currentCheckIndex_')) {
-            $scope.data.page = $rootScope.pageIndex;
+        if (storageUtils.session.getItem('_currentPageIndex_')) {
+            $scope.data.page = storageUtils.session.getItem('_currentPageIndex_')
+        }
+        if(storageUtils.session.getItem('_toReviewSort_')){
+            $scope.sort = storageUtils.session.getItem('_toReviewSort_');
+            storageUtils.session.removeItem('_toReviewSort_');
+        }
+        if(storageUtils.session.getItem('_toReviewOther_')){
+            $scope.sort = storageUtils.session.getItem('_toReviewOrder_');
+            storageUtils.session.removeItem('_toReviewOrder_');
         }
         serverService.getReviewList($scope.data)
             .then(function (data) {
@@ -631,11 +663,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.toReviewItems = data.result.rows;
                 $rootScope.totalCount = data.result.total;
 
-                if (storageUtils.session.getItem('_currentCheckIndex_')) {
-                    $rootScope.pageIndex = $rootScope.pageIndex;
+                if (storageUtils.session.getItem('_currentPageIndex_')) {
+                    $rootScope.pageIndex = storageUtils.session.getItem('_currentPageIndex_');
                 } else {
                     $rootScope.pageIndex = 1;
                 }
+                storageUtils.session.removeItem('_currentPageIndex_');
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
                     if (index < 1) {
@@ -653,6 +686,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         status: 2,
                         page: index,
                         rows: 10,
+                        sort:$scope.data.sort,
+                        order:$scope.data.order
                     };
                     serverService.getReviewList(data)
                         .then(function (data) {
@@ -784,7 +819,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         $scope.currentIndex = 0
                     }
                     $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
-                }
+                };
                 $scope.trRightAllow = function (e) {
                     /*全选通过*/
                     e.stopPropagation();
@@ -799,80 +834,55 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         return;
                     }
                     if (confirm('确认通过么？')) {
-                        if ($scope.master && $scope.master == true) {
-                            for (var i = 0; i < $scope.toReviewItems.length; i++) {
+                        $scope.toReviewItems.forEach(function (item,index) {
+                            if(item.checkState == true){
+                                $scope.checkedCount++;
+                            }
+                        });
+                        /*下点击next/通过*/
+                        for (var i = 0; i < $scope.toReviewItems.length; i++) {
+                            if ($scope.toReviewItems[i].checkState == true) {
                                 serverService.check({
                                     ids: $scope.toReviewItems[i].cid,
                                     status: 1
-                                })
-                                .then(function (data) {
+                                }).then(function (data) {
                                     if (data.result.success == 1) {
                                         storageUtils.session.setItem('_Allowed_', true)
                                     } else {
                                         storageUtils.session.setItem('_Allowed_', false)
                                     }
                                 });
+
                                 okArr.push($scope.toReviewItems[i]);
-                                $scope.masterHeader = false;
-                                $scope.masterItem = false;
-                                $scope.changeRight(null);
-                            }
-                            storageUtils.session.setItem('_reviewOk_', okArr);
-                            $timeout(function () {
-                                if (storageUtils.session.getItem('_Allowed_') == 'true') {
-                                    alert('操作成功');
-                                    storageUtils.session.removeItem('_Allowed_');
-                                    //操作成功后tab间切换实现刷新目的
-                                    storageUtils.session.setItem('_keyuped_',true);
-                                    storageUtils.session.setItem('_toReviewChecked_', true);
-                                    window.location = '#/reviewDetail/reviewDetail/tab2';
+                                //storageUtils.session.setItem('_currentCheckIndex_', i);
+                                $scope.toReviewItems.splice(i, 1);
+                                /*删除待审核的*/
+                                /*当选中1条或多条 且不是第一条*/
+                                if($scope.checkedCount>=1 && i != 0){
+                                    storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
                                 }
-                            }, 100);
-                            $scope.toReviewItems = [];
-                            /*删除待审核的*/
-                            $scope.masterHeader = false;
-                            storageUtils.session.setItem('_reviewNo_', $scope.toReviewItems);
+                                i--;
+                            }
+                        }
+                        $timeout(function () {
+                            if (storageUtils.session.getItem('_Allowed_') == 'true') {
+                                alert('操作成功');
+                                storageUtils.session.removeItem('_Allowed_');
+                                //操作成功后tab间切换实现刷新目的
+
+                                storageUtils.session.setItem('_keyuped_',true);
+                                storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
+                                storageUtils.session.setItem('_toReviewChecked_', true);
+                                window.location = '#/reviewDetail/reviewDetail/tab2';
+                            }
+                        }, 100);
+                        result = $scope.toReviewItems;
+                        $scope.toReviewItems = result;
+                        if ($scope.toReviewItems.length > 0) {
+                            $scope.changeRight($scope.toReviewItems[0], 0);
+
                         } else {
-                            /*没全选状态下点击next/通过*/
-                            for (var i = 0; i < $scope.toReviewItems.length; i++) {
-                                if ($scope.toReviewItems[i].checkState == true) {
-                                    serverService.check({
-                                        ids: $scope.toReviewItems[i].cid,
-                                        status: 1
-                                    }).then(function (data) {
-                                        if (data.result.success == 1) {
-                                            storageUtils.session.setItem('_Allowed_', true)
-                                        } else {
-                                            storageUtils.session.setItem('_Allowed_', false)
-                                        }
-                                    });
-
-                                    okArr.push($scope.toReviewItems[i]);
-                                    storageUtils.session.setItem('_currentCheckIndex_', i);
-                                    $scope.toReviewItems.splice(i, 1);
-                                    /*删除待审核的*/
-                                    i--;
-                                }
-                            }
-                            $timeout(function () {
-                                if (storageUtils.session.getItem('_Allowed_') == 'true') {
-                                    alert('操作成功');
-                                    storageUtils.session.removeItem('_Allowed_');
-                                    //操作成功后tab间切换实现刷新目的
-                                    storageUtils.session.setItem('_keyuped_',true);
-                                    storageUtils.session.setItem('_toReviewChecked_', true);
-                                    window.location = '#/reviewDetail/reviewDetail/tab2';
-                                }
-                            }, 100);
-                            result = $scope.toReviewItems;
-                            $scope.toReviewItems = result;
-                            if ($scope.toReviewItems.length > 0) {
-                                $scope.changeRight($scope.toReviewItems[0], 0);
-
-                            } else {
-                                $scope.toReview = {}
-                            }
-                            storageUtils.session.setItem('_reviewOk_', okArr);
+                            $scope.toReview = {}
                         }
                     }
                 };
@@ -917,7 +927,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             data.message = 4;
                         }
                         /*全选拒绝*/
-                        if ($scope.master && $scope.master == true) {
+                        if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                 data.ids = $scope.toReviewItems[i].cid
                                 serverService.check(data).then(function (data) {
@@ -939,6 +949,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     alert('操作成功');
                                     storageUtils.session.removeItem('_Fail_');
                                     //操作成功后tab间切换实现刷新目的
+                                    storageUtils.session.setItem('_currentCheckIndex_', 10);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_keyuped_',true);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -959,9 +971,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.setItem('_Fail_', false)
                                         }
                                     });
-                                    storageUtils.session.setItem('_currentCheckIndex_', i);
+                                    //storageUtils.session.setItem('_currentCheckIndex_', i);
                                     $scope.toReviewItems.splice(i, 1);
                                     /*删除待审核的*/
+                                    /*当选中1条或多条 且不是第一条*/
+                                    if($scope.checkedCount>=1 && i != 0){
+                                        storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
+                                    }
                                     i--;
                                 }
                             }
@@ -971,6 +987,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.removeItem('_Fail_');
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_',true);
+                                    storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
@@ -1005,7 +1022,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (keycode == 13) {
                             /*全选拒绝*/
                             if (confirm('确认拒绝么？')) {
-                                if ($scope.master && $scope.master == true) {
+                                if ($scope.masterHeader && $scope.masterHeader == true) {
                                     for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                         serverService.check({
                                             ids: $scope.toReviewItems[i].cid,
@@ -1031,6 +1048,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             $scope.otherReason = '';
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
+                                            storageUtils.session.setItem('_currentCheckIndex_', 10);
+                                            storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                             storageUtils.session.setItem('_keyuped_',true);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -1051,9 +1070,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     storageUtils.session.setItem('_Fail_', false)
                                                 }
                                             });
-                                            storageUtils.session.setItem('_currentCheckIndex_', i);
+                                            //storageUtils.session.setItem('_currentCheckIndex_', i);
                                             $scope.toReviewItems.splice(i, 1);
                                             /*删除待审核的*/
+                                            /*当选中1条或多条 且不是第一条*/
+                                            if($scope.checkedCount>=1 && i != 0){
+                                                storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
+                                            }
                                             i--;
                                         }
                                     }
@@ -1064,6 +1087,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_',true);
+                                            storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
@@ -1143,7 +1167,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         .then(function (resData) {
                             $scope.orderFlag = !$scope.orderFlag;
                             $scope.toReviewItems = resData.result.rows;
-                            $scope.changeRight($scope.toReviewItems[0], 0)
+                            $scope.changeRight($scope.toReviewItems[0], 0);
                             $rootScope.totalCount = resData.result.total;
                             $rootScope.pageIndex = $rootScope.pageIndex;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
@@ -1177,13 +1201,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                             tid: $scope.toReviewItems[0].id
                                                         }
                                                 )
-                                                        .then(function (data) {
-                                                            $scope.toReview[0].amount = data.result.amount;
-                                                            $scope.toReview[0].check_fail = data.result.check_fail;
-                                                            $scope.toReview[0].invited = data.result.invited;
-                                                            $scope.toReview[0].regist_time = data.result.regist_time;
-                                                            $scope.toReview[0].task_check_fail = data.result.task_check_fail;
-                                                        })
+                                                    .then(function (data) {
+                                                        $scope.toReview[0].amount = data.result.amount;
+                                                        $scope.toReview[0].check_fail = data.result.check_fail;
+                                                        $scope.toReview[0].invited = data.result.invited;
+                                                        $scope.toReview[0].regist_time = data.result.regist_time;
+                                                        $scope.toReview[0].task_check_fail = data.result.task_check_fail;
+                                                    })
                                             } else {
                                                 return
                                             }
@@ -1197,26 +1221,19 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                         })
                             };
+                            storageUtils.session.setItem('_toReviewSort_',data.sort);
+                            storageUtils.session.setItem('_toReviewOrder_',data.order);
                         })
                 };
 
-                if (storageUtils.session.getItem('_currentCheckIndex_')) {
+                if (storageUtils.session.getItem('_currentCheckIndex_') && storageUtils.session.getItem('_currentCheckIndex_')!=10) {
                     var currentCheckIndex = storageUtils.session.getItem('_currentCheckIndex_');
                     storageUtils.session.removeItem('_currentCheckIndex_');
-                    $scope.changeRight($scope.toReviewItems[currentCheckIndex], currentCheckIndex)
+                    $scope.changeRight($scope.toReviewItems[currentCheckIndex], currentCheckIndex);
                 } else {
-                    $scope.changeRight($scope.toReviewItems[0], 0)
+                    $scope.changeRight($scope.toReviewItems[0], 0);
+                    storageUtils.session.removeItem('_currentCheckIndex_');
                 }
             });
-        var okArr = [];
-        var noArr = [];
-        var reviewok = storageUtils.session.getItem('_reviewOk_');
-        if (reviewok != null) {
-            okArr = reviewok;
-        }
-        var reviewno = storageUtils.session.getItem('_reviewNo_');
-        if (reviewno != null) {
-            noArr = reviewno;
-        }
     }])
 })

@@ -28,12 +28,12 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             $scope.subTime = ''
         }
         $scope.searchCheckBydate = function () {
-            if(!$scope.reviewUserId){
-                alert('输入不能为空');
-                return
-            }
             if(!$scope.chooseType){
                 alert('请选择搜索类别');
+                return
+            }
+            if(!$scope.reviewUserId && $scope.chooseType!=2){
+                alert('输入不能为空');
                 return
             }
             var data0 = {
@@ -47,7 +47,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             if($scope.chooseType == 1){
                 data0.uid = $scope.reviewUserId
             }
-            if($scope.chooseType == 2){
+            if($scope.chooseType == 2 && $scope.reviewUserId){
                 data0.id = $scope.reviewUserId;
                 storageUtils.session.setItem('_reviewList_',data0.id);
                 $scope.reviewId = data0.id

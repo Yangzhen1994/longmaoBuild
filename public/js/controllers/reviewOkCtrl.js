@@ -51,6 +51,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         $rootScope.pageIndex = index;
                     }
                     $rootScope.pageIndex = index;
+                    if ($scope.reviewUserId && $scope.chooseType == 2) {
+                        $scope.reviewUserId = ''
+                    }
                     var data = {
                         id:reviewId,
                         uid:$scope.reviewUserId,
@@ -281,14 +284,24 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         if($scope.reviewUserId&&$scope.chooseType == 2){
             $scope.reviewUserId = ''
         }
-        serverService.getReviewList({
+        $scope.data = {
             id:reviewId,
             uid:$scope.reviewUserId,
             date:$scope.subTime,
             status:3,
             page:1,
             rows:10
-        }).then(function (data) {
+        };
+
+        if(storageUtils.session.getItem('_reviewOkSort_')){
+            $scope.data.sort = storageUtils.session.getItem('_reviewOkSort_')
+            storageUtils.session.removeItem('_reviewOkSort_')
+        }
+        if(storageUtils.session.getItem('_reviewOkOrder_')){
+            $scope.data.order = storageUtils.session.getItem('_reviewOkOrder_');
+            storageUtils.session.removeItem('_reviewOkOrder_');
+        }
+        serverService.getReviewList($scope.data).then(function (data) {
             console.log(data);
             $scope.reviewOkItems = data.result.rows;
             $rootScope.totalCount = data.result.total;
@@ -310,6 +323,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     status:3,
                     page:index,
                     rows:10,
+                    sort:$scope.data.sort,
+                    order:$scope.data.order
                 };
                 serverService.getReviewList(data)
                     .then(function (data) {
@@ -463,7 +478,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 };
                 if($scope.orderFlag){
                     data.order = 'desc';
-                    if(num == 3){
+                    if(num == 2){
                         data.order = 'asc';
                     }
                 }
@@ -535,6 +550,8 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
 
                                 })
                         };
+                        storageUtils.session.setItem('_reviewOkSort_',data.sort);
+                        storageUtils.session.setItem('_reviewOkOrder_',data.order);
                     })
             };
         })

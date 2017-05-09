@@ -44,11 +44,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
                     if (index < 1) {
-                        index = 1
+                        index = 1;
+                        return;
                     }
                     if (index > $rootScope.pageTotal) {
                         index--;
                         $rootScope.pageIndex = index;
+                        return;
                     }
                     $rootScope.pageIndex = index;
                     if ($scope.reviewUserId && $scope.chooseType == 2) {
@@ -158,7 +160,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                     $scope.currentIndex = index;
                 };
                 $scope.changeRight($scope.reviewOkItems[0],0);
-                $scope.next = function () {
+                $scope.okNext = function () {
                     $scope.currentIndex ++;
                     if($scope.currentIndex >= $scope.reviewOkItems.length ){
                         $scope.currentIndex = $scope.reviewOkItems.length - 1
@@ -231,11 +233,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
                                 if (index < 1) {
-                                    index = 1
+                                    index = 1;
+                                    return;
                                 }
                                 if (index > $rootScope.pageTotal) {
                                     index--;
                                     $rootScope.pageIndex = index;
+                                    return;
                                 }
                                 $rootScope.pageIndex = index;
                                 var paginationData = {
@@ -306,7 +310,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         };
 
         if(storageUtils.session.getItem('_reviewOkSort_')){
-            $scope.data.sort = storageUtils.session.getItem('_reviewOkSort_')
+            $scope.data.sort = storageUtils.session.getItem('_reviewOkSort_');
             //storageUtils.session.removeItem('_reviewOkSort_')
         }
         if(storageUtils.session.getItem('_reviewOkOrder_')){
@@ -321,11 +325,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             $rootScope.toPage = function (index) {
                 if (index < 1) {
-                    index = 1
+                    index = 1;
+                    return;
                 }
                 if (index > $rootScope.pageTotal) {
                     index--;
                     $rootScope.pageIndex = index;
+                    return
                 }
                 $rootScope.pageIndex = index;
                 var data = {
@@ -451,7 +457,7 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
             };
-            $scope.next = function () {
+            $scope.okNext = function () {
                 $scope.currentIndex ++;
                 if($scope.currentIndex >= $scope.reviewOkItems.length ){
                     $scope.currentIndex = $scope.reviewOkItems.length - 1
@@ -523,11 +529,13 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                         $rootScope.toPage = function (index) {
                             if (index < 1) {
-                                index = 1
+                                index = 1;
+                                return;
                             }
                             if (index > $rootScope.pageTotal) {
                                 index--;
                                 $rootScope.pageIndex = index;
+                                return;
                             }
                             $rootScope.pageIndex = index;
                             var paginationData = {

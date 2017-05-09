@@ -4,6 +4,7 @@
 
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
     return  app.controller('reviewNoCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
+        storageUtils.session.removeItem('_keyuped_');
         var reviewId = storageUtils.session.getItem('_reviewList_');
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if(reviewFlag){
@@ -23,11 +24,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
                     if (index < 1) {
-                        index = 1
+                        index = 1;
+                        return;
                     }
                     if (index > $rootScope.pageTotal) {
                         index--;
                         $rootScope.pageIndex = index;
+                        return;
                     }
                     $rootScope.pageIndex = index;
                     if ($scope.reviewUserId && $scope.chooseType == 2) {
@@ -135,7 +138,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     $scope.currentIndex = index;
                 };
                 $scope.changeRight($scope.reviewNoItems[0],0);
-                $scope.next = function () {
+                $scope.noReviewNext = function () {
                     $scope.currentIndex ++;
                     if($scope.currentIndex >= $scope.reviewNoItems.length ){
                         $scope.currentIndex = $scope.reviewNoItems.length - 1
@@ -201,7 +204,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             },100);
                             storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                         }else{
-                            /*没全选状态下点击next/通过*/
+                            /*没全选状态下点击noReviewNext/通过*/
 
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
                                 if($scope.reviewNoItems[i].checkState == true) {
@@ -217,6 +220,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     //storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                     $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                     if($scope.checkedCount>=1 && i != 0){
+                                        storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
+                                    }else if($scope.checkedCount>1 && i==0){
                                         storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
                                     }
                                     i--;
@@ -302,11 +307,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
                                 if (index < 1) {
-                                    index = 1
+                                    index = 1;
+                                    return;
                                 }
                                 if (index > $rootScope.pageTotal) {
                                     index--;
                                     $rootScope.pageIndex = index;
+                                    return;
                                 }
                                 $rootScope.pageIndex = index;
                                 var paginationData = {
@@ -395,11 +402,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             $rootScope.toPage = function (index) {
                 if (index < 1) {
-                    index = 1
+                    index = 1;
+                    return;
                 }
                 if (index > $rootScope.pageTotal) {
                     index--;
                     $rootScope.pageIndex = index;
+                    return;
                 }
                 $rootScope.pageIndex = index;
                 var data = {
@@ -447,8 +456,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 serverService.getInfoData({uid:$scope.reviewNoItems[0].uid,tid:$scope.reviewNoItems[0].id})
                     .then(function (data) {
-                        $scope.currentIndex = 0;
-                        $scope.changeColor = 0;
+                        //$scope.currentIndex = 0;
+                        //$scope.changeColor = 0;
                         $scope.reviewNo[0].amount = data.result.amount;
                         $scope.reviewNo[0].check_fail = data.result.check_fail;
                         $scope.reviewNo[0].invited = data.result.invited;
@@ -526,7 +535,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
             }
-            $scope.next = function () {
+            $scope.noReviewNext = function () {
                 $scope.currentIndex ++;
                 if($scope.currentIndex >= $scope.reviewNoItems.length ){
                     $scope.currentIndex = $scope.reviewNoItems.length - 1
@@ -588,7 +597,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         },100);
                         storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                     }else{
-                        /*没全选状态下点击next/通过*/
+                        /*没全选状态下点击noReviewNext/通过*/
 
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
                             if($scope.reviewNoItems[i].checkState == true) {
@@ -605,6 +614,8 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 //storageUtils.session.setItem('_noReviewCurrentCheckIndex_',i);
                                 $scope.reviewNoItems.splice(i, 1);/*删除待审核的*/
                                 if($scope.checkedCount>=1 && i != 0){
+                                    storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
+                                }else if($scope.checkedCount>1 && i==0){
                                     storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10-$scope.checkedCount);
                                 }
                                 i--;
@@ -691,11 +702,13 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                         $rootScope.toPage = function (index) {
                             if (index < 1) {
-                                index = 1
+                                index = 1;
+                                return;
                             }
                             if (index > $rootScope.pageTotal) {
                                 index--;
                                 $rootScope.pageIndex = index;
+                                return;
                             }
                             $rootScope.pageIndex = index;
                             var paginationData = {
@@ -717,14 +730,14 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                             $scope.reviewNo.push({})
                                         }
                                         serverService.getInfoData(
-                                                {
-                                                    uid:$scope.reviewNoItems[0].uid,
-                                                    tid:$scope.reviewNoItems[0].id
-                                                }
+                                            {
+                                                uid:$scope.reviewNoItems[0].uid,
+                                                tid:$scope.reviewNoItems[0].id
+                                            }
                                         )
                                         .then(function (data) {
                                             $scope.currentIndex = 0;
-                                            $scope.changeColor = 0
+                                            $scope.changeColor = 0;
                                             $scope.reviewNo[0].amount = data.result.amount;
                                             $scope.reviewNo[0].check_fail = data.result.check_fail;
                                             $scope.reviewNo[0].invited = data.result.invited;

@@ -9,15 +9,17 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 //debugger;
                 element.one('click', function (event) {
                     if(storageUtils.session.getItem('_keyuped_')){
-                        storageUtils.session.removeItem('_keyuped_');
+                        //storageUtils.session.removeItem('_keyuped_');
                         return;
                     }
                     if(scope.tabSelected == 0){
                         $('.to-key-area').ready(function(){
+                            storageUtils.session.setItem('_keyuped_',true);
                             $(document).bind("keyup", keyUpevents);
                         });
                     }else if(scope.tabSelected == 2){
                         $('.no-key-area').ready(function(){
+                            storageUtils.session.setItem('_keyuped_',true);
                             $(document).bind("keyup", keyUpevents);
                         });
                     }

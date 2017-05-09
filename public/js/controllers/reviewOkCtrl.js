@@ -65,31 +65,31 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                         rows:10
                     };
                     serverService.getReviewList(data)
-                            .then(function (data) {
-                                $scope.reviewOkItems = data.result.rows;
-                                if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
-                                    $scope.reviewOk = $scope.reviewOkItems[0].data;
-                                    if ($scope.reviewOk.length == 0) {
-                                        $scope.reviewOk.push({})
-                                    }
-                                    serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
-                                        .then(function (data) {
-                                            $scope.currentIndex = 0;
-                                            $scope.changeColor = 0;
-                                            $scope.reviewOk[0].amount = data.result.amount;
-                                            $scope.reviewOk[0].check_fail = data.result.check_fail;
-                                            $scope.reviewOk[0].invited = data.result.invited;
-                                            $scope.reviewOk[0].regist_time = data.result.regist_time;
-                                            $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
-                                        })
-                                }else{return}
-                                $scope.reviewOk.forEach(function (item,index) {
-                                    if(item.type == 5){
-                                        window.x = item.x;
-                                        window.y = item.y;
-                                    }
-                                })
+                        .then(function (data) {
+                            $scope.reviewOkItems = data.result.rows;
+                            if($scope.reviewOkItems && $scope.reviewOkItems.length>0){
+                                $scope.reviewOk = $scope.reviewOkItems[0].data;
+                                if ($scope.reviewOk.length == 0) {
+                                    $scope.reviewOk.push({})
+                                }
+                                serverService.getInfoData({uid:$scope.reviewOkItems[0].uid,tid:$scope.reviewOkItems[0].id})
+                                    .then(function (data) {
+                                        $scope.currentIndex = 0;
+                                        $scope.changeColor = 0;
+                                        $scope.reviewOk[0].amount = data.result.amount;
+                                        $scope.reviewOk[0].check_fail = data.result.check_fail;
+                                        $scope.reviewOk[0].invited = data.result.invited;
+                                        $scope.reviewOk[0].regist_time = data.result.regist_time;
+                                        $scope.reviewOk[0].task_check_fail =data.result.task_check_fail;
+                                    })
+                            }else{return}
+                            $scope.reviewOk.forEach(function (item,index) {
+                                if(item.type == 5){
+                                    window.x = item.x;
+                                    window.y = item.y;
+                                }
                             })
+                        })
                 };
                 $scope.reviewOk.forEach(function (item,index) {
                     if(item.type == 5){

@@ -1062,9 +1062,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $scope.toReviewItems.splice(i, 1);
                                     /*删除待审核的*/
                                     /*当选中1条或多条 且不是第一条*/
-                                    if($scope.checkedCount>=1 && i != 0 && length == 0){
+                                    if($scope.checkedCount>=1 && i != 0 && length == 10){
                                         storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
-                                    }else if($scope.checkedCount>1 && i==0 && length == 0){
+                                    }else if($scope.checkedCount>1 && i==0 && length == 10){
                                         storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
                                     }
                                     i--;
@@ -1176,9 +1176,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             $scope.toReviewItems.splice(i, 1);
                                             /*删除待审核的*/
                                             /*当选中1条或多条 且不是第一条*/
-                                            if($scope.checkedCount>=1 && i != 0 && length == 0){
+                                            if($scope.checkedCount>=1 && i != 0 && length == 10){
                                                 storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
-                                            }else if($scope.checkedCount>1 && i==0 && length == 0){
+                                            }else if($scope.checkedCount>1 && i==0 && length == 10){
                                                 storageUtils.session.setItem('_currentCheckIndex_', 10-$scope.checkedCount);
                                             }
                                             i--;

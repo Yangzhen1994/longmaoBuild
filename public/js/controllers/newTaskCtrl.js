@@ -245,7 +245,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
 
                          }else{
-                             alert('请检查信息是否填写完整~');
+                             alert('请检查信息是否填写完整或下线再调整金额和个数~');
                          }
                      })
            /* id:

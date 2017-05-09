@@ -226,7 +226,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100);
+                            }, 200);
                             $scope.toReviewItems = [];
                             /*删除待审核的*/
                             $scope.masterHeader = false;
@@ -269,7 +269,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100);
+                            }, 200);
                             result = $scope.toReviewItems;
                             $scope.toReviewItems = result;
                             if ($scope.toReviewItems.length > 0) {
@@ -358,7 +358,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100)
+                            }, 200)
 
                         } else {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
@@ -396,7 +396,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100)
+                            }, 200)
                             result = $scope.toReviewItems;
                             $scope.toReviewItems = result;
                             if ($scope.toReviewItems.length > 0) {
@@ -464,7 +464,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_toReviewChecked_', true);
                                                 window.location = '#/reviewDetail/reviewDetail/tab2';
                                             }
-                                        }, 100)
+                                        }, 200)
                                         $scope.changeRight(null);
                                     }
 
@@ -511,7 +511,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
-                                    }, 100);
+                                    }, 200);
                                     result = $scope.toReviewItems;
                                     $scope.toReviewItems = result;
                                     if ($scope.toReviewItems.length > 0) {
@@ -923,7 +923,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 storageUtils.session.setItem('_toReviewChecked_', true);
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
                             }
-                        }, 100);
+                        }, 200);
                         result = $scope.toReviewItems;
                         $scope.toReviewItems = result;
                         if ($scope.toReviewItems.length > 0) {
@@ -1007,7 +1007,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100);
+                            }, 200);
                             $scope.masterHeader = false
                         } else {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
@@ -1045,7 +1045,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 }
-                            }, 100);
+                            }, 200);
                             result = $scope.toReviewItems;
                             $scope.toReviewItems = result;
                             if ($scope.toReviewItems.length > 0) {
@@ -1112,7 +1112,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
-                                    }, 100);
+                                    }, 200);
                                 } else {
                                     for (var i = 0; i < $scope.toReviewItems.length; i++) {
                                         if ($scope.toReviewItems[i].checkState == true) {
@@ -1151,7 +1151,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
-                                    }, 100);
+                                    }, 200);
                                     result = $scope.toReviewItems;
                                     $scope.toReviewItems = result;
                                     if ($scope.toReviewItems.length > 0) {
@@ -1303,8 +1303,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     storageUtils.session.removeItem('_currentCheckIndex_');
                     $scope.changeRight($scope.toReviewItems[currentCheckIndex], currentCheckIndex);
                 } else {
-                    $scope.changeRight($scope.toReviewItems[0], 0);
                     storageUtils.session.removeItem('_currentCheckIndex_');
+                    $scope.changeRight($scope.toReviewItems[0], 0);
+
                 }
             });
     }])

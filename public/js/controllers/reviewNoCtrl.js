@@ -209,8 +209,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
                                     storageUtils.session.setItem('_reviewNoChecked_',true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
+                                }else{
+                                    alert('操作失败')
                                 }
-                            },100);
+                            },200);
                             storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                         }else{
                             /*没全选状态下点击noReviewNext/通过*/
@@ -245,8 +247,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                     storageUtils.session.setItem('_keyuped_',true);
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
+                                }else{
+                                    alert('操作失败')
                                 }
-                            },100)
+                            },200)
                             result = $scope.reviewNoItems;
                             $scope.reviewNoItems = result;
                             if($scope.reviewNoItems.length>0){
@@ -610,8 +614,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 storageUtils.session.setItem('_keyuped_',true);
                                 storageUtils.session.setItem('_reviewNoChecked_',true);
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
+                            }else{
+                                alert('操作失败')
                             }
-                        },100);
+                        },200);
                         storageUtils.session.setItem('_reviewNo_',$scope.reviewNoItems);
                     }else{
                         /*没全选状态下点击noReviewNext/通过*/
@@ -647,8 +653,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                                 storageUtils.session.setItem('_keyuped_',true);
                                 storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex)
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
+                            }else{
+                                alert('操作失败')
                             }
-                        },100);
+                        },200);
                         result = $scope.reviewNoItems;
                         $scope.reviewNoItems = result;
                         if($scope.reviewNoItems.length>0){
@@ -777,13 +785,14 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                         storageUtils.session.setItem('_reviewNoOrder_',data.order);
                     })
             };
-            if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_') && storageUtils.session.getItem('_currentCheckIndex_')!=10) {
+            if(storageUtils.session.getItem('_noReviewCurrentCheckIndex_') && storageUtils.session.getItem('_noReviewCurrentCheckIndex_')!=10) {
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex],noReviewCurrentCheckIndex)
             }else{
-                $scope.changeRight($scope.reviewNoItems[0],0);
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
+                $scope.changeRight($scope.reviewNoItems[0],0);
+
             }
         })
     }])

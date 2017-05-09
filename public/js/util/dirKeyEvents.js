@@ -15,10 +15,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     if(scope.tabSelected == 0){
                         $('.to-key-area').ready(function(){
                             storageUtils.session.setItem('_keyuped_',true);
+                            $(document).unbind("keyup");
                             $(document).bind("keyup", keyUpevents);
                         });
                     }else if(scope.tabSelected == 2){
                         $('.no-key-area').ready(function(){
+                            $(document).unbind("keyup");
                             storageUtils.session.setItem('_keyuped_',true);
                             $(document).bind("keyup", keyUpevents);
                         });

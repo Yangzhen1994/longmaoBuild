@@ -14,6 +14,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         $scope.subTime = '';
         $scope.setChoose = function (type) {
             $scope.chooseType = type
+        };
+        $scope.reviewDetailInputStop = function (e) {
+            e.stopPropagation();
         }
         var aTab1 = $('.tabs-header-1');
         aTab1.click(function () {

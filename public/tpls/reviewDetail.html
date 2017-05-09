@@ -7,7 +7,7 @@
 
     <div class="review-detail-search-area">
         <button class="search-btn-review-detail" ng-click="searchCheckBydate()">搜索</button>
-        <input type="text" class="search-input" id="searchInput" ng-model="reviewUserId">
+        <input type="text" class="search-input" id="searchInput" ng-model="reviewUserId" ng-keyup="reviewDetailInputStop($event)">
     </div>
     <div class="review-detail-radio">
         <span ng-click="setChoose(1)">

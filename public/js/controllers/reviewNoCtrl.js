@@ -5,6 +5,7 @@
 define(['app','storageUtils','serverService'], function (app,storageUtils,serverService) {
     return  app.controller('reviewNoCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
         storageUtils.session.removeItem('_keyuped_');
+        $scope.checkedCount = 0;
         var reviewId = storageUtils.session.getItem('_reviewList_');
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if(reviewFlag){
@@ -34,6 +35,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
                     $rootScope.pageIndex = index;
                     if ($scope.reviewUserId && $scope.chooseType == 2) {
+                        $scope.reviewUserId = ''
+                    }
+                    if(!$scope.chooseType){
                         $scope.reviewUserId = ''
                     }
                     var data = {
@@ -167,6 +171,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     }
 
                     if(confirm('确认通过?')){
+                        $scope.reviewNoItems.forEach(function (item,index) {
+                            if(item.checkState == true){
+                                $scope.checkedCount++;
+                            }
+                        });
                         if($scope.masterHeader && $scope.masterHeader == true){
                             for(var i=0;i<$scope.reviewNoItems.length;i++){
                                 serverService.check(
@@ -252,7 +261,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 };
                 $scope.orderByTimes = function (num) {
                     var reviewId = storageUtils.session.getItem('_reviewList_');
-                    if($scope.chooseType == 2){
+                    if($scope.chooseType == 2 || !$scope.chooseType){
                         $scope.reviewUserId = ''
                     };
                     var data = {
@@ -371,6 +380,9 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
 
         /************/
         if($scope.reviewUserId&&$scope.chooseType == 2){
+            $scope.reviewUserId = ''
+        }
+        if(!$scope.chooseType){
             $scope.reviewUserId = ''
         }
         var reviewId = storageUtils.session.getItem('_reviewList_');
@@ -534,7 +546,7 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                 }
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
-            }
+            };
             $scope.noReviewNext = function () {
                 $scope.currentIndex ++;
                 if($scope.currentIndex >= $scope.reviewNoItems.length ){
@@ -563,6 +575,11 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
                     return;
                 }
                 if(confirm('确认通过?')){
+                    $scope.reviewNoItems.forEach(function (item,index) {
+                        if(item.checkState == true){
+                            $scope.checkedCount++;
+                        }
+                    });
                     if($scope.masterHeader&&$scope.masterHeader == true){
                         for(var i=0;i<$scope.reviewNoItems.length;i++){
                             serverService.check({ids:$scope.reviewNoItems[i].cid,
@@ -647,9 +664,10 @@ define(['app','storageUtils','serverService'], function (app,storageUtils,server
 
             $scope.orderByTimes = function (num) {
                 var reviewId = storageUtils.session.getItem('_reviewList_');
-                if($scope.chooseType == 2){
+                if($scope.chooseType == 2 || !$scope.chooseType){
                     $scope.reviewUserId = ''
                 };
+
                 var data = {
                     id:reviewId,
                     uid:$scope.reviewUserId,

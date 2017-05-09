@@ -177,7 +177,10 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
                 /*排序*/
                 $scope.orderByTimes = function (num) {
                     var reviewId = storageUtils.session.getItem('_reviewList_');
-                    if($scope.chooseType == 2){
+                    if($scope.chooseType == 2 || !$scope.chooseType){
+                        $scope.reviewUserId = ''
+                    }
+                    if(!$scope.chooseType){
                         $scope.reviewUserId = ''
                     }
                     var data = {
@@ -298,6 +301,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
         /******************/
         var reviewId = storageUtils.session.getItem('_reviewList_');
         if($scope.reviewUserId&&$scope.chooseType == 2){
+            $scope.reviewUserId = ''
+        }
+        if(!$scope.chooseType){
             $scope.reviewUserId = ''
         }
         $scope.data = {
@@ -475,6 +481,9 @@ define(['app','storageUtils'], function (app,storageUtils,serverService) {
             $scope.orderByTimes = function (num) {
                 var reviewId = storageUtils.session.getItem('_reviewList_');
                 if($scope.chooseType == 2){
+                    $scope.reviewUserId = ''
+                }
+                if(!$scope.chooseType){
                     $scope.reviewUserId = ''
                 }
                 var data = {

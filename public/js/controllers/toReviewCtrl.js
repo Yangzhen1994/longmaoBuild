@@ -141,6 +141,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
+                    $('.to-review-left').animate({scrollTop:72*$scope.currentIndex});
                 };
                 $scope.changeRight($scope.toReviewItems[0], 0);
                 $scope.all = function (master) {
@@ -172,7 +173,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     if ($scope.currentIndex >= $scope.toReviewItems.length) {
                         $scope.currentIndex = $scope.toReviewItems.length - 1
                     }
-                    $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex)
+                    $scope.changeRight($scope.toReviewItems[$scope.currentIndex], $scope.currentIndex);
                 };
                 $scope.toPrev = function () {
                     $scope.currentIndex--;
@@ -855,6 +856,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
+                    $('.to-review-left').animate({scrollTop:72*$scope.currentIndex});
                 }
                 $scope.all = function (master) {
                     $scope.masterItem = master;
@@ -1358,11 +1360,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var currentCheckIndex = storageUtils.session.getItem('_currentCheckIndex_');
                     storageUtils.session.removeItem('_currentCheckIndex_');
                     $scope.changeRight($scope.toReviewItems[currentCheckIndex], currentCheckIndex);
-                    $('#toItemA'+$index).trigger('click');
                 } else {
                     storageUtils.session.removeItem('_currentCheckIndex_');
                     $scope.changeRight($scope.toReviewItems[0], 0);
-
                 }
             });
     }])

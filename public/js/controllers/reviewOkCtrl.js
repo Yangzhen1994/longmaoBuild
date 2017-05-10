@@ -163,6 +163,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                     }
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
+                    $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
                 };
                 $scope.changeRight($scope.reviewOkItems[0], 0);
                 $scope.okNext = function () {
@@ -170,14 +171,16 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                     if ($scope.currentIndex >= $scope.reviewOkItems.length) {
                         $scope.currentIndex = $scope.reviewOkItems.length - 1
                     }
-                    $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
-                }
+                    $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex);
+                    $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
+                };
                 $scope.okPrev = function () {
                     $scope.currentIndex--;
                     if ($scope.currentIndex < 0) {
                         $scope.currentIndex = 0
                     }
-                    $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
+                    $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex);
+                    $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
                 };
                 /*排序*/
                 $scope.orderByTimes = function (num) {
@@ -481,20 +484,23 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                 }
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
+                $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
             };
             $scope.okNext = function () {
                 $scope.currentIndex++;
                 if ($scope.currentIndex >= $scope.reviewOkItems.length) {
                     $scope.currentIndex = $scope.reviewOkItems.length - 1
                 }
-                $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
+                $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex);
+                $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
             }
             $scope.okPrev = function () {
                 $scope.currentIndex--;
                 if ($scope.currentIndex < 0) {
                     $scope.currentIndex = 0
                 }
-                $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex)
+                $scope.changeRight($scope.reviewOkItems[$scope.currentIndex], $scope.currentIndex);
+                $('.review-ok-left').animate({scrollTop:72*$scope.currentIndex});
             }
             /*排序*/
             $scope.orderByTimes = function (num) {

@@ -147,6 +147,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                     }
                     $scope.changeColor = index;
                     $scope.currentIndex = index;
+                    $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
                 };
                 $scope.changeRight($scope.reviewNoItems[0], 0);
                 $scope.noReviewNext = function () {
@@ -154,14 +155,16 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                     if ($scope.currentIndex >= $scope.reviewNoItems.length) {
                         $scope.currentIndex = $scope.reviewNoItems.length - 1
                     }
-                    $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+                    $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex);
+                    $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
                 }
                 $scope.noPrev = function () {
                     $scope.currentIndex--;
                     if ($scope.currentIndex < 0) {
                         $scope.currentIndex = 0
                     }
-                    $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+                    $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex);
+                    $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
                 };
                 $scope.rnRightAllow = function (e) {
                     /*全选通过*/
@@ -585,20 +588,23 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                 }
                 $scope.changeColor = index;
                 $scope.currentIndex = index;
+                $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
             };
             $scope.noReviewNext = function () {
                 $scope.currentIndex++;
                 if ($scope.currentIndex >= $scope.reviewNoItems.length) {
                     $scope.currentIndex = $scope.reviewNoItems.length - 1
                 }
-                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex);
+                $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
             }
             $scope.noPrev = function () {
                 $scope.currentIndex--;
                 if ($scope.currentIndex < 0) {
                     $scope.currentIndex = 0
                 }
-                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex)
+                $scope.changeRight($scope.reviewNoItems[$scope.currentIndex], $scope.currentIndex);
+                $(".review-no-left").animate({scrollTop:72*$scope.currentIndex});
             };
             $scope.rnRightAllow = function (e) {
                 e.stopPropagation();
@@ -840,7 +846,6 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex], noReviewCurrentCheckIndex);
-                $('#noItemA'+$index).trigger('click');
             } else {
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[0], 0);

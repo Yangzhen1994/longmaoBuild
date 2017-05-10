@@ -457,19 +457,19 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 };
                 $scope.subOtherReason = function (e) {
                     if (e) {
-                        e.stopPropagation();
-                        var checkedArr = [];
-                        $scope.toReviewItems.forEach(function (item, index) {
-                            if (item.checkState == true) {
-                                checkedArr.push(item)
-                            }
-                        });
-                        if (checkedArr.length == 0) {
-                            alert('请勾选要操作的项！');
-                            return;
-                        }
                         var keycode = window.event ? e.keyCode : e.which;
                         if (keycode == 13) {
+                            e.stopPropagation();
+                            var checkedArr = [];
+                            $scope.toReviewItems.forEach(function (item, index) {
+                                if (item.checkState == true) {
+                                    checkedArr.push(item)
+                                }
+                            });
+                            if (checkedArr.length == 0) {
+                                alert('请勾选要操作的项！');
+                                return;
+                            }
                             /*全选拒绝*/
                             if (confirm('确认拒绝么？')) {
                                 $scope.toReviewItems.forEach(function (item, index) {
@@ -1163,20 +1163,19 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 };
                 $scope.subOtherReason = function (e) {
                     if (e) {
-
-                        e.stopPropagation();
-                        var checkedArr = [];
-                        $scope.toReviewItems.forEach(function (item, index) {
-                            if (item.checkState == true) {
-                                checkedArr.push(item)
-                            }
-                        });
-                        if (checkedArr.length == 0) {
-                            alert('请勾选要操作的项！');
-                            return;
-                        }
                         var keycode = window.event ? e.keyCode : e.which;
                         if (keycode == 13) {
+                            e.stopPropagation();
+                            var checkedArr = [];
+                            $scope.toReviewItems.forEach(function (item, index) {
+                                if (item.checkState == true) {
+                                    checkedArr.push(item)
+                                }
+                            });
+                            if (checkedArr.length == 0) {
+                                alert('请勾选要操作的项！');
+                                return;
+                            }
                             /*全选拒绝*/
                             if (confirm('确认拒绝么？')) {
                                 $scope.toReviewItems.forEach(function (item, index) {

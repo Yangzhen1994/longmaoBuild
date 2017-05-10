@@ -213,7 +213,6 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                     /*导入*/
                     $scope.file_upload = function (obj) {
                         var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2)
-                        console.log(index)
                         var str = '#totoroTaskCheckFileForm' + index;
                         console.log(str);
                         console.log(new FormData($(str)[0]));

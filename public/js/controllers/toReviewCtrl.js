@@ -7,6 +7,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         $scope.checkedCount = 0;
         var toReviewCurrentPage = storageUtils.session.getItem('_currentPageIndex_');
         var otherReasonObj = storageUtils.session.getItem('_otherReason_');
+        var reviewId = storageUtils.session.getItem('_reviewList_');
         if(otherReasonObj && otherReasonObj.taskId != reviewId){
             storageUtils.session.removeItem('_otherReason_');
         }
@@ -347,6 +348,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if(flag){
                             if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
                                 data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                            }else if($scope.otherReason && !storageUtils.session.getItem('_otherReason_')){
+                                var extmessageObj = {
+                                    taskId:storageUtils.session.getItem('_reviewList_'),
+                                    otherReason:$scope.otherReason
+                                }
+                                storageUtils.session.setItem('_otherReason_',extmessageObj);
+                                data.extmessage = $scope.otherReason
                             }
                         }
 
@@ -1049,6 +1057,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if(flag){
                             if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
                                 data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                            }else if($scope.otherReason && !storageUtils.session.getItem('_otherReason_')){
+                                var extmessageObj = {
+                                    taskId:storageUtils.session.getItem('_reviewList_'),
+                                    otherReason:$scope.otherReason
+                                }
+                                storageUtils.session.setItem('_otherReason_',extmessageObj)
+                                data.extmessage = $scope.otherReason
                             }
                         }
 

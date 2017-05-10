@@ -54,7 +54,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             if($scope.chooseType == 2 && $scope.reviewUserId){
                 data0.id = $scope.reviewUserId;
                 storageUtils.session.setItem('_reviewList_',data0.id);
-                if(storageUtils.session.getItem('_otherReason_').taskId != reviewId){
+                if(storageUtils.session.getItem('_otherReason_') && storageUtils.session.getItem('_otherReason_').taskId != reviewId){
                     storageUtils.session.removeItem('_otherReason_');
                 }
                 $scope.reviewId = data0.id

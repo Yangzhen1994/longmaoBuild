@@ -333,7 +333,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             }
                         });
                         var data = {
-                            ids: $scope.toReviewItems[index].cid,
+                            ids: '',
                             status: 0,
                             message: 3,
                             extmessage: '',
@@ -1042,7 +1042,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             }
                         });
                         var data = {
-                            ids: $scope.toReviewItems[index].cid,
+                            ids: '',
                             status: 0,
                             message: 3,
                             extmessage: '',

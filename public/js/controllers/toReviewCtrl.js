@@ -849,7 +849,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 //复选框的初值
                 $scope.flag = false;
                 $scope.masterItem = false;
-                $scope.otherReason = storageUtils.session.getItem('_otherReason_');
+                $scope.otherReason = storageUtils.session.getItem('_otherReason_').otherReason;
                 $scope.changeRight = function (item, index) {
                     if (item && item.data) {
                         serverService.getInfoData({uid: item.uid, tid: item.id})

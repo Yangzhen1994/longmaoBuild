@@ -411,7 +411,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
             } else {
                 $timeout(function () {
                     alert('此任务的审核成功无');
-                },200);
+                });
                 return
             }
             $scope.reviewOk.forEach(function (item, index) {

@@ -513,7 +513,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
             } else {
                 $timeout(function () {
                     alert('此任务的审核失败无');
-                },200);
+                });
                 return
             }
 

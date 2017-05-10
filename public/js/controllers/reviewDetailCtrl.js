@@ -8,10 +8,7 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             $('.left').height($('.right').height())
         },100)
         var reviewId = storageUtils.session.getItem('_reviewList_');
-        var otherReasonObj = storageUtils.session.getItem('_otherReason_');
-        if(otherReasonObj && otherReasonObj.taskId != reviewId){
-            storageUtils.session.removeItem('_otherReason_');
-        }
+
         $scope.reviewId = reviewId;
         $scope.chooseType = '';
         $scope.tabSelected = 0;

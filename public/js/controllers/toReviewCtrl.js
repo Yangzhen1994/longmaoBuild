@@ -6,6 +6,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         storageUtils.session.removeItem('_keyuped_');
         $scope.checkedCount = 0;
         var toReviewCurrentPage = storageUtils.session.getItem('_currentPageIndex_');
+        var otherReasonObj = storageUtils.session.getItem('_otherReason_');
+        if(otherReasonObj && otherReasonObj.taskId != reviewId){
+            storageUtils.session.removeItem('_otherReason_');
+        }
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if (reviewFlag) {
             storageUtils.session.removeItem('_FLAG_');
@@ -306,7 +310,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.changeReasonBg = function (index) {
                     $scope.bg = index
                 };
-                $scope.subReason = function (e, index) {
+                $scope.subReason = function (e, index, flag) {
                     e.stopPropagation();
                     var checkedArr = [];
                     $scope.toReviewItems.forEach(function (item, index) {
@@ -340,9 +344,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (index == 1) {
                             data.message = 4;
                         }
-                        if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
-                            data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                        if(flag){
+                            if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
+                                data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                            }
                         }
+
                         /*全选拒绝*/
                         if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
@@ -849,7 +856,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 //复选框的初值
                 $scope.flag = false;
                 $scope.masterItem = false;
-                $scope.otherReason = storageUtils.session.getItem('_otherReason_').otherReason;
+                if(storageUtils.session.getItem('_otherReason_')){
+                    $scope.otherReason = storageUtils.session.getItem('_otherReason_').otherReason;
+                }
+
                 $scope.changeRight = function (item, index) {
                     if (item && item.data) {
                         serverService.getInfoData({uid: item.uid, tid: item.id})
@@ -1004,7 +1014,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.changeReasonBg = function (index) {
                     $scope.bg = index
                 };
-                $scope.subReason = function (e, index) {
+                $scope.subReason = function (e, index, flag) {
                     e.stopPropagation();
                     var checkedArr = [];
                     $scope.toReviewItems.forEach(function (item, index) {
@@ -1036,9 +1046,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (index == 1) {
                             data.message = 4;
                         }
-                        if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
-                            data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                        if(flag){
+                            if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
+                                data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                            }
                         }
+
                         /*全选拒绝*/
                         if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {

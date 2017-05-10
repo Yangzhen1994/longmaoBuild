@@ -214,8 +214,8 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                                     storageUtils.session.setItem('_keyuped_', true);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
                                         storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
-                                    } else {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                    } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
+                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_reviewNoChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -259,8 +259,8 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                                     storageUtils.session.setItem('_keyuped_', true);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
                                         storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
-                                    } else {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                    } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
+                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                     }
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
                                 } else {
@@ -400,9 +400,9 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                             storageUtils.session.setItem('_reviewNoOrder_', data.order);
                         })
                 };
-                storageUtils.session.removeItem('searchCheckBydate');
-                return
             }
+            storageUtils.session.removeItem('searchCheckBydate');
+            return
         }
 
         /************/
@@ -642,7 +642,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                                 storageUtils.session.setItem('_noReviewCurrentCheckIndex_', 10);
                                 if ($rootScope.pageIndex < $rootScope.pageTotal) {
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
-                                } else {
+                                } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                 }
                                 storageUtils.session.setItem('_keyuped_', true);
@@ -689,7 +689,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                                 storageUtils.session.setItem('_keyuped_', true);
                                 if ($rootScope.pageIndex < $rootScope.pageTotal) {
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
-                                } else {
+                                } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                 }
                                 window.location = '#/reviewDetail/reviewDetail/tab2';

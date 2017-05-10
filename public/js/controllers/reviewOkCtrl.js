@@ -302,9 +302,9 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                             storageUtils.session.setItem('_reviewOkOrder_', data.order);
                         })
                 };
-                storageUtils.session.removeItem('searchCheckBydate');
-                return
             }
+            storageUtils.session.removeItem('searchCheckBydate');
+            return
         }
 
         /******************/

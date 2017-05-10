@@ -115,7 +115,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 //复选框的初值
                 $scope.flag = false;
                 $scope.masterItem = false;
-                $scope.otherReason = '';
+                //$scope.otherReason = '';
                 $scope.changeRight = function (item, index) {
                     if (item && item.data) {
                         serverService.getInfoData({uid: item.uid, tid: item.id})
@@ -340,6 +340,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (index == 1) {
                             data.message = 4;
                         }
+                        if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
+                            data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                        }
                         /*全选拒绝*/
                         if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
@@ -461,7 +464,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         serverService.check({
                                             ids: $scope.toReviewItems[i].cid,
                                             status: 0,
-                                            message: 1,
+                                            message: 3,
                                             extmessage: $scope.otherReason
                                         }).then(function (data) {
                                             if (data.result.success == 1) {
@@ -474,7 +477,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         $timeout(function () {
                                             if (storageUtils.session.getItem('_Fail_') == 'true') {
                                                 alert('操作成功');
-                                                $scope.otherReason = '';
                                                 storageUtils.session.removeItem('_Fail_');
                                                 //操作成功后tab间切换实现刷新目的
                                                 storageUtils.session.setItem('_keyuped_', true);
@@ -484,6 +486,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                                     storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                                 }
+                                                var extmessageObj = {
+                                                    taskId:storageUtils.session.getItem('_reviewList_'),
+                                                    otherReason:$scope.otherReason
+                                                };
+                                                storageUtils.session.setItem('_otherReason_',extmessageObj);
                                                 storageUtils.session.setItem('_toReviewChecked_', true);
                                                 window.location = '#/reviewDetail/reviewDetail/tab2';
                                             }
@@ -504,7 +511,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             serverService.check({
                                                 ids: $scope.toReviewItems[i].cid,
                                                 status: 0,
-                                                message: 1,
+                                                message: 3,
                                                 extmessage: $scope.otherReason
                                             }).then(function (data) {
                                                 if (data.result.success == 1) {
@@ -527,7 +534,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $timeout(function () {
                                         if (storageUtils.session.getItem('_Fail_') == 'true') {
                                             alert('操作成功');
-                                            $scope.otherReason = '';
+
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_', true);
@@ -536,6 +543,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                                 storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                             }
+                                            var extmessageObj = {
+                                                taskId:storageUtils.session.getItem('_reviewList_'),
+                                                otherReason:$scope.otherReason
+                                            };
+                                            storageUtils.session.setItem('_otherReason_',extmessageObj);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
@@ -551,6 +563,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                 }
                                 $scope.showRejCover = false;
+                            }else{
+                                storageUtils.session.setItem('_otherReason_',$scope.otherReason);
                             }
                         }
                     }
@@ -835,7 +849,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 //复选框的初值
                 $scope.flag = false;
                 $scope.masterItem = false;
-                $scope.otherReason = '';
+                $scope.otherReason = storageUtils.session.getItem('_otherReason_');
                 $scope.changeRight = function (item, index) {
                     if (item && item.data) {
                         serverService.getInfoData({uid: item.uid, tid: item.id})
@@ -1022,6 +1036,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         if (index == 1) {
                             data.message = 4;
                         }
+                        if(storageUtils.session.getItem('_otherReason_')&&$scope.otherReason){
+                            data.extmessage = storageUtils.session.getItem('_otherReason_').otherReason
+                        }
                         /*全选拒绝*/
                         if ($scope.masterHeader && $scope.masterHeader == true) {
                             for (var i = 0; i < $scope.toReviewItems.length; i++) {
@@ -1112,6 +1129,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 };
                 $scope.subOtherReason = function (e) {
                     if (e) {
+
                         e.stopPropagation();
                         var checkedArr = [];
                         $scope.toReviewItems.forEach(function (item, index) {
@@ -1137,7 +1155,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         serverService.check({
                                             ids: $scope.toReviewItems[i].cid,
                                             status: 0,
-                                            message: 1,
+                                            message: 3,
                                             extmessage: $scope.otherReason
                                         }).then(function (data) {
                                             if (data.result.success == 1) {
@@ -1155,7 +1173,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $timeout(function () {
                                         if (storageUtils.session.getItem('_Fail_') == 'true') {
                                             alert('操作成功');
-                                            $scope.otherReason = '';
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_currentCheckIndex_', 10);
@@ -1164,6 +1181,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                                 storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                             }
+                                            //缓存页面拒绝原因
+                                            var extmessageObj = {
+                                                taskId:storageUtils.session.getItem('_reviewList_'),
+                                                otherReason:$scope.otherReason
+                                            };
+                                            storageUtils.session.setItem('_otherReason_',extmessageObj);
                                             storageUtils.session.setItem('_keyuped_', true);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -1176,7 +1199,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             serverService.check({
                                                 ids: $scope.toReviewItems[i].cid,
                                                 status: 0,
-                                                message: 1,
+                                                message: 3,
                                                 extmessage: $scope.otherReason
                                             }).then(function (data) {
                                                 if (data.result.success == 1) {
@@ -1200,7 +1223,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $timeout(function () {
                                         if (storageUtils.session.getItem('_Fail_') == 'true') {
                                             alert('操作成功');
-                                            $scope.otherReason = '';
                                             storageUtils.session.removeItem('_Fail_');
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_', true);
@@ -1209,6 +1231,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
                                                 storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
                                             }
+                                            var extmessageObj = {
+                                                taskId:storageUtils.session.getItem('_reviewList_'),
+                                                otherReason:$scope.otherReason
+                                            };
+                                            storageUtils.session.setItem('_otherReason_',extmessageObj);
                                             storageUtils.session.setItem('_toReviewChecked_', true);
                                             window.location = '#/reviewDetail/reviewDetail/tab2';
                                         }
@@ -1224,12 +1251,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                 }
                                 $scope.showRejCover = false;
+                            }else{
+                                storageUtils.session.setItem('_otherReason_',$scope.otherReason);
                             }
-
-
-                            console.log($scope.otherReason);
-
-
                         }
                     }
                 };

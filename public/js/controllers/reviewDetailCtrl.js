@@ -8,6 +8,10 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             $('.left').height($('.right').height())
         },100)
         var reviewId = storageUtils.session.getItem('_reviewList_');
+        var otherReasonObj = storageUtils.session.getItem('_otherReason_');
+        if(otherReasonObj.taskId != reviewId){
+            storageUtils.session.removeItem('_otherReason_');
+        }
         $scope.reviewId = reviewId;
         $scope.chooseType = '';
         $scope.tabSelected = 0;
@@ -53,6 +57,9 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             if($scope.chooseType == 2 && $scope.reviewUserId){
                 data0.id = $scope.reviewUserId;
                 storageUtils.session.setItem('_reviewList_',data0.id);
+                if(storageUtils.session.getItem('_otherReason_').taskId != reviewId){
+                    storageUtils.session.removeItem('_otherReason_');
+                }
                 $scope.reviewId = data0.id
             }
             if($scope.tabSelected == 0){

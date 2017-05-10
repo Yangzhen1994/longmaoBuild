@@ -27,6 +27,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             storageUtils.session.removeItem('_reviewOkOrder_');
             storageUtils.session.removeItem('_reviewNoSort_');
             storageUtils.session.removeItem('_reviewNoOrder_');
+            storageUtils.session.removeItem('_otherReason_');
+
             $scope.chooseType = '';
             $scope.state = '';
             $scope.selected = '';

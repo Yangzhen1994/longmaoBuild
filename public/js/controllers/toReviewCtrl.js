@@ -39,6 +39,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $rootScope.pageIndex = 1;
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
+                    //每次翻页都回到顶部
+                    $('.to-review-left').animate({scrollTop:0});
                     if (index < 1) {
                         index = 1;
                         return;
@@ -617,6 +619,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             $rootScope.pageIndex = $rootScope.pageIndex;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
+                                //每次翻页都回到顶部
+                                $('.to-review-left').animate({scrollTop:0});
                                 if (index < 1) {
                                     index = 1;
                                     return;
@@ -731,6 +735,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 storageUtils.session.removeItem('_currentPageIndex_');
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
+                    //每次翻页都回到顶部
+                    $('.to-review-left').animate({scrollTop:0});
                     if (index < 1) {
                         index = 1;
                         return;
@@ -1293,6 +1299,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             $rootScope.pageIndex = $rootScope.pageIndex;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
+                                //每次翻页都回到顶部
+                                $('.to-review-left').animate({scrollTop:0});
                                 if (index < 1) {
                                     index = 1;
                                     return;

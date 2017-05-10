@@ -204,7 +204,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                     if (!data.date) {
                                         alert('请选择时间');
                                     } else {
-                                        var url = 'http://manager.test.shandianshua.com/totoro/task/expimp/export/check/data.html?id=' + data.tid + '&uid=' + data.uid + '&date=' + data.date + '&status=' + data.status + '&tip=1'
+                                        var url = 'http://manager.shandianshua.com/totoro/task/expimp/export/check/data.html?id=' + data.tid + '&uid=' + data.uid + '&date=' + data.date + '&status=' + data.status + '&tip=1'
                                         window.open(url)
                                     }
                                 })
@@ -218,7 +218,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                         console.log(str);
                         console.log(new FormData($(str)[0]));
                         $.ajax({
-                            url: 'http://manager.test.shandianshua.com/totoro/task/expimp/import/check/data.json',
+                            url: 'http://manager.shandianshua.com/totoro/task/expimp/import/check/data.json',
                             type: 'POST',
                             dataType: 'json',
                             xhrFields: {

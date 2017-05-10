@@ -43,6 +43,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                 $rootScope.pageIndex = 1;
                 $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                 $rootScope.toPage = function (index) {
+                    $('.review-ok-left').animate({scrollTop:0});
                     if (index < 1) {
                         index = 1;
                         return;
@@ -245,6 +246,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                             $rootScope.pageIndex = $rootScope.pageIndex;
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                             $rootScope.toPage = function (index) {
+                                $('.review-ok-left').animate({scrollTop:0});
                                 if (index < 1) {
                                     index = 1;
                                     return;
@@ -342,6 +344,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
             $rootScope.pageIndex = 1;
             $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             $rootScope.toPage = function (index) {
+                $('.review-ok-left').animate({scrollTop:0});
                 if (index < 1) {
                     index = 1;
                     return;
@@ -564,6 +567,7 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                         $rootScope.pageIndex = $rootScope.pageIndex;
                         $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
                         $rootScope.toPage = function (index) {
+                            $('.review-ok-left').animate({scrollTop:0});
                             if (index < 1) {
                                 index = 1;
                                 return;

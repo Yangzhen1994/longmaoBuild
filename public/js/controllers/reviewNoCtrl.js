@@ -513,7 +513,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
             } else {
                 $timeout(function () {
                     alert('此任务的审核失败无');
-                });
+                },50);
                 return
             }
 
@@ -838,7 +838,8 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
             if (storageUtils.session.getItem('_noReviewCurrentCheckIndex_') && storageUtils.session.getItem('_noReviewCurrentCheckIndex_') != 10) {
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
-                $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex], noReviewCurrentCheckIndex)
+                $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex], noReviewCurrentCheckIndex);
+                window.location.hash="noItem"+noReviewCurrentCheckIndex
             } else {
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[0], 0);

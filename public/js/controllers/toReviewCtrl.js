@@ -806,7 +806,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 } else {
                     $timeout(function () {
                         alert('此任务的待审核无');
-                    });
+                    },50);
                     return
                 }
                 $scope.toReview.forEach(function (item, index) {
@@ -1358,6 +1358,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     var currentCheckIndex = storageUtils.session.getItem('_currentCheckIndex_');
                     storageUtils.session.removeItem('_currentCheckIndex_');
                     $scope.changeRight($scope.toReviewItems[currentCheckIndex], currentCheckIndex);
+                    window.location.hash="toItem"+currentCheckIndex
                 } else {
                     storageUtils.session.removeItem('_currentCheckIndex_');
                     $scope.changeRight($scope.toReviewItems[0], 0);

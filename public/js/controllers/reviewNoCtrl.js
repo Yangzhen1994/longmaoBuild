@@ -497,7 +497,6 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                     })
             };
             if ($scope.reviewNoItems && $scope.reviewNoItems.length > 0) {
-                alert($('noItem1').offset().top);
                 $scope.reviewNo = $scope.reviewNoItems[0].data;
                 if ($scope.reviewNo.length == 0) {
                     $scope.reviewNo.push({})
@@ -841,7 +840,7 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                 var noReviewCurrentCheckIndex = storageUtils.session.getItem('_noReviewCurrentCheckIndex_');
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[noReviewCurrentCheckIndex], noReviewCurrentCheckIndex);
-                $('#noItem'+$index).trigger('click');
+                $('#noItemA'+$index).trigger('click');
             } else {
                 storageUtils.session.removeItem('_noReviewCurrentCheckIndex_');
                 $scope.changeRight($scope.reviewNoItems[0], 0);

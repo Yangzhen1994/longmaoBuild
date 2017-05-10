@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="./css/review.css">
 <div  class="review"><!--ng-controller="firstPage"-->
-
+    <img id="progressImage" class="progress" style="display:none" alt="" src="../img/loading.gif"/>
+    <div id="maskOfProgressImage" class="mask" style="display:none"></div>
     <div class="bread">
         <a ng-click="returnToSelf()" ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
         <!-- <a ui-sref="parent.newTask">新建任务</a>-->

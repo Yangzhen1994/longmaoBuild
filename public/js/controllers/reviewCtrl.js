@@ -212,10 +212,13 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                     };
                     /*导入*/
                     $scope.file_upload = function (obj) {
-                        var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2)
+                        var img = $("#progressImage");
+                        var mask = $("#maskOfProgressImage");
+                        var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2);
                         var str = '#totoroTaskCheckFileForm' + index;
                         console.log(str);
                         console.log(new FormData($(str)[0]));
+
                         $.ajax({
                             url: 'http://manager.shandianshua.com/totoro/task/expimp/import/check/data.json',
                             type: 'POST',
@@ -226,12 +229,25 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             data: new FormData($(str)[0]),
                             contentType: false,
                             processData: false,
+                            beforeSend:function(xhr){
+                                img.show().css({
+                                    "position": "fixed",
+                                    "top": "40%",
+                                    "left": "45%",
+                                    "margin-top": function () { return -1 * img.height() / 2; },
+                                    "margin-left": function () { return -1 * img.width() / 2; }
+                                });
+                                mask.show().css("opacity", "0.1");
+                            },
                             success: function (data) {
                                 if (data.code === '200') {
                                     alert('提交成功')
                                 }
+                            },
+                            complete:function(xhr){
+                                img.hide();
+                                mask.hide();
                             }
-
                         });
                     };
                     /***reveiewSearch**/

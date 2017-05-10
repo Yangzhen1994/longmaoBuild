@@ -16,6 +16,9 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
         }
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
         if (searchCheckBydate) {
+            $rootScope.totalCount = searchCheckBydate.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             if (searchCheckBydate.rows.length > 0 && searchCheckBydate.rows[0].status == 4) {
                 $scope.reviewNoItems = searchCheckBydate.rows;
                 $scope.reviewNo = $scope.reviewNoItems[0].data;

@@ -26,6 +26,9 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
         var searchCheckBydate = storageUtils.session.getItem('searchCheckBydate');
 
         if (searchCheckBydate) {
+            $rootScope.totalCount = searchCheckBydate.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             if (searchCheckBydate.rows.length > 0 && searchCheckBydate.rows[0].status == 2) {
                 window.location = '#/reviewDetail/reviewDetail/tab1';
                 return;

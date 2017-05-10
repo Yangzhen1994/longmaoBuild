@@ -23,6 +23,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
         console.log(searchCheckBydate);
         if (searchCheckBydate) {
+            $rootScope.totalCount = searchCheckBydate.total;
+            $rootScope.pageIndex = 1;
+            $rootScope.pageTotal = Math.ceil($scope.totalCount / 10);
             if (searchCheckBydate.rows.length > 0 && searchCheckBydate.rows[0].status == 3) {
                 window.location = '#/reviewDetail/reviewDetail/tab2';
                 return
@@ -35,6 +38,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 $scope.stopSub = function (e) {
                     e.stopPropagation();
                 };
+                if(storageUtils.session.getItem('_otherReason_')){
+                    $scope.otherReason = storageUtils.session.getItem('_otherReason_').otherReason
+                }
                 $scope.toReviewItems = searchCheckBydate.rows;
                 $scope.toReview = $scope.toReviewItems[0].data;
                 $scope.checkedBox = 0;

@@ -720,9 +720,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     e.stopPropagation();
                 };
                 $scope.toReviewItems = data.result.rows;
-                if($scope.toReviewItems.length == 0){
-                    alert('无')
-                }
                 $rootScope.totalCount = data.result.total;
 
                 if (storageUtils.session.getItem('_currentPageIndex_')) {
@@ -807,6 +804,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             $scope.toReview[0].task_check_fail = data.result.task_check_fail;
                         })
                 } else {
+                    $timeout(function () {
+                        alert('此任务的待审核无');
+                    },200);
                     return
                 }
                 $scope.toReview.forEach(function (item, index) {

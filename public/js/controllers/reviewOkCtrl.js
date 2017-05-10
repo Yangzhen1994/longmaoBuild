@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/17.
  */
 define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
-    return app.controller('reviewOkCtrl', ['$scope', '$rootScope', 'serverService', function ($scope, $rootScope, serverService) {
+    return app.controller('reviewOkCtrl', ['$scope', '$rootScope', '$timeout','serverService', function ($scope, $rootScope,$timeout,serverService) {
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         var toReviewChecked = storageUtils.session.getItem('_toReviewChecked_');
         var reviewNoChecked = storageUtils.session.getItem('_reviewNoChecked_');
@@ -409,6 +409,9 @@ define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
                         $scope.reviewOk[0].task_check_fail = data.result.task_check_fail;
                     })
             } else {
+                $timeout(function () {
+                    alert('此任务的审核成功无');
+                },200);
                 return
             }
             $scope.reviewOk.forEach(function (item, index) {

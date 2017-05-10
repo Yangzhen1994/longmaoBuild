@@ -511,6 +511,9 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
                         $scope.reviewNo[0].task_check_fail = data.result.task_check_fail
                     })
             } else {
+                $timeout(function () {
+                    alert('此任务的审核失败无');
+                },200);
                 return
             }
 

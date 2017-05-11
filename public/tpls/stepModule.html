@@ -46,19 +46,19 @@
                         <div ng-click="showDesc($index)" id={{'imgUrl'+$index+'stepDesc'}}
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
                             <p ng-hide="!stepItem.oldSteps.desc" style="word-break: break-all;padding-left: 5px">
-                                {{stepItem.oldSteps.desc}}<span class="step-title-span"></span></p>
+                                {{stepItem.oldSteps.desc}}<span class="step-title-span" style="right: -35px"></span></p>
                             <p ng-hide="stepItem.oldSteps.desc" style="padding-left: 5px">任务描述</p>
                             <textarea
-                                    style="border:1px solid #FFCCBC;padding:5px;position:absolute;left:300px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;resize: vertical;"
+                                    style="border:1px solid #FFCCBC;padding:5px;position:absolute;left:295px;top:-8px;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;resize: vertical;"
                                     ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
                         </div>
                         <div ng-click="showUrl($index)" id={{'imgUrl'+$index+'stepUrl'}}
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px"
                              ng-hide="!stepItem.oldSteps.url ">
                             <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all;padding-left: 5px">
-                                {{stepItem.oldSteps.url}}<span class="step-title-span"></span></p>
+                                {{stepItem.oldSteps.url}}<span class="step-title-span" style="right: -35px"></span></p>
                             <p ng-hide="stepItem.oldSteps.url " style="word-break: break-all;padding-left: 5px">任务url</p>
-                            <textarea style="padding:5px;position:absolute;left:300px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
+                            <textarea style="padding:5px;position:absolute;left:295px;top:-18px;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
                             background: #FFFFFF;
                             border:1px solid #FFCCBC;
                             border-radius: 4px;" ng-model="stepItem.oldSteps.url" placeholder="url"></textarea>

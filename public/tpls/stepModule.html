@@ -57,7 +57,7 @@
                              ng-hide="!stepItem.oldSteps.url || !showEditUrlByButton">
                             <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all">
                                 {{stepItem.oldSteps.url}}</p>
-                            <p ng-hide="stepItem.oldSteps.url">任务url</p>
+                            <p ng-hide="stepItem.oldSteps.url || !showEditUrlByButton">任务url</p>
                             <textarea style="padding:5px;position:absolute;left:292px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
                             background: #FFFFFF;
                             border: 1px solid #9E9E9E;

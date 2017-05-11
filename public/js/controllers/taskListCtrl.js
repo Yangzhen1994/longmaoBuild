@@ -105,6 +105,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         }
                         serverService.getAllTask(data)
                             .then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $rootScope.taskLists = data.result.rows
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
@@ -216,6 +220,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 20
                                 }).then(function (data) {
+                                    var img = $('#indexProgressImage');
+                                    var mask = $('#indexMaskOfProgressImage');
+                                    img.hide();
+                                    mask.hide();
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -247,7 +255,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         };
                                         serverService.getAllTask(data)
                                             .then(function (data) {
-                                                $rootScope.taskLists = data.result.rows
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
+                                                $rootScope.taskLists = data.result.rows;
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
                                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -332,6 +344,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
@@ -367,7 +383,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     };
                                     serverService.getAllTask(data)
                                         .then(function (data) {
-                                            $rootScope.taskLists = data.result.rows
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
+                                            $rootScope.taskLists = data.result.rows;
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
                                                 item.title = item.title.replace(/&nbsp;/g, '')
@@ -443,6 +463,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
@@ -477,6 +501,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     };
                                     serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $rootScope.taskLists = data.result.rows
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
@@ -553,6 +581,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $rootScope.taskLists = data.result.rows;
                                 //$scope.taskState.state = '已过期'
                                 $scope.items = data.result.rows;
@@ -590,6 +622,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     };
                                     serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -669,6 +705,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 20
                                 }).then(function (data) {
+                                    var img = $('#indexProgressImage');
+                                    var mask = $('#indexMaskOfProgressImage');
+                                    img.hide();
+                                    mask.hide();
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -700,6 +740,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         };
                                         serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -786,6 +830,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 20
                                 }).then(function (data) {
+                                    var img = $('#indexProgressImage');
+                                    var mask = $('#indexMaskOfProgressImage');
+                                    img.hide();
+                                    mask.hide();
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -819,6 +867,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         };
                                         serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows;
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -894,8 +946,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     device: 2,
                                     user: 0,
                                     page: 1,
-                                    rows: 200
+                                    rows: 10
                                 }).then(function (data) {
+                                    var img = $('#indexProgressImage');
+                                    var mask = $('#indexMaskOfProgressImage');
+                                    img.hide();
+                                    mask.hide();
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -929,6 +985,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         };
                                         serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows;
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -1007,6 +1067,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     page: 1,
                                     rows: 20
                                 }).then(function (data) {
+                                    var img = $('#indexProgressImage');
+                                    var mask = $('#indexMaskOfProgressImage');
+                                    img.hide();
+                                    mask.hide();
                                     $rootScope.taskLists = data.result.rows;
                                     $scope.items = data.result.rows;
                                     $scope.items.forEach(function (item, index) {
@@ -1037,6 +1101,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         };
                                         serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -1123,6 +1191,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             rows: 20,
                             show_nocheck: 1
                         }).then(function (data) {
+                            var img = $('#indexProgressImage');
+                            var mask = $('#indexMaskOfProgressImage');
+                            img.hide();
+                            mask.hide();
                             $rootScope.taskLists = data.result.rows;
                             $scope.items = data.result.rows;
                             $scope.items.forEach(function (item, index) {
@@ -1158,6 +1230,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 };
                                 serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $rootScope.taskLists = data.result.rows
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
@@ -1242,6 +1318,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             page: 1,
                             rows: 20
                         }).then(function (data) {
+                            var img = $('#indexProgressImage');
+                            var mask = $('#indexMaskOfProgressImage');
+                            img.hide();
+                            mask.hide();
                             $rootScope.taskLists = data.result.rows;
                             $scope.items = data.result.rows;
                             $scope.items.forEach(function (item, index) {
@@ -1273,6 +1353,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 };
                                 serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $rootScope.taskLists = data.result.rows
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
@@ -1346,7 +1430,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             return
                         }
                         /*任务Id*/
-                        if ($scope.searchByTaskId == true) {
+                        if ($scope.searchByTaskId == true && $scope.searhContent) {
                             serverService.getAllTask({
                                 id: $scope.searhContent * 1,
                                 title: '',
@@ -1356,8 +1440,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 device: 0,
                                 user: 0,
                                 page: 1,
-                                rows: 200
+                                rows: 10
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $scope.searhContent = ''
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
@@ -1393,6 +1481,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     };
                                     serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -1461,7 +1553,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         }
 
                         /**任务名字**/
-                        if ($scope.searchByTaskName == true) {
+                        if ($scope.searchByTaskName == true && $scope.searhContent) {
                             serverService.getAllTask({
                                 id: '',
                                 title: $scope.searhContent,
@@ -1473,6 +1565,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 page: 1,
                                 rows: 20
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $scope.searhContent = ''
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
@@ -1508,6 +1604,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     };
                                     serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {
@@ -1576,7 +1676,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })
                         }
                         /**poi_id**/
-                        if ($scope.searchByPoiId == true) {
+                        if ($scope.searchByPoiId == true && $scope.searhContent) {
                             serverService.getAllTask({
                                 id: '',
                                 title: '',
@@ -1586,8 +1686,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 device: 0,
                                 user: 0,
                                 page: 1,
-                                rows: 200
+                                rows: 10
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $scope.searhContent = '';
                                 $rootScope.taskLists = data.result.rows;
                                 $scope.items = data.result.rows;
@@ -1619,10 +1723,14 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                         device: 0,
                                         user: 0,
                                         page: index,
-                                        rows: 20
+                                        rows: 10
                                     };
                                     serverService.getAllTask(data)
                                             .then(function (data) {
+                                                var img = $('#indexProgressImage');
+                                                var mask = $('#indexMaskOfProgressImage');
+                                                img.hide();
+                                                mask.hide();
                                                 $rootScope.taskLists = data.result.rows
                                                 $scope.items = data.result.rows;
                                                 $scope.items.forEach(function (item, index) {

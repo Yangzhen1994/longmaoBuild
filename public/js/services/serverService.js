@@ -2,6 +2,8 @@ define(['app'], function (app) {
 
     app.factory('serverService', ['$http','$q', function($http,$q) {
         function getAllTask(data) {
+            var img = $('#indexProgressImage');
+            var mask = $('#indexMaskOfProgressImage');
             var defer = $q.defer();
             data.show_nocheck = 1;
             var url = 'http://manager.test.shandianshua.com/totoro/task/task/list.json';
@@ -13,6 +15,16 @@ define(['app'], function (app) {
                 },
                 //全部data
                 data:data,
+                beforeSend:function(xhr){
+                    img.show().css({
+                        "position": "fixed",
+                        "top": "40%",
+                        "left": "45%",
+                        "margin-top": function () { return -1 * img.height() / 2; },
+                        "margin-left": function () { return -1 * img.width() / 2; }
+                    });
+                    mask.show().css("opacity", "0.1");
+                },
                 success: function (data) {
                         defer.resolve(data)
                 },

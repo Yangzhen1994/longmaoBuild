@@ -47,11 +47,14 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
             device: 0,
             user: 1,
             page: 1,
-            rows: 20,
+           rows: 10,
             show_nocheck: 1
         })
                 .then(function (data) {
-                    console.log(data);
+                    var img = $('#indexProgressImage');
+                    var mask = $('#indexMaskOfProgressImage');
+                    img.hide();
+                    mask.hide();
                     var checkArr = [];
                     data.result.rows.forEach(function (item, index) {
                         /*if(item.nocheck_nums>0){*/
@@ -83,11 +86,15 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             device: 0,
                             user: 1,
                             page: index,
-                            rows: 20,
+                           rows: 10,
                             show_nocheck: 1
                         };
                         serverService.getAllTask(data)
                             .then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $rootScope.taskLists = data.result.rows
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
@@ -263,7 +270,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             return
                         }
                         /*任务Id*/
-                        if ($scope.reviewSearchByTaskId == true) {
+                        if ($scope.reviewSearchByTaskId == true && $scope.searchReviewContent) {
                             serverService.getAllTask({
                                 id: $scope.searchReviewContent * 1,
                                 title: '',
@@ -273,9 +280,13 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 device: 0,
                                 user: 0,
                                 page: 1,
-                                rows: 200
+                               rows: 10
                             }).then(function (data) {
-                                $scope.searchReviewContent = ''
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
+                                $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -305,10 +316,14 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                         device: 0,
                                         user: 1,
                                         page: index,
-                                        rows: 20
+                                       rows: 10
                                     };
                                     serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
                                                 item.title = item.title.replace(/&nbsp;/g, '')
@@ -362,7 +377,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             })
                         }
                         /**任务名字**/
-                        if ($scope.reviewSearchByTaskName == true) {
+                        if ($scope.reviewSearchByTaskName == true && $scope.searchReviewContent) {
                             serverService.getAllTask({
                                 id: '',
                                 title: $scope.searchReviewContent,
@@ -372,9 +387,13 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 device: 0,
                                 user: 1,
                                 page: 1,
-                                rows: 20
+                               rows: 10
                             }).then(function (data) {
-                                $scope.searchReviewContent = ''
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
+                                $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
                                     item.title = item.title.replace(/&nbsp;/g, '')
@@ -404,10 +423,14 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                         device: 0,
                                         user: 1,
                                         page: index,
-                                        rows: 20
+                                       rows: 10
                                     };
                                     serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
                                                 item.title = item.title.replace(/&nbsp;/g, '')
@@ -463,7 +486,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             })
                         }
                         /**poi_id**/
-                        if ($scope.reviewSearchByPoiId == true) {
+                        if ($scope.reviewSearchByPoiId == true && $scope.searchReviewContent) {
                             serverService.getAllTask({
                                 id: '',
                                 title: '',
@@ -473,8 +496,12 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 device: 0,
                                 user: 1,
                                 page: 1,
-                                rows: 200
+                               rows: 10
                             }).then(function (data) {
+                                var img = $('#indexProgressImage');
+                                var mask = $('#indexMaskOfProgressImage');
+                                img.hide();
+                                mask.hide();
                                 $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
@@ -505,10 +532,14 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                         device: 0,
                                         user: 1,
                                         page: index,
-                                        rows: 20
+                                       rows: 10
                                     };
                                     serverService.getAllTask(data)
                                         .then(function (data) {
+                                            var img = $('#indexProgressImage');
+                                            var mask = $('#indexMaskOfProgressImage');
+                                            img.hide();
+                                            mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
                                                 item.title = item.title.replace(/&nbsp;/g, '')
@@ -575,8 +606,12 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             device: 0,
                             user: 1,
                             page: 1,
-                            rows: 20
+                           rows: 10
                         }).then(function (data) {
+                            var img = $('#indexProgressImage');
+                            var mask = $('#indexMaskOfProgressImage');
+                            img.hide();
+                            mask.hide();
                             $scope.items = data.result.rows;
                             $scope.items.forEach(function (item, index) {
                                 item.title = item.title.replace(/&nbsp;/g, '')
@@ -602,10 +637,14 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                     device: 0,
                                     user: 1,
                                     page: index,
-                                    rows: 20
+                                   rows: 10
                                 };
                                 serverService.getAllTask(data)
                                     .then(function (data) {
+                                        var img = $('#indexProgressImage');
+                                        var mask = $('#indexMaskOfProgressImage');
+                                        img.hide();
+                                        mask.hide();
                                         $scope.items = data.result.rows;
                                         $scope.items.forEach(function (item, index) {
                                             item.title = item.title.replace(/&nbsp;/g, '')

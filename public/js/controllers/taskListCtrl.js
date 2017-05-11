@@ -65,7 +65,11 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             /*上来显示任务*/
             serverService.getAllTask($scope.data)
                 .then(function (data) {
-                    $rootScope.taskLists = data.result.rows
+                    var img = $('#indexProgressImage');
+                    var mask = $('#indexMaskOfProgressImage');
+                    img.hide();
+                    mask.hide();
+                    $rootScope.taskLists = data.result.rows;
                     $scope.items = data.result.rows;
                     $scope.items.forEach(function (item, index) {
                             item.title = item.title.replace(/&nbsp;/g, '')

@@ -319,4 +319,13 @@ ul{
     background: #2DB7F5;
     color: white;
 }
-
+/*分享更多*/
+#showOtherShareItem{
+    text-decoration: underline;
+    position: relative;
+    float: right;
+    font-size: 10px;
+    color: blue;
+    right: 220px;
+    top: 5px;
+}

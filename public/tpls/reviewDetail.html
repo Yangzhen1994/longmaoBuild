@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="./css/reviewDetail.css">
 <div style="height: 100%;"><!--ng-controller="firstPage"-->
+    <img id="reviewDetailProgressImage" class="progress" style="display:none" alt="" src="../img/loading.gif"/>
+    <div id="reviewDetailMaskOfProgressImage" class="mask" style="display:none"></div>
     <div class="bread" >
         <a ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
         <a id="reviewId">编号{{reviewId}}</a>
     </div>
-    <div class="review-detail-export" ng-click="reviewDetailExport()">导出</div>
-    <div class="review-detail-import"><label for="reviewDetailImportForm">导入</label></div>
+    <a class="review-detail-export" ng-click="reviewDetailExport()">导出</a>
+    <a class="review-detail-import"><label for="reviewDetailImportFormInput">导入</label></a>
 
     <form id="reviewDetailImportForm">
         <input style="display: none;" id="reviewDetailImportFormInput" type="file" name="data"

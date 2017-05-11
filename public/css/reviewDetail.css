@@ -9,8 +9,28 @@
     top: 11px;
     left: 90px;
 }
+.progress{z-index: 2000}
+.mask{position: fixed;top: 0;right: 0;bottom: 0;left: 0; z-index: 1000; background-color: #2F2F2F}
 #breadTaskList{
     color: rgba(0,0,0,0.54);
+}
+.review-detail-export{
+    color:#2DB7F5;
+    font-size: 15px;
+    font-family: PingFangSC-Regular;
+    position: absolute;
+    right: 850px;
+    top: 33px;
+    cursor: pointer;
+}
+.review-detail-import{
+    position: absolute;
+    right: 800px;
+    color: #2DB7F5;
+    font-size: 15px;
+    font-family: PingFangSC-Regular;
+    top: 33px;
+    cursor: pointer;
 }
 .search-input{
     top:-5px;

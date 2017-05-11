@@ -3,7 +3,7 @@
  */
 
 define(['app','storageUtils',], function (app,storageUtils,serverService) {
-    return  app.controller('reviewDetailCtrl',['$scope','$rootScope','$timeout','serverService',function ($scope,$rootScope,$timeout,serverService) {
+    return  app.controller('reviewDetailCtrl',['$scope','$rootScope','$timeout','$state','serverService',function ($scope,$rootScope,$timeout,$state,serverService) {
         $timeout(function () {
             $('.left').height($('.right').height())
         },100)
@@ -33,8 +33,11 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         };
         //导出 导入
         $scope.reviewDetailExport = function () {
-            var currentUid = $scope.reviewUserId;
-            if($scope.chooseType == 2){
+            var currentUid = '';
+            if($scope.reviewUserId){
+                currentUid = $scope.reviewUserId;
+            }
+            if($scope.chooseType == 2 && $scope.reviewUserId){
                 currentUid = ''
             }
             if($scope.tabSelected == 0){
@@ -59,10 +62,10 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
             }
 
         };
-        $scope.reviewDetailUpload = function () {
-            var img = $("#progressImage");
-            var mask = $("#maskOfProgressImage");
-            var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2);
+        $scope.reviewDetailUpload = function (obj) {
+            var img = $("#reviewDetailProgressImage");
+            var mask = $("#reviewDetailMaskOfProgressImage");
+            //var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2);
             var str = '#reviewDetailImportForm';
             console.log(str);
             console.log(new FormData($(str)[0]));
@@ -88,7 +91,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 },
                 success: function (data) {
                     if (data.code === '200') {
-                        alert('提交成功')
+                        alert('提交成功');
+                        $state.reload()
                     }
                 },
                 complete:function(xhr){

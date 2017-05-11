@@ -11,6 +11,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
         if(otherReasonObj && otherReasonObj.taskId != reviewId){
             storageUtils.session.removeItem('_otherReason_');
         }
+        var imported = storageUtils.session.getItem('_imported_');
+        if (imported) {
+            storageUtils.session.removeItem('_imported_');
+            window.location = '#/reviewDetail/reviewDetail/tab2';
+            return;
+        }
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
         if (reviewFlag) {
             storageUtils.session.removeItem('_FLAG_');

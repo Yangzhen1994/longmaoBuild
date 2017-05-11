@@ -4,8 +4,14 @@
 define(['app', 'storageUtils'], function (app, storageUtils, serverService) {
     return app.controller('reviewOkCtrl', ['$scope', '$rootScope', '$timeout','serverService', function ($scope, $rootScope,$timeout,serverService) {
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
+        var imported = storageUtils.session.getItem('_imported_');
         var toReviewChecked = storageUtils.session.getItem('_toReviewChecked_');
         var reviewNoChecked = storageUtils.session.getItem('_reviewNoChecked_');
+        if(imported){
+            storageUtils.session.removeItem('_imported_');
+            window.location = '#/reviewDetail/reviewDetail/tab3';
+            return;
+        }
         if (reviewFlag) {
             storageUtils.session.removeItem('_FLAG_');
             window.location = '#/reviewDetail/reviewDetail/tab3';

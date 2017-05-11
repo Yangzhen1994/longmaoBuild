@@ -241,7 +241,9 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             },
                             success: function (data) {
                                 if (data.code === '200') {
-                                    alert('提交成功')
+                                    var str =
+                                        '提交成功\n'+'审核通过:'+data.result.pass+'条\n'+'审核失败:'+data.result.fail+'条\n'+'未处理:'+data.result.nocheck+'条\n';
+                                    alert(str);
                                 }
                             },
                             complete:function(xhr){

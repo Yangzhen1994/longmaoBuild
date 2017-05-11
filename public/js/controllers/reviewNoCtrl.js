@@ -7,8 +7,14 @@ define(['app', 'storageUtils', 'serverService'], function (app, storageUtils, se
 
         storageUtils.session.removeItem('_keyuped_');
         $scope.checkedCount = 0;
+        var imported = storageUtils.session.getItem('_imported_');
         var reviewId = storageUtils.session.getItem('_reviewList_');
         var reviewFlag = storageUtils.session.getItem('_FLAG_');
+        if (imported) {
+            storageUtils.session.removeItem('_imported_');
+            window.location = '#/reviewDetail/reviewDetail/tab1';
+            return;
+        }
         if (reviewFlag) {
             storageUtils.session.removeItem('_FLAG_');
             window.location = '#/reviewDetail/reviewDetail/tab1';

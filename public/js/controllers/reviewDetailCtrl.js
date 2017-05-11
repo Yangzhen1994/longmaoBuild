@@ -91,8 +91,19 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
                 },
                 success: function (data) {
                     if (data.code === '200') {
-                        alert('提交成功');
-                        $state.reload()
+                        var str =
+                        '提交成功\n'+'审核通过:'+data.result.pass+'条\n'+'审核失败:'+data.result.fail+'条\n'+'未处理:'+data.result.nocheck+'条\n';
+                        alert(str);
+                        if($scope.tabSelected == 0){
+                            storageUtils.session.setItem('_imported_',true);
+                            window.location = '#/reviewDetail/reviewDetail/tab3'
+                        }else if($scope.tabSelected == 1){
+                            storageUtils.session.setItem('_imported__',true);
+                            window.location = '#/reviewDetail/reviewDetail/tab1'
+                        }else if($scope.tabSelected == 2){
+                            storageUtils.session.setItem('_imported__',true);
+                            window.location = '#/reviewDetail/reviewDetail/tab2'
+                        }
                     }
                 },
                 complete:function(xhr){

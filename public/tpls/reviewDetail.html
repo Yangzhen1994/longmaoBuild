@@ -6,8 +6,8 @@
         <a ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
         <a id="reviewId">编号{{reviewId}}</a>
     </div>
-    <a class="review-detail-export" ng-click="reviewDetailExport()">导出</a>
-    <a class="review-detail-import"><label for="reviewDetailImportFormInput">导入</label></a>
+    <a href='javascript:;' class="review-detail-export" ng-click="reviewDetailExport()">导出</a>
+    <div class="review-detail-import"><label for="reviewDetailImportFormInput">导入</label></div>
 
     <form id="reviewDetailImportForm">
         <input style="display: none;" id="reviewDetailImportFormInput" type="file" name="data"

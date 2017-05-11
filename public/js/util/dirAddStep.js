@@ -21,8 +21,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  });*/
                 $scope.showEditUrlByButton = false
                 $scope.showEditUrl = function (index) {
-                    if(!$scope.stepItems(index).oldSteps.url){
-                        $scope.stepItems(index).oldSteps.url = true;
+                    if(!$scope.stepItems[index].oldSteps.url){
+                        $scope.stepItems[index].oldSteps.url = '输入url';
                     }
                 };
                 $scope.middleItems = [];
@@ -423,27 +423,71 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                 })
                 $scope.showTitle = function (index) {
+                    //点击之后另外2项css消失
+                    $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
+                    $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
+                    $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
+                    $('#imgUrl'+index+'stepUrl').children('p').css('width',288);
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','none');
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepUrl').children('span').css('display','none');
+                    $('#imgUrl'+index+'stepDesc').children('span').css('display','none');
+                    //编辑框显示
+                    $('#imgUrl'+index+'stepTitle').children('span').css('display','block');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','block');
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('border-color','#FFCCBC');
+                    $('#imgUrl'+index+'stepTitle').children('p').css('background-color','rgba(255,87,33,0.26);');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').blur(function () {
-                        $(this).css('display','none')
+                        $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
+                        $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
+                        $(this).css('display','none');
+                        $('#imgUrl'+index+'stepTitle').children('span').css('display','none');
                     })
                 }
                 $scope.showDesc = function (index) {
+                    $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
+                    $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
+                    $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
+                    $('#imgUrl'+index+'stepUrl').children('p').css('width',288);
+                    $('#imgUrl'+index+'stepUrl').children('span').css('display','none');
+                    $('#imgUrl'+index+'stepTitle').children('span').css('display','none');
+                    //编辑框显示
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','none');
+                    //编辑框显示
+                    $('#imgUrl'+index+'stepDesc').children('span').css('display','block');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','block');
+                    $('#imgUrl'+index+'stepDesc').children('p').css('background-color','rgba(255,87,33,0.26);');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').blur(function () {
-                        $(this).css('display','none')
+                        $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
+                        $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
+                        $(this).css('display','none');
+                        $('#imgUrl'+index+'stepDesc').children('span').css('display','none');
                     })
                 }
                 $scope.showUrl = function (index) {
+                    $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
+                    $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
+                    $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
+                    $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepDesc').children('span').css('display','none');
+                    $('#imgUrl'+index+'stepTitle').children('span').css('display','none');
+                    //编辑框显示
+                    $('#imgUrl'+index+'stepUrl').children('span').css('display','block');
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','block');
+                    $('#imgUrl'+index+'stepUrl').children('p').css('background-color','rgba(255,87,33,0.26);');
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').focus(function () {
+                        if($(this).val()=='输入url'){
+                            $(this).val('')
+                        }
+                    })
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').blur(function () {
-                        $(this).css('display','none')
+                        $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
+                        $('#imgUrl'+index+'stepUrl').children('p').css('width',288);
+                        $(this).css('display','none');
+                        $('#imgUrl'+index+'stepUrl').children('span').css('display','none');
                     })
                 }
                 /*$scope.showtitle = function (index) {

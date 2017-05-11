@@ -97,6 +97,15 @@
 .add-buttons a:nth-child(9){
     background: #03A9F4;
 }
+.step-title-span{
+    position: absolute;
+    right: -30px;
+    width: 30px;
+    height: 30px;
+    /* background: #ffccbc; */
+    background: rgba(255,87,33,0.26);
+    display: none;
+}
 .box{
     position: absolute;
     width: 200px;

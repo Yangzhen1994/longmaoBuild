@@ -167,7 +167,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             } else {
                 $scope.componentItems = [];
             }
-        }, 600)
+        }, 300)
 
 
         //$scope.flagIndex = 0

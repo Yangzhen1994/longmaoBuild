@@ -43,7 +43,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
         }
 
         $scope.showOtherShareItem = function () {
-            $scope.showShareOther = true
+            $scope.showShareOther = true;
+            $timeout(function () {
+                $('.left').height($('.new-task').height()+11)
+            },10)
         };
         serverService.getSelectData()
             .then(function (data) {

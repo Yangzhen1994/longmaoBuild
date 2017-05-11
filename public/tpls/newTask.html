@@ -43,16 +43,17 @@
             <div class="nt-rv-sharePrice">
                 <label for="sharePrice">分享奖励(元):</label>
                 <input type="text" id="sharePrice" ng-model="task.share_award"/>
+                <a href="" ng-click="showOtherShareItem()" id="showOtherShareItem">费率说明</a>
             </div>
-            <div class="nt-rv-sharePrice">
+            <div class="nt-rv-sharePrice" ng-show="showShareOther">
                 <label for="shareTitle">分享标题:</label>
                 <input type="text" id="shareTitle" ng-model="task.share_title" style="width: 323px"/>
             </div>
-            <div class="nt-rv-sharePrice">
+            <div class="nt-rv-sharePrice" ng-show="showShareOther">
                 <label for="shareContent">分享内容:</label>
                 <input type="text" id="shareContent" ng-model="task.share_content" style="width: 323px"/>
             </div>
-            <div class="nt-rv-sharePrice">
+            <div class="nt-rv-sharePrice" ng-show="showShareOther">
                 <label for="shareIcon">分享图片链接:</label>
                 <input type="text" id="shareIcon" ng-model="task.share_icon" style=" width: 298px;"/>
             </div>

@@ -36,6 +36,15 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 short_desc:'',*/
             }
         }
+        //分享显示
+        $scope.showShareOther = false;
+        if($scope.task.share_title || $scope.task.share_content ||$scope.taskshare_icon){
+            $scope.showShareOther = true
+        }
+
+        $scope.showOtherShareItem = function () {
+            $scope.showShareOther = true
+        };
         serverService.getSelectData()
             .then(function (data) {
                 $scope.areaItems = data.result;
@@ -304,6 +313,8 @@ define(['app','storageUtils'], function (app,storageUtils) {
              storageUtils.session.removeItem('_DRAG_')
              $scope.ntnextPage()
          }*/
+
+
         $timeout(function () {
             $('.left').height($('.new-task').height()+11)
         },100)

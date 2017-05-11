@@ -29,7 +29,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             storageUtils.session.removeItem('_reviewNoOrder_');
             storageUtils.session.removeItem('_otherReason_');
 
-            $scope.chooseType = '';
+            $scope.chooseType = 1;
+            $scope.searchByTaskId = true;
+            $scope.searchByTaskName = false;
+            $scope.searchByPoiId = false;
             $scope.state = '';
             $scope.selected = '';
             $scope.loadingState = '任务状态';
@@ -93,7 +96,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         };
                         if ($scope.nowUserFlag) {
                             data.user = 1;
-                            $scope.loadingUser = '归属用户';
+                            $scope.loadingUser = '仅自己的';
                             $scope.userLate = true;
                         }
                         serverService.getAllTask(data)
@@ -129,7 +132,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     {deviceType: 'IOS'}
                                 ];
                                 $scope.belongToUserItems = [
-                                    {belongTo: '归属用户'}
+                                    {belongTo: '仅自己的'}
                                 ];
                             })
                     };
@@ -187,7 +190,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         {deviceType: 'IOS'}
                     ];
                     $scope.belongToUserItems = [
-                        {belongTo: '归属用户'}
+                        {belongTo: '仅自己的'}
                     ];
                     /**状态筛选*/
                     $scope.upStateShow = function () {
@@ -271,7 +274,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                             })
                                     };
@@ -391,7 +394,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 {deviceType: 'IOS'},
                                             ];
                                             $scope.belongToUserItems = [
-                                                {belongTo: '归属用户'},
+                                                {belongTo: '仅自己的'},
                                             ];
                                         })
                                 }
@@ -501,7 +504,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 {deviceType: 'IOS'},
                                             ];
                                             $scope.belongToUserItems = [
-                                                {belongTo: '归属用户'},
+                                                {belongTo: '仅自己的'},
                                             ];
                                         })
                                 };
@@ -614,7 +617,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'}
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'}
+                                                    {belongTo: '仅自己的'}
                                                 ];
                                             })
                                 };
@@ -724,7 +727,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                             })
                                     };
@@ -843,7 +846,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                             })
                                     };
@@ -953,7 +956,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'}
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'}
+                                                    {belongTo: '仅自己的'}
                                                 ];
                                             })
                                     };
@@ -1061,7 +1064,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'}
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'}
+                                                    {belongTo: '仅自己的'}
                                                 ];
                                             })
                                     };
@@ -1126,7 +1129,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             $rootScope.pageTotal = Math.ceil($scope.totalCount / 20);
                             $rootScope.toPage = function (index) {
 
-                                $scope.loadingUser = '归属用户';
+                                $scope.loadingUser = '仅自己的';
                                 //$scope.statusLate = true;
                                 // $scope.deviceLate = true;
                                 $scope.userLate = true;
@@ -1182,7 +1185,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 {deviceType: 'IOS'}
                                             ];
                                             $scope.belongToUserItems = [
-                                                {belongTo: '归属用户'}
+                                                {belongTo: '仅自己的'}
                                             ];
                                         })
                             };
@@ -1297,7 +1300,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 {deviceType: 'IOS'},
                                             ];
                                             $scope.belongToUserItems = [
-                                                {belongTo: '归属用户'},
+                                                {belongTo: '仅自己的'},
                                             ];
                                         })
                             };
@@ -1417,7 +1420,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                                 $scope.searhContent = ''
                                             })
@@ -1532,7 +1535,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                                 $scope.searhContent = ''
                                             })
@@ -1647,7 +1650,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                     {deviceType: 'IOS'},
                                                 ];
                                                 $scope.belongToUserItems = [
-                                                    {belongTo: '归属用户'},
+                                                    {belongTo: '仅自己的'},
                                                 ];
                                                 $scope.searhContent = ''
                                             })

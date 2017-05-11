@@ -34,6 +34,10 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                     })
         }
         /*显示审核*/
+        $scope.chooseType = 1;//默认选中任务id
+        $scope.reviewSearchByTaskId = true;
+        $scope.reviewSearchByTaskName = false;
+        $scope.reviewSearchByPoiId = false;
         serverService.getAllTask({
             id: '',
             title: '',
@@ -267,7 +271,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 poi_id: '',
                                 status: '',
                                 device: 0,
-                                user: 1,
+                                user: 0,
                                 page: 1,
                                 rows: 200
                             }).then(function (data) {

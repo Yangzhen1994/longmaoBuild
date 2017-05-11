@@ -10,7 +10,8 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         var reviewId = storageUtils.session.getItem('_reviewList_');
 
         $scope.reviewId = reviewId;
-        $scope.chooseType = '';
+        //默认选中任务编号？
+        $scope.chooseType = 2;
         $scope.tabSelected = 0;
         $scope.subTime = '';
         $scope.setChoose = function (type) {

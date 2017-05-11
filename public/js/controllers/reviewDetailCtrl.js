@@ -30,7 +30,73 @@ define(['app','storageUtils',], function (app,storageUtils,serverService) {
         };
         $scope.clearTime = function () {
             $scope.subTime = ''
-        }
+        };
+        //导出 导入
+        $scope.reviewDetailExport = function () {
+            var currentUid = $scope.reviewUserId;
+            if($scope.chooseType == 2){
+                currentUid = ''
+            }
+            if($scope.tabSelected == 0){
+                var currentStatus = 2
+            }else if($scope.tabSelected == 1){
+                var currentStatus = 3
+            }else if($scope.tabSelected == 2){
+                var currentStatus = 4
+            }
+            var data = {
+                uid: currentUid,
+                tid: storageUtils.session.getItem('_reviewList_'),
+                date: $scope.subTime,
+                status: currentStatus,
+                tip: 1
+            };
+            if (!data.date) {
+                alert('请选择时间');
+            } else {
+                var url = 'http://manager.shandianshua.com/totoro/task/expimp/export/check/data.html?id=' + data.tid + '&uid=' + data.uid + '&date=' + data.date + '&status=' + data.status + '&tip=1'
+                window.open(url)
+            }
+
+        };
+        $scope.reviewDetailUpload = function () {
+            var img = $("#progressImage");
+            var mask = $("#maskOfProgressImage");
+            var index = obj.id.substr(-1, 1) || obj.id.substr(-2, 2);
+            var str = '#reviewDetailImportForm';
+            console.log(str);
+            console.log(new FormData($(str)[0]));
+            $.ajax({
+                url: 'http://manager.shandianshua.com/totoro/task/expimp/import/check/data.json',
+                type: 'POST',
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: new FormData($(str)[0]),
+                contentType: false,
+                processData: false,
+                beforeSend:function(xhr){
+                    img.show().css({
+                        "position": "fixed",
+                        "top": "40%",
+                        "left": "45%",
+                        "margin-top": function () { return -1 * img.height() / 2; },
+                        "margin-left": function () { return -1 * img.width() / 2; }
+                    });
+                    mask.show().css("opacity", "0.1");
+                },
+                success: function (data) {
+                    if (data.code === '200') {
+                        alert('提交成功')
+                    }
+                },
+                complete:function(xhr){
+                    img.hide();
+                    mask.hide();
+                }
+            });
+        };
         $scope.searchCheckBydate = function () {
             if(!$scope.chooseType){
                 alert('请选择搜索类别');

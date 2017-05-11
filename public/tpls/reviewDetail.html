@@ -4,6 +4,14 @@
         <a ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
         <a id="reviewId">编号{{reviewId}}</a>
     </div>
+    <div class="review-detail-export" ng-click="reviewDetailExport()">导出</div>
+    <div class="review-detail-import"><label for="reviewDetailImportForm">导入</label></div>
+
+    <form id="reviewDetailImportForm">
+        <input style="display: none;" id="reviewDetailImportFormInput" type="file" name="data"
+               onchange="angular.element(this).scope().reviewDetailUpload(this)"
+        >
+    </form>
 
     <div class="review-detail-search-area">
         <button class="search-btn-review-detail" ng-click="searchCheckBydate()">搜索</button>

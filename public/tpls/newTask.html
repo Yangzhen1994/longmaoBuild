@@ -7,7 +7,7 @@
     <div class="content clearfix">
         <div class="nt-left-view">
             <ul ng-model="items" ui-sortable="sortableOptions" class="nt-lv-ph">
-                <p class="nt-lvph-title">{{task.title}}</p>
+                <p class="nt-lvph-title" title={{task.title}}>{{task.title}}</p>
                 <p class="nt-lvph-detail">
                     任务个数{{task.num}}&nbsp个&nbsp|&nbsp{{task.end_time.substr(11,5)}}&nbsp截止&nbsp|&nbsp最长审核&nbsp{{reviewTimeDay}}&nbsp天</p>
                 <p class="nt-lvph-rightPrice">￥{{task.amount/2}}</p>

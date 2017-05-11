@@ -92,9 +92,11 @@
     background: #03A9F4;
 }
 .add-buttons a:nth-child(8){
+     background: #03A9F4;
+}
+.add-buttons a:nth-child(8){
     background: #03A9F4;
 }
-
 .box{
     position: absolute;
     width: 200px;

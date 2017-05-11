@@ -57,6 +57,10 @@ ul{
     line-height: 13px;
     font-size: 8px;
     left: 15px;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .nt-lvph-detail{
     position: absolute;
@@ -170,7 +174,7 @@ ul{
     height: 32px;
 }
 .nt-rightView #start,.nt-rightView #end{
-    background: url("../img/icon/time_picker.png") no-repeat;
+    background: url(../img/icon/time_picker.png) no-repeat;
     background-position: right center;
 }
 .nt-rv-price {

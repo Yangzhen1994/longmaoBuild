@@ -209,7 +209,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         };
         $scope.changeReviewTime();
         //保存本页
-        $scope.ntSavePage = function () {
+        $scope.ntSavePage = function (flag) {
             if(!$scope.task.tag_id){
                 $scope.task.tag_id = 0;
             }
@@ -234,7 +234,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
              serverService.submitSavePage($scope.task)
                      .then(function (data) {
                          if(data.code == 200){
-                             alert('保存成功');
+                             if(flag!=1){
+                                 alert('保存成功');
+                             }
+
                              if($scope.task.id){
                                  //把当前的id存入session
                                  storageUtils.session.setItem('_TaskId_',$scope.task.id);
@@ -288,7 +291,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
         };
         //下一页
         $scope.ntNextPage = function () {
-            $scope.ntSavePage();
+            $scope.ntSavePage(1);
             //获取当前任务的凭证信息
             var oldTaskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_');
             if(oldTaskId && oldTaskId != null){

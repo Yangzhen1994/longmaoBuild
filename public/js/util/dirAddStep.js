@@ -19,7 +19,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 /*$scope.stepModules.forEach(function (item) {
                  console.log(item.title)
                  });*/
-
+                $scope.showEditUrlByButton = false
+                $scope.showEditUrl = function () {
+                    $scope.showEditUrlByButton = true
+                };
                 $scope.middleItems = [];
                 $scope.showText = function (index) {
                     var flag = index
@@ -66,7 +69,6 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             }
                         })
                 };
-
                 /*文本凭证*/
                 $scope.textProof = function (index) {
                     var saved = storageUtils.session.getItem('_saved_');
@@ -419,19 +421,25 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     }
                 })
                 $scope.showTitle = function (index) {
-                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','block');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }
                 $scope.showDesc = function (index) {
-                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','block');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })
                 }
                 $scope.showUrl = function (index) {
-                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','block')
+                    $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','none');
+                    $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','block');
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').blur(function () {
                         $(this).css('display','none')
                     })

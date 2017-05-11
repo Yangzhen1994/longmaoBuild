@@ -53,7 +53,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             }
         };
         /*添加模板*/
-        var usingArr = []
+        var usingArr = [];
         $scope.stepItems = []
         $scope.addStepModule = function (old) {
             $scope.stepItems.push({
@@ -108,7 +108,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 .then(function (data) {
                     console.log(data.result);
                     if (data.result.length == 0) {
-                        alert('还没有步骤请添加');
+                        alert('还没有步骤请添加编辑~');
+
                         $scope.stepCount = 0;
 
                         $scope.oldSteps = [{
@@ -117,6 +118,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             {
                                 images_list: []
                             }];
+                        $scope.addStepModule($scope.stepCount+1);
                     } else {
                         $scope.oldSteps = data.result;
 
@@ -127,6 +129,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         storageUtils.session.setItem('_saved_', true);
                         $scope.stepCount = 0;
                         if (oldStep && oldStep.length > 0) {
+                            $scope.stepItems = []
                             for (var i = 0; i < oldStep.length; i++) {
                                 $scope.addStepModule(i);
                             }

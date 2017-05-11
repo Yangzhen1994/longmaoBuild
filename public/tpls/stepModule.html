@@ -20,7 +20,7 @@
             <a href="javascript:;" ng-click="radioproof($index)" id="{{'radioProof'+$index}}">+单选凭证</a>
             <!--<a href="javascript:;" ng-click="checkboxproof($index)" id="{{'checkboxproof'+$index}}">+多选凭证</a>-->
             <a href="javascript:;" ng-click="showText($index)" id="{{'showText'+$index}}">+显示文本</a>
-            <a href="javascript:;" ng-click="showEditUrl()" id="{{'showUrl'+$index}}">+显示URL</a>
+            <a href="javascript:;" ng-click="showEditUrl($index)" id="{{'showUrl'+$index}}">+显示URL</a>
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showImg'+$index}}">+显示图片</a>
 
         </div>
@@ -54,10 +54,10 @@
                         </div>
                         <div ng-click="showUrl($index)" id={{'imgUrl'+$index+'stepUrl'}}
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px"
-                             ng-hide="!stepItem.oldSteps.url || !showEditUrlByButton">
+                             ng-hide="!stepItem.oldSteps.url ">
                             <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all">
                                 {{stepItem.oldSteps.url}}</p>
-                            <p ng-hide="stepItem.oldSteps.url || !showEditUrlByButton">任务url</p>
+                            <p ng-hide="stepItem.oldSteps.url ">任务url</p>
                             <textarea style="padding:5px;position:absolute;left:292px;top:0;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;
                             background: #FFFFFF;
                             border: 1px solid #9E9E9E;

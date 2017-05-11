@@ -20,8 +20,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                  console.log(item.title)
                  });*/
                 $scope.showEditUrlByButton = false
-                $scope.showEditUrl = function () {
-                    $scope.showEditUrlByButton = true
+                $scope.showEditUrl = function (index) {
+                    if(!$scope.stepItems(index).oldSteps.url){
+                        $scope.stepItems(index).oldSteps.url = true;
+                    }
                 };
                 $scope.middleItems = [];
                 $scope.showText = function (index) {

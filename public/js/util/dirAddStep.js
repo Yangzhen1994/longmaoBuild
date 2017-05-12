@@ -110,8 +110,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }
                             })*/
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
                         }
                     },100)
                 }
@@ -167,8 +167,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                             })*/
                     /* $scope.$emit('addImgProof');*/
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
                         }
                     },100)
                 };
@@ -210,8 +210,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     //             }
                     //         })
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
                         }
                     },100)
                 };
@@ -252,8 +252,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                 }
                             })*/
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
                         }
                     },100)
                 };
@@ -366,8 +366,8 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                      }
                      })*/
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
-                            $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
                         }
                     },100)
                 }
@@ -405,7 +405,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                      }
                      })*/
                     $timeout(function(){
-                        if($('#scroll'+index).height()>500){
+                        if($('#scroll'+index).height()>406){
                             $('#imgUrl'+index).scrollTop($('#scroll'+index).height())
                         }
                     },100)
@@ -425,7 +425,10 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 var clickShowTitle
                 $scope.showTitle = function (index) {
                     //点击之后另外2项css消失
-                    clickShowTitle = true
+                    clickShowTitle = true;
+                    $('#imgUrl'+index+'stepTitle').parent('div').siblings('li').find('.show-text').find('input').not('.radio-input').css('display','none');
+                    $('#imgUrl'+index+'stepTitle').parent('div').siblings('li').find('.show-text').find('p').css('background','');
+                    $('#imgUrl'+index+'stepTitle').parent('div').siblings('li').find('.show-text').find('span').css('display','none');
                     $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
                     $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
                     $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
@@ -446,19 +449,21 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $('#imgUrl'+index+'stepTitle').children('p').css('background-color','rgba(255,87,33,0.26);');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').blur(function () {
                         $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
-                        $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
+                        //$('#imgUrl'+index+'stepTitle').children('p').css('width',288);
                         $(this).css('display','none');
                         $('#imgUrl'+index+'stepTitle .step-title-span').css('display','none');
                     })
                 }
                 $scope.showDesc = function (index) {
+                    $('#imgUrl'+index+'stepDesc').parent('div').siblings('li').find('.show-text').find('input').not('.radio-input').css('display','none');
+                    $('#imgUrl'+index+'stepDesc').parent('div').siblings('li').find('.show-text').find('p').css('background','');
+                    $('#imgUrl'+index+'stepDesc').parent('div').siblings('li').find('.show-text').find('span').css('display','none');
                     $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
-                    $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
+
                     $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
-                    $('#imgUrl'+index+'stepUrl').children('p').css('width',288);
+
                     $('#imgUrl'+index+'stepUrl .step-title-span').css('display','none');
                     $('#imgUrl'+index+'stepTitle .step-title-span').css('display','none');
-                    //编辑框显示
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').css('display','none');
                     //编辑框显示
@@ -476,16 +481,18 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     $('#imgUrl'+index+'stepDesc').children('p').css('background-color','rgba(255,87,33,0.26);');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('height',parentHeight)
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').blur(function () {
-                        $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
+                        //$('#imgUrl'+index+'stepDesc').children('p').css('width',288);
                         $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
                         $(this).css('display','none');
                         $('#imgUrl'+index+'stepDesc .step-title-span').css('display','none');
                     })
                 }
                 $scope.showUrl = function (index) {
+                    $('#imgUrl'+index+'stepUrl').parent('div').siblings('li').find('.show-text').find('input').not('.radio-input').css('display','none');
+                    $('#imgUrl'+index+'stepUrl').parent('div').siblings('li').find('.show-text').find('p').css('background','');
+                    $('#imgUrl'+index+'stepUrl').parent('div').siblings('li').find('.show-text').find('span').css('display','none');
                     $('#imgUrl'+index+'stepTitle').children('p').css('background-color','');
-                    $('#imgUrl'+index+'stepTitle').children('p').css('width',288);
-                    $('#imgUrl'+index+'stepDesc').children('p').css('width',288);
+
                     $('#imgUrl'+index+'stepDesc').children('p').css('background-color','');
                     $('#imgUrl'+index+'stepTitle').children('input').eq('-1').css('display','none');
                     $('#imgUrl'+index+'stepDesc').children('textarea').eq('-1').css('display','none');
@@ -510,7 +517,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                     })
                     $('#imgUrl'+index+'stepUrl').children('textarea').eq('-1').blur(function () {
                         $('#imgUrl'+index+'stepUrl').children('p').css('background-color','');
-                        $('#imgUrl'+index+'stepUrl').children('p').css('width',288);
+                        //$('#imgUrl'+index+'stepUrl').children('p').css('width',288);
                         $(this).css('display','none');
                         $('#imgUrl'+index+'stepUrl .step-title-span').css('display','none');
                     })
@@ -523,7 +530,12 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }*/
                 /*显示步骤的图片*/
                 $scope.showImg = function (index) {
-                    $scope.stepItems[index].oldSteps.images_list.push('../img/moduleImg/ic_add_a_photo_black_24dp.png')
+                    $scope.stepItems[index].oldSteps.images_list.push('../img/moduleImg/ic_add_a_photo_black_24dp.png');
+                    $timeout(function(){
+                        if($('#scroll'+index).height()>406){
+                            $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})
+                        }
+                    },100)
                 }
             }
         }

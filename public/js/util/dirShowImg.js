@@ -15,9 +15,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1)
                 if(scope.images.indexOf('http://')==-1){
-                    el.find('img').eq(0).src = '../img/moduleImg/ic_add_a_photo_black_24dp.png'
+                    el.find('img').eq(0).src = '../img/moduleImg/show_img.png'
                 }
-
+                //点击是任务标题 描述 url 消失
+                el.click(function () {
+                    console.log( el.parent('div').siblings().find('textarea'))
+                    el.parent('div').siblings().find('p').css('background-color','');
+                    el.parent('div').siblings().find('input').css('display','none');
+                    el.parent('div').siblings().find('textarea').css('display','none');
+                    el.parent('div').siblings().find('.step-title-span').css('display','none');
+                    el.parent('div').parent('div').siblings('li').find('input').not('.radio-input').css('display','none');
+                    el.parent('div').parent('div').siblings('li').find('p').css('background','');
+                    el.parent('div').parent('div').siblings('li').find('span').css('display','none');
+                });
                 var flag = true;
                 el.find('img').eq(0).on('mouseenter',function (e) {
                     e.stopPropagation();

@@ -9,6 +9,10 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 scope.textIndex = el.parents('ul')[0].id.substr(-1,1)
                 el.click(function () {
+                    el.parent('div').parent('li').siblings('div').find('p').css('background-color','');
+                    el.parent('div').parent('li').siblings('div').find('input').css('display','none');
+                    el.parent('div').parent('li').siblings('div').find('span').css('display','none');
+                    el.parent('div').parent('li').siblings('div').find('textarea').css('display','none');
                     el.find('input').eq(0).css('display','block');
                     el.find('p').css('background-color','rgba(255,87,33,0.26);');
                     el.find('span').css('display','block');

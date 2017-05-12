@@ -9,9 +9,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                     el.click(function () {
                         el.find('textarea').eq(0).css('visibility','visible');
-                        el.find('.audio-proof-wrap').css('background-color','rgba(255,87,33,0.26);');
+                        el.find('textarea').eq(0).css('display','block');
+                        el.find('.audio-proof-wrap').css('display','block');
+                        el.find('.audio-proof-mask').css('display','block');
                         el.parent('div').parent('li').siblings('li').find('textarea').css('display','none');
-                        el.parent('div').parent('li').siblings('li').find('.audio-proof-wrap').css('background-color','');
+                        el.parent('div').parent('li').siblings('li').find('.audio-proof-mask').css('display','none');
                         el.find('textarea').eq(0).on('click',function (e) {
                             e = window.event || event;
                             e.stopPropagation()
@@ -22,7 +24,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     el.find('textarea').eq(0).on('blur',function () {
                         $(this).css('visibility','hidden');
-                        el.find('.audio-proof-wrap').css('background-color','');
+                        el.find('.audio-proof-mask').css('display','none');
                         if($(this).parents('li')[0].id.length == 16){
                             var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
@@ -36,9 +38,19 @@ define(['app','storageUtils'], function (app,storageUtils) {
                         }
                         var stepIndex = $(this).parents('li')[1].id.substr(-1, 1);
                         var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
-                        scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+                        scope.stepItems[stepIndex].component[comIndex].task_id = taskId;
+                        if(scope.stepItems[stepIndex].component[comIndex].tips_text == ''){
+                            scope.stepItems[stepIndex].component[comIndex].tips_text = '点击输入内容';
+                            scope.$apply()
+                        }
                         //serverService.submitComponent( scope.stepItems[stepIndex].component[comIndex])
 
+                    })
+                    el.find('textarea').eq(0).click(function (e) {
+                        e.stopPropagation();
+                        if($(this).val()=='点击输入内容'){
+                            $(this).val('')
+                        }
                     })
                     el.find('img').eq(-1).click(function (e) {
                         //alert(1)

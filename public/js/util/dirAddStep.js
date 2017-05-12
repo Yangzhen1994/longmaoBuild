@@ -530,7 +530,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                 }*/
                 /*显示步骤的图片*/
                 $scope.showImg = function (index) {
-                    $scope.stepItems[index].oldSteps.images_list.push('../img/moduleImg/ic_add_a_photo_black_24dp.png');
+                    $scope.stepItems[index].oldSteps.images_list.push('../img/show_img.png');
                     $timeout(function(){
                         if($('#scroll'+index).height()>406){
                             $('#imgUrl'+index).animate({scrollTop:$('#scroll'+index).height()-406})

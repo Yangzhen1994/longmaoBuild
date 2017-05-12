@@ -15,7 +15,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                 scope.stepIndex = el.parents('ul')[0].id.substr(-1,1)
                 if(scope.images.indexOf('http://')==-1){
-                    el.find('img').eq(0).src = '../img/moduleImg/show_img.png'
+                    el.find('img').eq(0).src = '../img/show_img.png'
                 }
                 //点击是任务标题 描述 url 消失
                 el.click(function () {

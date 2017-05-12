@@ -156,6 +156,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $scope.componentItems[c].options += '\n点我输入内容'
                                 }
                             }
+                            if($scope.componentItems[c].tips_text==''){
+                                $scope.componentItems[c].tips_text = '点击输入内容'
+                            }
                             $scope.stepItems[step].component.push(
                                     $scope.componentItems[c]
                             )

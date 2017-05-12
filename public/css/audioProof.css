@@ -7,6 +7,14 @@
     background: url('../img/moduleImg/rectangle_audio.png');
     position: relative;
 }
+.audio-proof-wrap .tips{
+    position: absolute;
+    width:80px;
+    color: gray;
+    font-size: 13px;
+    top:-10px;
+    left:0px;
+}
 .audio-proof-text{
     width: 280px;
     height: 25px;
@@ -25,6 +33,12 @@
     height: 69px;
     visibility: hidden;
     padding: 5px;
+}
+.audio-proof-text p{
+    word-break: break-all;
+    width:250px;
+    margin-left: 12px;
+    height:auto;
 }
 .audio-proof-img{
     position: absolute;

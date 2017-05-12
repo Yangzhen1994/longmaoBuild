@@ -19,7 +19,7 @@
             <a href="javascript:;" ng-click="audioProof($index)" id="{{'audioProof'+$index}}">+录音凭证</a>
             <a href="javascript:;" ng-click="radioproof($index)" id="{{'radioProof'+$index}}">+单选凭证</a>
             <!--<a href="javascript:;" ng-click="checkboxproof($index)" id="{{'checkboxproof'+$index}}">+多选凭证</a>-->
-            <a href="javascript:;" ng-click="showText($index)" id="{{'showText'+$index}}">+显示文本</a>
+            <!--<a href="javascript:;" ng-click="showText($index)" id="{{'showText'+$index}}">+显示文本</a>-->
             <a href="javascript:;" ng-click="showEditUrl($index)" id="{{'showUrl'+$index}}">+显示URL</a>
             <a href="javascript:;" ng-click="showImg($index)" id="{{'showImg'+$index}}">+显示图片</a>
 
@@ -76,7 +76,7 @@
                         style="width: 288px;height:auto;">
                         <div>
                             <show-text-module
-                                    ng-show="componentItem.isText&&componentItem.status == 1 || componentItem.tips_text&&componentItem.status == 1"></show-text-module>
+                                    ng-show="componentItem.isText&&componentItem.status == 1&& componentItem.type!=6|| componentItem.tips_text&&componentItem.status == 1&&componentItem.type!=6"></show-text-module>
 
                             <text-proof-module ng-show="componentItem.type == 1 && componentItem.status ==1">
 

@@ -16,6 +16,12 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     el.parent('div').parent('li').siblings('li').find('input').not('.radio-input').css('display','none');
                     el.parent('div').parent('li').siblings('li').find('p').css('background-color','');
                     el.parent('div').parent('li').siblings('li').find('span').css('display','none');
+                    el.find('input').click(function (event) {
+                        event.stopPropagation();
+                        if($(this).val()=='点击输入内容'){
+                            $(this).val('')
+                        }
+                    })
                     el.find('input').eq(0).keyup(function () {
                         var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                         //scope.isText = false;
@@ -55,7 +61,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                     //scope.isText = false;
-                    $(this).css('display','none')
+                    $(this).css('display','none');
+                    el.find('span').css('display','none');
+                    el.find('p').css('background-color','');
                     if($(this).parents('li')[0].id.length == 16){
                         var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 
@@ -69,8 +77,13 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     }
                     var stepIndex = $(this).parents('li')[1].id.substr(-1,1);
                     console.log(stepIndex);
-                    scope.stepItems[stepIndex].component[comIndex].isText = false
-                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId
+                    scope.stepItems[stepIndex].component[comIndex].isText = false;
+                    scope.stepItems[stepIndex].component[comIndex].task_id = taskId;
+                    if(scope.stepItems[stepIndex].component[comIndex].tips_text == ''){
+                        scope.stepItems[stepIndex].component[comIndex].tips_text = '点击输入内容';
+                        scope.$apply()
+                    }
+
                     /*serverService.submitComponent(scope.stepItems[stepIndex].component[comIndex])
                             .then(function () {
 

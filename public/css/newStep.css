@@ -94,9 +94,9 @@
 .add-buttons a:nth-child(8){
      background: #03A9F4;
 }
-.add-buttons a:nth-child(9){
+/*.add-buttons a:nth-child(9){
     background: #03A9F4;
-}
+}*/
 .step-title-span{
     position: absolute;
     right: -30px;

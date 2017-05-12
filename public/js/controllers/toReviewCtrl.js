@@ -242,9 +242,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_keyuped_', true);
                                     storageUtils.session.setItem('_currentCheckIndex_', 10);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -275,9 +275,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     $scope.toReviewItems.splice(i, 1);
                                     /*删除待审核的*/
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                     }
                                     i--;
                                 }
@@ -395,9 +395,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     storageUtils.session.setItem('_keyuped_', true);
                                     storageUtils.session.setItem('_currentCheckIndex_', 10);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -438,9 +438,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_', true);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -509,9 +509,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                                 storageUtils.session.setItem('_keyuped_', true);
                                                 storageUtils.session.setItem('_currentCheckIndex_', 10);
                                                 if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                                    storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                                 } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                                    storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                                 }
                                                 var extmessageObj = {
                                                     taskId:storageUtils.session.getItem('_reviewList_'),
@@ -566,9 +566,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_', true);
                                             if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                             }
                                             var extmessageObj = {
                                                 taskId:storageUtils.session.getItem('_reviewList_'),
@@ -1003,9 +1003,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
 
                                 storageUtils.session.setItem('_keyuped_', true);
                                 if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                    storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                 } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                    storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                    storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                 }
                                 storageUtils.session.setItem('_toReviewChecked_', true);
                                 window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -1147,9 +1147,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_keyuped_', true);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_toReviewChecked_', true);
                                     window.location = '#/reviewDetail/reviewDetail/tab2';
@@ -1216,9 +1216,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_currentCheckIndex_', 10);
                                             if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                             }
                                             //缓存页面拒绝原因
                                             var extmessageObj = {
@@ -1266,9 +1266,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                             //操作成功后tab间切换实现刷新目的
                                             storageUtils.session.setItem('_keyuped_', true);
                                             if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex);
                                             } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                                storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                                storageUtils.session.setItem('_currentCheckIndex_', $rootScope.pageIndex - 1);
                                             }
                                             var extmessageObj = {
                                                 taskId:storageUtils.session.getItem('_reviewList_'),

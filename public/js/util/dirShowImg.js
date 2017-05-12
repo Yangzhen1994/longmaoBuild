@@ -26,14 +26,14 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     el.parent('div').siblings().find('.step-title-span').css('display','none');
                     el.parent('div').parent('div').siblings('li').find('input').not('.radio-input').css('display','none');
                     el.parent('div').parent('div').siblings('li').find('p').css('background','');
-                    el.parent('div').parent('div').siblings('li').find('span').css('display','none');
+                    el.parent('div').parent('div').siblings('li').find('span').not('.tips').css('display','none');
                 });
                 var flag = true;
                 el.find('img').eq(0).on('mouseenter',function (e) {
                     e.stopPropagation();
                     if(flag){
                         var imgIndex = $(this).attr('id');
-                        imgIndex = imgIndex.substr(-1,1)
+                        imgIndex = imgIndex.substr(-1,1);
                         function sys_file_sdk_qiniu_token(file) {
                             var token = $.ajax({
                                 url: 'http://manager.shandianshua.com/sdk/qiniu/token.json',

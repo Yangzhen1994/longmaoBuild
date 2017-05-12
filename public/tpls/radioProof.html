@@ -3,7 +3,7 @@
     <ul id="{{'radio'+stepIndex+$index}}" >
         <li ng-repeat="radioItem in optionsArr track by $index">
             <div class="radio-moni-circle"></div>
-            <input type="text" id="{{'input'+stepIndex+comIndex+$index}}" ng-model="radioItem"
+            <input class="radio-input" type="text" id="{{'input'+stepIndex+comIndex+$index}}" ng-model="radioItem"
                    ng-change="changeOptions($index)">
             <img src="../img/icon/add_radio.png" alt="" id="{{'add'+comIndex+stepIndex+$index}}" ng-click="addRadioOption()">
             <img src="../img/icon/del_radio.png" alt="" id="{{'del'+comIndex+stepIndex+$index}}"

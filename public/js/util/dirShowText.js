@@ -11,9 +11,11 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 el.click(function () {
                     el.find('input').eq(0).css('display','block');
                     el.find('p').css('background-color','rgba(255,87,33,0.26);');
-                    el.find('span').css('display','none');
+                    el.find('span').css('display','block');
                     console.log(el)
-                    el.parent('div').parent('li').siblings('li').find('input').eq(0).css('display','none')
+                    el.parent('div').parent('li').siblings('li').find('input').not('.radio-input').css('display','none');
+                    el.parent('div').parent('li').siblings('li').find('p').css('background-color','');
+                    el.parent('div').parent('li').siblings('li').find('span').css('display','none');
                     el.find('input').eq(0).keyup(function () {
                         var taskId = storageUtils.session.getItem('_TaskId_') || storageUtils.session.getItem('_newTaskid_')
                         //scope.isText = false;

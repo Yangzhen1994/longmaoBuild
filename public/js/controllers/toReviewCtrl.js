@@ -1103,9 +1103,9 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                                     //操作成功后tab间切换实现刷新目的
                                     storageUtils.session.setItem('_currentCheckIndex_', 10);
                                     if ($rootScope.pageIndex < $rootScope.pageTotal) {
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex);
+                                        storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex);
                                     } else if($rootScope.pageIndex == $rootScope.pageTotal && $rootScope.pageIndex != 1){
-                                        storageUtils.session.setItem('_noCurrentPageIndex_', $rootScope.pageIndex - 1);
+                                        storageUtils.session.setItem('_currentPageIndex_', $rootScope.pageIndex - 1);
                                     }
                                     storageUtils.session.setItem('_keyuped_', true);
                                     storageUtils.session.setItem('_toReviewChecked_', true);

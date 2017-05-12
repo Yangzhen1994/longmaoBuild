@@ -8,11 +8,20 @@
         visibility: visible;
         margin-bottom: 10px;
     }
+    .show-text p span{
+        position: absolute;
+        background: rgba(255,87,33,0.26);
+        display: none;
+        top: 0;
+        right: -50px;
+        width: 100px;
+        height: 20px;
+    }
 </style>
-<div class="show-text"><pre style="white-space: inherit;
-    word-break: break-all;">{{componentItem.tips_text}}</pre>
+<div class="show-text"><p style="position: relative;white-space: inherit;
+    word-break: break-all;height: 20px;top: 10px;">{{componentItem.tips_text}}<span style=""></span></p>
     <input type="text" ng-model="componentItem.tips_text" style="position: absolute;
-    top:0px;
+    top:5px;
     left: 365px;
     font-size: 13px;
     WIDTH: 292px;
@@ -20,8 +29,9 @@
     line-height: 30px;
     display: none;
     background: #FFFFFF;
-    border: 1px solid #9E9E9E;
+    border: 1px solid #FFCCBC;
     border-radius: 4px;
     font-family: PingFangSC-Regular;
+    padding-left: 5px;
     ">
 </div>

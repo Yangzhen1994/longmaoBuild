@@ -9,6 +9,9 @@ define(['app','storageUtils'], function (app,storageUtils) {
             link:function (scope,el,attr) {
                     el.click(function () {
                         el.find('textarea').eq(0).css('visibility','visible');
+                        el.find('.audio-proof-wrap').css('background-color','rgba(255,87,33,0.26);');
+                        el.parent('div').parent('li').siblings('li').find('textarea').css('display','none');
+                        el.parent('div').parent('li').siblings('li').find('.audio-proof-wrap').css('background-color','');
                         el.find('textarea').eq(0).on('click',function (e) {
                             e = window.event || event;
                             e.stopPropagation()
@@ -19,6 +22,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
 
                     el.find('textarea').eq(0).on('blur',function () {
                         $(this).css('visibility','hidden');
+                        el.find('.audio-proof-wrap').css('background-color','');
                         if($(this).parents('li')[0].id.length == 16){
                             var comIndex = $(this).parents('li')[0].id.substr(-3, 3);
 

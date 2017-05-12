@@ -1,3 +1,7 @@
+.audio-proof{
+    margin-top: 20px;
+    position: relative;
+}
 .audio-proof-wrap{
     overflow-wrap: break-word;
     margin-left: 12px;
@@ -12,8 +16,13 @@
     width:80px;
     color: gray;
     font-size: 13px;
-    top:-10px;
     left:0px;
+    /* color: rgb(242, 242, 242); */
+    top: -20px;
+    transform: scale(0.9);
+    /* color: rgb(242, 242, 242); */
+    /* display: none; */
+    color: #b1b1b1;
 }
 .audio-proof-text{
     width: 280px;
@@ -25,14 +34,14 @@
     font-size: 13px;
 }
 .audio-proof-textarea{
-    border: none;
     width: 292px;
     position: absolute;
     top: 0;
-    left: 300px;
+    left: 298px;
     height: 69px;
     visibility: hidden;
     padding: 5px;
+    border:1px solid #FFCCBC;
 }
 .audio-proof-text p{
     word-break: break-all;
@@ -44,4 +53,14 @@
     position: absolute;
     top:-8px;
     right:0px;
+}
+.audio-proof-mask{
+    display: none;
+    width: 300px;
+    position: absolute;
+    z-index: 9;
+    background: rgba(255,87,33,0.26);
+    height: 69px;
+    top: 0;
+    left: 12px;
 }

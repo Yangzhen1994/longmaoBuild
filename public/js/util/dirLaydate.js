@@ -4,12 +4,8 @@
 /**
  * 时间控件模块，引入laydate并对其进行处理(layDate.js不是layDate源文件，修改过)
  */
-define(['app','storageUtils'], function (app,storageUtils) {
-    return app.directive('autoFocus', function () {
-        return function (scope, element) {
-            element[0].focus();
-        }
-    }).directive('ngcLayDate', function($timeout,$rootScope) {
+define(['app'], function (app) {
+    return app.directive('ngcLayDate', ['$timeout',function($timeout) {
         return {
             require: '?ngModel',
             restrict: 'A',
@@ -77,5 +73,5 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 },0);
             }
         };
-    })
+    }])
 })

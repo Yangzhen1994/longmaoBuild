@@ -140,6 +140,19 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         //console.log(data.result);
                     })
 
+        }else{
+            alert('这里是无法请求到接口后的模拟');
+            alert('还没有步骤请添加编辑~');
+
+            $scope.stepCount = 0;
+
+            $scope.oldSteps = [{
+                images_list: []
+            },
+                {
+                    images_list: []
+                }];
+            $scope.addStepModule($scope.stepCount+1);
         }
         //获取到凭证信息
 

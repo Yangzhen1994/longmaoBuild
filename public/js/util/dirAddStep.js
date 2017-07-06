@@ -13,13 +13,13 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
             restrict: "EA",
 
             templateUrl: 'tpls/stepModule.html',
-            controller: function ($scope, $timeout, serverService) {
-                console.log($scope.oldSteps);
+            controller: ['$scope', '$timeout', 'serverService',function ($scope, $timeout, serverService) {
+                //console.log($scope.oldSteps);
 
                 /*$scope.stepModules.forEach(function (item) {
                  console.log(item.title)
                  });*/
-                $scope.showEditUrlByButton = false
+                $scope.showEditUrlByButton = false;
                 $scope.showEditUrl = function (index) {
                     if(!$scope.stepItems[index].oldSteps.url){
                         $scope.stepItems[index].oldSteps.url = '输入url';
@@ -537,7 +537,7 @@ define(['app', 'storageUtils'], function (app, storageUtils) {
                         }
                     },100)
                 }
-            }
+            }]
         }
 
     }])

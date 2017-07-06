@@ -68,7 +68,7 @@
     width: 450px;
     margin-left: 14px;
     /* position: absolute; */
-    margin-top: 30px;"
+    margin-top: 30px;
 }
 #exportSubTime{
     position: absolute;
@@ -168,7 +168,7 @@
 .review-button a:hover{
     cursor: pointer;
 }
-.import , .export{
+.import, .export{
     color:#2DB7F5;
     font-size: 13px;
     font-family: PingFangSC-Regular;

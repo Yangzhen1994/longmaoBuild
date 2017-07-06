@@ -3,24 +3,24 @@
  * 2014-11-30 mon
  */
 (function (window) {
-    'use strict';
+    //cl'use strict';
 
     require.config({
 
         waitSeconds: 0,
         //基本路径
-        baseUrl: "js/",
+        //baseUrl: "js/",
 
         //模块标识名与模块路径映射
         paths: {
             //库
             "angular" : "libs/angular",
-            "angular-route" : "libs/angular-route",
-            'angular-ui-route':'libs/angular-ui-router',
-            'angular-sanitize':'libs/angular-sanitize.min',
-            'ui-sortable':'libs/sortable',
-            'ng-file-upload':'libs/ng-file-upload.min',
-            'angular-cookie':'libs/angular-cookie.min',
+            "angularRoute" : "libs/angular-route",
+            'angularUiRoute':'libs/angular-ui-router',
+            'angularSanitize':'libs/angular-sanitize.min',
+            'uiSortable':'libs/sortable',
+            'ngFileUpload':'libs/ng-file-upload.min',
+            'angularCookie':'libs/angular-cookie.min',
             //服务
             "serverService" : "services/serverService",
             "mapService" : "services/mapService",
@@ -68,38 +68,43 @@
             'angular': {
                 exports: 'angular'
             },
-            'angular-route':{
+            /*'angular-route':{
                 deps: ["angular"],
                 exports: 'angular-route'
+            },*/
+            'angularRoute' : {
+                exports : 'angularRoute',
+                deps : ['angular']
             },
-            'angular-ui-route':{
+            'angularUiRoute':{
                 deps: ["angular"],
-                exports: 'angular-ui-route'
+                exports: 'angularUiRoute'
             },
-            'ui-sortable':{
+
+            'uiSortable':{
                 deps: ["angular"],
-                exports: 'ui-sortable'
+                exports: 'uiSortable'
             },
             'ui-bootstrap':{
                 deps: ["angular"],
                 exports: 'ui-bootstrap'
             },
-            'ng-file-upload':{
+            'ngFileUpload':{
                 deps: ["angular"],
-                exports: 'ng-file-upload'
+                exports: 'ngFileUpload'
             },
-            'angular-cookie':{
+            'angularCookie':{
                 deps: ["angular"],
-                exports: 'angular-cookie'
+                exports: 'angularCookie'
             },
-            'angular-sanitize':{
+            'angularSanitize':{
                 deps: ["angular"],
-                exports: 'angular-sanitize'
+                exports: 'angularSanitize'
             }
         }
     });
 
-    require(['angular','angular-route','angular-ui-route','angular-sanitize','ui-sortable','ng-file-upload','app','route','storageUtils',
+    require(['angular','angularRoute','angularUiRoute','angularSanitize','uiSortable','ngFileUpload','app','route','storageUtils',
             'dirTextProof','dirImgProof','dirLaydate','dirAddStep','dirPosProof','dirAudioProof','dirRadioProof','dirShowImg','dirShowText','dirKeyEvents','headerCtrl','newTaskCtrl','taskListCtrl',
             'reviewCtrl','reviewDetailCtrl', "toReviewCtrl", "reviewOkCtrl", "reviewNoCtrl",
                 "toReviewDetailCtrl",'addStepCtrl','textProofCtrl','imgProofCtrl','posProofCtrl','showImgCtrl','changeLeftNav','serverService','mapService'],

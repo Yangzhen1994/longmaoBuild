@@ -25,7 +25,7 @@
 
         </div>
         <div class="middle-view" style="position: relative;height: 100%;width: 0">
-            <img src="../img/step_header.png" alt="" style="
+            <img src="./img/step_header.png" alt="" style="
                                                     position: absolute;
                                                     left: 432px;
                                                     top: 15px;
@@ -36,14 +36,14 @@
                 <!--<div style="overflow-y:auto;">-->
                 <div id="{{'scroll'+$index}}" ng-model="stepItem.component" ui-sortable="sortableOptions">
                     <div class="oldStep" style="width: 300px;height:auto;">
-                        <div ng-click="showTitle($index)" id={{'imgUrl'+$index+'stepTitle'}}
+                        <div ng-click="showTitle($index)" id="{{'imgUrl'+$index+'stepTitle'}}"
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: 30px;line-height: 30px;border:none;margin-left: 6px;font-size: 16px">
                             <p ng-hide="!stepItem.oldSteps.title" style="position: relative;padding-left: 5px;word-break: break-all">{{stepItem.oldSteps.title}}<span class="step-title-span"></span></p>
                             <p ng-hide="stepItem.oldSteps.title" style="position: relative;padding-left: 5px">任务标题</p>
                             <input style="padding-left:5px;position:absolute;left:300px;top:0px;display:none ;width: 292px;height: 30px;line-height: 30px;font-size: 16px;border:1px solid #FFCCBC"
                                    ng-model="stepItem.oldSteps.title" placeholder="任务标题">
                         </div>
-                        <div ng-click="showDesc($index)" id={{'imgUrl'+$index+'stepDesc'}}
+                        <div ng-click="showDesc($index)" id="{{'imgUrl'+$index+'stepDesc'}}"
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px">
                             <p ng-hide="!stepItem.oldSteps.desc" style="word-break: break-all;padding-left: 5px">
                                 {{stepItem.oldSteps.desc}}<span class="step-title-span" style="right: -35px"></span></p>
@@ -52,7 +52,7 @@
                                     style="border:1px solid #FFCCBC;padding:5px;position:absolute;left:295px;top:0px;display:none ;width: 292px;height:60px;margin-left: 6px;font-size: 13px;resize: vertical;"
                                     ng-model="stepItem.oldSteps.desc" placeholder="步骤描述"></textarea>
                         </div>
-                        <div ng-click="showUrl($index)" id={{'imgUrl'+$index+'stepUrl'}}
+                        <div ng-click="showUrl($index)" id="{{'imgUrl'+$index+'stepUrl'}}"
                              style="margin-top:5px;position:relative;display: block;width: 288px;height: auto;border:none;margin-left: 6px;font-size: 16px"
                              ng-hide="!stepItem.oldSteps.url ">
                             <p ng-hide="!stepItem.oldSteps.url" style="word-break: break-all;padding-left: 5px">
@@ -83,20 +83,20 @@
                             </text-proof-module>
 
                             <img-proof-module
-                                    ng-show="{{(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1}}"></img-proof-module>
+                                    ng-show="(componentItem.type==2 || componentItem.type==3 || componentItem.type==4) && componentItem.status ==1"></img-proof-module>
                             <pos-proof-module
-                                    ng-show="{{componentItem.type==5 && componentItem.status ==1}}"></pos-proof-module>
+                                    ng-show="componentItem.type==5 && componentItem.status ==1"></pos-proof-module>
                             <audio-proof-module
-                                    ng-show="{{componentItem.type==6 && componentItem.status ==1}}"></audio-proof-module>
+                                    ng-show="componentItem.type==6 && componentItem.status ==1"></audio-proof-module>
                             <radio-proof-module
-                                    ng-show="{{componentItem.type==7 && componentItem.status ==1}}"></radio-proof-module>
+                                    ng-show="componentItem.type==7 && componentItem.status ==1"></radio-proof-module>
                             <!--<checkboxproof-module ng-show="{{componentItem.type==8 && componentItem.status ==1}}"></checkboxproof-module>-->
 
                         </div>
                     </li>
                 </div>
             </ul>
-            <img src="../img/step_footer.png" alt="" style="
+            <img src="./img/step_footer.png" alt="" style="
                                                     position: absolute;
                                                     left: 432px;
                                                     bottom: 22px;

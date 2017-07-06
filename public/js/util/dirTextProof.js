@@ -5,7 +5,7 @@
  * 浏览器端数据存在的工具模块
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-     app.directive('textProofModule',['serverService','$timeout',function (serverService,$timeout) {
+     app.directive('textProofModule',['serverService',function (serverService) {
             return {
                 restrict: "EA",
                 templateUrl: 'tpls/textProof.html',

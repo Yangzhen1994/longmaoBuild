@@ -2,7 +2,7 @@
  * Created by 73951 on 2017/3/23.
  */
 define(['app','storageUtils'], function (app,storageUtils) {
-    app.directive('showTextModule',['serverService',function (serverService) {
+    app.directive('showTextModule',[function () {
         return {
             restrict: "EA",
             templateUrl: 'tpls/showText.html',
@@ -130,7 +130,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                 })
 
             },
-            controller:function ($scope) {
+            controller:['$scope',function ($scope) {
 
                /* $scope.deleteOne = function (e,index) {
                     e.stopPropagation()
@@ -146,7 +146,7 @@ define(['app','storageUtils'], function (app,storageUtils) {
                     //storageUtils.session.setItem('_DRAG_',true)
                     //window.location = '#/reviewList';
                 }*/
-            }
+            }]
         }
 
     }])

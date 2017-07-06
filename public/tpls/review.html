@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./css/review.css">
 <div  class="review"><!--ng-controller="firstPage"-->
-    <img id="progressImage" class="progress" style="display:none" alt="" src="../img/loading.gif"/>
-    <div id="maskOfProgressImage" class="mask" style="display:none"></div>
+  <!--  <img id="progressImage" class="progress" style="display:none" alt="" src="../img/loading.gif"/>
+    <div id="maskOfProgressImage" class="mask" style="display:none"></div>-->
     <div class="bread">
         <a ng-click="returnToSelf()" ui-sref="reviewList" id="breadTaskList">审核列表<span>/</span></a>
         <!-- <a ui-sref="parent.newTask">新建任务</a>-->
@@ -79,11 +79,7 @@
 
                 </div>
                 <div class="review-detail-detail">
-                    <span>任务状态:<span
-                            style="margin-right: 0;margin-left: 8px">{{item.statustext.substr(-10,3)}}</span></span><span>完成程度:<span
-                        style="color:#4CAF50;margin-right: 0;margin-left: 8px">{{item.num.split('>')[1].split('<')[0]}}</span>/{{item.num.split(';')[3]}}</span><span>下线时间:<span
-                        style="margin-right: 0;margin-left: 8px">{{item.endTime}}</span></span><span>待审核数量:<span
-                        style="margin-right: 0;margin-left: 3px">{{item.nocheck_nums}}</span></span>
+                    <span>任务状态:<span style="margin-right: 0;margin-left: 8px;">{{item.statustext.substr(-10,3)}}</span></span><span>完成程度:<span style="color:#4CAF50;margin-right: 0;margin-left: 8px;">{{oneAchieve}}</span>/{{item.num.split(';')[3]}}</span><span>下线时间:<span style=": 0;margin-left: 8px;">{{item.endTime}}</span></span><span>待审核数量:<span style="margin-right: 0;margin-left: 3px;">{{item.nocheck_nums}}</span></span>
                 </div>
                 <div class="review-button">
                     <a class="first-button" ng-click="turnToReviewDetail($index)">审核</a>

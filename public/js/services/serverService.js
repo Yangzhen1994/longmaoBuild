@@ -6,7 +6,8 @@ define(['app'], function (app) {
             var mask = $('#indexMaskOfProgressImage');
             var defer = $q.defer();
             data.show_nocheck = 1;
-            var url = 'http://manager.test.shandianshua.com/totoro/task/task/list.json';
+            //var url = 'http://manager.test.shandianshua.com/totoro/task/task/list.json';
+            var url = 'http://localhost:8088/longmao-manager%20-build/public/mock/taskList.json';
             $.ajax({
                 type: "POST",
                 url: url,
@@ -30,7 +31,13 @@ define(['app'], function (app) {
                 },
                 error: function (data) {
                     console.error(data)
-                }
+                },
+                /*complete:function () {
+                    var img = $('#indexProgressImage');
+                    var mask = $('#indexMaskOfProgressImage');
+                    img.hide();
+                    mask.hide();
+                }*/
             })
             return defer.promise
         }
@@ -370,8 +377,12 @@ define(['app'], function (app) {
             })
             return defer.promise
         }
-        return {getSelectData,getAllTask,getDatajson,submitSavePage,getStepById,getUpdownLine,
-            getReviewList,exportReview,importReview,check,saveStep,submitComponent,getComponent,
-            getInfoData,getRegex,getCopy};
+        return {getSelectData:getSelectData,getAllTask:getAllTask,getDatajson:getDatajson,submitSavePage:submitSavePage,getStepById:getStepById,
+            getUpdownLine:getUpdownLine,
+            getReviewList:getReviewList,
+            exportReview:exportReview,
+            importReview:importReview,
+            check:check,saveStep:saveStep,submitComponent:submitComponent,getComponent:getComponent,
+            getInfoData:getInfoData,getRegex:getRegex,getCopy:getCopy};
     }])
 })

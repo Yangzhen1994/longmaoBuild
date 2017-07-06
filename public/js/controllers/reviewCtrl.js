@@ -64,6 +64,7 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                     $scope.items = checkArr;
                     $scope.items.forEach(function (item, index) {
                         item.title = item.title.replace(/&nbsp;/g, '')
+                        $scope.oneAchieve = item.num.split('>')[1];
                     });
                     $rootScope.totalCount = data.result.total;
                     $rootScope.pageIndex = 1;
@@ -98,7 +99,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 $rootScope.taskLists = data.result.rows
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
-                                    item.title = item.title.replace(/&nbsp;/g, '')
+                                    item.title = item.title.replace(/&nbsp;/g, '');
+                                    $scope.oneAchieve = item.num.split('>')[1];
                                 });
                                 $scope.items.forEach(function (item, index) {
                                     if (item.status == 1) {
@@ -289,7 +291,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
-                                    item.title = item.title.replace(/&nbsp;/g, '')
+                                    item.title = item.title.replace(/&nbsp;/g, '');
+                                    $scope.oneAchieve = item.num.split('>')[1];
                                 })
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
@@ -326,7 +329,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                             mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
-                                                item.title = item.title.replace(/&nbsp;/g, '')
+                                                item.title = item.title.replace(/&nbsp;/g, '');
+                                                $scope.oneAchieve = item.num.split('>')[1];
                                             });
                                             $scope.items.forEach(function (item, index) {
                                                 if (item.status == 1) {
@@ -396,7 +400,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
-                                    item.title = item.title.replace(/&nbsp;/g, '')
+                                    item.title = item.title.replace(/&nbsp;/g, '');
+                                    $scope.oneAchieve = item.num.split('>')[1].split('<')[0];
                                 })
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
@@ -433,7 +438,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                             mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
-                                                item.title = item.title.replace(/&nbsp;/g, '')
+                                                item.title = item.title.replace(/&nbsp;/g, '');
+                                                $scope.oneAchieve = item.num.split('>')[1];
                                             });
                                             $scope.items.forEach(function (item, index) {
                                                 if (item.status == 1) {
@@ -505,7 +511,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                 $scope.searchReviewContent = '';
                                 $scope.items = data.result.rows;
                                 $scope.items.forEach(function (item, index) {
-                                    item.title = item.title.replace(/&nbsp;/g, '')
+                                    item.title = item.title.replace(/&nbsp;/g, '');
+                                    $scope.oneAchieve = item.num.split('>')[1];
                                 })
                                 $rootScope.totalCount = data.result.total;
                                 $rootScope.pageIndex = 1;
@@ -542,7 +549,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                             mask.hide();
                                             $scope.items = data.result.rows;
                                             $scope.items.forEach(function (item, index) {
-                                                item.title = item.title.replace(/&nbsp;/g, '')
+                                                item.title = item.title.replace(/&nbsp;/g, '');
+                                                $scope.oneAchieve = item.num.split('>')[1];
                                             })
                                             $scope.items.forEach(function (item, index) {
                                                 if (item.status == 1) {
@@ -614,7 +622,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                             mask.hide();
                             $scope.items = data.result.rows;
                             $scope.items.forEach(function (item, index) {
-                                item.title = item.title.replace(/&nbsp;/g, '')
+                                item.title = item.title.replace(/&nbsp;/g, '');
+                                $scope.oneAchieve = item.num.split('>')[1];
                             })
                             $rootScope.totalCount = data.result.total;
                             $rootScope.pageIndex = 1;
@@ -647,7 +656,8 @@ define(['app', 'storageUtils',], function (app, storageUtils, serverService) {
                                         mask.hide();
                                         $scope.items = data.result.rows;
                                         $scope.items.forEach(function (item, index) {
-                                            item.title = item.title.replace(/&nbsp;/g, '')
+                                            item.title = item.title.replace(/&nbsp;/g, '');
+                                            $scope.oneAchieve = item.num.split('>')[1];
                                         })
                                         $scope.items.forEach(function (item, index) {
                                             if (item.status == 1) {
